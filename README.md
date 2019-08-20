@@ -63,17 +63,17 @@ Any category used in this field outside of those values will be removed when we 
 
 ## Testing
 
-Testing a marketplace application during development is easy, the Civo CLI that lets you launch clusters or add apps, will also accept a path to an app.yaml, for example:
+Testing a marketplace application during development is easy, use the Civo CLI to launch a cluster, then simply apply the app.yaml without any other options, for example:
 
 ```
-civo k8s create my-cluster --app=longhorn,./app.yaml
+# Create a cluster with any prerequisites
+civo k8s create my-cluster --app=longhorn --save --wait
 
-# or
-
-civo k8s add-app my-cluster ./app.yaml
+# Then apply your app.yaml
+kubectl apply -f app.yaml
 ```
 
-This will launch a new cluster with your in-development application installed, or add it to an existing cluster (replacing any Kubernetes resources already defined with the same names).
+Then you can test it and ensure the app.yaml is standalone and working.
 
 ## Contributing
 
