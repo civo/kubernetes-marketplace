@@ -27,9 +27,13 @@ civo k8s add-app my-cluster longhorn
 
 ## Writing
 
-There are three parts to a marketplace application - a manifest, the Kubernetes resources configuration itself and a square aspect ratio PNG format logo. Each marketplace application is in a separate top level folder in this repository. The Kubernetes resources configuration should be called `app.yaml` and can be multiple resources separated by `---`. The logo should be called `logo.png`.
+There are two minimum parts to a marketplace application - a `manifest.yaml`, and a square aspect ratio `logo.png`. Each marketplace application is in a separate top level folder in this repository. 
 
-However, to control the listing of your application in the marketplace, `manifest.yaml` is where the magic happens. Here's an example of a manifest.yaml:
+Then there are two options for how to install the application - a single  Kubernetes resources configuration file called `app.yaml` (which can be multiple resources separated by `---`) or a script called `install.sh`. The `install.sh` if present will be executed on the master using `bash` as non-privileged user that has passwordless `sudo` permission and has `kubectl` access to the cluster. We envisage that `install.sh` script usage should be rare and we will be strictly monitoring what is in them, and *NO* downloading of external resources will be acceptable here (no `curl https://... | sudo sh` sort of functionality)
+
+A final optional file is the `post_install.md` which the user will be able to view in the web UI to see additional instructions on how to use the application. It's recommended to keep this short and succinct, if you need to manage LOTS of content, then please create a [community learn guide](https://www.civo.com/learn/creating-a-learn-guide) and link to it from within the `post_install.md`.
+
+To control the listing of your application in the marketplace, `manifest.yaml` is where the magic happens. Here's an example of a manifest.yaml:
 
 ```
 name: Foo
