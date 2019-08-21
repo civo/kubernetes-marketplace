@@ -42,10 +42,6 @@ dependencies:
   - bar
 maintainer: @civocloud
 description: Foo is a lightweight and reliable widget maker from Example Ltd.
-extra_information: |
-  ## Using Foo widgets
-
-  Create a widget by doing...
 url: https://example.com/foo
 category: management
 ```
