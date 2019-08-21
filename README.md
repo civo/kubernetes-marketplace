@@ -34,6 +34,9 @@ However, to control the listing of your application in the marketplace, `manifes
 ```
 name: Foo
 version: v0.1.0
+dependencies:
+  - bar
+maintainer: @civocloud
 description: Foo is a lightweight and reliable widget maker from Example Ltd.
 extra_information: |
   ## Using Foo widgets
@@ -43,7 +46,7 @@ url: https://example.com/foo
 category: management
 ```
 
-The `name` is displayed in the web interface alongside the `logo.png`, and is searchable when you're installing marketplace applications from the CLI. The `version` is the version of the software being installed NOT the version of the marketplace configuration. If you want to include that, use an additional `-r1` or something after the version number.
+The `name` is displayed in the web interface alongside the `logo.png`, and is searchable when you're installing marketplace applications from the CLI. The `version` is the version of the software being installed NOT the version of the marketplace configuration. If you want to include that, use an additional `-r1` or something after the version number. The `dependencies` are the names (can be lower case and part of the name) of any other marketplace applications that are needed by this application.
 
 The `maintainer` field can either be an email address (e.g. `hello@civo.com`) or a Twitter username (e.g. `@civocloud`) and isn't displayed on the site, but is used for us to determine who to contact if there are any problems with it.
 
