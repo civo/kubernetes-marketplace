@@ -27,7 +27,7 @@ civo k8s add-app my-cluster longhorn
 
 ## Writing
 
-There are two minimum parts to a marketplace application - a `manifest.yaml`, and a square aspect ratio `logo.png`. Each marketplace application is in a separate top level folder in this repository. 
+There are two minimum parts to a marketplace application - a `manifest.yaml`, and a square aspect ratio `logo.png` no larger than 512x512 or 20KB. Each marketplace application is in a separate top level folder in this repository. 
 
 Then there are two options for how to install the application - a single  Kubernetes resources configuration file called `app.yaml` (which can be multiple resources separated by `---`) or a script called `install.sh`. The `install.sh` if present will be executed on the master using `bash` as non-privileged user that has passwordless `sudo` permission and has `kubectl` access to the cluster. We envisage that `install.sh` script usage should be rare and we will be strictly monitoring what is in them, and *NO* downloading of external resources will be acceptable here (no `curl https://... | sudo sh` sort of functionality)
 
@@ -63,6 +63,42 @@ Finally the `category` can be one of a small list of categories for applications
 * serverless
 
 Any category used in this field outside of those values will be removed when we accept any changes and replaced with one of those. If you want an additional category, please propose it in a [GitHub issue](https://github.com/civo/k3s-marketplace/issues).
+
+## Customisation of applications
+
+Applications support customisation through a simple mechanism. This is a user defined set of variables that are then replaced within the `app.yaml` (prefixed with a `$`) or injected as ENVironment variables when executing `install.sh`). The scripts can't ask the user for these values, so they must be either a preconfigured value (to keep the app.yaml and Civo-specific configuration separate) or one of a range of special values that Civo will inject:
+
+<dl>
+  <dt>CIVO:ALPHANUMERIC(num)</dt>
+  <dd>A random string of alphanumeric characters `num` long</dd>
+  <dt>CIVO:CLUSTER_NAME</dt>
+  <dd>The name of your Kubernetes cluster</dd>
+  <dt>CIVO:EMAIL_ADDRESS</dt>
+  <dd>The email address of your Civo account</dd>
+  <dt>CIVO:MASTER_IP</dt>
+  <dd>The public IP address of your Kubernetes cluster's master</dd>
+</dl>
+
+These are specified in the `manifest.yaml` like this:
+
+```
+configuration:
+  ACCESS_KEY:
+    label: "Access key"
+    value: "CIVO:ALPHANUMERIC(10)"
+```
+
+Another way of customising applications is to provide plans which will be injected in the same way as the values above, but the UI will provide a choice for which plan to install. These are specified in the `manifest.yaml` like this:
+
+```
+plans:
+  - label: "5GB"
+    configuration:
+      APP_SIZE_GB: 5
+  - label: "10GB"
+    configuration:
+      APP_SIZE_GB: 10
+```
 
 ## Testing
 
