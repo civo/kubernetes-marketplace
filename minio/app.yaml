@@ -1,0 +1,92 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: minio-pv-claim
+  namespace: apps
+  labels:
+    name: minio-data
+    type: longhorn
+spec:
+  capacity:
+    storage: $PV_SIZE_GB
+  volumeMode: Filesystem
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+  csi:
+    driver: io.rancher.longhorn
+    fsType: ext4
+    volumeAttributes:
+      numberOfReplicates: '2'
+      staleReplicaTimeout: '20'
+    volumeHandle: minio-data
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minio-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: $PVC_SIZE_GB
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: minio
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      volumes:
+      - name: minio-data
+        persistentVolumeClaim:
+          claimName: minio-pv-claim
+      containers:
+      - name: minio
+        volumeMounts:
+        - name: data
+          mountPath: "/data"
+        image: minio/minio:RELEASE.2019-08-29T00-25-01Z
+        args:
+        - server
+        - /data
+        env:
+        - name: MINIO_ACCESS_KEY
+          value: $MINIO_ACCESS_KEY
+        - name: MINIO_SECRET_KEY
+          value: $MINIO_SECRET_KEY
+        ports:
+        - containerPort: 9000
+        readinessProbe:
+          httpGet:
+            path: /minio/health/ready
+            port: 9000
+          initialDelaySeconds: 120
+          periodSeconds: 20
+        livenessProbe:
+          httpGet:
+            path: /minio/health/live
+            port: 9000
+          initialDelaySeconds: 120
+          periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 9000
+      targetPort: 9000
+      protocol: TCP
+  selector:
+    app: minio

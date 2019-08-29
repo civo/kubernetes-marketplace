@@ -103,6 +103,8 @@ plans:
       APP_SIZE_GB: 10
 ```
 
+There's no label for the configuration items in `plans` because they are just used internally to configure the specifics of the installation (e.g. disk size usage, number of threads, RAM limits, etc) so aren't displayed to the user.
+
 ## Testing
 
 Testing a marketplace application during development is easy, use the Civo CLI to launch a cluster, then simply apply the app.yaml without any other options, for example:
