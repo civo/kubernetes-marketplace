@@ -97,13 +97,15 @@ Another way of customising applications is to provide plans which will be inject
 plans:
   - label: "5GB"
     configuration:
-      APP_SIZE_GB: 5
+      APP_SIZE_GB: 
+        value: 5
   - label: "10GB"
     configuration:
-      APP_SIZE_GB: 10
+      APP_SIZE_GB: 
+        value: 10
 ```
 
-There's no label for the configuration items in `plans` because they are just used internally to configure the specifics of the installation (e.g. disk size usage, number of threads, RAM limits, etc) so aren't displayed to the user.
+There's no label for the configuration items in `plans` because they are just used internally to configure the specifics of the installation (e.g. disk size usage, number of threads, RAM limits, etc) so aren't displayed to the user, unless you give them a label (if the user really should see what these are configured to).
 
 ## Testing
 

@@ -17,13 +17,19 @@ configuration:
 plans:
   - label: "5GB"
     configuration:
-      PV_SIZE_GB: 5G
-      PVC_SIZE_GB: 5Gi
+      PV_SIZE_GB:
+        value: 5G
+      PVC_SIZE_GB:
+        value: 5Gi
   - label: "10GB"
     configuration:
-      PV_SIZE_GB: 10G
-      PVC_SIZE_GB: 10Gi
+      PV_SIZE_GB:
+        value: 10G
+      PVC_SIZE_GB:
+        value: 10Gi
   - label: "20GB"
     configuration:
-      PV_SIZE_GB: 20G
-      PVC_SIZE_GB: 20Gi
+      PV_SIZE_GB:
+        value: 20G
+      PVC_SIZE_GB:
+        value: 20Gi

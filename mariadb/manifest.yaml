@@ -8,13 +8,16 @@ category: database
 plans:
   - label: "5GB"
     configuration:
-      VOLUME_SIZE: 5Gi
+      VOLUME_SIZE:
+        value: 5Gi
   - label: "10GB"
     configuration:
-      VOLUME_SIZE: 10Gi
+      VOLUME_SIZE:
+        value: 10Gi
   - label: "20GB"
     configuration:
-      VOLUME_SIZE: 20Gi
+      VOLUME_SIZE:
+        value: 20Gi
 configuration:
   MYSQL_ROOT_PASSWORD:
     label: "Root password"
