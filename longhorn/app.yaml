@@ -276,21 +276,6 @@ spec:
           - name: LONGHORN_MANAGER_IP
             value: "http://longhorn-backend:9500"
 ---
-kind: Service
-apiVersion: v1
-metadata:
-  labels:
-    app: longhorn-ui
-  name: longhorn-frontend
-  namespace: longhorn-system
-spec:
-  selector:
-    app: longhorn-ui
-  ports:
-  - port: 8000
-    targetPort: 8000
-  type: LoadBalancer
----
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:

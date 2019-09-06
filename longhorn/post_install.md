@@ -1,5 +1,31 @@
 ## Using Longhorn persistent volumes
 
+### External access
+
+By default external access to the Longhorn dashboard isn't available. This is easily changed by applying the following YAML to your cluster with `kubectl apply -f longhorn-service.yaml` (or whatever you call the file containing the contents below):
+
+
+```
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: longhorn-ui
+  name: longhorn-frontend
+  namespace: longhorn-system
+spec:
+  selector:
+    app: longhorn-ui
+  ports:
+  - port: 8000
+    targetPort: 8000
+  type: LoadBalancer
+```
+
+This will open up http://YOUR_CLUSTER_ID.k8s.civo.com:8000/dashboard to the whole world. You should lock this down in the [firewall](https://www.civo.com/account/firewalls) automatically created in Civo for your Kubernetes cluster. Locking down the firewall will only affect access from OUTSIDE of your Kubernetes cluster, access from your applications within Kubernetes will not be affected.
+
+### Usage instructions
+
 Create a persistent volume in a file called something like `pv.yaml` with:
 
 ```
