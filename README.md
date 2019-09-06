@@ -84,7 +84,7 @@ The applications can't ask the user for these values, so they must be either a p
   <dd>The public IP address of your Kubernetes cluster's master</dd>
 </dl>
 
-**Note:** For `CIVO:ALPHANUMERIC(num)` and `CIVO:WORDS(num)` you can also suffix `:BASE64` (e.g. `CIVO:ALPHANUMERIC(10):BASE64`) to have them automatically encode them to Base 64 before inserting them in the templates (but the non-Base 64 version is kept to present to the user as a password).
+**Note:** For `CIVO:ALPHANUMERIC(num)` and `CIVO:WORDS(num)` you can also suffix `:BASE64` (e.g. `CIVO:ALPHANUMERIC(10):BASE64`) to have Civo automatically encode the random values to Base 64 before inserting them in the templates (but the non-Base 64 version is kept to present to the user as a readable/copyable value).
 
 These are specified in the `manifest.yaml` like this:
 
