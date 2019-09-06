@@ -31,7 +31,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: $PVC_SIZE_GB
+      storage: $PV_SIZE_GB
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
