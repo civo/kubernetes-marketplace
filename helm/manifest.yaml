@@ -1,0 +1,7 @@
+---
+name: Helm
+version: 2.14.3
+maintainer: hello@civo.com
+description: Helm (tiller) helps you define, install, and upgrade even the most complex Kubernetes application.
+url: https://helm.sh
+category: management
