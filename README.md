@@ -51,7 +51,9 @@ url: https://example.com/foo
 category: management
 ```
 
-The `name` is displayed in the web interface alongside the `logo.png`, and is searchable when you're installing marketplace applications from the CLI. The `version` is the version of the software being installed NOT the version of the marketplace configuration. If you want to include that, use an additional `-r1` or something after the version number. The `dependencies` are the names (can be lower case and part of the name) of any other marketplace applications that are needed by this application.
+The `name` is displayed in the web interface alongside the `logo.png`, and is searchable when you're installing marketplace applications from the CLI. If your application name has spaces in it, the `name` should be the spaces/hyphens version and you can add `title` which is a nicer display version.
+
+The `version` is the version of the software being installed NOT the version of the marketplace configuration. If you want to include that, use an additional `-r1` or something after the version number. The `dependencies` are the names (can be lower case and part of the name) of any other marketplace applications that are needed by this application.
 
 The `maintainer` field can either be an email address (e.g. `hello@civo.com`) or a Twitter username (e.g. `@civocloud`) and isn't displayed on the site, but is used for us to determine who to contact if there are any problems with it.
 
