@@ -1,0 +1,29 @@
+---
+name: PostgreSQL
+version: 11.5
+maintainer: hello@civo.com
+description: The PostgreSQL object-relational database system provides reliability and data integrity.
+url: https://www.postgresql.org
+category: database
+dependencies:
+  - Longhorn
+plans:
+  - label: "5GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 5Gi
+  - label: "10GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 10Gi
+  - label: "20GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 20Gi
+configuration:
+  USERNAME:
+    label: "Admin username"
+    value: "CIVO:ALPHANUMERIC(10)"
+  PASSWORD:
+    label: "Admin password"
+    value: "CIVO:ALPHANUMERIC(30)"
