@@ -1,5 +1,7 @@
 # Civo K3s Marketplace
 
+[![CircleCI](https://circleci.com/gh/civo/k3s-marketplace.svg?style=svg)](https://circleci.com/gh/civo/k3s-marketplace)
+
 ## Introduction
 [Civo.com](https://www.civo.com) is introducing the world's first managed K3s service and the marketplace will be provided from this repository. Feel free to fork it and submit a pull request to add any software and we'll consider including it in our marketplace (if you like, raise an [issue](https://github.com/civo/k3s-marketplace/issues) first to discuss the proposal).
 
