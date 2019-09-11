@@ -2,7 +2,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/ruby:2.6.0-node
+        environment:
+          BUNDLER_VERSION: 2.0.2
     working_directory: ~/repo
     steps:
       - checkout
