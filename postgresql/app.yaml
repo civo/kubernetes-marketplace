@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: postgres-config
-  labels:
-    app: postgres
+  name: postgres-config
+  labels:
+    app: postgres
 data:
-  POSTGRES_DB: postgresdb
-  POSTGRES_USER: $USERNAME
-  POSTGRES_PASSWORD: $PASSWORD
+  POSTGRES_DB: postgresdb
+  POSTGRES_USER: $USERNAME
+  POSTGRES_PASSWORD: $PASSWORD
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -42,7 +42,7 @@ metadata:
   name: postgresql
 spec:
   ports:
-  - port: 5432
+    - port: 5432
   selector:
     app: postgresql
   clusterIP: None
@@ -65,10 +65,10 @@ spec:
       containers:
       - image: postgresql:11.5
         name: postgresql
-        envFrom:
-          - configMapRef:
-            name: postgres-config
-        volumeMounts:
+        envFrom:
+          - configMapRef:
+            name: postgres-config
+        volumeMounts:
           - name: postgresql-persistent-storage
             mountPath: /var/lib/postgresql/data
         ports:
