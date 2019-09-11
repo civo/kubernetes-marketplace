@@ -4,11 +4,13 @@ Thank you for deploying [OpenFaaS](https://github.com/openfaas/faas) to Civo's k
 
 ## Obtain access
 
-The OpenFaaS gateway has been made available through a `LoadBalancer` on port 80 on each node through the use of a Host Port. This is a feature of `k3s`.
+The OpenFaaS gateway has been made available through a `NodePort` on port `31112` on each node.
 
 * Go to your Civo dashboard, click Kubernetes and then your OpenFaaS Cluster.
 
 Look for the DNS entry that you find there, it may look something like `6c1c1646-25cf-44f0-9bd5-53ee35cd7c84.k8s.civo.com`
+
+This DNS record which points at each of the nodes in your cluster.
 
 * Set the following URL:
 
@@ -17,7 +19,23 @@ export DNS="" # As per dashboard
 export OPENFAAS_URL=http://$DNS:31112
 ```
 
-* Download your `kubeconfig` file from the Civo dashboard.
+### Get your kubeconfig
+
+Pick A or B:
+
+* A) Get your kubeconfig via command-line
+
+```
+civo k8s ls
+
+civo k8s kubeconfig --save <CLUSTER_NAME>
+
+kubectl config set-context <CLUSTER_NAME>
+```
+
+* B) Get your kubeconfig via the Dashboard
+
+* Either download your `kubeconfig` file from the Civo dashboard.
 
 * Now set the `KUBECONFIG` environment variable, so that you point at your new cluster:
 
@@ -27,7 +45,13 @@ export KUBECONFIG=$HOME/Downloads/config-file.yaml
 
 ### Find your generated password
 
-Now retrieve your password from above and save it into a file called `password.txt`.
+You can find your password in the Civo Dashboard by clicking on the OpenFaaS application and save it as `password.txt`.
+
+Alternative, retrieve the password using `kubectl`:
+
+```
+echo $(kubectl get secret -n openfaas basic-auth -o jsonpath="{.data.basic-auth-password}" | base64 --decode; echo) > password.txt
+```
 
 ### Use the CLI to log in
 
@@ -63,7 +87,7 @@ echo | faas-cli invoke nodeinfo
 echo -n "verbose" | faas-cli invoke nodeinfo
 ```
 
-### Access the UI
+### Access the OpenFaaS Gateway UI
 
 You can now use the DNS entry you found earlier in a web-browser to access your dashboard.
 
@@ -73,7 +97,8 @@ echo $OPENFAAS_URL
 
 ## Next steps
 
-* Read the docs: [Deploy SSL with LetsEncrypt to enable HTTPS](https://docs.openfaas.com/reference/ssl/kubernetes-with-cert-manager/)
-* Run a lab: [Try the OpenFaaS workshop](https://github.com/openfaas/workshop)
-* Join the [OpenFaaS Slack](https://slack.openfaas.io/)
+* Read the docs: [Deploy TLS with LetsEncrypt to enable HTTPS](https://docs.openfaas.com/reference/ssl/kubernetes-with-cert-manager/)
 
+* Learn OpenFaaS: [Try The Official Workshop](https://github.com/openfaas/workshop)
+
+* Get help: Join the [OpenFaaS Slack](https://slack.openfaas.io/)
