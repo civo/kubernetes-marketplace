@@ -25,27 +25,27 @@ Pick A or B:
 
 * A) Get your kubeconfig via command-line
 
-```
-civo k8s ls
+    ```sh
+    civo k8s ls
 
-civo k8s kubeconfig --save <CLUSTER_NAME>
+    civo k8s kubeconfig --save <CLUSTER_NAME>
 
-kubectl config set-context <CLUSTER_NAME>
-```
+    kubectl config set-context <CLUSTER_NAME>
+    ```
 
 * B) Get your kubeconfig via the Dashboard
 
-* Either download your `kubeconfig` file from the Civo dashboard.
+    Download your `kubeconfig` file from the Civo dashboard.
 
-* Now set the `KUBECONFIG` environment variable, so that you point at your new cluster:
+    Now set the `KUBECONFIG` environment variable, so that you point at your new cluster:
 
-```
-export KUBECONFIG=$HOME/Downloads/config-file.yaml
-```
+    ```
+    export KUBECONFIG=$HOME/Downloads/config-file.yaml
+    ```
 
 ### Find your generated password
 
-You can find your password in the Civo Dashboard by clicking on the OpenFaaS application and save it as `password.txt`.
+You can find your password above and save it as `password.txt`.
 
 Alternative, retrieve the password using `kubectl`:
 
