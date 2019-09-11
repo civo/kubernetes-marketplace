@@ -27,13 +27,7 @@ export KUBECONFIG=$HOME/Downloads/config-file.yaml
 
 ### Find your generated password
 
-Now retrieve your password and save it into `password.txt` with the following command:
-
-```
-echo $(kubectl get secret -n openfaas basic-auth -o jsonpath="{.data.basic-auth-password}" | base64 --decode) > password.txt 
-
-echo Your admin password is: $(cat password.txt)
-```
+Now retrieve your password from above and save it into a file called `password.txt`.
 
 ### Use the CLI to log in
 
