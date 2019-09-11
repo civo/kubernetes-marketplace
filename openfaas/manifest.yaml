@@ -1,7 +1,7 @@
 name: OpenFaaS
 version: 0.17.0
 dependencies:
-  - helm
+  - Helm
 maintainer: "@openfaasltd"
 description: "OpenFaaS (Functions as a Service) is a framework for building serverless functions with Docker and Kubernetes which has first class support for metrics."
 url: https://www.openfaas.com/
