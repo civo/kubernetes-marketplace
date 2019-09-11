@@ -3,6 +3,34 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.4.1
+    working_directory: ~/repo
     steps:
       - checkout
-      - run: echo "A first hello"
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: lint yaml files
+          command: |
+            bundle exec bin/lint_yaml.rb
+      - run:
+          name: lint dependencies
+          command: |
+            bundle exec bin/lint_dependencies.rb
+      - run:
+          name: lint logo images
+          command: |
+            bundle exec bin/lint_logos.rb
+      - run:
+          name: check for unknown CIVO:* keys in configuration
+          command: |
+            bundle exec bin/lint_configuration.rb

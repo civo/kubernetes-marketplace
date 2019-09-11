@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    image_size (2.0.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  image_size
+
+BUNDLED WITH
+   2.0.2
