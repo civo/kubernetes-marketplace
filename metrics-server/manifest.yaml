@@ -1,5 +1,6 @@
 ---
 name: metrics-server
+title: "Metrics Server"
 version: Latest
 maintainer: alex@openfaas.com
 description: Metrics Server is a cluster-wide aggregator of resource usage data.
