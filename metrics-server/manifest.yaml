@@ -1,0 +1,9 @@
+---
+name: metrics-server
+version: Latest
+maintainer: alex@openfaas.com
+description: Metrics Server is a cluster-wide aggregator of resource usage data.
+url: https://kubernetes.io/docs/tasks/debug-application-cluster/resource-metrics-pipeline/#metrics-server
+dependencies:
+  - Helm
+category: architecture
