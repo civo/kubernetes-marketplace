@@ -7,6 +7,8 @@ Bundler.require(:default)
 exit_code = 0
 
 Dir.glob('**/*.png').each do |filename|
+  next if filename[/^vendor\//]
+
   image_size = ImageSize.path(filename)
   if image_size.format != :png
     puts "#{filename} isn't in PNG format"
