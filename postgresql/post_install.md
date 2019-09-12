@@ -33,9 +33,12 @@ $ kubectl run tmp-shell --generator=run-pod/v1 --rm -i \
 
 / # apk update
 / # apk add postgresql-client
-/ # psql postgresql://ADMIN_USERNAME:ADMIN_PASSWORD@postgresql
+/ # psql -U ADMIN_USERNAME -h postgresql postgresdb
+Password for user 12CNT2Eq6i: 
+psql (11.5)
+Type "help" for help.
 
-psql=# CREATE DATABASE yourdbname;
-psql=# CREATE USER youruser WITH ENCRYPTED PASSWORD 'super-strong-password';
-psql=# GRANT ALL PRIVILEGES ON DATABASE yourdbname TO youruser;
+postgresdb=# CREATE DATABASE yourdbname;
+postgresdb=# CREATE USER youruser WITH ENCRYPTED PASSWORD 'super-strong-password';
+postgresdb=# GRANT ALL PRIVILEGES ON DATABASE yourdbname TO youruser;
 ```
