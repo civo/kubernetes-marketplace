@@ -67,7 +67,7 @@ spec:
         name: postgresql
         envFrom:
           - configMapRef:
-            name: postgres-config
+              name: postgres-config
         volumeMounts:
           - name: postgresql-persistent-storage
             mountPath: /var/lib/postgresql/data
