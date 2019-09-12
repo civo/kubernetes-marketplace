@@ -63,7 +63,7 @@ spec:
         app: postgresql
     spec:
       containers:
-      - image: postgresql:11.5
+      - image: postgres:11.5
         name: postgresql
         envFrom:
           - configMapRef:
