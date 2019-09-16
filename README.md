@@ -1,9 +1,9 @@
-# Civo K3s Marketplace
+# Civo Kubernetes Marketplace
 
-[![CircleCI](https://circleci.com/gh/civo/k3s-marketplace.svg?style=svg)](https://circleci.com/gh/civo/k3s-marketplace)
+[![CircleCI](https://circleci.com/gh/civo/kubernetes-marketplace.svg?style=svg)](https://circleci.com/gh/civo/kubernetes-marketplace)
 
 ## Introduction
-[Civo.com](https://www.civo.com) is introducing the world's first managed K3s service and the marketplace will be provided from this repository. Feel free to fork it and submit a pull request to add any software and we'll consider including it in our marketplace (if you like, raise an [issue](https://github.com/civo/k3s-marketplace/issues) first to discuss the proposal).
+[Civo.com](https://www.civo.com) is introducing the world's first managed K3s service and the marketplace will be provided from this repository. Feel free to fork it and submit a pull request to add any software and we'll consider including it in our marketplace (if you like, raise an [issue](https://github.com/civo/kubernetes-marketplace/issues) first to discuss the proposal).
 
 **STATUS:** This project is currently under active development and maintenance.
 
@@ -69,7 +69,7 @@ Finally the `category` can be one of a small list of categories for applications
 * management
 * architecture
 
-Any category used in this field outside of those values will be removed when we accept any changes and replaced with one of those. If you want an additional category, please propose it in a [GitHub issue](https://github.com/civo/k3s-marketplace/issues).
+Any category used in this field outside of those values will be removed when we accept any changes and replaced with one of those. If you want an additional category, please propose it in a [GitHub issue](https://github.com/civo/kubernetes-marketplace/issues).
 
 ## Customising
 
@@ -133,7 +133,7 @@ Then you can test it and ensure the app.yaml is standalone and working.
 
 ## Contributing
 
-To contribute an application or a fix for an application to Civo, please fork our [marketplace repository](https://github.com/civo/k3s-marketplace) and submit a pull request. In the pull request please confirm that you're OK for the marketplace application to be distributed by us under the MIT License.
+To contribute an application or a fix for an application to Civo, please fork our [marketplace repository](https://github.com/civo/kubernetes-marketplace) and submit a pull request. In the pull request please confirm that you're OK for the marketplace application to be distributed by us under the MIT License.
 
 ## License
 
