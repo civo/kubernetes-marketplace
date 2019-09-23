@@ -1,4 +1,4 @@
-## Linkerd service mesh
+## Helm - The package manager for Kubernetes
 
 ### External access
 
