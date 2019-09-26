@@ -15,8 +15,10 @@ Dir.glob('**/*.yaml').each do |filename|
     end
 
     if matches = yaml["description"].scan(/(best|award[- ]winning|leading|greatest|super)/)
-      puts "#{filename} has salesy terms in the description - #{matches.flatten.join(", ")}"
-      exit_code = 2
+      if matches.any?
+        puts "#{filename} has salesy terms in the description - #{matches.flatten.join(", ")}"
+        exit_code = 2
+      end
     end
   end
 end
