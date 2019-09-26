@@ -13,6 +13,11 @@ Dir.glob('**/*.yaml').each do |filename|
       puts "#{filename} has too a long description (#{yaml["description"].length} chars, 160 max)"
       exit_code = 1
     end
+
+    if matches = yaml["description"].scan(/(best|award[- ]winning|leading|greatest|super)/)
+      puts "#{filename} has salesy terms in the description - #{matches.flatten.join(", ")}"
+      exit_code = 2
+    end
   end
 end
 
