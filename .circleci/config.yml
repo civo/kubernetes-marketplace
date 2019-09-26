@@ -27,6 +27,10 @@ jobs:
           command: |
             bundle exec bin/lint_yaml.rb
       - run:
+          name: lint application descriptions
+          command: |
+            bundle exec bin/lint_descriptions.rb
+      - run:
           name: lint dependencies
           command: |
             bundle exec bin/lint_dependencies.rb

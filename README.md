@@ -57,7 +57,7 @@ The `version` is the version of the software being installed NOT the version of 
 
 The `maintainer` field can either be an email address (e.g. `hello@civo.com`) or a Twitter username (e.g. `@civocloud`) and isn't displayed on the site, but is used for us to determine who to contact if there are any problems with it.
 
-The `description` is used when displaying all of the applications, and is limited to a single line of up to 250 characters (any line breaks, HTML tags, etc will be removed). `extra_information` is displayed to the user on their cluster page after installing the application, so should contain usage or access instructions.
+The `description` is used when displaying all of the applications, and is limited to a single line of up to 160 characters (any line breaks, HTML tags, etc must be removed). We feel that the length of an SMS text message is sufficient for this. This should be a description for our users of what the software does in normal terms, not overly salesy - for example "The best NoSQL database ever, with over 10,000 stars on GitHub" will not be accepted.
 
 The `url` is a link to where users can read more about it. This is shortened when displayed on Civo.com to be just the domain name with any `www.` removed.
 
