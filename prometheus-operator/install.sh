@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NAMESPACE=monitoring
-HELM_CHAT_VERSION=6.14.1
+HELM_CHART_VERSION=6.16.0
 # Create the namespace for prometheus-operator
 kubectl create namespace ${NAMESPACE}
 
@@ -13,5 +13,5 @@ helm install \
   --name prometheus-operator \
   --namespace ${NAMESPACE} \
   --set prometheusOperator.createCustomResource=false \
-  --version ${HELM_CHART_VERSION}
+  --version ${HELM_CHART_VERSION} \
   stable/prometheus-operator
