@@ -43,7 +43,7 @@ spec:
       spec:
         serviceAccountName: cattle-admin
         containers:
-        - image: rancher/rancher:stable
+        - image: rancher/rancher:v2.3.0
           imagePullPolicy: Always
           name: cattle-server
           ports:
@@ -72,20 +72,3 @@ spec:
       port: 443
   selector: 
     app: cattle
----
-
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: cattle-ingress
-  namespace: cattle-system
-  annotations:
-    kubernetes.io/ingress.class: traefik
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /
-        backend:
-          serviceName: cattle-service
-          servicePort: http
