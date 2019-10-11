@@ -1,5 +1,5 @@
 name: Rancher
 version: stable
 maintainer: "@saiyampathak"
-description: "Rancher is a complete software stack for teams adopting containers. It addresses the operational and security challenges of managing multiple Kubernetes clusters, while providing DevOps teams with integrated tools for running containerized workloads."
+description: "Rancher - Run Kubernetes Everywhere, from datacenter to cloud to edge, Rancher lets you deliver Kubernetes-as-a-Service."
 url: https://rancher.com/
