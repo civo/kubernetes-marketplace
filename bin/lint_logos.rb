@@ -28,15 +28,4 @@ Dir.glob('**/*.png').each do |filename|
   end
 end
 
-Dir.glob("*").each do |dirname|
-  next unless File.directory?(dirname)
-  next if File.basename(dirname) == "bin"
-  next if File.basename(dirname) == "vendor"
-
-  unless File.exist?("#{dirname}/logo.png")
-    puts "#{dirname} doesn't contain a logo.png"
-    exit_code = 1
-  end
-end
-
 exit exit_code
