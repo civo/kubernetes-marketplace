@@ -3,4 +3,4 @@ version: v2.3.0
 maintainer: "@saiyampathak"
 description: "Addresses the operational and security challenges of managing multiple Kubernetes clusters with integrated tools for running containerized workloads."
 url: https://rancher.com/
-category: architecture
+category: management
