@@ -2,7 +2,7 @@
 
 ### External access
 
-By default external access to the Rancher isn't available. This is easily changed by applying the following YAML to your cluster with `kubectl apply -fRancher-ingress.yaml` (or whatever you call the file containing the contents below):
+By default external access to the Rancher isn't available. This is easily changed by applying the following YAML to your cluster with `kubectl apply -f rancher-ingress.yaml` (or whatever you call the file containing the contents below):
 
 
 ```
