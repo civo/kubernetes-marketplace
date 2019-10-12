@@ -1,0 +1,22 @@
+---
+name: Jenkins
+version: 1.18.1
+maintainer: "@ruanbekker"
+description: Jenkins is a Continuous Integration and Delivery server
+url: https://jenkins.io
+category: architecture
+dependencies:
+  - Longhorn
+plans:
+  - label: "5GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 5Gi
+  - label: "10GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 10Gi
+  - label: "20GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 20Gi
