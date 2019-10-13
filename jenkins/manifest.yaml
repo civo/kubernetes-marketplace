@@ -1,6 +1,6 @@
 ---
 name: Jenkins
-version: 1.18.1
+version: 2.190.1
 maintainer: "@ruanbekker"
 description: Jenkins is a Continuous Integration and Delivery server
 url: https://jenkins.io
@@ -20,3 +20,10 @@ plans:
     configuration:
       VOLUME_SIZE:
         value: 20Gi
+configuration:
+  JENKINS_USERNAME:
+    label: "Jenkins username"
+    value: "CIVO:ALPHANUMERIC(8)"
+  JENKINS_PASSWORD:
+    label: "Jenkins password"
+    value: "CIVO:ALPHANUMERIC(30)"

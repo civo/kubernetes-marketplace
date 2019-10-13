@@ -11,7 +11,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/var/jenkins_home"
+    path: "/mnt/data"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -41,36 +41,29 @@ spec:
     app: jenkins
   clusterIP: None
 ---
-apiVersion: apps/v1 
-kind: Deployment
+apiVersion: apps/v1
+kind: StatefulSet
 metadata:
   name: jenkins
 spec:
   selector:
     matchLabels:
       app: jenkins
-  strategy:
-    type: Recreate
+  serviceName: jenkins
+  replicas: 1
   template:
     metadata:
       labels:
         app: jenkins
     spec:
-      securityContext:
-        fsGroup: 1000
-      initContainers:
-        - name: permissions
-          image: busybox
-          imagePullPolicy: IfNotPresent
-          securityContext:
-            privileged: true
-          volumeMounts:
-          - name: jenkins-persistent-storage
-            mountPath: /var/jenkins_home
-          command: ["chown", "-R", "1000:1000", "/var/jenkins_home"]
       containers:
-      - image: jenkinsci/blueocean:1.18.1
+      - image: bitnami/jenkins:2.190.1-debian-9-r14
         name: jenkins
+        env:
+        - name: JENKINS_USERNAME
+          value: $JENKINS_USERNAME
+        - name: JENKINS_PASSWORD
+          value: $JENKINS_PASSWORD
         ports:
         - containerPort: 8080
           name: jenkins
@@ -78,7 +71,7 @@ spec:
           name: jenkins-agent
         volumeMounts:
         - name: jenkins-persistent-storage
-          mountPath: /var/jenkins_home
+          mountPath: /bitnami
       volumes:
       - name: jenkins-persistent-storage
         persistentVolumeClaim:
