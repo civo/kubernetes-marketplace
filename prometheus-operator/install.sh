@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NAMESPACE=monitoring
-HELM_CHART_VERSION=6.16.0
+HELM_CHART_VERSION=6.20.3
 # Create the namespace for prometheus-operator
 kubectl create namespace ${NAMESPACE}
 
