@@ -16,7 +16,14 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: manual
+  storageClassName: longhorn
+  csi:
+    driver: io.rancher.longhorn
+    fsType: ext4
+    volumeAttributes:
+      numberOfReplicates: '2'
+      staleReplicaTimeout: '20'
+    volumeHandle: mysql-data
   capacity:
     storage: $VOLUME_SIZE
   accessModes:
