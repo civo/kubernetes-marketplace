@@ -1,24 +1,35 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: jenkins-pv-volume
+  name: jenkins-pv
+  namespace: apps
   labels:
-    type: local
+    name: jenkins-data
+    type: longhorn
 spec:
-  storageClassName: manual
   capacity:
     storage: $VOLUME_SIZE
+  volumeMode: Filesystem
+  storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data"
+  csi:
+    driver: io.rancher.longhorn
+    fsType: ext4
+    volumeAttributes:
+      numberOfReplicates: '2'
+      staleReplicaTimeout: '20'
+    volumeHandle: jenkins-data
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: jenkins-pv-claim
+  labels:
+    type: longhorn
+    app: jenkins
 spec:
-  storageClassName: manual
+  storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
   resources:
@@ -42,19 +53,23 @@ spec:
   clusterIP: None
 ---
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: jenkins
+  labels:
+    app: jenkins
 spec:
   selector:
     matchLabels:
       app: jenkins
-  serviceName: jenkins
-  replicas: 1
+      tier: jenkins
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
         app: jenkins
+        tier: jenkins
     spec:
       containers:
       - image: bitnami/jenkins:2.190.1-debian-9-r14
