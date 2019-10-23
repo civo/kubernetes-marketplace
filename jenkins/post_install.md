@@ -23,4 +23,4 @@ This will open up http://jenkins.YOUR_CLUSTER_ID.k8s.civo.com to the whole world
 
 ### Usage instruction
 
-You can use this application from within your cluster by just using the hostname `jenkins`, so jenkins agents can use the hostname `jenkins` and the port `50000`. The username and password for jenkins is set via environment variables, `JENKINS_USERNAME` and `JENKINS_PASSWORD` using `CIVO:ALPHANUMERIC(x)` value and is presented in the Web UI and CLI.
+You can use this application from within your cluster by just using the hostname `jenkins`, so jenkins agents can use the hostname `jenkins` and the port `50000`. The username and password for jenkins is set via environment variables, `JENKINS_USERNAME` and `JENKINS_PASSWORD` using the username and password presented in the Web UI and CLI.
