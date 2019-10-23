@@ -1,27 +1,4 @@
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: jenkins-pv
-  namespace: apps
-  labels:
-    name: jenkins-data
-    type: longhorn
-spec:
-  capacity:
-    storage: $VOLUME_SIZE
-  volumeMode: Filesystem
-  storageClassName: longhorn
-  accessModes:
-    - ReadWriteOnce
-  csi:
-    driver: io.rancher.longhorn
-    fsType: ext4
-    volumeAttributes:
-      numberOfReplicates: '2'
-      staleReplicaTimeout: '20'
-    volumeHandle: jenkins-data
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: jenkins-pv-claim
@@ -39,7 +16,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: jenkins
+  name: jenkins-frontend
 spec:
   ports:
   - name: jenkins
