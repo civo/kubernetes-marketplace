@@ -52,7 +52,7 @@ spec:
       containers:
       - name: minio
         volumeMounts:
-        - name: data
+        - name: minio-data
           mountPath: "/data"
         image: minio/minio:RELEASE.2019-08-29T00-25-01Z
         args:
