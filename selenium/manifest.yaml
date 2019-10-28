@@ -1,0 +1,7 @@
+---
+name: Selenium
+version: 3.141.59
+maintainer: "@scndel"
+description: Selenium is a web browser testing framework
+url: https://www.seleniumhq.org
+category: monitoring
