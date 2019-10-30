@@ -9,8 +9,7 @@ spec:
     targetPort: 4444
   selector:
     app: selenium-hub
-  type: NodePort
-  sessionAffinity: None
+  type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment

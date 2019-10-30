@@ -2,6 +2,7 @@
 name: Selenium
 version: 3.141.59
 maintainer: "@scndel"
-description: Selenium is a web browser testing framework
+description: Selenium is a web browser testing framework. This app deploys a ready hub with Chrome node.
+PLEASE PROVIDE AT LEAST 2 GB MEMORY FOR STABILITY.
 url: https://www.seleniumhq.org
 category: monitoring
