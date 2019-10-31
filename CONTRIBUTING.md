@@ -2,7 +2,7 @@
 
 Thank you for wanting to contribute to the Civo Kubernetes Marketplace! To ensure consistency and quality of applications available on the marketplace we have prepared this guideline document. It details the criteria for acceptance into the marketplace, maintenance requirements and responsibilities for applications, and measures we may take concerning applications if concerns are discovered.
 
-### Acceptance Criteria
+### Acceptance Criteria
 
 In general, we will approve all Marketplace applications for inclusion, as long as they add an element of functionality not provided by other applications, and have been tested to work on the default version of k3s deployed on the creation of a new cluster on Civo.
 
