@@ -4,4 +4,4 @@ version: 3.141.59-r1
 maintainer: "scndeldev@gmail.com"
 description: Selenium is a framework for testing web applications. PLEASE PROVIDE AT LEAST 2 GB MEMORY FOR STABILITY.
 url: https://www.seleniumhq.org
-category: monitoring
+category: ci_cd
