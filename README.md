@@ -135,7 +135,7 @@ Then you can test it and ensure the app.yaml is standalone and working.
 
 To contribute an application or a fix for an application to Civo, please fork our [marketplace repository](https://github.com/civo/kubernetes-marketplace) and submit a pull request. In the pull request please confirm that you're OK for the marketplace application to be distributed by us under the MIT License.
 
-For details on contribution requirements and responsibilities, see our Contributing document.
+For details on contribution requirements and responsibilities, see our [Contributing](CONTRIBUTING.md) document.
 
 ## License
 
