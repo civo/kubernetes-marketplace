@@ -22,7 +22,7 @@ As a submitter of an application, you will also agree to become its maintainer. 
 - Respond promptly with a decision and feedback to pull requests from other users to your application on this repository
 - Notify Civo if you wish to step away from the maintainer role for your application
 
-### Vulnerabilities and Other Concerns
+### Application Maintenance and Removal
 
 We may remove an application from the Civo Marketplace with no notice if a severe vulnerability is discovered. Other reasons for removing an application are, but are not limited to:
 - An application becoming abandoned or unmaintained by the upstream project
