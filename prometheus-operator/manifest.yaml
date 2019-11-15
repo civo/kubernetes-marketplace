@@ -1,7 +1,7 @@
 ---
 name: prometheus-operator
 title: "Prometheus Operator"
-version: 0.32.0
+version: 8.2.0
 maintainer: "@puck"
 description: Prometheus Operator App install prometheus, alertmanager, grafana and other tools to monitor your kubernetes cluster.
 url: https://github.com/coreos/prometheus-operator

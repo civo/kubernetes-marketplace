@@ -1,17 +1,16 @@
 #!/bin/bash
 
 NAMESPACE=monitoring
-HELM_CHART_VERSION=6.20.3
+HELM_CHART_VERSION=8.2.0
 # Create the namespace for prometheus-operator
 kubectl create namespace ${NAMESPACE}
 
 # Update your local Helm chart repository cache
-helm repo update
+helm3 repo update
 
 # Install the prometheus-operator Helm chart
-helm install \
-  --name prometheus-operator \
+helm3 install \
   --namespace ${NAMESPACE} \
   --set prometheusOperator.createCustomResource=false \
   --version ${HELM_CHART_VERSION} \
-  stable/prometheus-operator
+  prometheus-operator stable/prometheus-operator
