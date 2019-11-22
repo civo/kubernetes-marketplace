@@ -30,12 +30,15 @@ roleRef:
 
 ---
 kind: Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
     namespace: cattle-system
     name: cattle
 spec:
     replicas: 1
+    selector:
+      matchLabels:
+        app: cattle
     template:
       metadata:
         labels:
@@ -61,14 +64,14 @@ spec:
 ---
 apiVersion: v1
 kind: Service
-metadata: 
+metadata:
   namespace: cattle-system
   name: cattle-service
-spec: 
-  ports: 
+spec:
+  ports:
     - name: http
       port: 80
     - name: https
       port: 443
-  selector: 
+  selector:
     app: cattle
