@@ -1,6 +1,6 @@
 ## Using MinIO for S3 compatible object storage
 
-### External access
+### External access
 
 By default external access to the MinIO UI isn't available. This is easily changed by applying the following YAML to your cluster with `kubectl apply -f minio-service.yaml` (or whatever you call the file containing the contents below):
 
