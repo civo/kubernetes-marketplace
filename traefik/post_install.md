@@ -1,6 +1,6 @@
 ## Traefik - Default ingress controller
 
-### External access to your services
+### External access to your services
 
 Traefik is installed in K3s as the default ingress controller. To use it for your applications all you have to do is apply a YAML file like the one below to handle ingress:
 
