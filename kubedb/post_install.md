@@ -1,15 +1,5 @@
 ## kubedb: A Kubernetes Operator for running MySQL, PostgreSQL, MongoDB, and other databases
 
-### Prerequisites
-
-Make sure a Longhorn is set as a default storage provider.  You can do so with the following command:
-
-```
-kubectl patch storageclass longhorn -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
-```
-
-When creating databases, make sure storageClassName is not specified, or calls out `longhorn` specifically.
-
 ### Operator Usage
 
 Once the operator is installed, a custom resource will need to be deployed 
