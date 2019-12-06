@@ -8,13 +8,15 @@
 **STATUS:** This project is currently under active development and maintenance.
 
 ## Table of contents
-- [Introduction](#introduction)
-- [Using](#using) 
-- [Writing](#writing)
-- [Customising](#customising)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
+- [Civo Kubernetes Marketplace](#civo-kubernetes-marketplace)
+  - [Introduction](#introduction)
+  - [Table of contents](#table-of-contents)
+  - [Using](#using)
+  - [Writing](#writing)
+  - [Customising](#customising)
+  - [Testing](#testing)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Using
 
@@ -30,7 +32,7 @@ civo k8s add-app my-cluster longhorn
 
 ## Writing
 
-There are two minimum parts to a marketplace application - a `manifest.yaml`, and a square aspect ratio `logo.png` no larger than 512x512 or 20KB. Each marketplace application is in a separate top level folder in this repository. 
+There are two minimum parts to a marketplace application - a `manifest.yaml`, and a square aspect ratio `logo.png` no larger than 512x512 or 20KB. Each marketplace application is in a separate top level folder in this repository.
 
 Then there are two options for how to install the application - a single  Kubernetes resources configuration file called `app.yaml` (which can be multiple resources separated by `---`) or a script called `install.sh`. You can supply both items, if so the `app.yaml` will be applied first and then the `install.sh` will run.
 
@@ -84,6 +86,8 @@ The applications can't ask the user for these values, so they must be either a p
   <dd>A combination of <code>num</code> random words, separated by <code>-</code> for use as a readable name</dd>
   <dt>CIVO:CLUSTER_NAME</dt>
   <dd>The name of your Kubernetes cluster</dd>
+  <dt>CIVO:CLUSTER_ID</dt>
+  <dd>The ID of your Kubernetes cluster (for injecting something.ID.k8s.civo.com as a domain)</dd>
   <dt>CIVO:EMAIL_ADDRESS</dt>
   <dd>The email address of your Civo account</dd>
   <dt>CIVO:MASTER_IP</dt>
@@ -107,11 +111,11 @@ Another way of customising applications is to provide plans which will be inject
 plans:
   - label: "5GB"
     configuration:
-      APP_SIZE_GB: 
+      APP_SIZE_GB:
         value: 5
   - label: "10GB"
     configuration:
-      APP_SIZE_GB: 
+      APP_SIZE_GB:
         value: 10
 ```
 

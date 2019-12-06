@@ -16,6 +16,8 @@ Dir.glob('**/*.yaml').each do |filename|
         # OK
       elsif v["value"][/^CIVO\:CLUSTER_NAME/]
         # OK
+      elsif v["value"][/^CIVO\:CLUSTER_ID/]
+        # OK
       elsif v["value"][/^CIVO\:EMAIL_ADDRESS/]
         # OK
       elsif v["value"][/^CIVO\:MASTER_IP/]
