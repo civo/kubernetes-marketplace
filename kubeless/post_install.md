@@ -15,7 +15,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - host: ui.kubeless.<masterIP>.xip.io
+  - host: ui.kubeless.<clusterDomainName>
     http:
       paths:
       - path: /
@@ -25,7 +25,7 @@ spec:
 ```
 
 
-This will open up `http://ui.kubeless.<masterIP>.xip.io` to the whole world.
+This will open up `http://ui.kubeless.<clusterDomainName>` to the whole world.
 
 ### Functions External access
 
@@ -42,7 +42,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - host: functions.default.<masterIP>.xip.io
+  - host: functions.default.<clusterDomainName>
     http:
       paths:
       - path: /<functionName1>
@@ -57,8 +57,8 @@ spec:
 
 This will open up
 
-* `http://functions.default.<masterIP>.xip.io/<functionName1>`
-* `http://functions.default.<masterIP>.xip.io/<functionName2>`
+* `http://functions.default.<clusterDomainName>/<functionName1>`
+* `http://functions.default.<clusterDomainName>/<functionName2>`
 
 to the whole world.
 
