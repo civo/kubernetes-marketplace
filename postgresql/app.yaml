@@ -8,6 +8,7 @@ data:
   POSTGRES_DB: postgresdb
   POSTGRES_USER: $USERNAME
   POSTGRES_PASSWORD: $PASSWORD
+  PGDATA: /var/lib/postgresql/data/pgdata
 ---
 apiVersion: v1
 kind: PersistentVolume
