@@ -1,5 +1,5 @@
 name: Kubeless
-version: 0.1.0
+version: 1.0.5
 maintainer: "@gilsdav"
 description: "Kubeless is a Kubernetes-native serverless framework that lets you deploy small bits of code without having to worry about the underlying infrastructure plumbing."
 url: https://kubeless.io/
