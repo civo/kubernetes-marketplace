@@ -1,23 +1,6 @@
 klum - Kubernetes Lazy User Manager
 ========
 
-klum does the following basic tasks:
-
-* Create/Delete/Modify users
-* Easily manage roles associated with users
-* Issues kubeconfig files for users to use
-
-This is a very simple controller that just create service accounts under the hood. Properly
-configured this should work on any Kubernetes cluster.
-
-## Installation
-
-```sh
-kubectl apply -f https://raw.githubusercontent.com/ibuildthecloud/klum/master/deploy.yaml
-```
-
-## Usage
- 
 ### Create User
 
 ```yaml
@@ -33,6 +16,7 @@ metadata:
 kubectl get kubeconfig darren -o json | jq .spec > kubeconfig
 kubectl --kubeconfig=kubeconfig get all
 ```
+
 The name of the kubeconfig resource will be the same as the user name
 
 ### Delete User
