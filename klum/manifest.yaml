@@ -1,0 +1,14 @@
+---
+name: Klum
+version: 2019-08-29
+maintainer: '@sudoduke'
+description: Kubernetes Lazy User Manager is a controller to manage cluster tennant users
+url: https://github.com/ibuildthecloud/klum
+category: management
+configuration:
+  SERVER_NAME:
+    label: "server"
+    value: "CIVO:MASTER_IP"
+  CONTEXT_NAME:
+    label: "context-name"
+    value: "CIVO:CLUSTER_NAME"
