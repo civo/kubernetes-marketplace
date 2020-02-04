@@ -22,8 +22,20 @@ Dir.glob('**/*.png').each do |filename|
     puts "#{filename} is taller than 512px"
     exit_code = 1
   end
+  if image_size.width < 80
+    puts "#{filename} is narrower than 80px wide"
+    exit_code = 1
+  end
+  if image_size.height < 80
+    puts "#{filename} is shorter than 80px hight"
+    exit_code = 1
+  end
   if File.size(filename) > 20_480
     puts "#{filename} is larger than 20KB"
+    exit_code = 1
+  end
+  if image_size.height != image_size.width
+    puts "#{filename} isn't a square aspect ratio image"
     exit_code = 1
   end
 end

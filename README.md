@@ -32,7 +32,7 @@ civo k8s add-app my-cluster longhorn
 
 ## Writing
 
-There are two minimum parts to a marketplace application - a `manifest.yaml`, and a square aspect ratio `logo.png` no larger than 512x512 or 20KB. Each marketplace application is in a separate top level folder in this repository.
+There are two minimum parts to a marketplace application - a `manifest.yaml`, and a square aspect ratio `logo.png` no smaller than 80x80, no larger than 512x512 and no bigger than 20KB. Each marketplace application is in a separate top level folder in this repository. We recommend searching for official SVG versions of the logo from the upstream supplier and importing those, rather than scaling up small resolution logos just found on the web. We'd recommend leaving a small amount of padding around the logo, in a 512x512 image, about 20px on each side.
 
 Then there are two options for how to install the application - a single  Kubernetes resources configuration file called `app.yaml` (which can be multiple resources separated by `---`) or a script called `install.sh`. You can supply both items, if so the `app.yaml` will be applied first and then the `install.sh` will run.
 
