@@ -28,7 +28,7 @@ spec:
         name: klum
         env:
         - name: SERVER_NAME
-          value: "$(SERVER_NAME):6443"
+          value: "$SERVER_NAME:6443"
         - name: CONTEXT_NAME
           value: $CONTEXT_NAME
 ---
