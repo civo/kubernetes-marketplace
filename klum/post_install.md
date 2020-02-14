@@ -12,7 +12,7 @@ metadata:
 
 ### Download Kubeconfig
 
-```shell script
+```bash
 kubectl get kubeconfig darren -o json | jq .spec > kubeconfig
 kubectl --kubeconfig=kubeconfig get all
 ```
@@ -21,7 +21,7 @@ The name of the kubeconfig resource will be the same as the user name
 
 ### Delete User
 
-```shell script
+```bash
 kubectl delete user darren
 ```
 
