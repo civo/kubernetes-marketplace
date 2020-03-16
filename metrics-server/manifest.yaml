@@ -8,3 +8,4 @@ url: https://kubernetes.io/docs/tasks/debug-application-cluster/resource-metrics
 dependencies:
   - Helm
 category: architecture
+disabled: true
