@@ -35,13 +35,9 @@ spec:
     - name: http
       protocol: TCP
       port: 9000
-      targetPort: 9000
-      nodePort: 30777
     - name: edge
       protocol: TCP
       port: 8000
-      targetPort: 8000
-      nodePort: 30776     
 ---
 apiVersion: apps/v1
 kind: Deployment
