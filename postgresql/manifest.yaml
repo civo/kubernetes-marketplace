@@ -1,6 +1,6 @@
 ---
 name: PostgreSQL
-version: 11.5
+version: "11.5"
 maintainer: hello@civo.com
 description: The PostgreSQL object-relational database system provides reliability and data integrity.
 url: https://www.postgresql.org

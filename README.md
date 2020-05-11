@@ -3,11 +3,13 @@
 [![CircleCI](https://circleci.com/gh/civo/kubernetes-marketplace.svg?style=svg)](https://circleci.com/gh/civo/kubernetes-marketplace)
 
 ## Introduction
+
 [Civo.com](https://www.civo.com) is introducing the world's first managed K3s service and the marketplace will be provided from this repository. Feel free to fork it and submit a pull request to add any software and we'll consider including it in our marketplace (if you like, raise an [issue](https://github.com/civo/kubernetes-marketplace/issues) first to discuss the proposal).
 
 **STATUS:** This project is currently under active development and maintenance.
 
 ## Table of contents
+
 - [Civo Kubernetes Marketplace](#civo-kubernetes-marketplace)
   - [Introduction](#introduction)
   - [Table of contents](#table-of-contents)
@@ -34,9 +36,9 @@ civo k8s add-app my-cluster longhorn
 
 There are two minimum parts to a marketplace application - a `manifest.yaml`, and a square aspect ratio `logo.png` no smaller than 80x80, no larger than 512x512 and no bigger than 20KB. Each marketplace application is in a separate top level folder in this repository. We recommend searching for official SVG versions of the logo from the upstream supplier and importing those, rather than scaling up small resolution logos just found on the web. We'd recommend leaving a small amount of padding around the logo, in a 512x512 image, about 20px on each side.
 
-Then there are two options for how to install the application - a single  Kubernetes resources configuration file called `app.yaml` (which can be multiple resources separated by `---`) or a script called `install.sh`. You can supply both items, if so the `app.yaml` will be applied first and then the `install.sh` will run.
+Then there are two options for how to install the application - a single Kubernetes resources configuration file called `app.yaml` (which can be multiple resources separated by `---`) or a script called `install.sh`. You can supply both items, if so the `app.yaml` will be applied first and then the `install.sh` will run.
 
-The `install.sh` if present will be executed on the master using `bash` as non-privileged user that has passwordless `sudo` permission and has `kubectl` access to the cluster. We envisage that `install.sh` script usage should be rare and we will be strictly monitoring what is in them, and *NO* downloading of external resources will be acceptable here (no `curl https://... | sudo sh` sort of functionality)
+The `install.sh` if present will be executed on the master using `bash` as non-privileged user that has passwordless `sudo` permission and has `kubectl` access to the cluster. We envisage that `install.sh` script usage should be rare and we will be strictly monitoring what is in them, and _NO_ downloading of external resources will be acceptable here (no `curl https://... | sudo sh` sort of functionality)
 
 A final optional file is the `post_install.md` which the user will be able to view in the web UI to see additional instructions on how to use the application. It's recommended to keep this short and succinct, if you need to manage LOTS of content, then please create a [community learn guide](https://www.civo.com/learn/creating-a-learn-guide) and link to it from within the `post_install.md`.
 
@@ -44,7 +46,7 @@ To control the listing of your application in the marketplace, `manifest.yaml` i
 
 ```
 name: Foo
-version: v0.1.0
+version: "0.1.0"
 dependencies:
   - bar
 maintainer: @civocloud
@@ -55,7 +57,7 @@ category: management
 
 The `name` is displayed in the web interface alongside the `logo.png`, and is searchable when you're installing marketplace applications from the CLI. If your application name has spaces in it, the `name` should be the spaces/hyphens version and you can add `title` which is a nicer display version.
 
-The `version` is the version of the software being installed NOT the version of the marketplace configuration. If you want to include that, use an additional `-r1` or something after the version number. The `dependencies` are the names (can be lower case and part of the name) of any other marketplace applications that are needed by this application.
+The `version` is a string of the version of the software being installed NOT the version of the marketplace configuration. If you want to include that, use an additional `-r1` or something after the version number. The `dependencies` are the names (can be lower case and part of the name) of any other marketplace applications that are needed by this application.
 
 The `maintainer` field can either be an email address (e.g. `hello@civo.com`) or a Twitter username (e.g. `@civocloud`) and isn't displayed on the site, but is used for us to determine who to contact if there are any problems with it.
 
@@ -65,11 +67,11 @@ The `url` is a link to where users can read more about it. This is shortened whe
 
 Finally the `category` can be one of a small list of categories for applications, these are maintained by Civo. The current list is:
 
-* database
-* storage
-* monitoring
-* management
-* architecture
+- database
+- storage
+- monitoring
+- management
+- architecture
 
 Any category used in this field outside of those values will be removed when we accept any changes and replaced with one of those. If you want an additional category, please propose it in a [GitHub issue](https://github.com/civo/kubernetes-marketplace/issues).
 
