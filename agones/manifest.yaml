@@ -1,0 +1,8 @@
+---
+    name: Agones
+    version: v1.5
+    maintainer: ludovicw35@hotmail.com 
+    description: Agones is an open source platform, for deploying, hosting, scaling, and orchestrating dedicated game servers for large scale multiplayer games, built on top of the industry standard, distributed system platform Kubernetes.
+    url: https://agones.dev
+    category: Management
+    
