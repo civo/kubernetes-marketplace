@@ -1,3 +1,4 @@
+# Source: https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-rc7/aio/deploy/recommended.yaml
 # Copyright 2017 The Kubernetes Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +19,6 @@ metadata:
   name: kubernetes-dashboard
 
 ---
-
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -28,7 +28,6 @@ metadata:
   namespace: kubernetes-dashboard
 
 ---
-
 kind: Service
 apiVersion: v1
 metadata:
@@ -44,7 +43,6 @@ spec:
     k8s-app: kubernetes-dashboard
 
 ---
-
 apiVersion: v1
 kind: Secret
 metadata:
@@ -55,7 +53,6 @@ metadata:
 type: Opaque
 
 ---
-
 apiVersion: v1
 kind: Secret
 metadata:
@@ -68,7 +65,6 @@ data:
   csrf: ""
 
 ---
-
 apiVersion: v1
 kind: Secret
 metadata:
@@ -79,7 +75,6 @@ metadata:
 type: Opaque
 
 ---
-
 kind: ConfigMap
 apiVersion: v1
 metadata:
@@ -89,7 +84,6 @@ metadata:
   namespace: kubernetes-dashboard
 
 ---
-
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -101,7 +95,12 @@ rules:
   # Allow Dashboard to get, update and delete Dashboard exclusive secrets.
   - apiGroups: [""]
     resources: ["secrets"]
-    resourceNames: ["kubernetes-dashboard-key-holder", "kubernetes-dashboard-certs", "kubernetes-dashboard-csrf"]
+    resourceNames:
+      [
+        "kubernetes-dashboard-key-holder",
+        "kubernetes-dashboard-certs",
+        "kubernetes-dashboard-csrf",
+      ]
     verbs: ["get", "update", "delete"]
     # Allow Dashboard to get and update 'kubernetes-dashboard-settings' config map.
   - apiGroups: [""]
@@ -115,11 +114,17 @@ rules:
     verbs: ["proxy"]
   - apiGroups: [""]
     resources: ["services/proxy"]
-    resourceNames: ["heapster", "http:heapster:", "https:heapster:", "dashboard-metrics-scraper", "http:dashboard-metrics-scraper"]
+    resourceNames:
+      [
+        "heapster",
+        "http:heapster:",
+        "https:heapster:",
+        "dashboard-metrics-scraper",
+        "http:dashboard-metrics-scraper",
+      ]
     verbs: ["get"]
 
 ---
-
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -133,7 +138,6 @@ rules:
     verbs: ["get", "list", "watch"]
 
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -151,7 +155,6 @@ subjects:
     namespace: kubernetes-dashboard
 
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -166,7 +169,6 @@ subjects:
     namespace: kubernetes-dashboard
 
 ---
-
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -187,7 +189,7 @@ spec:
     spec:
       containers:
         - name: kubernetes-dashboard
-          image: kubernetesui/dashboard:v2.0.0
+          image: kubernetesui/dashboard:v2.0.0-rc7
           imagePullPolicy: Always
           ports:
             - containerPort: 8443
@@ -225,14 +227,13 @@ spec:
           emptyDir: {}
       serviceAccountName: kubernetes-dashboard
       nodeSelector:
-        "kubernetes.io/os": linux
+        "beta.kubernetes.io/os": linux
       # Comment the following tolerations if Dashboard must not be deployed on master
       tolerations:
         - key: node-role.kubernetes.io/master
           effect: NoSchedule
 
 ---
-
 kind: Service
 apiVersion: v1
 metadata:
@@ -248,7 +249,6 @@ spec:
     k8s-app: dashboard-metrics-scraper
 
 ---
-
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -267,7 +267,7 @@ spec:
       labels:
         k8s-app: dashboard-metrics-scraper
       annotations:
-        seccomp.security.alpha.kubernetes.io/pod: 'runtime/default'
+        seccomp.security.alpha.kubernetes.io/pod: "runtime/default"
     spec:
       containers:
         - name: dashboard-metrics-scraper
@@ -283,8 +283,8 @@ spec:
             initialDelaySeconds: 30
             timeoutSeconds: 30
           volumeMounts:
-          - mountPath: /tmp
-            name: tmp-volume
+            - mountPath: /tmp
+              name: tmp-volume
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
@@ -292,7 +292,7 @@ spec:
             runAsGroup: 2001
       serviceAccountName: kubernetes-dashboard
       nodeSelector:
-        "kubernetes.io/os": linux
+        "beta.kubernetes.io/os": linux
       # Comment the following tolerations if Dashboard must not be deployed on master
       tolerations:
         - key: node-role.kubernetes.io/master
@@ -300,3 +300,24 @@ spec:
       volumes:
         - name: tmp-volume
           emptyDir: {}
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kubernetes-dashboard
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: admin-user
+    namespace: kubernetes-dashboard
