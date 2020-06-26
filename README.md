@@ -59,7 +59,7 @@ The `name` is displayed in the web interface alongside the `logo.png`, and is se
 
 The `version` is a string of the version of the software being installed NOT the version of the marketplace configuration. If you want to include that, use an additional `-r1` or something after the version number. The `dependencies` are the names (can be lower case and part of the name) of any other marketplace applications that are needed by this application.
 
-The `maintainer` field can either be an email address (e.g. `hello@civo.com`) or a Twitter username (e.g. `@civocloud`) and isn't displayed on the site, but is used for us to determine who to contact if there are any problems with it.
+The `maintainer` field can either be an email address (e.g. `hello@civo.com`) or a Twitter username (e.g. `@civocloud`) and isn't displayed on the site, but is used for us to determine who to contact if there are any problems with it. This is whoever submits the application to the marketplace (not the upstream provider), and is an implied agreement to offer help to the community with issues with it (or try to find a replacement maintainer if you are unable to do so any more).
 
 The `description` is used when displaying all of the applications, and is limited to a single line of up to 160 characters (any line breaks, HTML tags, etc must be removed). We feel that the length of an SMS text message is sufficient for this. This should be a description for our users of what the software does in normal terms, not overly salesy - for example "The best NoSQL database ever, with over 10,000 stars on GitHub" will not be accepted.
 
