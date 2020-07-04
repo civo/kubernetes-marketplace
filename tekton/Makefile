@@ -1,4 +1,12 @@
 VERSION="v0.14.0"
+# For cli directly installed
+CIVO_CMD="civo"
+# For Docker
+CIVO_CMD="docker run -it --rm -v /home/steve/.civo.json:/.civo.json civo/cli:latest"
+CIVO_TEST_CLUSTER_NAME="tekton-test"
+CIVO_KUBECONFIG="kubeconfig.$(CIVO_TEST_CLUSTER_NAME)
+KUBECTL="kubectl --kubeconfig=$(CIVO_KUBECONFIG)"
+
 build: app.yaml
 
 app.yaml:
@@ -14,3 +22,10 @@ app.yaml:
 .PHONY: clean
 clean:
 	@rm app.yaml
+
+.PHONY: test
+test:
+  @echo "Creating $(CIVO_TEST_CLUSTER_NAME)"
+	@$(CIVO_CMD) k3s create $(CIVO_TEST_CLUSTER_NAME) -n 3 --size g2.small --wait
+	@$(CIVO_CMD) k3s config $(CIVO_TEST_CLUSTER_NAME) > $(CIVO_KUBECONFIG)
+	@(KUBECTL) apply -f app.yaml
