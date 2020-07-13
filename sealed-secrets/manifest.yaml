@@ -2,7 +2,7 @@
 name: sealed-secrets
 title: "Sealed Secrets"
 version: v0.12.4
-maintainer: @soukron
+maintainer: "@soukron"
 description: A Kubernetes controller and tool for one-way encrypted Secrets
 url: https://github.com/bitnami-labs/sealed-secrets
 category: architecture
