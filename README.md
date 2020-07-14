@@ -72,6 +72,7 @@ Finally the `category` can be one of a small list of categories for applications
 - monitoring
 - management
 - architecture
+- security
 
 Any category used in this field outside of those values will be removed when we accept any changes and replaced with one of those. If you want an additional category, please propose it in a [GitHub issue](https://github.com/civo/kubernetes-marketplace/issues).
 
