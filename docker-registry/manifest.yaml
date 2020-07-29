@@ -1,5 +1,5 @@
 ---
-name: docker-registy
+name: docker-registry
 title: "Docker Register"
 version: ALPHA
 maintainer: alejandro@civo.com
