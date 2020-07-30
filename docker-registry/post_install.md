@@ -2,15 +2,15 @@
 
 ### Creation of the certificate
 
-This will help you to create a valid certifica for your registry, you need apply this YAML file 
-you need remplase only `registry.example.com` by your valid domain
+This will help you to create a valid certifica for your registry, you need apply this YAML file,
+you only need remplase only `registry.example.com` by your valid domain
 ```yaml
 apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
   name: letsencrypt-prod
 spec:
-  secretName: registry.example.com-crt
+  secretName: registry.example.com-cert
   dnsNames:
   - registry.example.com
   acme:
@@ -38,6 +38,7 @@ metadata:
     certmanager.k8s.io/cluster-issuer: letsencrypt-prod
     kubernetes.io/ingress.class: "traefik"
     nginx.ingress.kubernetes.io/proxy-body-size: 50m
+    ingress.kubernetes.io/ssl-redirect: "true"
     ingress.kubernetes.io/auth-type: basic
     ingress.kubernetes.io/auth-secret: auth-ingress
   labels:
@@ -56,5 +57,5 @@ spec:
           serviceName: private-registry-docker-registry
           servicePort: 5000
 ```
-
+You only need remplase only `registry.example.com` by your valid domain.
 This will open up http://registry.example.com (assuming you pointed that non-real domain record to your cluster's IPs) to the whole world.

@@ -11,9 +11,9 @@ dependencies:
   - Traefik
 category: architecture
 configuration:
-  REGISTRY_PASSWD:
-    label: "Registry password"
-    value: "CIVO:ALPHANUMERIC(10)"
   REGISTRY_USERNAME:
     label: "Registry username"
     value: "CIVO:EMAIL_ADDRESS"
+  REGISTRY_PASSWD:
+    label: "Registry password"
+    value: "CIVO:ALPHANUMERIC(10)"
