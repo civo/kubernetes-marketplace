@@ -1,0 +1,9 @@
+---
+name: haproxy
+title: "Haproxy"
+version: 1.4.6
+maintainer: alejandro@civo.com
+description: HAProxy is free, open source software that provides a high availability load balancer and proxy server for TCP and HTTP-based applications.
+url: https://github.com/haproxytech/kubernetes-ingress
+dependencies:
+category: architecture
