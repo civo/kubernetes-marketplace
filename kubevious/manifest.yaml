@@ -1,0 +1,6 @@
+name: Kubevious
+version: v0.6
+maintainer: "@saiyampathak"
+description: "open-source software that provides a usable and highly graphical interface for Kubernetes"
+url: https://github.com/kubevious/kubevious
+category: management
