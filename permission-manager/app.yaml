@@ -1,0 +1,237 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: permission-manager
+---
+apiVersion: "apiextensions.k8s.io/v1beta1"
+kind: "CustomResourceDefinition"
+metadata:
+  name: "permissionmanagerusers.permissionmanager.user"
+spec:
+  group: "permissionmanager.user"
+  version: "v1alpha1"
+  scope: "Cluster"
+  names:
+    plural: "permissionmanagerusers"
+    singular: "permissionmanageruser"
+    kind: "Permissionmanageruser"
+  validation:
+    openAPIV3Schema:
+      required: ["spec"]
+      properties:
+        spec:
+          required: ["name"]
+          properties:
+            name:
+              type: "string"
+              minimum: 2
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: template-namespaced-resources___operation
+rules:
+  - apiGroups:
+      - "*"
+    resources:
+      - "*"
+    verbs:
+      - "*"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: template-namespaced-resources___developer
+rules:
+  - apiGroups:
+      - "*"
+    resources:
+      - "configmaps"
+      - "endpoints"
+      - "persistentvolumeclaims"
+      - "pods"
+      - "pods/log"
+      - "pods/portforward"
+      - "podtemplates"
+      - "replicationcontrollers"
+      - "resourcequotas"
+      - "secrets"
+      - "services"
+      - "events"
+      - "daemonsets"
+      - "deployments"
+      - "replicasets"
+      - "ingresses"
+      - "networkpolicies"
+      - "poddisruptionbudgets"
+    verbs:
+      - "*"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: template-cluster-resources___read-only
+rules:
+  - apiGroups:
+      - "*"
+    resources:
+      - "componentstatuses"
+      - "namespaces"
+      - "nodes"
+      - "persistentvolumes"
+      - "mutatingwebhookconfigurations"
+      - "validatingwebhookconfigurations"
+      - "customresourcedefinitions"
+      - "apiservices"
+      - "tokenreviews"
+      - "selfsubjectaccessreviews"
+      - "selfsubjectrulesreviews"
+      - "subjectaccessreviews"
+      - "certificatesigningrequests"
+      - "runtimeclasses"
+      - "podsecuritypolicies"
+      - "clusterrolebindings"
+      - "clusterroles"
+      - "priorityclasses"
+      - "csidrivers"
+      - "csinodes"
+      - "storageclasses"
+      - "volumeattachment"
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: template-cluster-resources___admin
+rules:
+  - apiGroups:
+      - "*"
+    resources:
+      - "componentstatuses"
+      - "namespaces"
+      - "nodes"
+      - "persistentvolumes"
+      - "mutatingwebhookconfigurations"
+      - "validatingwebhookconfigurations"
+      - "customresourcedefinitions"
+      - "apiservices"
+      - "tokenreviews"
+      - "selfsubjectaccessreviews"
+      - "selfsubjectrulesreviews"
+      - "subjectaccessreviews"
+      - "certificatesigningrequests"
+      - "runtimeclasses"
+      - "podsecuritypolicies"
+      - "clusterrolebindings"
+      - "clusterroles"
+      - "priorityclasses"
+      - "csidrivers"
+      - "csinodes"
+      - "storageclasses"
+      - "volumeattachment"
+    verbs: ["*"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: permission-manager
+  name: permission-manager
+spec:
+  selector:
+    app: permission-manager
+  ports:
+    - protocol: TCP
+      port: 4000
+      targetPort: 4000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: permission-manager
+  name: permission-manager
+  labels:
+    app: permission-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: permission-manager
+  template:
+    metadata:
+      labels:
+        app: permission-manager
+    spec:
+      serviceAccountName: permission-manager
+      containers:
+        - name: permission-manager
+          image: quay.io/sighup/permission-manager:v1.6.0
+          ports:
+            - containerPort: 4000
+          envFrom:
+            - secretRef:
+                name: permission-manager
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: permission-manager
+  namespace: permission-manager
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: permission-manager
+rules:
+  # Allow full management of all the Permission Manager resources
+  - apiGroups: [ "permissionmanager.user" ]
+    resources:
+      - "*"
+    verbs: [ "get", "list", "create", "update", "delete", "watch" ]
+  # Allow full management of the RBAC resources
+  - apiGroups:
+      - "rbac.authorization.k8s.io"
+    resources:
+      - "clusterrolebindings"
+      - "clusterroles"
+      - "rolebindings"
+      - "roles"
+    verbs: [ "get", "list", "create", "update", "delete", "bind", "watch" ]
+  - apiGroups: [""]
+    resources:
+      - "serviceaccounts"
+      - "secrets"
+    verbs: [ "get", "list", "create", "update", "delete", "watch" ]
+  # Allow full management of certificates CSR, including their approval
+  - apiGroups: [ "certificates.k8s.io" ]
+    resources:
+      - "certificatesigningrequests"
+      - "certificatesigningrequests/approval"
+    verbs: [ "get", "list", "create", "update", "delete", "watch" ]
+  # Support legacy versions, before signerName was added
+  # (see https://github.com/kubernetes/kubernetes/pull/88246)
+  - apiGroups: [ "certificates.k8s.io" ]
+    resources:
+      - "signers"
+    resourceNames:
+      - "kubernetes.io/legacy-unknown"
+      - "kubernetes.io/kube-apiserver-client"
+    verbs: [ "approve" ]
+  # Allow to get and list Namespaces
+  - apiGroups: [ "" ]
+    resources:
+      - "namespaces"
+    verbs: [ "get", "list" ]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: permission-manager
+roleRef:
+  kind: ClusterRole
+  name: permission-manager
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - kind: ServiceAccount
+    name: permission-manager
+    namespace: permission-manager
