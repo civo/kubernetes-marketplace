@@ -1,7 +1,7 @@
 This issue is a:
-[ ] Bug Report
-[ ] Enhancement suggestion
-[ ] Feature request
+* [ ] Bug Report
+* [ ] Enhancement suggestion
+* [ ] Feature request
 
 If the issue concerns an existing Marketplace application, please tag the maintainer of the application (found in `manifest.yaml`) below:
 
