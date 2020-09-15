@@ -6,7 +6,7 @@ By default external access to the Rancher isn't available. This is easily change
 
 
 ```
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: cattle-ingress
