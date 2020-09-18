@@ -11,17 +11,15 @@ kind: Ingress
 metadata:
   name: portainer
   namespace: portainer
-  annotations:
-    kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - http:
+  - host: portainer.<your-cluster-id>.k8s.civo.com
+    http:
       paths:
-      - path: /
-        backend:
+      - backend:
           serviceName: portainer
-          servicePort: http
+          servicePort: 9000
 ```
 
 
-This will open up https://<masterIP>:<traefik443PORT> to the whole world.
+This will open up http://portainer.YOUR_CLUSTER_ID.k8s.civo.com to the whole world.
