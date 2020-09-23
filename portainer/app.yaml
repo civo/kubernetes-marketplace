@@ -50,7 +50,7 @@ roleRef:
   name: cluster-admin
 subjects:
 - kind: ServiceAccount
-  namespace: default
+  namespace: portainer
   name: portainer-sa-clusteradmin
 ---
 # Source: portainer/templates/service.yaml
@@ -71,12 +71,10 @@ spec:
       targetPort: 9000
       protocol: TCP
       name: http
-      #nodePort: 30777
     - port: 8000
       targetPort: 8000
       protocol: TCP
       name: edge
-      #nodePort: 30776
   selector:
     app.kubernetes.io/name: portainer
     app.kubernetes.io/instance: portainer
