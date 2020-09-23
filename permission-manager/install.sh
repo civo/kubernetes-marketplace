@@ -9,7 +9,7 @@ metadata:
 type: Opaque
 stringData:
   PORT: "4000" # port where server is exposed
-  CLUSTER_NAME: "$CIVO:CLUSTER_NAME" # name of the cluster to use in the generated kubeconfig file
-  CONTROL_PLANE_ADDRESS: "https://$CIVO:MASTER_IP:6443" # full address of the control plane to use in the generated kubeconfig file
-  BASIC_AUTH_PASSWORD: "$CIVO:ALPHANUMERIC(10)" # password used by basic auth (username is "admin")
+  CLUSTER_NAME: "$CLUSTER_NAME" # name of the cluster to use in the generated kubeconfig file
+  CONTROL_PLANE_ADDRESS: "$CONTROL_PLANE_ADDRESS" # full address of the control plane to use in the generated kubeconfig file
+  BASIC_AUTH_PASSWORD: "$BASIC_AUTH_PASSWORD" # password used by basic auth (username is "admin")
 EOF
