@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Delete the custom CRDs
-kubectl delete -f app.yaml
+# Delete the operator
+helm delete prometheus-operator  prometheus-community/kube-prometheus-stack --namespace monitoring
 
-# Delete the namaespace
+# Delete the namespace
 kubectl delete namespace monitoring
