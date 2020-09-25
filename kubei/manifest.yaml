@@ -1,0 +1,7 @@
+---
+name: Kubei
+version: 1.0.7
+maintainer: "@milindchawre"
+description: Kubei is a vulnerabilities scanning tool that allows users to get an accurate and immediate risk assessment of their kubernetes clusters.
+url: https://github.com/Portshift/Kubei
+category: security
