@@ -1,0 +1,7 @@
+---
+name: kube-scan
+version: v20.5
+maintainer: "@milindchawre"
+description: Kube-scan is risk assessment tool for your kubernetes cluster.
+url: https://github.com/octarinesec/kube-scan
+category: security
