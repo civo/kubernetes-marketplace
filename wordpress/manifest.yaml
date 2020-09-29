@@ -7,7 +7,7 @@ url: https://wordpress.org
 category: management
 dependencies:
   - Longhorn
-  - MariaDB
+  - MariaDB:5GB
 plans:
   - label: "5GB"
     configuration:
