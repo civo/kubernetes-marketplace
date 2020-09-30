@@ -1,0 +1,27 @@
+---
+name: Wordpress
+version: 5.5.1
+maintainer: javicv@gmail.com
+description: WordPress is open source software you can use to create a beautiful website, blog, or app.
+url: https://wordpress.org
+category: management
+dependencies:
+  - longhorn
+  - mariadb:5GB
+plans:
+  - label: "5GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 5Gi
+  - label: "10GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 10Gi
+  - label: "20GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 20Gi
+configuration:
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
