@@ -1,6 +1,6 @@
 ---
 name: Linkerd
-version: 2.5.0
+version: Latest
 maintainer: hello@civo.com
 description: Linkerd is a service mesh, giving you runtime debugging, observability, reliability, and security.
 url: https://linkerd.io
