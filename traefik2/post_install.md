@@ -54,6 +54,6 @@ spec:
 This will open up http://www.example.com (assuming you pointed that non-real domain record to your cluster's IPs) to the whole world.
 
 
-Port 80 and 443 are both exposed through a `NodePort` service, with the help of [cert-manager](https://cert-manager.io/) you can
+Port 80 and 443 are both exposed through a `LoadBalancer` service, with the help of [cert-manager](https://cert-manager.io/) you can
 issue your own TLS/SSL certificates for your domains, by default, Traefik generates a self-signed certificate for the
 websecure endpoint (443). 
