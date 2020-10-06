@@ -49,6 +49,12 @@ rules:
       - list
       - watch
 ---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: traefik-ingress-controller
+  namespace: traefik-controller
+---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -171,6 +177,7 @@ spec:
         app: traefik
         role: ingress-controller
     spec:
+      serviceAccountName: traefik-ingress-controller
       containers:
         - name: traefik
           image: 'traefik:v2.3'
