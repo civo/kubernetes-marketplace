@@ -1,11 +1,11 @@
-VERSION="v0.17.0"
+VERSION?="v0.17.0"
 # For cli directly installed
-CIVO_CMD="civo"
+CIVO_CMD?="civo"
 # For Docker
 #CIVO_CMD=docker run -it --rm -v $HOME/.civo.json:/.civo.json civo/cli:latest
-CIVO_TEST_CLUSTER_NAME=tekton-test
-CIVO_KUBECONFIG=kubeconfig.$(CIVO_TEST_CLUSTER_NAME)
-KUBECTL=kubectl --kubeconfig=$(CIVO_KUBECONFIG)
+CIVO_TEST_CLUSTER_NAME?=tekton-test
+CIVO_KUBECONFIG?=kubeconfig.$(CIVO_TEST_CLUSTER_NAME)
+KUBECTL?=kubectl --kubeconfig=$(CIVO_KUBECONFIG)
 
 .PHONY: build
 build: app.yaml
