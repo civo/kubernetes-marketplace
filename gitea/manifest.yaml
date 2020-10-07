@@ -1,0 +1,15 @@
+---
+name: gitea
+title: "Gitea"
+version: 1.12.5
+maintainer: "@giteaio"
+description: Gitea is a community managed lightweight code hosting solution written in Go.
+url: https://gitea.io
+category: management
+configuration:
+  ADMIN_PASS:
+    label: "Admin Password"
+    value: "CIVO:ALPHANUMERIC(30)"
+  ADMIN_EMAIL:
+    label: "Admin Email"
+    value: "CIVO:EMAIL_ADDRESS"
