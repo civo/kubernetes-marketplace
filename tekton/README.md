@@ -17,4 +17,5 @@ Requires that you the [the civo cli utility installed](https://github.com/civo/c
 
 ```sh
 make test
+make test-keep  # Will test, but keep the cluster with app and tests running
 ```
