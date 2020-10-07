@@ -49,6 +49,27 @@ spec:
           initialDelaySeconds: 10
           periodSeconds: 10
           timeoutSeconds: 5
+      initContainers:
+      - name: prepare-ssl-config
+        image: busybox
+        command: ["sh", "-c"]
+        args:
+        - if [ ! -e /var/www/html/civo-init.sh ]; then
+            if [ -e /var/www/html/wp-config.php ]; then
+              WP_CONFIG_FILE=/var/www/html/wp-config.php;
+            else
+              WP_CONFIG_FILE=/var/www/html/wp-config-sample.php;
+            fi;
+            echo "echo 'if (isset(\$_SERVER[\"HTTP_X_FORWARDED_PROTO\"]) && \$_SERVER[\"HTTP_X_FORWARDED_PROTO\"] === \"https\") {' >> $WP_CONFIG_FILE" >> /var/www/html/civo-init.sh;
+            echo "echo '    $_SERVER["HTTPS"] = "on";' >> $WP_CONFIG_FILE" >> /var/www/html/civo-init.sh;
+            echo "echo '}' >> $WP_CONFIG_FILE" >> /var/www/html/civo-init.sh;
+            cat /var/www/html/civo-init.sh;
+            chmod +x /var/www/html/civo-init.sh;
+          fi;
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: data
+          subPath: html
       volumes:
       - name: data
         persistentVolumeClaim:
