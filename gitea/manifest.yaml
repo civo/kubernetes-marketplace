@@ -6,8 +6,6 @@ maintainer: "@giteaio"
 description: Gitea is a community managed lightweight code hosting solution written in Go.
 url: https://gitea.io
 category: management
-dependencies:
-  - longhorn
 configuration:
   ADMIN_PASS:
     label: "Admin Password"

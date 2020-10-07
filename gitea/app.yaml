@@ -15,8 +15,11 @@ spec:
   repo: https://dl.gitea.io/charts
   valuesContent: |-
     persistence:
-      storageClass: longhorn
+      enabled: false
     gitea:
       admin:
         email: $ADMIN_EMAIL
         password: $ADMIN_PASS
+    postgresql:
+      persistence:
+        enabled: false
