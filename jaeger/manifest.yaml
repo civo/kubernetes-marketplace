@@ -1,0 +1,7 @@
+name: Jaeger-Operator
+version: "1.2.0"
+description: Jaeger-Operator is a Kubernetes Operator implementation of the Jaeger Distributed Tracing tool
+dependencies:
+maintainer: "@kaipmdh"
+url: https://github.com/jaegertracing/jaeger-operator
+category: monitoring
