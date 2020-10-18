@@ -1,8 +1,8 @@
 ---
-name: App Name
-version: v0.0.1
-maintainer: "Email or twitter handle"
-description: My Cool app
-url: https://fqdn.lan/app-main-page
+name: Loki Stack 
+version: v0.41.2
+maintainer: "me@r15cookie.com"
+description: Prometheus for your logs.
+url: https://grafana.com/oss/loki/
 category: ci_cd
   
