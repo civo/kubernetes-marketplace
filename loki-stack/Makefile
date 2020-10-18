@@ -4,7 +4,7 @@ CHART_URL?="https://grafana.github.io/loki/charts"
 CIVO_CMD?="civo"
 # For Docker
 #CIVO_CMD?=docker run -it --rm -v $HOME/.civo.json:/.civo.json civo/cli:latest
-CIVO_TEST_CLUSTER_NAME?=loki
+CIVO_TEST_CLUSTER_NAME?=loki-test
 CIVO_KUBECONFIG?=kubeconfig.$(CIVO_TEST_CLUSTER_NAME)
 KUBECTL?=kubectl --kubeconfig=$(CIVO_KUBECONFIG)
 
@@ -18,14 +18,7 @@ build: app.yaml
 
 app.yaml:
 # Whatever commands are needed to build the app.yaml.  Kustomize example below
-	@echo "apiVersion: helm.cattle.io/v1" > app.yaml
-	@echo "kind: HelmChart" >> app.yaml
-	@echo "metadata:" >> app.yaml
-	@echo "  name: loki-stack" >> app.yaml
-	@echo "  namespace: kube-system" >> app.yaml
-	@echo "spec:" >> app.yaml
-	@echo "  targetNamespace: loki-stack" >> app.yaml
-	@echo "  chart: $(CHART_URL)/loki-stack-$(VERSION).tgz" >> app.yaml
+	@sed "s/VERSION/$(VERSION)/" app.yaml.tmpl > app.yaml
 
 	# Test final app.yaml for validity
 	@echo "Testing validity of app.yaml"
