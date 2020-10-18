@@ -4,4 +4,5 @@ metadata:
   name: loki-stack
   namespace: kube-system
 spec:
+  targetNamespace: loki-stack
   chart: https://grafana.github.io/loki/charts/loki-stack-0.41.2.tgz
