@@ -6,5 +6,5 @@ dependencies:
   - prometheus-operator
 description: Prometheus for your logs.
 url: https://grafana.com/oss/loki/
-category: ci_cd
+category: monitoring
   
