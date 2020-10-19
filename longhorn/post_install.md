@@ -2,7 +2,7 @@
 
 ### Installation note:
 
-Longhorn requires a minumum of 3 nodes to function, if you attempt to install Longhorn on cluster smaller than this, it will not function properly. If you have installed Longhorn on a cluster that is too small, you will encounrter errors from Longhorn, but you can simply scale the cluster up to a 3 node minimum and the issue will resolve itself automatically. 
+Longhorn requires a minimum of 3 nodes to function, if you attempt to install Longhorn on cluster smaller than this, it will not function properly. If you have installed Longhorn on a cluster that is too small, you will encounter errors from Longhorn, but you can simply scale the cluster up to a 3 node minimum and the issue will resolve itself automatically. 
 
 ### External access
 
