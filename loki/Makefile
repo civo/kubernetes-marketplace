@@ -22,7 +22,7 @@ app.yaml:
 
 	# Test final app.yaml for validity
 	@echo "Testing validity of app.yaml"
-	@kubectl apply -f app.yaml --dry-run=client > /dev/null
+	@$(KUBECTL) apply -f app.yaml --dry-run=client > /dev/null
 	@echo "Clean app.yaml generated"
 
 .PHONY: clean
@@ -36,14 +36,26 @@ test: $(CIVO_KUBECONFIG) test-noclean cluster-clean
 test-keep: $(CIVO_KUBECONFIG) test-noclean
 
 .PHONY: test-noclean
+# Took nearly two minutes for loki to come up...testing look to compensate 
 test-noclean:
 	@echo "Applying manifest and test run"
 	@$(KUBECTL) apply -f app.yaml
-#	@$(KUBECTL) create -f test-manifests/testjob.yaml  
-#	@sleep 10
-#	@echo "Checking status of test run"
-#	@$(KUBECTL) get job testjob -n r15cookieblog -ojson | jq -r .status.conditions[0].type | grep -q Complete
-#	@echo "Success!"
+	@sleep 30
+	@$(KUBECTL) create -f test-manifests/testjob.yaml  
+	@sleep 10
+	@echo "Checking status of test run"
+	@for i in $$(seq 1 10); do \
+		echo Test $$i; \
+		if $(KUBECTL) get job testjob -n loki -ojson | jq -r .status.conditions[0].type | grep -q Complete; then \
+			break; \
+		else \
+			sleep 20; \
+		fi; \
+		if [ $$i -gt 9 ]; then \
+			exit 1; \
+		fi; \
+		done
+	@echo "Success!"
 
 .PHONY: cluster-clean
 cluster-clean:
@@ -55,3 +67,5 @@ $(CIVO_KUBECONFIG):
 	@echo "Creating $(CIVO_TEST_CLUSTER_NAME)"
 	@$(CIVO_CMD) k3s create $(CIVO_TEST_CLUSTER_NAME) -n 3 --size g2.small -a prometheus-operator --wait
 	@$(CIVO_CMD) k3s config $(CIVO_TEST_CLUSTER_NAME) > $(CIVO_KUBECONFIG)
+	@echo "Waiting for all 3 nodes to come up"
+	@for i in $$(seq 1 10); do echo Test $$i; if [ "$$($(KUBECTL) get nodes | grep Ready | wc -l)" = "3" ]; then break; else sleep 10; fi; done
