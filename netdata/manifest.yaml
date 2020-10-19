@@ -1,0 +1,9 @@
+---
+name: Netdata
+version: Latest
+maintainer: "@milindchawre"
+description: Netdata is distributed, real-time performance and health monitoring for systems and applications.
+url: https://github.com/netdata/netdata
+dependencies:
+  - Helm
+category: monitoring
