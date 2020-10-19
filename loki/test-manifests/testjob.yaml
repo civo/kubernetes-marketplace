@@ -3,7 +3,7 @@ kind: Job
 metadata:
   creationTimestamp: null
   name: testjob
-  namespace: r15cookieblog
+  namespace: loki
 spec:
   template:
     metadata:
@@ -16,7 +16,7 @@ spec:
         command:
           - /bin/sh
           - "-c" 
-          - "wget http://r15cookieblog/"
+          - "wget http://loki.loki.svc.cluster.local:3100/ready"
         resources: {}
       restartPolicy: Never
 status: {}
