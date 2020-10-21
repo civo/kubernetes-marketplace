@@ -1,5 +1,6 @@
 ---
-name: Dynamic PV Scaler
+name: dynamic-pv-scaler
+title: Dynamic PV Scaler
 version: 0.1.0
 dependencies:
   - prometheus-operator
