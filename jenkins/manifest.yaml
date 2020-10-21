@@ -1,5 +1,5 @@
 ---
-name: Jenkins Jenkins
+name: Jenkins
 version: 2.190.1
 maintainer: "@ruanbekker"
 description: Jenkins is a Continuous Integration and Delivery server
