@@ -7,3 +7,4 @@ bundle exec bin/lint_logos.rb
 bundle exec bin/lint_required_files.rb
 bundle exec bin/lint_versions.rb
 bundle exec bin/lint_yaml.rb
+bundle exec bin/lint_name.rb
