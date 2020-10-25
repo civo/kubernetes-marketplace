@@ -1,8 +1,10 @@
 # Ghost
 
+This ghost blog using sqlite as the database backend.
+
 ## External Access
 
-An Ingress is created during the installation process. To access your wordpress use http://ghost.YOUR_CLUSTER_ID.k8s.civo.com.
+An Ingress is created during the installation process. To access your ghost use http://ghost.YOUR_CLUSTER_ID.k8s.civo.com.
 
 ## Modify URL
 
