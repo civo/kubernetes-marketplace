@@ -1,0 +1,26 @@
+---
+name: Ghost
+version: 3.35.5
+maintainer: saka@lnxid.com
+description: Ghost is a free and open source blogging platform designed to simplify the process of online publishing for individual bloggers as well as online publications.
+url: https://ghost.org/
+category: management
+dependencies:
+  - longhorn
+plans:
+  - label: "5GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 5Gi
+  - label: "10GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 10Gi
+  - label: "15GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 15Gi
+configuration:
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
