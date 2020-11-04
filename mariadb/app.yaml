@@ -3,7 +3,7 @@ metadata:
   name: mysql-pass
 type: Opaque
 stringData:
-  BASIC_AUTH_PASSWORD: "$MYSQL_ROOT_PASSWORD" # password set for mysql root user
+  MYSQL_ROOT_PASSWORD: "$MYSQL_ROOT_PASSWORD" # password set for mysql root user
 ---  
 apiVersion: v1
 kind: PersistentVolume
