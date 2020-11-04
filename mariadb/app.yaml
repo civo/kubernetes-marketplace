@@ -1,10 +1,3 @@
-kind: Secret
-metadata:
-  name: mysql-pass
-type: Opaque
-stringData:
-  MYSQL_ROOT_PASSWORD: "$MYSQL_ROOT_PASSWORD" # password set for mysql root user
----  
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -70,7 +63,10 @@ spec:
         name: mariadb
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: $MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: MYSQL_ROOT_PASSWORD
         ports:
         - containerPort: 3306
           name: mariadb
