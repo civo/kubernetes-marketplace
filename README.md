@@ -38,7 +38,9 @@ There are two minimum parts to a marketplace application - a `manifest.yaml`, an
 
 Then there are two options for how to install the application - a single Kubernetes resources configuration file called `app.yaml` (which can be multiple resources separated by `---`) or a script called `install.sh`. You can supply both items, if so the `app.yaml` will be applied first and then the `install.sh` will run.
 
-The `install.sh` if present will be executed on the master using `bash` as non-privileged user that has passwordless `sudo` permission and has `kubectl` access to the cluster. We envisage that `install.sh` script usage should be rare and we will be strictly monitoring what is in them, and _NO_ downloading of external resources will be acceptable here (no `curl https://... | sudo sh` sort of functionality)
+If there are certain commands to be run before the app.yaml gets applied to the cluster then you need to create a `pre_install.sh`script.
+
+The `pre_install.sh` and `install.sh` if present will be executed on the master using `bash` as non-privileged user that has passwordless `sudo` permission and has `kubectl` access to the cluster. We envisage that `install.sh` script usage should be rare and we will be strictly monitoring what is in them, and _NO_ downloading of external resources will be acceptable here (no `curl https://... | sudo sh` sort of functionality)
 
 A final optional file is the `post_install.md` which the user will be able to view in the web UI to see additional instructions on how to use the application. It's recommended to keep this short and succinct, if you need to manage LOTS of content, then please create a [community learn guide](https://www.civo.com/learn/creating-a-learn-guide) and link to it from within the `post_install.md`.
 
