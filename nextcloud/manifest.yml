@@ -1,0 +1,31 @@
+---
+name: NextCloud
+version: 20.0.1
+maintainer: keith@hubner.co.uk
+description: Nextcloud is a completely integrated self-managed content collaboration platform
+url: https://nextcloud.com/
+category: management
+dependencies:
+  - longhorn
+  - mariadb:5GB
+  - cert-manager
+plans:
+  - label: "5GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 5Gi
+  - label: "10GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 10Gi
+  - label: "20GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 20Gi
+configuration:
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
+  EMAIL_ADDRESS:
+    label: "Email Address"
+    value: "CIVO:EMAIL_ADDRESS"    
