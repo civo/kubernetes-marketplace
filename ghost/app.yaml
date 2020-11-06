@@ -1,0 +1,96 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ghost
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ghost-pv-claim
+  namespace: ghost
+spec:
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: $VOLUME_SIZE
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: ghost-blog
+  namespace: ghost
+  labels:
+    app: ghost-blog
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: ghost-blog
+  template:
+    metadata:
+      labels:
+        app: ghost-blog
+    spec:
+      containers:
+        - name: ghost-blog
+          image: ghost:3.35.5
+          ports:
+            - name: ghost-blog
+              containerPort: 2368
+              protocol: TCP
+          env:
+            - name: url
+              value: http://ghost.$CLUSTER_ID.k8s.civo.com
+          livenessProbe:
+            httpGet:
+              port: ghost-blog
+              path: /
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              port: ghost-blog
+              path: /
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+          volumeMounts:
+            - name: ghost-persistent-storage
+              mountPath: /var/lib/ghost/content
+      volumes:
+        - name: ghost-persistent-storage
+          persistentVolumeClaim:
+            claimName: ghost-pv-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ghost-blog
+  namespace: ghost
+spec:
+  ports:
+    - name: web
+      port: 80
+      targetPort: ghost-blog
+      protocol: TCP
+  selector:
+    app: ghost-blog
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ghost-blog
+  namespace: ghost
+spec:
+  rules:
+  - host: ghost.$CLUSTER_ID.k8s.civo.com
+    http:
+      paths:
+      - backend:
+          serviceName: ghost-blog
+          servicePort: 80

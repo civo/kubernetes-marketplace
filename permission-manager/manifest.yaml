@@ -1,0 +1,17 @@
+---
+name: permission-manager
+version: 1.6.0
+maintainer: "@milindchawre"
+description: Permission Manager provides an easy and user-friendly mechanism for managing RBAC in Kubernetes.
+url: https://github.com/sighupio/permission-manager
+category: management
+configuration:
+  CLUSTER_NAME:
+    label: "Cluster name"
+    value: "CIVO:CLUSTER_NAME"
+  CONTROL_PLANE_ADDRESS:
+    label: "Control plane address"
+    value: "https://CIVO:MASTER_IP:6443"
+  BASIC_AUTH_PASSWORD:
+    label: "Password"
+    value: "CIVO:ALPHANUMERIC(10)"

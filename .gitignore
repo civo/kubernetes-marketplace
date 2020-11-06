@@ -1,1 +1,3 @@
-tekton/kubeconfig*
+# Any kubeconfig within the repo - could potentially contain auth data
+kubeconfig*
+*kubeconfig

@@ -46,7 +46,7 @@ spec:
       spec:
         serviceAccountName: cattle-admin
         containers:
-        - image: rancher/rancher:stable
+        - image: rancher/rancher:v2.5.0
           imagePullPolicy: Always
           name: cattle-server
           ports:

@@ -13,7 +13,7 @@ To submit an application to the Marketplace, make sure you include all the requi
 - Marketplace application: A Kubernetes application submitted to the Civo Kubernetes Marketplace
 - Upstream project: The project codebase in its official repository, updated by the project's authors and contributors
 - Submitter: The person(s) submitting an application for inclusion in the Civo Kubernetes Marketplace, having written the required code and supporting information
-- Maintainer: The person in charge of . By default, the Submitter.
+- Maintainer: The person in charge of the application. By default, the Submitter.
 
 ### Maintainer Responsibilities
 

@@ -1,0 +1,63 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dynamic-pv-scaler
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: dynamic-pv-scaler
+rules:
+- apiGroups: [""]
+  resources: ["pods", "persistentvolumeclaim"]
+  verbs: ["get", "watch", "list", "delete", "create", "update"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: dynamic-pv-scaler-rolebindings
+subjects:
+- kind: ServiceAccount
+  name: dynamic-pv-scaler
+  namespace: dynamic-pv-scaler
+roleRef:
+  kind: ClusterRole
+  name: dynamic-pv-scaler
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dynamic-pv-scaler
+  labels:
+    app: dynamic-pv-scaler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dynamic-pv-scaler
+  template:
+    metadata:
+      labels:
+        app: dynamic-pv-scaler
+    spec:
+      containers:
+      - name: dynamic-pv-scaler
+        image: quay.io/opstree/dynamic-pv-scaler:latest
+        imagePullPolicy: Always 
+        env:
+        - name: PROMETHEUS_URL 
+          value: $PROMETHEUS_URL
+        - name: CONFIG_FILE 
+          value: /etc/ot-conf.d/config.yaml
+        volumeMounts:
+          - mountPath: /etc/ot-conf.d/config.yaml
+            name: dynamic-pv-scaler-config
+            subPath: config.yaml
+      volumes:
+        - name: dynamic-pv-scaler-config
+          configMap:
+            name: dynamic-pv-scaler-config
+      serviceAccount: dynamic-pv-scaler
+      serviceAccountName: dynamic-pv-scaler

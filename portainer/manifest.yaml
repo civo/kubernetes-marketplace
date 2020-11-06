@@ -1,6 +1,6 @@
 ---
 name: Portainer
-version: beta
+version: ce
 maintainer: "@saiyampathak"
 description: An open source kubernetes management platform
 url: https://portainer.io

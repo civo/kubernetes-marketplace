@@ -1,0 +1,10 @@
+---
+name: dynamic-pv-scaler
+title: Dynamic PV Scaler
+version: 0.1.0
+dependencies:
+  - prometheus-operator
+maintainer: "@iamabhishek-dubey"
+description: Dynamic PV Scaler is a golang based Kubernetes application which has been created to overcome the scaling issue of PV in Kubernetes.
+url: https://opstree.github.io/
+category: storage

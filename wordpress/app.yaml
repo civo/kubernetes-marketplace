@@ -1,0 +1,98 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wordpress-pv-claim
+spec:
+  storageClassName: longhorn
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: $VOLUME_SIZE
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - image: wordpress:5.5.1
+        name: wordpress
+        ports:
+        - name: web
+          containerPort: 80
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: data
+          subPath: html
+        livenessProbe:
+          httpGet:
+            port: web
+            path: /
+          initialDelaySeconds: 30
+          periodSeconds: 60
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            port: web
+            path: /
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+      initContainers:
+      - name: prepare-ssl-config
+        image: busybox
+        command: ["sh", "-c"]
+        args:
+        - if [ ! -e /var/www/html/civo-init.sh ]; then
+            WP_CONFIG_FILE=/var/www/html/wp-config-sample.php;
+
+            echo "echo 'if (isset(\$_SERVER[\"HTTP_X_FORWARDED_PROTO\"]) && \$_SERVER[\"HTTP_X_FORWARDED_PROTO\"] === \"https\") {' >> $WP_CONFIG_FILE" >> /var/www/html/civo-init.sh;
+            echo "echo '    \$_SERVER[\"HTTPS\"] = "on";' >> $WP_CONFIG_FILE" >> /var/www/html/civo-init.sh;
+            echo "echo '}' >> $WP_CONFIG_FILE" >> /var/www/html/civo-init.sh;
+            
+            chmod +x /var/www/html/civo-init.sh;
+          fi;
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: data
+          subPath: html
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: wordpress-pv-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress
+spec:
+  ports:
+  - name: "http-80"
+    port: 80
+    targetPort: web
+  selector:
+    app: wordpress
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: wordpress
+spec:
+  rules:
+  - host: wordpress.$CLUSTER_ID.k8s.civo.com
+    http:
+      paths:
+      - backend:
+          serviceName: wordpress
+          servicePort: 80

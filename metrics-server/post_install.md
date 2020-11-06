@@ -20,7 +20,7 @@ Check node usage:
 kubectl top pod --all-namespaces
 ```
 
-### Usage instruction
+### Usage instruction
 
 See the Kubernetes documentation for a worked-example of how to use HPAv2.
 

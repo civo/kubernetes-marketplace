@@ -1,0 +1,7 @@
+---
+name: RabbitMQ
+version: "3.8.8-management"
+maintainer: habil@bozali.com
+description: RabbitMQ is an open-source message-broker software that originally implemented the Advanced Message Queuing Protocol.
+url: https://www.rabbitmq.com/
+category: architecture

@@ -2,8 +2,6 @@
 
 ### Get started
 
-[cert-manager docs](https://cert-manager.readthedocs.io/en/release-0.11/)
+[cert-manager docs](https://cert-manager.io/docs/)
 
-* Create an [Issuer](https://docs.cert-manager.io/en/release-0.11/tutorials/acme/index.html?highlight=issuer)
-
-* Create a [Certificate or Ingress record](https://docs.cert-manager.io/en/release-0.11/tasks/issuing-certificates/index.html)
+* Issue a [Certificate using HTTP Validation](https://cert-manager.io/docs/tutorials/acme/http-validation/)

@@ -1,0 +1,9 @@
+---
+name: Traefik-v2
+title: Traefik v2
+version: "2.3"
+default: false
+maintainer: "johannes@jitesoft.com"
+description: An open source Edge Router working as an ingress controller and load balancer inside your kubernetes cluster.
+url: https://traefik.io
+category: architecture

@@ -1,0 +1,7 @@
+---
+name: Nginx
+version: latest
+maintainer: "@Saiyam Pathak"
+description: ingress-nginx is an Ingress controller for Kubernetes using NGINX as a reverse proxy and load balancer.
+url: https://kubernetes.github.io/ingress-nginx/
+category: architecture

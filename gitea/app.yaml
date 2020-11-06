@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gitea
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: gitea
+  namespace: kube-system
+spec:
+  chart: gitea
+  version: 1.5.5
+  targetNamespace: gitea
+  repo: https://dl.gitea.io/charts
+  valuesContent: |-
+    persistence:
+      enabled: false
+    gitea:
+      admin:
+        email: $ADMIN_EMAIL
+        password: $ADMIN_PASS
+    postgresql:
+      persistence:
+        enabled: false

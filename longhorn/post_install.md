@@ -1,5 +1,9 @@
 ## Using Longhorn persistent volumes
 
+### Installation note:
+
+Longhorn requires a minimum of 3 nodes to function, if you attempt to install Longhorn on cluster smaller than this, it will not function properly. If you have installed Longhorn on a cluster that is too small, you will encounter errors from Longhorn, but you can simply scale the cluster up to a 3 node minimum and the issue will resolve itself automatically. 
+
 ### External access
 
 By default external access to the Longhorn dashboard isn't available. This is easily changed by applying the following YAML to your cluster with `kubectl apply -f longhorn-service.yaml` (or whatever you call the file containing the contents below):
