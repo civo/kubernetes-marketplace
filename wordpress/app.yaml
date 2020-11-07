@@ -25,7 +25,7 @@ spec:
         app: wordpress
     spec:
       containers:
-      - image: wordpress:5.5.1
+      - image: wordpress:5.5.3
         name: wordpress
         ports:
         - name: web
@@ -56,11 +56,18 @@ spec:
         args:
         - if [ ! -e /var/www/html/civo-init.sh ]; then
             WP_CONFIG_FILE=/var/www/html/wp-config-sample.php;
-
-            echo "echo 'if (isset(\$_SERVER[\"HTTP_X_FORWARDED_PROTO\"]) && \$_SERVER[\"HTTP_X_FORWARDED_PROTO\"] === \"https\") {' >> $WP_CONFIG_FILE" >> /var/www/html/civo-init.sh;
-            echo "echo '    \$_SERVER[\"HTTPS\"] = "on";' >> $WP_CONFIG_FILE" >> /var/www/html/civo-init.sh;
-            echo "echo '}' >> $WP_CONFIG_FILE" >> /var/www/html/civo-init.sh;
             
+            echo "LINES=\$(cat $WP_CONFIG_FILE | wc -l)" >> /var/www/html/civo-init.sh;
+            echo "let LINES=\$LINES-2" >> /var/www/html/civo-init.sh;
+            echo "head -\${LINES} wp-config-sample.php > /tmp/head_temp.txt" >> /var/www/html/civo-init.sh;
+            echo "tail -3 wp-config-sample.php > /tmp/tail_temp.txt" >> /var/www/html/civo-init.sh;
+            echo "echo 'if (isset(\$_SERVER[\"HTTP_X_FORWARDED_PROTO\"]) && \$_SERVER[\"HTTP_X_FORWARDED_PROTO\"] === \"https\") {' >> /tmp/head_temp.txt" >> /var/www/html/civo-init.sh;
+            echo "echo '    \$_SERVER[\"HTTPS\"] = \"on\";' >> /tmp/head_temp.txt" >> /var/www/html/civo-init.sh;
+            echo "echo '}' >> /tmp/head_temp.txt" >> /var/www/html/civo-init.sh;
+            echo "cat /tmp/head_temp.txt > $WP_CONFIG_FILE" >> /var/www/html/civo-init.sh;
+            echo "cat /tmp/tail_temp.txt >> $WP_CONFIG_FILE" >> /var/www/html/civo-init.sh;
+            echo "rm -f /tmp/head_temp.txt /tmp/tail_temp.txt" >> /var/www/html/civo-init.sh;
+
             chmod +x /var/www/html/civo-init.sh;
           fi;
         volumeMounts:
