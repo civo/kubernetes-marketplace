@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Delete the app
-helm delete kubenav -n=kubenav
+helm delete -f app.yaml
 
 # Delete the namaespace
 kubectl delete namespace kubenav
