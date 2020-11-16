@@ -1,0 +1,85 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nodered-pv-claim
+spec:
+  storageClassName: longhorn
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: $VOLUME_SIZE
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodered
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nodered
+  template:
+    metadata:
+      labels:
+        app: nodered
+    spec:
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+      containers:
+      - image: nodered/node-red:1.2.3
+        name: nodered
+        ports:
+        - name: web
+          containerPort: 1880
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /data
+          name: data
+          subPath: nodered
+        livenessProbe:
+          httpGet:
+            port: web
+            path: /
+          initialDelaySeconds: 60
+          periodSeconds: 60
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            port: web
+            path: /
+          initialDelaySeconds: 10
+          periodSeconds: 30
+          timeoutSeconds: 5
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: nodered-pv-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodered
+spec:
+  ports:
+  - name: "http-1880"
+    port: 1880
+    targetPort: web
+  selector:
+    app: nodered
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nodered
+spec:
+  rules:
+  - host: nodered.$CLUSTER_ID.k8s.civo.com
+    http:
+      paths:
+      - backend:
+          serviceName: nodered
+          servicePort: "http-1880"

@@ -1,0 +1,26 @@
+---
+name: Node-RED
+version: 1.2.3
+maintainer: javicv@gmail.com
+description: Node-RED is a programming tool for wiring together hardware devices, APIs and online services in new and interesting ways.
+url: https://nodered.org/
+category: architecture
+dependencies:
+  - longhorn
+plans:
+  - label: "5GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 5Gi
+  - label: "10GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 10Gi
+  - label: "20GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 20Gi
+configuration:
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
