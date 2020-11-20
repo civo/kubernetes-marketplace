@@ -19,9 +19,7 @@
 
 1. Connect the CLI to the Keptn installation
   ```
-  API_PORT=$(kubectl get svc api-gateway-nginx -n keptn -o jsonpath='{.spec.ports[?(@.name=="http")].nodePort}')
-  EXTERNAL_NODE_IP=$(kubectl get nodes -o jsonpath='{ $.items[0].status.addresses[?(@.type=="ExternalIP")].address }')
-  KEPTN_ENDPOINT=http://${EXTERNAL_NODE_IP}:${API_PORT}/api
+  KEPTN_ENDPOINT=http://$(kubectl get ingress api-keptn-ingress -n keptn -o jsonpath='{.spec.rules[0].host}')/api
   KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)
 
   keptn auth --endpoint=$KEPTN_ENDPOINT --api-token=$KEPTN_API_TOKEN
@@ -29,7 +27,7 @@
 
 1. Access the bridge via:
   ```
-  echo http://${EXTERNAL_NODE_IP}:${API_PORT}/bridge
+  echo http://$(kubectl get ingress api-keptn-ingress -n keptn -o jsonpath='{.spec.rules[0].host}')/bridge
   ```
   
   Get the credentials with the following command:
