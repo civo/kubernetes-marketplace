@@ -1,9 +1,9 @@
 ---
-name: NextCloud
-version: 20.0.1
+name: joomla
+version: 3.9.22
 maintainer: keith@hubner.co.uk
-description: Nextcloud is a completely integrated self-managed content collaboration platform
-url: https://nextcloud.com/
+description: content management system (CMS)
+url: https://www.joomla.org/
 category: management
 dependencies:
   - longhorn
@@ -28,4 +28,4 @@ configuration:
     value: "CIVO:CLUSTER_ID"
   EMAIL_ADDRESS:
     label: "Email Address"
-    value: "CIVO:EMAIL_ADDRESS"    
+    value: "CIVO:EMAIL_ADDRESS"  
