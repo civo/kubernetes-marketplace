@@ -1,13 +1,14 @@
 ---
-name: Wordpress
-version: 5.5.3
-maintainer: javicv@gmail.com
-description: WordPress is open source software you can use to create a beautiful website, blog, or app.
-url: https://wordpress.org
+name: NextCloud
+version: 20.0.1
+maintainer: keith@hubner.co.uk
+description: Nextcloud is a completely integrated self-managed content collaboration platform
+url: https://nextcloud.com/
 category: management
 dependencies:
   - longhorn
   - mariadb:5GB
+  - cert-manager
 plans:
   - label: "5GB"
     configuration:
@@ -25,3 +26,6 @@ configuration:
   CLUSTER_ID:
     label: "Cluster ID"
     value: "CIVO:CLUSTER_ID"
+  EMAIL_ADDRESS:
+    label: "Email Address"
+    value: "CIVO:EMAIL_ADDRESS"    

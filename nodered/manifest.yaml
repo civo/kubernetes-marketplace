@@ -1,13 +1,12 @@
 ---
-name: Wordpress
-version: 5.5.3
+name: Node-RED
+version: 1.2.3
 maintainer: javicv@gmail.com
-description: WordPress is open source software you can use to create a beautiful website, blog, or app.
-url: https://wordpress.org
-category: management
+description: Node-RED is a programming tool for wiring together hardware devices, APIs and online services in new and interesting ways.
+url: https://nodered.org/
+category: architecture
 dependencies:
   - longhorn
-  - mariadb:5GB
 plans:
   - label: "5GB"
     configuration:
