@@ -1,5 +1,5 @@
 ---
-name: bitwardenrs
+name: Bitwardenrs
 version: 1.17.0
 maintainer: keith@hubner.co.uk
 description: Open Source Password Manager (Bitwarden server API implementation written in Rust) 

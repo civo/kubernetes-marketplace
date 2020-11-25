@@ -1,8 +1,8 @@
 ---
-name: joomla
+name: Joomla
 version: 3.9.22
 maintainer: keith@hubner.co.uk
-description: content management system (CMS)
+description: Popular open source content management system (CMS)
 url: https://www.joomla.org/
 category: management
 dependencies:
