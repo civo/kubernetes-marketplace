@@ -1,0 +1,100 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod-bw
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: $EMAIL_ADDRESS
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt-prod-bw
+    # Enable the HTTP-01 challenge provider
+    solvers:
+    - http01:
+        ingress:
+          class: traefik
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bw-pv-claim
+spec:
+  storageClassName: longhorn
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: $VOLUME_SIZE
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bw-service
+spec:
+  selector:
+    app: bw
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bw
+  labels:
+    app: bw
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: bw
+  template:
+    metadata:
+      labels:
+        app: bw
+    spec:
+      containers:
+        - name: bw
+          image: bitwardenrs/server-mysql:1.17.0
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 80
+            protocol: TCP
+          volumeMounts:
+          - name: bw-persistent-storage
+            mountPath: /data   
+           
+
+      volumes:
+      - name: bw-persistent-storage
+        persistentVolumeClaim:
+          claimName: bw-pv-claim            
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod-bw
+    ingress.kubernetes.io/ssl-redirect: "true"  
+  name: bw
+spec:
+  tls:
+    - hosts:
+      - bw.$CLUSTER_ID.k8s.civo.com
+      secretName: letsencrypt-prod-bw  
+  rules:
+  - host: bw.$CLUSTER_ID.k8s.civo.com
+    http:
+      paths:
+      - backend:
+          serviceName: bw-service
+          servicePort: 80
+
+
+             
