@@ -1,5 +1,3 @@
-### IMPORTANT - At the moment this app only works when installed on an existing cluster. 
-
 ## NextCLoud - The self-hosted productivity platform
 
 ### Usage instructions

@@ -1,0 +1,6 @@
+name: Kubenav
+version: "3.1.0"
+maintainer: "@si458"
+description: "kubenav is the navigator for your Kubernetes clusters right in your browser"
+url: https://docs.kubenav.io
+category: management
