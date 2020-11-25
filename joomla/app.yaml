@@ -1,0 +1,107 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod-joomla
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: $EMAIL_ADDRESS
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt-prod-joomla
+    # Enable the HTTP-01 challenge provider
+    solvers:
+    - http01:
+        ingress:
+          class: traefik
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: joomla-pv-claim
+spec:
+  storageClassName: longhorn
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: $VOLUME_SIZE
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: joomla-service
+spec:
+  selector:
+    app: joomla
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: joomla
+  labels:
+    app: joomla
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: joomla
+  template:
+    metadata:
+      labels:
+        app: joomla
+    spec:
+      containers:
+        - name: joomla
+          image: joomla:3.9.22
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 80
+            protocol: TCP
+          volumeMounts:
+          - name: joomla-persistent-storage
+            mountPath: /var/www/html   
+          env:
+          - name: JOOMLA_DB_HOST
+            value: mariadb
+          - name: JOOMLA_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-pass
+                key: MYSQL_ROOT_PASSWORD 
+
+      volumes:
+      - name: joomla-persistent-storage
+        persistentVolumeClaim:
+          claimName: joomla-pv-claim            
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod-joomla
+    ingress.kubernetes.io/ssl-redirect: "true"  
+  name: joomla
+spec:
+  tls:
+    - hosts:
+      - joomla.$CLUSTER_ID.k8s.civo.com
+      secretName: letsencrypt-prod-joomla  
+  rules:
+  - host: joomla.$CLUSTER_ID.k8s.civo.com
+    http:
+      paths:
+      - backend:
+          serviceName: joomla-service
+          servicePort: 80
+
+
+             

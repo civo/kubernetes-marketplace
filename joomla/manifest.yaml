@@ -1,0 +1,31 @@
+---
+name: joomla
+version: 3.9.22
+maintainer: keith@hubner.co.uk
+description: content management system (CMS)
+url: https://www.joomla.org/
+category: management
+dependencies:
+  - longhorn
+  - mariadb:5GB
+  - cert-manager
+plans:
+  - label: "5GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 5Gi
+  - label: "10GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 10Gi
+  - label: "20GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 20Gi
+configuration:
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
+  EMAIL_ADDRESS:
+    label: "Email Address"
+    value: "CIVO:EMAIL_ADDRESS"  
