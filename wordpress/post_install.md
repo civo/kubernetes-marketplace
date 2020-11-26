@@ -24,7 +24,7 @@ To simplify this configuration when the WordPress is installed an script is crea
 Use the following command to execute it when your WordPress pod reach running state.
 
 ```
- kubectl exec -it svc/wordpress -- sh -c /var/www/html/civo-init.sh
+ kubectl exec -it svc/wordpress -- bash -c /var/www/html/civo-init.sh
 ```
 
 After the script execution the following lines will be added to the *wp-config-sample.php* file, and they will be present in wp-config.php after wizard setup.
