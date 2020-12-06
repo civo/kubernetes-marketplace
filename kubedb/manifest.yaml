@@ -1,9 +1,0 @@
----
-name: KubeDB
-version: v0.12.0-r1
-maintainer: me@r15cookie.com
-description: KubeDB provides several types of databases as a Kubernetes Operator
-url: https://kubedb.com
-category: database
-dependencies:
-  - Longhorn
