@@ -4,6 +4,13 @@
 
 You'll need to create a user and a database in MariaDB before you can configure your Wordpress.
 
+First, you need the password for MariaDB.
+
+```
+$ kubectl get secret mysql-pass --template={{.data.MYSQL_ROOT_PASSWORD}} | base64 --decode
+# copy the return value without the last % character
+```
+
 ```
 $ kubectl exec -it svc/mariadb -- /bin/sh
 
