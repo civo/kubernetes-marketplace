@@ -11,11 +11,14 @@ $ kubectl get secret mysql-pass --template={{.data.MYSQL_ROOT_PASSWORD}} | base6
 # copy the return value without the last % character
 ```
 
+Next, proceed with DB & user creation:
+
 ```
 $ kubectl exec -it svc/mariadb -- /bin/sh
 
 # mysql -u root -p
 Enter password: YOUR_ROOT_PASSWORD_HERE
+Note: if you're getting "Access denied for user 'root'@'localhost' (using password: YES)" error, exit from this exec session and try again in few seconds later
 
 MariaDB [(none)]> CREATE DATABASE wordpress_db;
 MariaDB [(none)]> CREATE USER wordpress_user identified by 'strong-password';
