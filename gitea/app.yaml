@@ -10,7 +10,7 @@ metadata:
   namespace: kube-system
 spec:
   chart: gitea
-  version: 2.1.4
+  version: 2.1.6
   targetNamespace: gitea
   repo: https://dl.gitea.io/charts
   valuesContent: |-
