@@ -25,7 +25,7 @@ spec:
         app: wordpress
     spec:
       containers:
-      - image: wordpress:5.5.3
+      - image: wordpress:5.6
         name: wordpress
         ports:
         - name: web
