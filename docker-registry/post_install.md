@@ -2,8 +2,8 @@
 
 ### Creation of the certificate
 
-This will help you to create a valid certifica for your registry, you need apply this YAML file,
-you only need remplase only `registry.example.com` by your valid domain
+This will help you to create a valid certificate for your registry, you need apply this YAML file,
+you only need replace only `registry.example.com` by your valid domain
 ```yaml
 apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
@@ -57,5 +57,5 @@ spec:
           serviceName: private-registry-docker-registry
           servicePort: 5000
 ```
-You only need remplase only `registry.example.com` by your valid domain.
+You only need replace only `registry.example.com` by your valid domain.
 This will open up http://registry.example.com (assuming you pointed that non-real domain record to your cluster's IPs) to the whole world.

@@ -22,7 +22,7 @@ By default ghost create user name `Ghost` and create example post in your blog. 
 
 * Login to your ghost admin url `http://ghost.YOUR_CLUSTER_ID.k8s.civo.com/ghost`.  
 * Click the `Staff` menu in the left column.  
-* In the righ column, click the user name `Ghost`.  
+* In the right column, click the user name `Ghost`.  
 * Click the option button in the upper right ( in the left of save button ).  
 * Chose `Delete button`
 
@@ -33,7 +33,7 @@ Follow this step to create your first blog post :
 * To begin your first blog post login to ghost admin url `http://ghost.YOUR_CLUSTER_ID.k8s.civo.com/ghost`.  
 * Inside the ghost admin menu, click `Posts` menu at the left column. Click `New post` button in the upper right.  
 * Write your blog.  
-* If you want to publish your blog, click the `publish` button in the upper right. If you want to publish it later, Click the `< Posts` button in the upper left, your article should be automaticaly saved as draft.
+* If you want to publish your blog, click the `publish` button in the upper right. If you want to publish it later, Click the `< Posts` button in the upper left, your article should be automatically saved as draft.
 
 ## Modify URL
 
