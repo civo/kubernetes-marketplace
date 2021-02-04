@@ -10,8 +10,8 @@ Full documentation is available from Rancher at [system-upgrade-controller](http
 
 There are some [example-plans](https://github.com/rancher/system-upgrade-controller#example-plans) for you to consider using.
 
-A plan is need to start upgrade process on cluster. This is easliy by applying the following yaml manifests to your cluster with
-`kubectl apply -f civo-plan.yaml` (or whatenver you call the file containing the contents below):
+A plan is need to start upgrade process on cluster. This is easily by applying the following yaml manifests to your cluster with
+`kubectl apply -f civo-plan.yaml` (or whatever you call the file containing the contents below):
 
 ```
 # Server plan

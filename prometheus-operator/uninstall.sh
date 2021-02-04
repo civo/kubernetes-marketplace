@@ -3,5 +3,5 @@
 # Delete the custom CRDs
 kubectl delete -f app.yaml
 
-# Delete the namaespace
+# Delete the namespace
 kubectl delete namespace monitoring
