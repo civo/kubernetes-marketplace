@@ -8,10 +8,10 @@ category: management
 configuration:
   CLUSTER_NAME:
     label: "Cluster name"
-    value: "CIVO:CLUSTER_NAME"
+    value: "BIZAAR:CLUSTER_NAME"
   CONTROL_PLANE_ADDRESS:
     label: "Control plane address"
-    value: "https://CIVO:MASTER_IP:6443"
+    value: "https://BIZAAR:MASTER_IP:6443"
   BASIC_AUTH_PASSWORD:
     label: "Password"
-    value: "CIVO:ALPHANUMERIC(10)"
+    value: "BIZAAR:ALPHANUMERIC(10)"

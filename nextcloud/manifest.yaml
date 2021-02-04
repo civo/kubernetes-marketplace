@@ -24,7 +24,7 @@ plans:
 configuration:
   CLUSTER_ID:
     label: "Cluster ID"
-    value: "CIVO:CLUSTER_ID"
+    value: "KUBEMART:DOMAIN_NAME"
   EMAIL_ADDRESS:
     label: "Email Address"
-    value: "CIVO:EMAIL_ADDRESS"    
+    value: "KUBEMART:EMAIL_ADDRESS"

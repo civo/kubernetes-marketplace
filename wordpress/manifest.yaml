@@ -23,4 +23,4 @@ plans:
 configuration:
   CLUSTER_ID:
     label: "Cluster ID"
-    value: "CIVO:CLUSTER_ID"
+    value: "BIZAAR:DOMAIN_NAME"

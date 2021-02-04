@@ -13,7 +13,7 @@ category: architecture
 configuration:
   REGISTRY_USERNAME:
     label: "Registry username"
-    value: "CIVO:EMAIL_ADDRESS"
+    value: "BIZAAR:EMAIL_ADDRESS"
   REGISTRY_PASSWD:
     label: "Registry password"
-    value: "CIVO:ALPHANUMERIC(10)"
+    value: "BIZAAR:ALPHANUMERIC(10)"

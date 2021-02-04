@@ -21,4 +21,4 @@ plans:
 configuration:
   MYSQL_ROOT_PASSWORD:
     label: "Root password"
-    value: "CIVO:ALPHANUMERIC(30)"
+    value: "BIZAAR:ALPHANUMERIC(30)"

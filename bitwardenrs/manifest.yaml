@@ -2,7 +2,7 @@
 name: Bitwardenrs
 version: 1.17.0
 maintainer: keith@hubner.co.uk
-description: Open Source Password Manager (Bitwarden server API implementation written in Rust) 
+description: Open Source Password Manager (Bitwarden server API implementation written in Rust)
 url: https://github.com/dani-garcia/bitwarden_rs
 category: management
 dependencies:
@@ -23,7 +23,7 @@ plans:
 configuration:
   CLUSTER_ID:
     label: "Cluster ID"
-    value: "CIVO:CLUSTER_ID"
+    value: "KUBEMART:DOMAIN_NAME"
   EMAIL_ADDRESS:
     label: "Email Address"
-    value: "CIVO:EMAIL_ADDRESS"  
+    value: "KUBEMART:EMAIL_ADDRESS"

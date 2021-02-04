@@ -9,7 +9,7 @@ category: management
 configuration:
   ADMIN_PASS:
     label: "Admin Password"
-    value: "CIVO:ALPHANUMERIC(30)"
+    value: "BIZAAR:ALPHANUMERIC(30)"
   ADMIN_EMAIL:
     label: "Admin Email"
-    value: "CIVO:EMAIL_ADDRESS"
+    value: "BIZAAR:EMAIL_ADDRESS"

@@ -85,21 +85,21 @@ Applications support customization through a simple mechanism. This is a user de
 The applications can't ask the user for these values, so they must be either a pre-configured value (to keep the `app.yaml` and Civo-specific configuration separate) or one of a range of special values that Civo will inject:
 
 <dl>
-  <dt>CIVO:ALPHANUMERIC(num)</dt>
+  <dt>BIZAAR:ALPHANUMERIC(num)</dt>
   <dd>A random string of alphanumeric characters <code>num</code> long</dd>
-  <dt>CIVO:WORDS(num)</dt>
+  <dt>BIZAAR:WORDS(num)</dt>
   <dd>A combination of <code>num</code> random words, separated by <code>-</code> for use as a readable name</dd>
-  <dt>CIVO:CLUSTER_NAME</dt>
+  <dt>BIZAAR:CLUSTER_NAME</dt>
   <dd>The name of your Kubernetes cluster</dd>
-  <dt>CIVO:CLUSTER_ID</dt>
+  <dt>BIZAAR:DOMAIN_NAME</dt>
   <dd>The ID of your Kubernetes cluster (for injecting something.ID.k8s.civo.com as a domain)</dd>
-  <dt>CIVO:EMAIL_ADDRESS</dt>
+  <dt>BIZAAR:EMAIL_ADDRESS</dt>
   <dd>The email address of your Civo account</dd>
-  <dt>CIVO:MASTER_IP</dt>
+  <dt>BIZAAR:MASTER_IP</dt>
   <dd>The public IP address of your Kubernetes cluster's master</dd>
 </dl>
 
-**Note:** For `CIVO:ALPHANUMERIC(num)` and `CIVO:WORDS(num)` you can also suffix `:BASE64` (e.g. `CIVO:ALPHANUMERIC(10):BASE64`) to have Civo automatically encode the random values to Base 64 before inserting them in the templates (but the non-Base 64 version is kept to present to the user as a readable/copyable value).
+**Note:** For `BIZAAR:ALPHANUMERIC(num)` and `BIZAAR:WORDS(num)` you can also suffix `:BASE64` (e.g. `BIZAAR:ALPHANUMERIC(10):BASE64`) to have Civo automatically encode the random values to Base 64 before inserting them in the templates (but the non-Base 64 version is kept to present to the user as a readable/copyable value).
 
 These are specified in the `manifest.yaml` like this:
 
@@ -107,7 +107,7 @@ These are specified in the `manifest.yaml` like this:
 configuration:
   ACCESS_KEY:
     label: "Access key"
-    value: "CIVO:ALPHANUMERIC(10)"
+    value: "BIZAAR:ALPHANUMERIC(10)"
 ```
 
 Another way of customizing applications is to provide plans which will be injected in the same way as the values above, but the UI will provide a choice for which plan to install. These are specified in the `manifest.yaml` like this:

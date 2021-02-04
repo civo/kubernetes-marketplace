@@ -9,4 +9,4 @@ category: architecture
 configuration:
   GATEWAY_PASSWORD:
     label: "Gateway password"
-    value: "CIVO:ALPHANUMERIC(20)"
+    value: "BIZAAR:ALPHANUMERIC(20)"

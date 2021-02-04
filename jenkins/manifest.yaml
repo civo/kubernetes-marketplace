@@ -21,7 +21,7 @@ plans:
 configuration:
   JENKINS_USERNAME:
     label: "Jenkins username"
-    value: "CIVO:ALPHANUMERIC(8)"
+    value: "BIZAAR:ALPHANUMERIC(8)"
   JENKINS_PASSWORD:
     label: "Jenkins password"
-    value: "CIVO:ALPHANUMERIC(30)"
+    value: "BIZAAR:ALPHANUMERIC(30)"

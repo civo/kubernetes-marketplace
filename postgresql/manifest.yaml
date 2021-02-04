@@ -21,7 +21,7 @@ plans:
 configuration:
   USERNAME:
     label: "Admin username"
-    value: "CIVO:ALPHANUMERIC(10)"
+    value: "BIZAAR:ALPHANUMERIC(10)"
   PASSWORD:
     label: "Admin password"
-    value: "CIVO:ALPHANUMERIC(30)"
+    value: "BIZAAR:ALPHANUMERIC(30)"

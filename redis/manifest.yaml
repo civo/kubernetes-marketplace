@@ -8,4 +8,4 @@ category: database
 configuration:
   REDIS_PASS:
     label: "Password"
-    value: "CIVO:ALPHANUMERIC(30)"
+    value: "BIZAAR:ALPHANUMERIC(30)"
