@@ -19,7 +19,7 @@ spec:
     app: redis
 ```
 
-This will open up http://YOUR_CLUSTER_ID.k8s.civo.com:6379 to the whole world. You should lock this down in the [firewall](https://www.civo.com/account/firewalls) automatically created in Civo for your Kubernetes cluster. Locking down the firewall will only affect access from OUTSIDE of your Kubernetes cluster, access from your applications within Kubernetes will not be affected.
+This will open up http://DOMAIN_NAME:6379 to the whole world. You should lock this down in the [firewall](https://www.civo.com/account/firewalls) automatically created in Civo for your Kubernetes cluster. Locking down the firewall will only affect access from OUTSIDE of your Kubernetes cluster, access from your applications within Kubernetes will not be affected.
 
 ### Usage instructions
 
@@ -31,7 +31,7 @@ $ kubectl run tmp-shell --generator=run-pod/v1 --rm -i --tty \
 / # apk update
 / # apk add redis
 / # redis-cli -h redis -a YOUR_PASSWORD_HERE
-redis:6379> 
+redis:6379>
 ```
 
 When you quit the shell the pod for this temporary Alpine container will be deleted.

@@ -19,7 +19,7 @@ spec:
     app: minio
 ```
 
-This will open up http://YOUR_CLUSTER_ID.k8s.civo.com:9000 to the whole world. You should lock this down in the [firewall](https://www.civo.com/account/firewalls) automatically created in Civo for your Kubernetes cluster. Locking down the firewall will only affect access from OUTSIDE of your Kubernetes cluster, access from your applications within Kubernetes will not be affected.
+This will open up http://DOMAIN_NAME:9000 to the whole world. You should lock this down in the [firewall](https://www.civo.com/account/firewalls) automatically created in Civo for your Kubernetes cluster. Locking down the firewall will only affect access from OUTSIDE of your Kubernetes cluster, access from your applications within Kubernetes will not be affected.
 
 ### Usage instruction
 
@@ -34,7 +34,7 @@ minio:
   secret_access_key: YOUR_SECRET_KEY_HERE
   region: us-east-1
   bucket: your_own_bucket
-  endpoint: "http://YOUR_CLUSTER_ID.k8s.civo.com:9000"
+  endpoint: "http://DOMAIN_NAME:9000"
   force_path_style: true
 ```
 

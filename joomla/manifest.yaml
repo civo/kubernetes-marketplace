@@ -22,7 +22,7 @@ plans:
       VOLUME_SIZE:
         value: 20Gi
 configuration:
-  CLUSTER_ID:
+  DOMAIN_NAME:
     label: "Cluster ID"
     value: "KUBEMART:DOMAIN_NAME"
   EMAIL_ADDRESS:

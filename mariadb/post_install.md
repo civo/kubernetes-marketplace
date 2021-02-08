@@ -19,7 +19,7 @@ spec:
     app: mariadb
 ```
 
-This will open up http://YOUR_CLUSTER_ID.k8s.civo.com:3306 to the whole world. You should lock this down in the [firewall](https://www.civo.com/account/firewalls) automatically created in Civo for your Kubernetes cluster. Locking down the firewall will only affect access from OUTSIDE of your Kubernetes cluster, access from your applications within Kubernetes will not be affected.
+This will open up http://DOMAIN_NAME:3306 to the whole world. You should lock this down in the [firewall](https://www.civo.com/account/firewalls) automatically created in Civo for your Kubernetes cluster. Locking down the firewall will only affect access from OUTSIDE of your Kubernetes cluster, access from your applications within Kubernetes will not be affected.
 
 ### Usage instruction
 
@@ -36,6 +36,6 @@ $ kubectl run tmp-shell --generator=run-pod/v1 --rm -i \
 / # mysql -u root -pYOUR_ROOT_PASSWORD_HERE -h mariadb
 
 mysql> CREATE DATABASE my_application;
-mysql> GRANT ALL ON my_application.* to my_user identified 
+mysql> GRANT ALL ON my_application.* to my_user identified
        by 'super-strong-password-here';
 ```

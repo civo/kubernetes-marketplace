@@ -13,9 +13,9 @@ spec:
       name: letsencrypt-prod-joomla
     # Enable the HTTP-01 challenge provider
     solvers:
-    - http01:
-        ingress:
-          class: traefik
+      - http01:
+          ingress:
+            class: traefik
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -23,7 +23,7 @@ metadata:
   name: joomla-pv-claim
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
       storage: $VOLUME_SIZE
@@ -63,44 +63,41 @@ spec:
           image: joomla:3.9.24
           imagePullPolicy: IfNotPresent
           ports:
-          - containerPort: 80
-            protocol: TCP
+            - containerPort: 80
+              protocol: TCP
           volumeMounts:
-          - name: joomla-persistent-storage
-            mountPath: /var/www/html   
+            - name: joomla-persistent-storage
+              mountPath: /var/www/html
           env:
-          - name: JOOMLA_DB_HOST
-            value: mariadb
-          - name: JOOMLA_DB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: mysql-pass
-                key: MYSQL_ROOT_PASSWORD 
+            - name: JOOMLA_DB_HOST
+              value: mariadb
+            - name: JOOMLA_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-pass
+                  key: MYSQL_ROOT_PASSWORD
 
       volumes:
-      - name: joomla-persistent-storage
-        persistentVolumeClaim:
-          claimName: joomla-pv-claim            
+        - name: joomla-persistent-storage
+          persistentVolumeClaim:
+            claimName: joomla-pv-claim
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod-joomla
-    ingress.kubernetes.io/ssl-redirect: "true"  
+    ingress.kubernetes.io/ssl-redirect: "true"
   name: joomla
 spec:
   tls:
     - hosts:
-      - joomla.$CLUSTER_ID.k8s.civo.com
-      secretName: letsencrypt-prod-joomla  
+        - joomla.$DOMAIN_NAME
+      secretName: letsencrypt-prod-joomla
   rules:
-  - host: joomla.$CLUSTER_ID.k8s.civo.com
-    http:
-      paths:
-      - backend:
-          serviceName: joomla-service
-          servicePort: 80
-
-
-             
+    - host: joomla.$DOMAIN_NAME
+      http:
+        paths:
+          - backend:
+              serviceName: joomla-service
+              servicePort: 80
