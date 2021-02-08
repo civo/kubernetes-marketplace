@@ -1,0 +1,10 @@
+---
+name: falco
+title: "Falco Security"
+version: v0.27
+maintainer: amit2cha@gmail.com
+description: Falco is a Cloud Native Runtime Security tool designed to detect anomalous activity in your applications.
+url: https://falco.org/
+dependencies:
+  - Helm
+category: security
