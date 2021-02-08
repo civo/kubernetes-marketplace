@@ -1,0 +1,11 @@
+---
+name: falco-sidekick
+title: "Falco Sidekick"
+version: v0.2.4
+maintainer: amit2cha@gmail.com
+description: A simple daemon for enhancing available outputs for Falco. It takes a falco's event and forwards it to different outputs.
+url: https://sysdig.com/opensource/falco/
+dependencies:
+  - Helm
+  - Falco security
+category: security
