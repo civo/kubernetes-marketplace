@@ -1,0 +1,11 @@
+---
+name: Nginx Test
+version: "0.0.1"
+maintainer: user@example.com
+description: Just a test app
+url: https://www.example.com/
+category: architecture
+configuration:
+  RANDOM_WORDS:
+    label: "Random words"
+    value: "BIZAAR:WORDS(10)"
