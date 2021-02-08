@@ -1,5 +1,5 @@
 ---
-name: falco-exporter
+name: Falco Exporter
 title: "Falco Exporter"
 version: v0.5.0
 maintainer: amit2cha@gmail.com
@@ -7,6 +7,5 @@ description: falco-exporter is a Prometheus Metrics Exporter for Falco output ev
 url: https://github.com/falcosecurity/falco-exporter
 dependencies:
   - Helm
-  - Prometheus
-  - Falco security
+  - Falco Security
 category: security

@@ -1,5 +1,5 @@
 ---
-name: falco-sidekick
+name: Falco Sidekick
 title: "Falco Sidekick"
 version: v0.2.4
 maintainer: amit2cha@gmail.com
@@ -7,5 +7,5 @@ description: A simple daemon for enhancing available outputs for Falco. It takes
 url: https://sysdig.com/opensource/falco/
 dependencies:
   - Helm
-  - Falco security
+  - Falco Security
 category: security
