@@ -15,7 +15,7 @@
   - [Table of contents](#table-of-contents)
   - [Using](#using)
   - [Writing](#writing)
-  - [Customising](#customising)
+  - [Customizing](#customizing)
   - [Testing](#testing)
   - [Contributing](#contributing)
   - [License](#license)
@@ -78,11 +78,11 @@ Finally the `category` can be one of a small list of categories for applications
 
 Any category used in this field outside of those values will be removed when we accept any changes and replaced with one of those. If you want an additional category, please propose it in a [GitHub issue](https://github.com/civo/kubernetes-marketplace/issues).
 
-## Customising
+## Customizing
 
-Applications support customisation through a simple mechanism. This is a user defined set of variables that are then replaced within the `app.yaml` (prefixed with a `$`) or injected as ENVironment variables when executing `install.sh`). So for example a configuration of `USERNAME` will have the string `$USERNAME` replaced in `app.yaml` with the value or will be available as `ENV[USERNAME]`.
+Applications support customization through a simple mechanism. This is a user defined set of variables that are then replaced within the `app.yaml` (prefixed with a `$`) or injected as ENVironment variables when executing `install.sh`). So for example a configuration of `USERNAME` will have the string `$USERNAME` replaced in `app.yaml` with the value or will be available as `ENV[USERNAME]`.
 
-The applications can't ask the user for these values, so they must be either a preconfigured value (to keep the `app.yaml` and Civo-specific configuration separate) or one of a range of special values that Civo will inject:
+The applications can't ask the user for these values, so they must be either a pre-configured value (to keep the `app.yaml` and Civo-specific configuration separate) or one of a range of special values that Civo will inject:
 
 <dl>
   <dt>CIVO:ALPHANUMERIC(num)</dt>
@@ -110,7 +110,7 @@ configuration:
     value: "CIVO:ALPHANUMERIC(10)"
 ```
 
-Another way of customising applications is to provide plans which will be injected in the same way as the values above, but the UI will provide a choice for which plan to install. These are specified in the `manifest.yaml` like this:
+Another way of customizing applications is to provide plans which will be injected in the same way as the values above, but the UI will provide a choice for which plan to install. These are specified in the `manifest.yaml` like this:
 
 ```
 plans:
