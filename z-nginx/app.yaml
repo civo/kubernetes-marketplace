@@ -7,7 +7,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
-  namespace: nginx-test
+  namespace: z-nginx
 spec:
   selector:
     matchLabels:
