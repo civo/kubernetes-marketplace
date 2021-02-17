@@ -1,7 +1,7 @@
 ---
 name: Nginx Test
 namespace: z-nginx
-version: "0.0.6"
+version: "0.0.7"
 maintainer: user@example.com
 description: Just a test app
 url: https://www.example.com/
