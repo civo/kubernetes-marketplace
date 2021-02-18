@@ -26,3 +26,5 @@ spec:
           env:
             - name: RANDOM_WORDS
               value: $RANDOM_WORDS
+            - name: VERSION
+              value: 0.0.9
