@@ -4,7 +4,7 @@ metadata:
   name: wordpress-pv-claim
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: $VOLUME_SIZE
