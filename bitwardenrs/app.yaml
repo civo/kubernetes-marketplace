@@ -45,7 +45,7 @@ kind: Secret
 metadata:
   name: bitwardenrs-database-url
 data:
-  DATABASE_URL: update-this-after-installation
+  DATABASE_URL: dXBkYXRlLXRoaXMtYWZ0ZXItaW5zdGFsbGF0aW9uCg==
 ---
 apiVersion: apps/v1
 kind: Deployment
