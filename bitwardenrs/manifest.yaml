@@ -1,6 +1,6 @@
 ---
 name: Bitwardenrs
-version: 1.16.3
+version: 1.19.0
 maintainer: keith@hubner.co.uk
 description: Open Source Password Manager (Bitwarden server API implementation written in Rust)
 url: https://github.com/dani-garcia/bitwarden_rs

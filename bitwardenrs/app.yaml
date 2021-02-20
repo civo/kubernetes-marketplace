@@ -67,7 +67,7 @@ spec:
     spec:
       containers:
         - name: bw
-          image: bitwardenrs/server-mysql:1.16.3
+          image: bitwardenrs/server-mysql:1.19.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
