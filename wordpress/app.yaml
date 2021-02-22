@@ -1,3 +1,11 @@
+# ********
+# README
+# ********
+# When you are updating WordPress image e.g. from 5.5.0 to 5.5.1,
+# please also update the version in the init container. There are
+# three (3) occurrence of version number in this file. Update them all.
+# Tip: use `Ctrl/Cmd + F` to search them.
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -51,6 +59,27 @@ spec:
           periodSeconds: 10
           timeoutSeconds: 5
       initContainers:
+        - name: update-wordpress-files
+          image: wordpress:5.5.1
+          command: ["sh", "-c"]
+          args:
+            - if test -f "/var/www/html/wp-config.php"; then
+              echo "--- start ---";
+              echo "Date & time - $(date)";
+              echo "Current directory - $(pwd)";
+              echo "User - $(whoami)";
+              curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar;
+              php wp-cli.phar --info;
+              chmod +x wp-cli.phar;
+              mv wp-cli.phar /usr/local/bin/wp;
+              wp core download --force --allow-root --version=5.5.1;
+              chown -R www-data:www-data .;
+              echo "--- end ---";
+              fi;
+          volumeMounts:
+            - mountPath: /var/www/html
+              name: data
+              subPath: html
         - name: prepare-ssl-config
           image: busybox
           command: ["sh", "-c"]

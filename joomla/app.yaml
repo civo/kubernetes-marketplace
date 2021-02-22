@@ -1,3 +1,13 @@
+# ********
+# README
+# ********
+# When you are updating Joomla image e.g. from 3.9.22 to 3.9.24,
+# please also update the version in the init container. There are
+# two (3) occurrence of version number in this file. Update them all.
+# Please also update the download link inside the init container
+# e.g. 3-9-24 for 3.9.24 version.
+# Tip: use `Ctrl/Cmd + F` to search them.
+
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
@@ -58,9 +68,31 @@ spec:
       labels:
         app: joomla
     spec:
+      initContainers:
+        - name: update-joomla-files
+          image: joomla:3.9.22
+          command: ["sh", "-c"]
+          args:
+            - if test -f "configuration.php"; then
+              echo "--- start ---";
+              echo "Date & time - $(date)";
+              echo "Current directory - $(pwd)";
+              echo "User - $(whoami)";
+              curl -L https://downloads.joomla.org/cms/joomla3/3-9-22/Joomla_3-9-22-Stable-Full_Package.zip?format=zip --output joomla.zip;
+              apt-get update -y && apt-get install -y unzip;
+              unzip -o joomla.zip;
+              rm -rf joomla.zip;
+              rm -rf installation;
+              chown -R www-data:www-data .;
+              head administrator/manifests/files/joomla.xml;
+              echo "--- end ---";
+              fi;
+          volumeMounts:
+            - name: joomla-persistent-storage
+              mountPath: /var/www/html
       containers:
         - name: joomla
-          image: joomla:3.9.24
+          image: joomla:3.9.22
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80

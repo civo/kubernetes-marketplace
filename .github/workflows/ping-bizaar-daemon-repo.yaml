@@ -1,0 +1,15 @@
+name: ping-bizaar-daemon-repo
+on: push
+
+jobs:
+  ping-bizaar-daemon-repo:
+    name: Dispatch to civo/bizaar-daemon
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Emit repository_dispatch
+        uses: mvasigh/dispatch-action@main
+        with:
+          token: ${{ secrets.GH_PAT }}
+          owner: civo
+          repo: bizaar-daemon
+          event_type: ping

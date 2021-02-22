@@ -1,3 +1,11 @@
+# ********
+# README
+# ********
+# When you are updating Jenkins image e.g. from 2.190.1 to 2.263.3,
+# please also update the version in the init container. There are
+# two (2) occurrence of version number in this file. Update them all.
+# Tip: use `Ctrl/Cmd + F` to search them.
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -18,12 +26,12 @@ metadata:
   name: jenkins-frontend
 spec:
   ports:
-  - name: jenkins
-    port: 8080
-    targetPort: 8080
-  - name: jenkins-agent
-    port: 50000
-    targetPort: 50000
+    - name: jenkins
+      port: 8080
+      targetPort: 8080
+    - name: jenkins-agent
+      port: 50000
+      targetPort: 50000
   selector:
     app: jenkins
   clusterIP: None
@@ -47,23 +55,35 @@ spec:
         app: jenkins
         tier: jenkins
     spec:
+      initContainers:
+        - name: update-jenkins
+          image: alpine:latest
+          command: ["sh", "-c"]
+          args:
+            - apk add --update curl && rm -rf /var/cache/apk/*;
+              cd /bitnami/jenkins;
+              curl -L https://get.jenkins.io/war-stable/2.190.1/jenkins.war -o jenkins.war;
+              chown -R 1001:1001 .;
+          volumeMounts:
+            - name: jenkins-persistent-storage
+              mountPath: /bitnami
       containers:
-      - image: bitnami/jenkins:2.190.1-debian-9-r14
-        name: jenkins
-        env:
-        - name: JENKINS_USERNAME
-          value: $JENKINS_USERNAME
-        - name: JENKINS_PASSWORD
-          value: $JENKINS_PASSWORD
-        ports:
-        - containerPort: 8080
+        - image: bitnami/jenkins:2.190.1-debian-9-r14
           name: jenkins
-        - containerPort: 50000
-          name: jenkins-agent
-        volumeMounts:
-        - name: jenkins-persistent-storage
-          mountPath: /bitnami
+          env:
+            - name: JENKINS_USERNAME
+              value: $JENKINS_USERNAME
+            - name: JENKINS_PASSWORD
+              value: $JENKINS_PASSWORD
+          ports:
+            - containerPort: 8080
+              name: jenkins
+            - containerPort: 50000
+              name: jenkins-agent
+          volumeMounts:
+            - name: jenkins-persistent-storage
+              mountPath: /bitnami
       volumes:
-      - name: jenkins-persistent-storage
-        persistentVolumeClaim:
-          claimName: jenkins-pv-claim
+        - name: jenkins-persistent-storage
+          persistentVolumeClaim:
+            claimName: jenkins-pv-claim
