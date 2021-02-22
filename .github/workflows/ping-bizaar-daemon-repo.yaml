@@ -12,4 +12,4 @@ jobs:
           token: ${{ secrets.GH_PAT }}
           owner: civo
           repo: bizaar-daemon
-          event_type: ping
+          event_type: ping-from-kubernetes-marketplace-repo
