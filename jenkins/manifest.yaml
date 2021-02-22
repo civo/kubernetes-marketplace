@@ -1,6 +1,6 @@
 ---
 name: Jenkins
-version: 2.190.1
+version: 2.263.4
 maintainer: "@ruanbekker"
 description: Jenkins is a Continuous Integration and Delivery server
 url: https://jenkins.io

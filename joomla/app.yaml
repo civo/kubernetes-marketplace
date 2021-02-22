@@ -70,7 +70,7 @@ spec:
     spec:
       initContainers:
         - name: update-joomla-files
-          image: joomla:3.9.22
+          image: joomla:3.9.24
           command: ["sh", "-c"]
           args:
             - if test -f "configuration.php"; then
@@ -78,7 +78,7 @@ spec:
               echo "Date & time - $(date)";
               echo "Current directory - $(pwd)";
               echo "User - $(whoami)";
-              curl -L https://downloads.joomla.org/cms/joomla3/3-9-22/Joomla_3-9-22-Stable-Full_Package.zip?format=zip --output joomla.zip;
+              curl -L https://downloads.joomla.org/cms/joomla3/3-9-24/Joomla_3-9-24-Stable-Full_Package.zip?format=zip --output joomla.zip;
               apt-get update -y && apt-get install -y unzip;
               unzip -o joomla.zip;
               rm -rf joomla.zip;
@@ -92,7 +92,7 @@ spec:
               mountPath: /var/www/html
       containers:
         - name: joomla
-          image: joomla:3.9.22
+          image: joomla:3.9.24
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80

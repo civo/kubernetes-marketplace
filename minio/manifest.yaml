@@ -1,6 +1,6 @@
 ---
 name: MinIO
-version: "2019-08-29"
+version: "2021-02-19"
 maintainer: hello@civo.com
 description: Minio is an Amazon S3 compatible object storage server.
 url: https://min.io

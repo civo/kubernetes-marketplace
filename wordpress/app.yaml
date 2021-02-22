@@ -60,7 +60,7 @@ spec:
           timeoutSeconds: 5
       initContainers:
         - name: update-wordpress-files
-          image: wordpress:5.5.1
+          image: wordpress:5.5.3
           command: ["sh", "-c"]
           args:
             - if test -f "/var/www/html/wp-config.php"; then
@@ -72,7 +72,7 @@ spec:
               php wp-cli.phar --info;
               chmod +x wp-cli.phar;
               mv wp-cli.phar /usr/local/bin/wp;
-              wp core download --force --allow-root --version=5.5.1;
+              wp core download --force --allow-root --version=5.5.3;
               chown -R www-data:www-data .;
               echo "--- end ---";
               fi;
