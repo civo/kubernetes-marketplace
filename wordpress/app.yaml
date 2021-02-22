@@ -63,8 +63,7 @@ spec:
           image: wordpress:5.5.1
           command: ["sh", "-c"]
           args:
-            - if test -f "/var/www/html/wp-config.php"; then
-              echo "--- start ---";
+            - echo "--- start ---";
               echo "Date & time - $(date)";
               echo "Current directory - $(pwd)";
               echo "User - $(whoami)";
@@ -75,7 +74,6 @@ spec:
               wp core download --force --allow-root --version=5.5.1;
               chown -R www-data:www-data .;
               echo "--- end ---";
-              fi;
           volumeMounts:
             - mountPath: /var/www/html
               name: data
