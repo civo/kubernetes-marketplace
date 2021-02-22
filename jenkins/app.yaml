@@ -60,10 +60,12 @@ spec:
           image: alpine:latest
           command: ["sh", "-c"]
           args:
-            - apk add --update curl && rm -rf /var/cache/apk/*;
+            - if [ -d "/bitnami/jenkins" ]; then
+              apk add --update curl && rm -rf /var/cache/apk/*;
               cd /bitnami/jenkins;
               curl -L https://get.jenkins.io/war-stable/2.190.1/jenkins.war -o jenkins.war;
               chown -R 1001:1001 .;
+              fi;
           volumeMounts:
             - name: jenkins-persistent-storage
               mountPath: /bitnami
