@@ -1,7 +1,7 @@
 ---
 name: NextCloud
-version: 20.0.1
-maintainer: keith@hubner.co.uk
+version: 20.0.7
+maintainer: keith@hubner.co.uk, amit2cha@gmail.com
 description: Nextcloud is a completely integrated self-managed content collaboration platform
 url: https://nextcloud.com/
 category: management
