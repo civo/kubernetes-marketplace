@@ -18,10 +18,3 @@ plans:
     configuration:
       VOLUME_SIZE:
         value: 20Gi
-configuration:
-  JENKINS_USERNAME:
-    label: "Jenkins username"
-    value: "CIVO:ALPHANUMERIC(8)"
-  JENKINS_PASSWORD:
-    label: "Jenkins password"
-    value: "CIVO:ALPHANUMERIC(30)"
