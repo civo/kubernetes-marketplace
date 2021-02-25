@@ -1,0 +1,27 @@
+---
+name: Rocketchat
+version: 3.11.0
+maintainer: "cloud@rocket.chat"
+description: Prepare to take off with the ultimate chat platform, experience the next level of team communications
+url: https://rocket.chat/
+category: management 
+plans:
+  - label: "5GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 5Gi
+  - label: "10GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 10Gi
+  - label: "20GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 20Gi
+configuration:
+  JENKINS_USERNAME:
+    label: "Jenkins username"
+    value: "CIVO:ALPHANUMERIC(8)"
+  JENKINS_PASSWORD:
+    label: "Jenkins password"
+    value: "CIVO:ALPHANUMERIC(30)"
