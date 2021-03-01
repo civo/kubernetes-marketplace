@@ -4,9 +4,8 @@
 
 By default external access to the Rancher isn't available. This is easily changed by applying the following YAML to your cluster with `kubectl apply -f rancher-ingress.yaml` (or whatever you call the file containing the contents below):
 
-
 ```
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: cattle-ingress
@@ -15,13 +14,18 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - http:
+  - host: example.com
+    http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: cattle-service
-          servicePort: http
+          service:
+             name: cattle-service
+             port:
+               number: 80
 ```
 
+If you are using a NGINX ingress, simply change `kubernetes.io/ingress.class` to `nginx`.
 
 This will open up https://<masterIP>:<traefik443PORT> to the whole world.
