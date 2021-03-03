@@ -10,6 +10,8 @@ If you want to change the hostname or modify the ingress, edit it with
 kubectl edit ingress nodered
 ```
 
+**There is no user authentication by default**, please consider, at least, using Basic Authentication to protect your Node-RED instance.
+
 ## Documentation
 
 You can find documentation, tutorials, recipes and more in <https://nodered.org/docs/>
