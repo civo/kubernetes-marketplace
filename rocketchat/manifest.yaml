@@ -5,6 +5,8 @@ maintainer: "cloud@rocket.chat"
 description: Prepare to take off with the ultimate chat platform, experience the next level of team communications
 url: https://rocket.chat/
 category: management 
+dependencies:
+  - MongoDB
 plans:
   - label: "5GB"
     configuration:
