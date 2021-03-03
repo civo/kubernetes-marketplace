@@ -14,7 +14,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - host: example.com
+  - host: rancher.<your-cluster-id>.k8s.civo.com
     http:
       paths:
       - path: /
