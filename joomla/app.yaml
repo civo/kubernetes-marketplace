@@ -61,7 +61,7 @@ spec:
     spec:
       containers:
         - name: joomla
-          image: joomla:3.9.22
+          image: joomla:3.9.24
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 80

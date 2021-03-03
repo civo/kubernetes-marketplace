@@ -52,7 +52,7 @@ spec:
         app: mongodb
     spec:
       containers:
-      - image: mongo:4.2.0
+      - image: mongo:4.2.12
         name: mongodb
         env:
         - name: MONGO_INITDB_ROOT_USERNAME
