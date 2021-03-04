@@ -27,4 +27,4 @@ spec:
             - name: RANDOM_WORDS
               value: $RANDOM_WORDS
             - name: VERSION
-              value: 0.0.18
+              value: 0.0.19
