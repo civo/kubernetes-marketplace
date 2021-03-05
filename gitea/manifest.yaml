@@ -9,7 +9,7 @@ category: management
 configuration:
   ADMIN_PASS:
     label: "Admin Password"
-    value: "BIZAAR:ALPHANUMERIC(30)"
+    value: "KUBEMART:ALPHANUMERIC(30)"
   ADMIN_EMAIL:
     label: "Admin Email"
-    value: "BIZAAR:EMAIL_ADDRESS"
+    value: "KUBEMART:EMAIL_ADDRESS"

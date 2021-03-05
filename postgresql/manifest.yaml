@@ -21,7 +21,7 @@ plans:
 configuration:
   USERNAME:
     label: "Admin username"
-    value: "BIZAAR:ALPHANUMERIC(10)"
+    value: "KUBEMART:ALPHANUMERIC(10)"
   PASSWORD:
     label: "Admin password"
-    value: "BIZAAR:ALPHANUMERIC(30)"
+    value: "KUBEMART:ALPHANUMERIC(30)"

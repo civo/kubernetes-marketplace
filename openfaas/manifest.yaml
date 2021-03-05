@@ -9,4 +9,4 @@ category: architecture
 configuration:
   GATEWAY_PASSWORD:
     label: "Gateway password"
-    value: "BIZAAR:ALPHANUMERIC(20)"
+    value: "KUBEMART:ALPHANUMERIC(20)"

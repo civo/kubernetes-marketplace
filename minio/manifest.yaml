@@ -8,10 +8,10 @@ category: storage
 configuration:
   MINIO_ACCESS_KEY:
     label: "Access key"
-    value: "BIZAAR:ALPHANUMERIC(10)"
+    value: "KUBEMART:ALPHANUMERIC(10)"
   MINIO_SECRET_KEY:
     label: "Secret key"
-    value: "BIZAAR:ALPHANUMERIC(30)"
+    value: "KUBEMART:ALPHANUMERIC(30)"
 plans:
   - label: "5GB"
     configuration:

@@ -21,4 +21,4 @@ plans:
 configuration:
   DOMAIN_NAME:
     label: "Cluster ID"
-    value: "BIZAAR:DOMAIN_NAME"
+    value: "KUBEMART:DOMAIN_NAME"

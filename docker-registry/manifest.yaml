@@ -13,7 +13,7 @@ category: architecture
 configuration:
   REGISTRY_USERNAME:
     label: "Registry username"
-    value: "BIZAAR:EMAIL_ADDRESS"
+    value: "KUBEMART:EMAIL_ADDRESS"
   REGISTRY_PASSWD:
     label: "Registry password"
-    value: "BIZAAR:ALPHANUMERIC(10)"
+    value: "KUBEMART:ALPHANUMERIC(10)"

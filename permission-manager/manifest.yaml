@@ -8,10 +8,10 @@ category: management
 configuration:
   CLUSTER_NAME:
     label: "Cluster name"
-    value: "BIZAAR:CLUSTER_NAME"
+    value: "KUBEMART:CLUSTER_NAME"
   CONTROL_PLANE_ADDRESS:
     label: "Control plane address"
-    value: "https://BIZAAR:MASTER_IP:6443"
+    value: "https://KUBEMART:MASTER_IP:6443"
   BASIC_AUTH_PASSWORD:
     label: "Password"
-    value: "BIZAAR:ALPHANUMERIC(10)"
+    value: "KUBEMART:ALPHANUMERIC(10)"

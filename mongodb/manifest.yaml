@@ -21,7 +21,7 @@ plans:
 configuration:
   MONGODB_ROOT_USERNAME:
     label: "Root username"
-    value: "BIZAAR:ALPHANUMERIC(30)"
+    value: "KUBEMART:ALPHANUMERIC(30)"
   MONGODB_ROOT_PASSWORD:
     label: "Root password"
-    value: "BIZAAR:ALPHANUMERIC(30)"
+    value: "KUBEMART:ALPHANUMERIC(30)"

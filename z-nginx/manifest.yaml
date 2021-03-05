@@ -9,4 +9,4 @@ category: architecture
 configuration:
   RANDOM_WORDS:
     label: "Random words"
-    value: "BIZAAR:WORDS(10)"
+    value: "KUBEMART:WORDS(10)"
