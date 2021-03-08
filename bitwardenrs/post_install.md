@@ -11,3 +11,5 @@ An ingress is automatically created during the application install. A certificat
 ### Post installation
 
 Once you have installed this app you will be able to connect to the web interface via https://rs.DOMAIN_NAME
+
+###
