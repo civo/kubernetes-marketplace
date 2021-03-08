@@ -1,7 +1,7 @@
 ---
 name: LitmusChaos
-version: 1.9.1
+version: 1.13.0
 maintainer: karthik.s@mayadata.io
-description: LitmusChaos is a cloud-native Chaos Engineering framework 
+description: LitmusChaos is a cloud-native Chaos Engineering framework
 url: https://github.com/litmuschaos/litmus
 category: ci_cd
