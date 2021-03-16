@@ -1,5 +1,7 @@
 #!/bin/bash
 
+kubectl create ns mariadb
+
 kubectl apply -f - <<EOF
 apiVersion: v1
 kind: Secret
