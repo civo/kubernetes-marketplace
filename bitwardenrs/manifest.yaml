@@ -9,18 +9,18 @@ dependencies:
   - longhorn
   - cert-manager
 plans:
+  - label: "1GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 1Gi
+  - label: "2GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 2Gi
   - label: "5GB"
     configuration:
       VOLUME_SIZE:
         value: 5Gi
-  - label: "10GB"
-    configuration:
-      VOLUME_SIZE:
-        value: 10Gi
-  - label: "20GB"
-    configuration:
-      VOLUME_SIZE:
-        value: 20Gi
 configuration:
   CLUSTER_ID:
     label: "Cluster ID"
