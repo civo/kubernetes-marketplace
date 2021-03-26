@@ -205,7 +205,7 @@ metadata:
 spec:
   selector:
     run: haproxy-ingress
-  type: NodePort
+  type: LoadBalancer
   ports:
   - name: http
     port: 80
