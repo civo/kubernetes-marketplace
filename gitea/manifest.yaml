@@ -1,5 +1,6 @@
 ---
 name: gitea
+namespace: gitea
 title: "Gitea"
 version: 1.12.5
 maintainer: "@giteaio"
