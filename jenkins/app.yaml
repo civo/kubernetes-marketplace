@@ -7,9 +7,15 @@
 # Tip: use `Ctrl/Cmd + F` to search them.
 
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: jenkins
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: jenkins-pv-claim
+  namespace: jenkins
   labels:
     type: longhorn
     app: jenkins
@@ -24,6 +30,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: jenkins-frontend
+  namespace: jenkins
 spec:
   ports:
     - name: jenkins
@@ -40,6 +47,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jenkins
+  namespace: jenkins
   labels:
     app: jenkins
 spec:

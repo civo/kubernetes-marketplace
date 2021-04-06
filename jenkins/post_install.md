@@ -4,7 +4,7 @@
 
 By default external access to the Jenkins UI port isn't available. This is easily changed by applying the following YAML to apply ingress via traefik to your cluster with `kubectl apply -f jenkins-ingress.yaml` (or whatever you call the file containing the contents below):
 
-```
+```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
