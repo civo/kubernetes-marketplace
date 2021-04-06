@@ -9,6 +9,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: jenkins-ingress
+  namespace: jenkins
 spec:
   rules:
   - host: jenkins.your-cluster-id.k8s.civo.com
