@@ -78,7 +78,7 @@ spec:
             - name: jenkins-persistent-storage
               mountPath: /bitnami
       containers:
-        - image: bitnami/jenkins:2.190.1-debian-9-r14
+        - image: bitnami/jenkins:2.263.4-debian-10-r11
           name: jenkins
           env:
             - name: JENKINS_USERNAME
