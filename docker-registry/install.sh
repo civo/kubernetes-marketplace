@@ -6,6 +6,8 @@ kubectl create ns docker-registry
 
 kubectl -n docker-registry create secret generic auth-ingress --from-file /tmp/auth
 
+helm repo add stable https://charts.helm.sh/stable
+
 helm repo update
 
 helm upgrade --install \
