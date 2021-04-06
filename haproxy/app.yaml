@@ -26,6 +26,8 @@ rules:
   - namespaces
   - events
   - serviceaccounts
+  - ingressclasses
+  - ingresses
   verbs:
   - get
   - list
