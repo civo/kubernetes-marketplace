@@ -1,5 +1,6 @@
 ---
 name: docker-registry
+namespace: docker-registry
 title: "Docker Registry"
 version: ALPHA
 maintainer: alejandro@civo.com
