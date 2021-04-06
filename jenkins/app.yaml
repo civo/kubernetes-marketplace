@@ -71,14 +71,14 @@ spec:
             - if [ -d "/bitnami/jenkins" ]; then
               apk add --update curl && rm -rf /var/cache/apk/*;
               cd /bitnami/jenkins;
-              curl -L https://get.jenkins.io/war-stable/2.263.4/jenkins.war -o jenkins.war;
+              curl -L https://get.jenkins.io/war-stable/2.190.1/jenkins.war -o jenkins.war;
               chown -R 1001:1001 .;
               fi;
           volumeMounts:
             - name: jenkins-persistent-storage
               mountPath: /bitnami
       containers:
-        - image: bitnami/jenkins:2.263.4-debian-10-r11
+        - image: bitnami/jenkins:2.190.1-debian-9-r14
           name: jenkins
           env:
             - name: JENKINS_USERNAME
