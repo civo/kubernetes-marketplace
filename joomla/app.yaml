@@ -8,6 +8,11 @@
 # e.g. 3-9-24 for 3.9.24 version.
 # Tip: use `Ctrl/Cmd + F` to search them.
 
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: joomla
+---
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
@@ -31,6 +36,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: joomla-pv-claim
+  namespace: joomla
 spec:
   accessModes:
     - ReadWriteOnce
@@ -42,6 +48,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: joomla-service
+  namespace: joomla
 spec:
   selector:
     app: joomla
@@ -54,6 +61,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: joomla
+  namespace: joomla
   labels:
     app: joomla
 spec:
@@ -121,6 +129,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod-joomla
     ingress.kubernetes.io/ssl-redirect: "true"
   name: joomla
+  namespace: joomla
 spec:
   tls:
     - hosts:
