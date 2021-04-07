@@ -1,5 +1,13 @@
 # WordPress
 
+## DB Root Password
+
+To retrieve MariaDB root password, run:
+
+```
+$ kubectl -n mariadb get secret mysql-pass -o=jsonpath='{.data.MYSQL_ROOT_PASSWORD}' | base64 -d
+```
+
 ## Database Creation
 
 You'll need to create a user and a database in MariaDB before you can configure your Wordpress.
@@ -8,7 +16,7 @@ You'll need to create a user and a database in MariaDB before you can configure 
 $ kubectl exec -it svc/mariadb -- /bin/sh
 
 # mysql -u root -p
-Enter password: YOUR_ROOT_PASSWORD_HERE
+Enter password: enter_db_root_password_here
 
 MariaDB [(none)]> CREATE DATABASE wordpress_db;
 MariaDB [(none)]> CREATE USER wordpress_user identified by 'strong-password';
