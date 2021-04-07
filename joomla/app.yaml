@@ -8,11 +8,6 @@
 # e.g. 3-9-24 for 3.9.24 version.
 # Tip: use `Ctrl/Cmd + F` to search them.
 
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: joomla
----
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
