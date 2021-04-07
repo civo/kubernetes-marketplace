@@ -4,6 +4,7 @@ version: 20.0.7
 maintainer: keith@hubner.co.uk, amit2cha@gmail.com
 description: Nextcloud is a completely integrated self-managed content collaboration platform
 url: https://nextcloud.com/
+namespace: nextcloud
 category: management
 dependencies:
   - longhorn
@@ -23,9 +24,9 @@ plans:
       VOLUME_SIZE:
         value: 20Gi
 configuration:
-  CLUSTER_ID:
-    label: "Cluster ID"
-    value: "CIVO:CLUSTER_ID"
+  DOMAIN_NAME:
+    label: "Domain name"
+    value: "KUBEMART:DOMAIN_NAME"
   EMAIL_ADDRESS:
     label: "Email Address"
-    value: "CIVO:EMAIL_ADDRESS"    
+    value: "KUBEMART:EMAIL_ADDRESS"    

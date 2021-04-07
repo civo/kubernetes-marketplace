@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -24,6 +25,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mariadb-pv-claim
+  namespace: mariadb
 spec:
   storageClassName: longhorn
   accessModes:
@@ -36,6 +38,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mariadb
+  namespace: mariadb
 spec:
   ports:
   - port: 3306
@@ -47,6 +50,7 @@ apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
   name: mariadb
+  namespace: mariadb
 spec:
   selector:
     matchLabels:

@@ -2,6 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: wordpress-pv-claim
+  namespace: wordpress
 spec:
   storageClassName: longhorn
   accessModes:
@@ -14,6 +15,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wordpress
+  namespace: wordpress
 spec:
   replicas: 1
   selector:
@@ -83,6 +85,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: wordpress
+  namespace: wordpress
 spec:
   ports:
   - name: "http-80"
@@ -95,6 +98,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: wordpress
+  namespace: wordpress
 spec:
   rules:
   - host: wordpress.$CLUSTER_ID.k8s.civo.com

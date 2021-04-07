@@ -34,7 +34,7 @@ Incoming triggers can be exposed through an Ingress.  [The core instructions](ht
     spec:
       rules:
         - http:
-          host: eventlistenername.your-cluster-id.k8s.civo.com
+          host: eventlistenername.your-domain-name
             paths:
               - path: /
                 backend:
@@ -42,4 +42,4 @@ Incoming triggers can be exposed through an Ingress.  [The core instructions](ht
                   servicePort: 8080
    ```
 
-This will open up http://eventlistenername.YOUR_CLUSTER_ID.k8s.civo.com to trigger the service.  Ensure your event-listener has the necessary interceptor configuration in place to prevent unauthorized triggering of the pipeline.
+This will open up http://eventlistenername.YOUR-DOMAIN-NAME to trigger the service.  Ensure your event-listener has the necessary interceptor configuration in place to prevent unauthorized triggering of the pipeline.

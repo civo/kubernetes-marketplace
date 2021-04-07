@@ -1,7 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nextcloud
+---
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-prod-nextcloud
+  namespace: nextcloud
 spec:
   acme:
     # The ACME server URL
@@ -21,6 +27,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: nc-pv-claim
+  namespace: nextcloud
 spec:
   storageClassName: longhorn
   accessModes:
@@ -34,6 +41,7 @@ apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
   name: nextcloud
+  namespace: nextcloud
 spec:
   selector:
     matchLabels:
@@ -63,6 +71,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nextcloud
+  namespace: nextcloud
 spec:
   ports:
   - name: "http-80"
@@ -81,10 +90,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - nextcloud.$CLUSTER_ID.k8s.civo.com
+      - nextcloud.$DOMAIN_NAME
       secretName: letsencrypt-prod-nextcloud  
   rules:
-  - host: nextcloud.$CLUSTER_ID.k8s.civo.com
+  - host: nextcloud.$DOMAIN_NAME
     http:
       paths:
       - backend:

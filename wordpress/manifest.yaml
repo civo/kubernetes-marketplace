@@ -5,6 +5,7 @@ maintainer: javicv@gmail.com, amit2cha@gmail.com
 description: WordPress is open source software you can use to create a beautiful website, blog, or app.
 url: https://wordpress.org
 category: management
+namespace: wordpress
 dependencies:
   - longhorn
   - mariadb:5GB
@@ -22,6 +23,6 @@ plans:
       VOLUME_SIZE:
         value: 20Gi
 configuration:
-  CLUSTER_ID:
+  DOMAIN_NAME:
     label: "Cluster ID"
-    value: "CIVO:CLUSTER_ID"
+    value: "KUBEMART:DOMAIN_NAME"

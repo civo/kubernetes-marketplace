@@ -5,6 +5,7 @@ maintainer: hello@civo.com
 description: MariaDB is a community-developed fork of MySQL intended to remain free under the GNU GPL.
 url: https://mariadb.com
 category: database
+namespace: mariadb
 dependencies:
   - Longhorn
 plans:
@@ -23,4 +24,4 @@ plans:
 configuration:
   MYSQL_ROOT_PASSWORD:
     label: "Root password"
-    value: "CIVO:ALPHANUMERIC(30)"
+    value: "KUBEMART:ALPHANUMERIC(30)"

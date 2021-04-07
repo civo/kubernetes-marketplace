@@ -1,9 +1,14 @@
 ---
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: minio
+---
+apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: minio-pv
-  namespace: apps
+  namespace: minio
   labels:
     name: minio-data
     type: longhorn
@@ -26,6 +31,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: minio-pv-claim
+  namespace: minio
 spec:
   storageClassName: longhorn
   accessModes:
@@ -38,6 +44,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: minio
+  namespace: minio
 spec:
   strategy:
     type: Recreate

@@ -2,6 +2,7 @@
 name: Node-RED
 version: 1.2.7
 maintainer: javicv@gmail.com
+namespace: nodered
 description: Node-RED is a programming tool for wiring together hardware devices, APIs and online services in new and interesting ways.
 url: https://nodered.org/
 category: architecture
@@ -21,6 +22,6 @@ plans:
       VOLUME_SIZE:
         value: 20Gi
 configuration:
-  CLUSTER_ID:
-    label: "Cluster ID"
-    value: "CIVO:CLUSTER_ID"
+  DOMAIN_NAME:
+    label: "Domain name"
+    value: "KUBEMART:DOMAIN_NAME"
