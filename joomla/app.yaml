@@ -105,7 +105,7 @@ spec:
               mountPath: /var/www/html
           env:
             - name: JOOMLA_DB_HOST
-              value: mariadb
+              value: mariadb.mariadb
             - name: JOOMLA_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
