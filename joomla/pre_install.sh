@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# create namespace
+# Create namespace
 kubectl create ns joomla
 
-# copy DB secret from mariadb namespace
-kubectl get secret mysql-pass -n mariadb -o yaml | kubectl apply -n joomla -f -
+# Copy DB secret from mariadb namespace.
+# Note: the middle "grep" is to remove source "mariadb" namespace from the YAML.
+kubectl get secret mysql-pass -n mariadb -o yaml | grep -v '^\s*namespace:\s' | kubectl apply -n joomla -f -
