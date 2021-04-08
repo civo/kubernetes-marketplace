@@ -5,9 +5,11 @@
 Here we run kube-hunter in a pod within the cluster. This gives an indication of how exposed your cluster would be in the event that one of your application pods is compromised (through a software vulnerability, for example).
 
 Check the logs of the kube-hunter pod to see the results.
+
 ```
 # Get the pod name
 $ kubectl -n kube-hunter describe job kube-hunter
+
 # Check the logs
 $ kubectl -n kube-hunter logs <pod name>
 ```
