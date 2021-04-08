@@ -5,14 +5,13 @@
 In order to access the dashboard, you must obtain the bearer token for the admin service account. To do this, run the following command:
 
 ```
-kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^token
+$ kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^token
 ```
 
 Once you have that token, you can do a port forward by running:
 
 ```
-kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard  8000:443
-
+$ kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard  8000:443
 ```
 
 The dashboard will now be accessible at the following url:

@@ -1,5 +1,6 @@
 ---
 name: kubernetes-dashboard
+namespace: kubernetes-dashboard
 title: "Kubernetes Dashboard"
 version: v2.3.1
 maintainer: morgan.lane@outlook.com
