@@ -1,5 +1,7 @@
 ## Falco is a Cloud Native Runtime Security tool designed to detect anomalous activity in your applications
 
+### Falco community on Slack can help with the chart if there are any questions, but Civo are responsible for the install.sh and manifest.yaml
+
 ### Get started
 
 [Falco Security docs](https://falco.org/docs/)
