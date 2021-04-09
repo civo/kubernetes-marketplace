@@ -2,7 +2,7 @@
 name: Falco Security
 title: "Falco Security"
 version: v0.27
-maintainer: "@DoNnMyTh","Falco maintainers"
+maintainer: DoNnMyTh,Falco maintainers
 description: Falco is a Cloud Native Runtime Security tool designed to detect anomalous activity in your applications.
 url: https://falco.org/
 dependencies:
