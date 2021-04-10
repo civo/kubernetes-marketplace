@@ -6,3 +6,7 @@ kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storagec
 
 # https://longhorn.io/docs/1.0.0/deploy/uninstall/#uninstalling-longhorn-using-kubectl
 kubectl create -f https://raw.githubusercontent.com/longhorn/longhorn/v1.1.0/uninstall/uninstall.yaml
+
+kubectl wait --for=condition=complete --timeout=300s job/longhorn-uninstall
+
+kubectl get crds | grep longhorn | cut -d' ' -f1 | xargs -I % sh -c 'kubectl delete crd %'
