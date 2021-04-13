@@ -14,4 +14,4 @@ Falco does not Expose to Web out of the box. You can use Following command
 
 You can use following link to get more resources [At this Blog](https://blog.webdev-jogeleit.de/blog/falco-security-and-monitoring-on-rke-bare-metal-cluster-with-rancher/)
 
-For advanced configurations like ingress visit (Values.yaml)[https://github.com/falcosecurity/charts/blob/427bf5c8eb1a80b93e142376eb338bde4efa899a/falcosidekick/values.yaml#L211]
+For advanced configurations like ingress visit [Values.yaml](https://github.com/falcosecurity/charts/blob/427bf5c8eb1a80b93e142376eb338bde4efa899a/falcosidekick/values.yaml#L211)
