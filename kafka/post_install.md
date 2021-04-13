@@ -13,4 +13,4 @@
 
 You can use following link to get more resources [At this Blog](https://betterprogramming.pub/how-to-run-highly-available-kafka-on-kubernetes-a1824db8a3e2)
 
-For advanced configurations like ingress visit (Values.yaml)[https://github.com/bitnami/charts/blob/master/bitnami/kafka/values.yaml]
+For advanced configurations like ingress visit [(]Values.yaml](https://github.com/bitnami/charts/blob/master/bitnami/kafka/values.yaml)
