@@ -2,7 +2,7 @@
 name: Linkerd-Jaeger
 version: Latest
 maintainer: hello@buoyant.io
-description: Linkerd is a service mesh, giving you runtime debugging, observability, reliability, and security. Linkerd Jaeger adds tracing functionality to the Linkerd mesh.
+description: Linkerd Jaeger adds tracing functionality to the Linkerd mesh.
 url: https://linkerd.io
 category: architecture
 dependencies:
