@@ -2,13 +2,13 @@
 
 ### External access
 
-The Linkerd dashboard is not available to the public by default, but if you install the linkerd client utility, you can open a tunnel to it easily:
+The Linkerd dashboard is not available to the public by default, but if you install Linkerd-viz and the linkerd client utility, you can open a tunnel to it easily:
 
 ```
 curl -sL https://run.linkerd.io/install | sh
 # or brew install linkerd on macOS
 
-linkerd dashboard
+linkerd viz dashboard
 ```
 
 This will automatically open the Linkerd dashboard in your browser, or you can visit http://127.0.0.1:50750
