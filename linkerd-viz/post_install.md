@@ -1,4 +1,4 @@
-## Linkerd service mesh
+## Linkerd Viz Dashboard
 
 ### External access
 
