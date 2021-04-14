@@ -1,4 +1,4 @@
-## Linkerd service mesh
+## Linkerd Jaeger Extension
 
 ### External access
 
