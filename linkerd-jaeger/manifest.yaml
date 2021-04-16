@@ -1,9 +1,0 @@
----
-name: Linkerd-Jaeger
-version: Latest
-maintainer: hello@buoyant.io
-description: Linkerd Jaeger adds tracing functionality to the Linkerd mesh.
-url: https://linkerd.io
-category: architecture
-dependencies:
-  - linkerd
