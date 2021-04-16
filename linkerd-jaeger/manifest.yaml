@@ -6,4 +6,4 @@ description: Linkerd Jaeger adds tracing functionality to the Linkerd mesh.
 url: https://linkerd.io
 category: architecture
 dependencies:
-  - Linkerd
+  - linkerd

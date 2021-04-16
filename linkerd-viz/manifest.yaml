@@ -6,4 +6,4 @@ description: The Linkerd Viz extension adds a dashboard to your Linkerd mesh.
 url: https://linkerd.io
 category: architecture
 dependencies:
-  - Linkerd
+  - linkerd

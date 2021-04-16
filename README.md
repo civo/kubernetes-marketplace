@@ -59,7 +59,7 @@ category: management
 
 The `name` is displayed in the web interface alongside the `logo.png`, and is searchable when you're installing marketplace applications from the CLI. If your application name has spaces in it, the `name` should be the spaces/hyphens version and you can add `title` which is a nicer display version.
 
-The `version` is a string of the version of the software being installed NOT the version of the marketplace configuration. If you want to include that, use an additional `-r1` or something after the version number. The `dependencies` are the names (can be lower case and part of the name) of any other marketplace applications that are needed by this application.
+The `version` is a **string** of the version of the software being installed NOT the version of the marketplace configuration. If you want to include that, use an additional `-r1` or something after the version number. The `dependencies` are the names (can be lower case and part of the name) of any other marketplace applications that are needed by this application. *This SHOULD be quoted to avoid breaking the CIVO API*
 
 The `maintainer` field can either be an email address (e.g. `hello@civo.com`) or a Twitter username (e.g. `@civocloud`) and isn't displayed on the site, but is used for us to determine who to contact if there are any problems with it. This is whoever submits the application to the marketplace (not the upstream provider), and is an implied agreement to offer help to the community with issues with it (or try to find a replacement maintainer if you are unable to do so any more).
 
