@@ -1,6 +1,6 @@
 ## Twingate Connector Settings
 
-In order to configure and use the Twingate Connector, you first need to create a Twingate Network. You can [sign up](https://www.twingate.com) for a free trial account on our website. The [First-time configuration guide](https://docs.twingate.com/docs/twingate-configuration) covers the necessary steps for the initial configuration of your network. For more information on Twingate, please see our [documentation](https://docs.twingate.com/docs/how-twingate-works).
+In order to configure and use the Twingate Connector, you first need to create a Twingate Network. You can [sign up](https://www.twingate.com) for a free trial account on our website. The [first-time configuration guide](https://docs.twingate.com/docs/twingate-configuration) covers the necessary steps for the initial configuration of your network. For more information on Twingate, please see our [documentation](https://docs.twingate.com/docs/how-twingate-works).
 
 Twingate Connector settings are passed via a ConfigMap and a Secret, as detailed below.
 
