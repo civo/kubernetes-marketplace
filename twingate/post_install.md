@@ -1,14 +1,13 @@
-## Twingate - Connector Settings
+## Twingate Connector Settings
 
-In order to get the connector up and running you need to register at [Twingate](https://twingate.com) and provide a few configuration settings for you new connector. 
-If you are not familiar with Twingate it is recommended to follow our First-time Configuration guide
+In order to configure and use the Twingate Connector, you first need to create a Twingate Network. You can [sign up](https://www.twingate.com) for a free trial account on our website. The [First-time configuration guide](https://docs.twingate.com/docs/twingate-configuration) covers the necessary steps for the initial configuration of your network. For more information on Twingate, please see our [documentation](https://docs.twingate.com/docs/how-twingate-works).
 
-The settings are passed via a ConfigMap and a Secret. 
+Twingate Connector settings are passed via a ConfigMap and a Secret, as detailed below.
 
 ### ConfigMap settings
 
-This will help you to create a valid configuration you only need replace `example.twingate.com` by your network domain.
-The value should be similar to what you see in your browser while in the admin console.
+This will help you to create a valid configuration. You only need to replace `example.twingate.com` in the snippet below with your Twingate Network fully-qualified domain name, which is configured when you create your Twingate Network.
+
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -20,8 +19,7 @@ data:
 
 ### Secret settings
 
-This will help you to create a valid secret you need replace `Access Token` and `Refresh Token` with the values you get from 
-the Provision Connector screen
+This will help you to create a valid secret. You need to replace `Access Token` and `Refresh Token` in the snippet below with the values provided in the [Connector provisioning workflow](https://docs.twingate.com/docs/provision-the-new-access-node) in the Twingate Admin Console by selecting the "**Manual**" provisioning option.
 
 ```yaml
 apiVersion: v1
