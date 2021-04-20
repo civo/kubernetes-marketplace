@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: twingate-connector
-  labels:
-    app: twingate-connector
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: twingate-connector
+      app: twingate
+      component: connector
   template:
     metadata:
       labels:
-        app: twingate-connector
+        app: twingate
+        component: connector
     spec:
       securityContext:
         sysctls:
