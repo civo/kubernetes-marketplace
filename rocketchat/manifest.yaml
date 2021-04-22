@@ -4,9 +4,9 @@ version: 3.11.0
 maintainer: "cloud@rocket.chat"
 description: Prepare to take off with the ultimate chat platform, experience the next level of team communications
 url: https://rocket.chat/
-category: management 
+category: management
 dependencies:
-  - MongoDB
+  - MongoDB:5GB
 plans:
   - label: "5GB"
     configuration:

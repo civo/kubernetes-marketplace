@@ -1,134 +1,104 @@
----
 apiVersion: v1
 kind: Namespace
 metadata:
   name: rocketchat
 ---
-apiVersion: policy/v1beta1
-kind: PodDisruptionBudget
-metadata:
-  labels:
-    app: mongodb
-    chart: mongodb-7.14.8
-    release: rocketchat
-  name: rocketchat-mongodb-arbiter
-  namespace: rocketchat
-spec:
-  selector:
-    matchLabels:
-      app: mongodb
-      release: rocketchat
-      component: arbiter
----
-apiVersion: policy/v1beta1
-kind: PodDisruptionBudget
-metadata:
-  labels:
-    app: mongodb
-    chart: mongodb-7.14.8
-    release: rocketchat
-  name: rocketchat-mongodb-secondary
-  namespace: rocketchat
-spec:
-  selector:
-    matchLabels:
-      app: mongodb
-      release: rocketchat
-      component: secondary
----
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: rocketchat-mongodb
+  name: rocket-mongodb
   namespace: rocketchat
   labels:
     app: mongodb
     chart: mongodb-7.14.8
-    release: "rocketchat"
+    release: "rocket"
+    heritage: "Helm"
 secrets:
-  - name: rocketchat-mongodb
+  - name: rocket-mongodb
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
     app.kubernetes.io/name: rocketchat
-    app.kubernetes.io/instance: rocketchat
-  name: rocketchat-rocketchat
+    helm.sh/chart: rocketchat-3.0.1
+    app.kubernetes.io/instance: rocket
+    app.kubernetes.io/managed-by: Helm
+  name: rocket-rocketchat
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: rocketchat-mongodb
+  name: rocket-mongodb
   namespace: rocketchat
   labels:
     app: mongodb
     chart: mongodb-7.14.8
-    release: "rocketchat"
+    release: "rocket"
+    heritage: "Helm"
 type: Opaque
 data:
-  mongodb-root-password:  "cm9ja2V0Y2hhdA=="
-  mongodb-password:  "cm9ja2V0Y2hhdA=="
-  mongodb-replica-set-key: "ekdUWlRMbnRhMA=="
+  mongodb-root-password: "MDFkQlprQXNrQQ=="
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: rocketchat-rocketchat
+  name: rocket-rocketchat
   labels:
     app.kubernetes.io/name: rocketchat
-    app.kubernetes.io/instance: rocketchat
+    helm.sh/chart: rocketchat-3.0.1
+    app.kubernetes.io/instance: rocket
+    app.kubernetes.io/managed-by: Helm
 type: Opaque
 data:
-  mongo-uri: "bW9uZ29kYjovL3JvY2tldGNoYXQ6cm9ja2V0Y2hhdEByb2NrZXRjaGF0LW1vbmdvZGI6MjcwMTcvcm9ja2V0Y2hhdA=="
-  mongo-oplog-uri: "bW9uZ29kYjovL3Jvb3Q6cm9ja2V0Y2hhdEByb2NrZXRjaGF0LW1vbmdvZGI6MjcwMTcvbG9jYWw/cmVwbGljYVNldD1yczAmYXV0aFNvdXJjZT1hZG1pbg=="
+  mongo-uri: "mongodb://$MONGODB_ROOT_USERNAME:$MONGODB_ROOT_PASSWORD@localhost:27017/local"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  labels:
+    app: mongodb
+    chart: mongodb-7.14.8
+    heritage: Helm
+    release: rocket
+  name: rocket-mongodb
+  namespace: rocketchat
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "8Gi"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: rocketchat-mongodb-headless
+  name: rocket-mongodb
   namespace: rocketchat
   labels:
     app: mongodb
     chart: mongodb-7.14.8
-    release: "rocketchat"
+    release: "rocket"
+    heritage: "Helm"
 spec:
   type: ClusterIP
-  clusterIP: None
   ports:
-  - name: mongodb
-    port: 27017
+    - name: mongodb
+      port: 27017
+      targetPort: mongodb
   selector:
     app: mongodb
-    release: rocketchat
+    release: "rocket"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: rocketchat-mongodb
-  namespace: rocketchat
-  labels:
-    app: mongodb
-    chart: mongodb-7.14.8
-    release: "rocketchat"
-spec:
-  type: ClusterIP
-  ports:
-  - name: mongodb
-    port: 27017
-    targetPort: mongodb
-  selector:
-    app: mongodb
-    release: "rocketchat"
-    component: primary
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: rocketchat-rocketchat
+  name: rocket-rocketchat
   labels:
     app.kubernetes.io/name: rocketchat
-    app.kubernetes.io/instance: rocketchat
+    helm.sh/chart: rocketchat-3.0.1
+    app.kubernetes.io/instance: rocket
+    app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
   ports:
@@ -138,21 +108,108 @@ spec:
     protocol: TCP
   selector:
     app.kubernetes.io/name: rocketchat
-    app.kubernetes.io/instance: rocketchat
+    app.kubernetes.io/instance: rocket
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rocketchat-rocketchat
+  name: rocket-mongodb
+  namespace: rocketchat
+  labels:
+    app: mongodb
+    chart: mongodb-7.14.8
+    release: "rocket"
+    heritage: "Helm"
+spec:
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: mongodb
+      release: "rocket"
+  template:
+    metadata:
+      labels:
+        app: mongodb
+        release: "rocket"
+        chart: mongodb-7.14.8
+    spec:
+      serviceAccountName: rocket-mongodb
+      securityContext:
+        fsGroup: 1001
+      initContainers:
+      containers:
+        - name: rocket-mongodb
+          image: docker.io/bitnami/mongodb:4.2.8-debian-10-r7
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1001
+          env:
+            - name: MONGODB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rocket-mongodb
+                  key: mongodb-root-password
+            - name: MONGODB_SYSTEM_LOG_VERBOSITY
+              value: "0"
+            - name: MONGODB_DISABLE_SYSTEM_LOG
+              value: "no"
+            - name: MONGODB_ENABLE_IPV6
+              value: "no"
+            - name: MONGODB_ENABLE_DIRECTORY_PER_DB
+              value: "no"
+          ports:
+            - name: mongodb
+              containerPort: 27017
+          livenessProbe:
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          readinessProbe:
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          volumeMounts:
+            - name: data
+              mountPath: /bitnami/mongodb
+              subPath:
+          resources:
+            {}
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: rocket-mongodb
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rocket-rocketchat
   labels:
     app.kubernetes.io/name: rocketchat
-    app.kubernetes.io/instance: rocketchat
+    helm.sh/chart: rocketchat-3.0.1
+    app.kubernetes.io/instance: rocket
+    app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: rocketchat
-      app.kubernetes.io/instance: rocketchat
+      app.kubernetes.io/instance: rocket
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -162,13 +219,9 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: rocketchat
-        app.kubernetes.io/instance: rocketchat
-
+        app.kubernetes.io/instance: rocket
       annotations:
-        checksum/secret: 76b0166fda28e81c44310509defa336430923e0181eeed8ad0fcf22ce290129c
-        prometheus.io/path: /metrics
-        prometheus.io/port: "9458"
-        prometheus.io/scrape: "true"
+        checksum/secret: 5201611d55b815554863417536b029ac07a06755ae1ad62b96c9455cdeec5f67
     spec:
       securityContext:
         fsGroup: 999
@@ -179,7 +232,7 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
         - name: DEPLOY_PLATFORM
-          value: civo
+          value: helm-chart
         - name: INSTANCE_IP
           valueFrom:
             fieldRef:
@@ -187,15 +240,13 @@ spec:
         - name: MONGO_URL
           valueFrom:
             secretKeyRef:
-              name: rocketchat-rocketchat
+              name: rocket-rocketchat
               key: mongo-uri
         - name: MONGO_OPLOG_URL
           valueFrom:
             secretKeyRef:
-              name: rocketchat-rocketchat
+              name: rocket-rocketchat
               key: mongo-oplog-uri
-        - name: ROOT_URL
-          value: https://anything.this.com
         ports:
         - name: http
           containerPort: 3000
@@ -225,325 +276,3 @@ spec:
       volumes:
       - name: rocket-data
         emptyDir: {}
----
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: rocketchat-mongodb-arbiter
-  namespace: rocketchat
-  labels:
-    app: mongodb
-    chart: mongodb-7.14.8
-    release: rocketchat
-spec:
-  selector:
-    matchLabels:
-      app: mongodb
-      release: rocketchat
-      component: arbiter
-  serviceName: rocketchat-mongodb-headless
-  replicas: 0
-  updateStrategy:
-    type: RollingUpdate
-  template:
-    metadata:
-      labels:
-        app: mongodb
-        chart: mongodb-7.14.8
-        release: rocketchat
-        component: arbiter
-    spec:
-      serviceAccountName: rocketchat-mongodb
-      securityContext:
-        fsGroup: 1001      
-      containers:
-        - name: mongodb-arbiter
-          image: docker.io/bitnami/mongodb:4.2.8-debian-10-r7
-          imagePullPolicy: IfNotPresent
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 1001
-          ports:
-          - containerPort: 27017
-            name: mongodb
-          env:
-          - name: MONGODB_SYSTEM_LOG_VERBOSITY
-            value: "0"
-          - name: MONGODB_DISABLE_SYSTEM_LOG
-            value: "no"
-          - name: MONGODB_POD_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-          - name: MONGODB_REPLICA_SET_MODE
-            value: "arbiter"
-          - name: MONGODB_PRIMARY_HOST
-            value: rocketchat-mongodb
-          - name: MONGODB_REPLICA_SET_NAME
-            value: "rs0"
-          - name: MONGODB_ADVERTISED_HOSTNAME
-            value: "$(MONGODB_POD_NAME).rocketchat-mongodb-headless.rocketchat.svc.cluster.local"
-          - name: MONGODB_PRIMARY_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: rocketchat-mongodb
-                key: mongodb-root-password
-          - name: MONGODB_REPLICA_SET_KEY
-            valueFrom:
-              secretKeyRef:
-                name: rocketchat-mongodb
-                key: mongodb-replica-set-key
-          - name: MONGODB_ENABLE_IPV6
-            value: "no"
-          - name: MONGODB_ENABLE_DIRECTORY_PER_DB
-            value: "no"
-          livenessProbe:
-            tcpSocket:
-              port: mongodb
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            timeoutSeconds: 5
-            successThreshold: 1
-            failureThreshold: 6
-          readinessProbe:
-            tcpSocket:
-              port: mongodb
-            initialDelaySeconds: 5
-            periodSeconds: 10
-            timeoutSeconds: 5
-            successThreshold: 1
-            failureThreshold: 6
-          volumeMounts:
-          resources:
-            {}
-      volumes:
----
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: rocketchat-mongodb-primary
-  namespace: rocketchat
-  labels:
-    app: mongodb
-    chart: mongodb-7.14.8
-    release: rocketchat
-spec:
-  serviceName: rocketchat-mongodb-headless
-  replicas: 1
-  updateStrategy:
-    type: RollingUpdate
-  selector:
-    matchLabels:
-      app: mongodb
-      release: rocketchat
-      component: primary
-  template:
-    metadata:
-      labels:
-        app: mongodb
-        chart: mongodb-7.14.8
-        release: rocketchat
-        component: primary
-    spec:
-      serviceAccountName: rocketchat-mongodb
-      securityContext:
-        fsGroup: 1001      
-      initContainers:
-      containers:
-        - name: mongodb-primary
-          image: docker.io/bitnami/mongodb:4.2.8-debian-10-r7
-          imagePullPolicy: IfNotPresent
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 1001
-          ports:
-          - containerPort: 27017
-            name: mongodb
-          env:
-          - name: MONGODB_SYSTEM_LOG_VERBOSITY
-            value: "0"
-          - name: MONGODB_DISABLE_SYSTEM_LOG
-            value: "no"
-          - name: MONGODB_POD_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-          - name: MONGODB_REPLICA_SET_MODE
-            value: "primary"
-          - name: MONGODB_REPLICA_SET_NAME
-            value: "rs0"
-          - name: MONGODB_ADVERTISED_HOSTNAME
-            value: "$(MONGODB_POD_NAME).rocketchat-mongodb-headless.rocketchat.svc.cluster.local"
-          - name: MONGODB_USERNAME
-            value: "rocketchat"
-          - name: MONGODB_DATABASE
-            value: "rocketchat"
-          - name: MONGODB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: rocketchat-mongodb
-                key: mongodb-password
-          - name: MONGODB_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: rocketchat-mongodb
-                key: mongodb-root-password
-          - name: MONGODB_REPLICA_SET_KEY
-            valueFrom:
-              secretKeyRef:
-                name: rocketchat-mongodb
-                key: mongodb-replica-set-key
-          - name: MONGODB_ENABLE_IPV6
-            value: "no"
-          - name: MONGODB_ENABLE_DIRECTORY_PER_DB
-            value: "no"
-          livenessProbe:
-            exec:
-              command:
-                - pgrep
-                - mongod
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            timeoutSeconds: 5
-            successThreshold: 1
-            failureThreshold: 6
-          readinessProbe:
-            exec:
-              command:
-                - mongo
-                - --eval
-                - "db.adminCommand('ping')"
-            initialDelaySeconds: 5
-            periodSeconds: 10
-            timeoutSeconds: 5
-            successThreshold: 1
-            failureThreshold: 6
-          volumeMounts:
-            - name: datadir
-              mountPath: /bitnami/mongodb
-              subPath: 
-          resources:
-            {}
-      volumes:
-  volumeClaimTemplates:
-    - metadata:
-        name: datadir
-        annotations:
-      spec:
-        accessModes:
-          - "ReadWriteOnce"
-        resources:
-          requests:
-            storage: "8Gi"
----
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: rocketchat-mongodb-secondary
-  namespace: rocketchat
-  labels:
-    app: mongodb
-    chart: mongodb-7.14.8
-    release: rocketchat
-spec:
-  selector:
-    matchLabels:
-      app: mongodb
-      release: rocketchat
-      component: secondary
-  podManagementPolicy: "Parallel"
-  serviceName: rocketchat-mongodb-headless
-  replicas: 0
-  updateStrategy:
-    type: RollingUpdate
-  template:
-    metadata:
-      labels:
-        app: mongodb
-        chart: mongodb-7.14.8
-        release: rocketchat
-        component: secondary
-    spec:
-      serviceAccountName: rocketchat-mongodb
-      securityContext:
-        fsGroup: 1001      
-      initContainers:
-      containers:
-        - name: mongodb-secondary
-          image: docker.io/bitnami/mongodb:4.2.8-debian-10-r7
-          imagePullPolicy: IfNotPresent
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 1001
-          ports:
-          - containerPort: 27017
-            name: mongodb
-          env:
-          - name: MONGODB_SYSTEM_LOG_VERBOSITY
-            value: "0"
-          - name: MONGODB_DISABLE_SYSTEM_LOG
-            value: "no"
-          - name: MONGODB_POD_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-          - name: MONGODB_REPLICA_SET_MODE
-            value: "secondary"
-          - name: MONGODB_PRIMARY_HOST
-            value: rocketchat-mongodb
-          - name: MONGODB_REPLICA_SET_NAME
-            value: "rs0"
-          - name: MONGODB_ADVERTISED_HOSTNAME
-            value: "$(MONGODB_POD_NAME).rocketchat-mongodb-headless.rocketchat.svc.cluster.local"
-          - name: MONGODB_PRIMARY_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: rocketchat-mongodb
-                key: mongodb-root-password
-          - name: MONGODB_REPLICA_SET_KEY
-            valueFrom:
-              secretKeyRef:
-                name: rocketchat-mongodb
-                key: mongodb-replica-set-key
-          - name: MONGODB_ENABLE_IPV6
-            value: "no"
-          - name: MONGODB_ENABLE_DIRECTORY_PER_DB
-            value: "no"
-          livenessProbe:
-            exec:
-              command:
-                - pgrep
-                - mongod
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            timeoutSeconds: 5
-            successThreshold: 1
-            failureThreshold: 6
-          readinessProbe:
-            exec:
-              command:
-                - mongo
-                - --eval
-                - "db.adminCommand('ping')"
-            initialDelaySeconds: 5
-            periodSeconds: 10
-            timeoutSeconds: 5
-            successThreshold: 1
-            failureThreshold: 6
-          volumeMounts:
-            - name: datadir
-              mountPath: /bitnami/mongodb
-              subPath: 
-          resources:
-            {}
-      volumes:
-  volumeClaimTemplates:
-    - metadata:
-        name: datadir
-        annotations:
-      spec:
-        accessModes:
-          - "ReadWriteOnce"
-        resources:
-          requests:
-            storage: "8Gi"
