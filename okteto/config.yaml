@@ -1,0 +1,36 @@
+api:
+  replicaCount: 1
+
+webhook:
+  replicaCount: 1
+
+frontend:
+  replicaCount: 1
+
+auth:
+  token:
+    enabled: true
+
+ingress:
+  class: traefik 
+  tlsSecret: civo-cert-ingress
+  annotations:
+    cert-manager.io/issuer: letsencrypt-okteto
+    kubernetes.io/ingress.class: traefik
+
+registry:
+  ingress:
+    annotations:
+      cert-manager.io/issuer: letsencrypt-okteto
+      kubernetes.io/ingress.class: traefik
+    tlsSecret: civo-cert-registry
+  storage:
+    filesystem:
+      enabled: true
+      size: 20Gi
+
+nginx-ingress:
+  enabled: false
+
+cert-manager:
+  enabled: false
