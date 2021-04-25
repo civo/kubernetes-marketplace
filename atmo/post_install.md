@@ -5,11 +5,13 @@ Welcome to Atmo, the best way to run cloud native WebAssembly.
 To deploy your application once Atmo is running in your cluster, use `subo` and `kubectl`.
 
 First, [build your application bundle](https://atmo.suborbital.dev/usage/building-a-bundle):
+
 ```
 > subo build .
 ```
 
 Then, get Atmo's pod name:
+
 ```
 > kubectl get pods -n suborbital
 NAME                               READY   STATUS        RESTARTS   AGE
@@ -17,6 +19,7 @@ atmo-deployment-5fc58b5647-f7rlm   1/1     Running       0          10s
 ```
 
 Finally, upload the bundle (**make sure to use the correct pod name**):
+
 ```
 > kubectl cp ./runnables.wasm.zip atmo-deployment-5fc58b5647-f7rlm:/home/atmo/ -n suborbital
 ```
