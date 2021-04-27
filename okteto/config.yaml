@@ -31,6 +31,3 @@ registry:
 
 nginx-ingress:
   enabled: false
-
-cert-manager:
-  enabled: false

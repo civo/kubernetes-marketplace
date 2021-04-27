@@ -1,12 +1,9 @@
 #!/bin/sh
 
-set -e
-
 subdomain="$CLUSTER_NAME.k8s.civo.com"
 email="$EMAIL"
 adminToken=$ACCESS_KEY
 
-set +e
 for i in {1..30}; do
   kubectl get svc -n=kube-system traefik -ojsonpath='{ .spec.clusterIP }' > /dev/null 2>&1
   if [ $? -eq 0 ]; then
@@ -22,9 +19,9 @@ done
 helm repo add okteto https://charts.okteto.com
 helm repo update
 kubectl create namespace okteto --dry-run=client -o yaml | kubectl apply -f - 
-kubectl apply -f https://charts.okteto.com/application-crds.yaml
+kubectl apply -f https://charts.okteto.com/crds.yaml
 
-helm upgrade --install civo okteto/okteto-enterprise --namespace okteto -f https://github.com/civo/kubernetes-marketplace/blob/master/okteto/config.yaml --set email="$email" --set adminToken="$adminToken" --set subdomain="$subdomain" --set ingress.ip=$ingress --version 0.8.4
+helm upgrade --install civo okteto/okteto-enterprise --namespace okteto -f https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/okteto/config.yaml --set email="$email" --set adminToken="$adminToken" --set subdomain="$subdomain" --set ingress.ip=$ingress --version 0.8.4
 echo 'waiting for 30s for the components to get started'
 sleep 30
 
@@ -45,7 +42,6 @@ spec:
           class: traefik
 EOF
 
-set +e
 for i in {1..10}; do
   kubectl apply -n=okteto -f issuer.yaml
   if [ $? -eq 0 ]; then
