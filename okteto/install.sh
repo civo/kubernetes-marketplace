@@ -5,7 +5,18 @@ set -e
 subdomain="$CLUSTER_NAME.k8s.civo.com"
 email="$EMAIL"
 adminToken=$ACCESS_KEY
-ingress=$(kubectl get svc -n=kube-system traefik -ojsonpath='{ .spec.clusterIP }')
+
+for i in {1..30}; do
+  kubectl get svc -n=kube-system traefik -ojsonpath='{ .spec.clusterIP }'
+  if [ $? -eq 0 ]; then
+    ingress=$(kubectl get svc -n=kube-system traefik -ojsonpath='{ .spec.clusterIP }')
+    echo "traefik installed"
+    break
+  else
+    echo "Traefik not found, will try again"
+    sleep 1
+  fi
+done
 
 helm repo add okteto https://charts.okteto.com
 helm repo update
