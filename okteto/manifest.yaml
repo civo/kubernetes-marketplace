@@ -1,5 +1,6 @@
 ---
-name: Okteto Enterprise
+name: okteto-enterprise
+title: "Okteto Enterprise"
 version: 0.8.4
 maintainer: "@rberrelleza"
 description: Development Platform for Microservices, powered by Kubernetes
