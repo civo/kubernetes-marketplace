@@ -6,8 +6,6 @@ maintainer: "@rberrelleza"
 description: Development Platform for Microservices, powered by Kubernetes
 url: https://okteto.com/enterprise
 category: management
-dependencies:
-- cert-manager
 configuration:
   ACCESS_KEY:
     label: "Access key"
