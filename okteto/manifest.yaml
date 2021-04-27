@@ -8,7 +8,6 @@ url: https://okteto.com/enterprise
 category: management
 dependencies:
 - cert-manager
-- traefik
 configuration:
   ACCESS_KEY:
     label: "Access key"
