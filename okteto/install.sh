@@ -4,16 +4,19 @@ subdomain="$CLUSTER_NAME.k8s.civo.com"
 email="$EMAIL"
 adminToken=$ACCESS_KEY
 
-for i in {1..30}; do
+for i in {1..300}; do
   kubectl get svc -n=kube-system traefik -ojsonpath='{ .spec.clusterIP }' > /dev/null 2>&1
   if [ $? -eq 0 ]; then
     ingress=$(kubectl get svc -n=kube-system traefik -ojsonpath='{ .spec.clusterIP }')
-    echo "traefik installed"
-    break
-  else
-    echo "Traefik not found, will try again"
-    sleep 1
+    
+    if [ ! -z "$ingress" ]; then
+      echo "traefik installed"
+      break
+    fi
   fi
+
+  echo "Traefik not found, will try again"
+  sleep 1
 done
 
 helm repo add okteto https://charts.okteto.com
@@ -22,6 +25,11 @@ kubectl create namespace okteto --dry-run=client -o yaml | kubectl apply -f -
 kubectl apply -f https://charts.okteto.com/crds.yaml
 
 helm upgrade --install civo okteto/okteto-enterprise --namespace okteto -f https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/okteto/config.yaml --set email="$email" --set adminToken="$adminToken" --set subdomain="$subdomain" --set ingress.ip=$ingress --version 0.8.4
+if [ ! $? -eq 0 ]; then
+  echo 'failed to install okteto-enterprise'
+  exit 1
+fi
+
 echo 'waiting for 30s for the components to get started'
 sleep 30
 
