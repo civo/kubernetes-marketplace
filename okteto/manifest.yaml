@@ -13,6 +13,6 @@ configuration:
   EMAIL:
     label: "Email"
     value: "CIVO:EMAIL_ADDRESS"
-  CLUSTER_NAME:
-    label: "Cluster name"
-    value: "CIVO:CLUSTER_NAME"
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"

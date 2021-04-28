@@ -1,6 +1,6 @@
 #!/bin/sh
 
-subdomain="$CLUSTER_NAME.k8s.civo.com"
+subdomain="$CLUSTER_ID.k8s.civo.com"
 email="$EMAIL"
 adminToken=$ACCESS_KEY
 
