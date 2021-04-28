@@ -4,7 +4,7 @@ subdomain="$CLUSTER_NAME.k8s.civo.com"
 email="$EMAIL"
 adminToken=$ACCESS_KEY
 
-for i in {1..30}; do
+for i in {1..300}; do
   kubectl get svc -n=kube-system traefik -ojsonpath='{ .spec.clusterIP }' > /dev/null 2>&1
   if [ $? -eq 0 ]; then
     ingress=$(kubectl get svc -n=kube-system traefik -ojsonpath='{ .spec.clusterIP }')
