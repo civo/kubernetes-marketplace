@@ -7,7 +7,7 @@ adminToken=$ACCESS_KEY
 echo -n "# ${SCRIPTNAME}: Trying to fetch ingress IP. Will give up after 120 attempts."
 n=0
 until [ $n -ge 120 ]; do
-    ingress=$(kubectl get service -n kube-system traefik -o template --template='{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}')
+    ingress=$(kubectl get service -n kube-system traefik -o template --template='{{.spec.clusterIP}}')
     if [[ -n "${ingress}" ]]; then
         echo " Found: ${ingress}."
         break
