@@ -4,15 +4,15 @@ subdomain="$CLUSTER_NAME.k8s.civo.com"
 email="$EMAIL"
 adminToken=$ACCESS_KEY
 
-echo -n "# ${SCRIPTNAME}: Trying to fetch ingress IP. Will give up after 120 attempts."
+echo "Trying to fetch ingress IP. Will give up after 120 attempts."
 n=0
 until [ $n -ge 120 ]; do
     ingress=$(kubectl get service -n kube-system traefik -o template --template='{{.spec.clusterIP}}')
-    if [[ -n "${ingress}" ]]; then
+    if [ -n "${ingress}" ]; then
         echo " Found: ${ingress}."
         break
     fi
-    echo -n "."
+    echo "."
     sleep 1
 done
 
