@@ -4,20 +4,18 @@ subdomain="$CLUSTER_NAME.k8s.civo.com"
 email="$EMAIL"
 adminToken=$ACCESS_KEY
 
-for i in {1..300}; do
-  kubectl get svc -n=kube-system traefik -ojsonpath='{ .spec.clusterIP }' > /dev/null 2>&1
-  if [ $? -eq 0 ]; then
-    ingress=$(kubectl get svc -n=kube-system traefik -ojsonpath='{ .spec.clusterIP }')
-    
-    if [ ! -z "$ingress" ]; then
-      echo "traefik installed"
-      break
+echo -n "# ${SCRIPTNAME}: Trying to fetch ingress IP. Will give up after 120 attempts."
+n=0
+until [ $n -ge 120 ]; do
+    ingress=$(kubectl get service -n kube-system traefik -o template --template='{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}')
+    if [[ -n "${ingress}" ]]; then
+        echo " Found: ${ingress}."
+        break
     fi
-  fi
-
-  echo "Traefik not found, will try again"
-  sleep 1
+    echo -n "."
+    sleep 1
 done
+
 
 helm repo add okteto https://charts.okteto.com
 helm repo update
