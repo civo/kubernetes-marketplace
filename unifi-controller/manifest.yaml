@@ -5,4 +5,4 @@ description: The UniFi Network Controller is a free software suite that allows y
 url: https://www.ui.com/
 category: management
 dependencies:
-  - longhorn
+  - Longhorn
