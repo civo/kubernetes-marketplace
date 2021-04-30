@@ -1,4 +1,4 @@
-name: Unifi Network Controller
+name: Unifi-network-controller
 version: stable-6
 maintainer: keith@hubner.co.uk
 description: The UniFi Network Controller is a free software suite that allows you to set up, configure, manage and analyze your UniFi network in a centralized manner. 
