@@ -1,0 +1,8 @@
+---
+name: kyverno
+title: "Kyverno"
+version: "1.3.2"
+maintainer: "@_csor"
+description: Kyverno is a Policy Controller for Kubernetes
+url: https://kyverno.io
+category: security
