@@ -29,7 +29,6 @@ registry:
       enabled: true
       persistence:
         size: 20Gi
-        storageClass: civo-volume
 
 nginx-ingress:
   enabled: false
