@@ -27,7 +27,9 @@ registry:
   storage:
     filesystem:
       enabled: true
-      size: 20Gi
+      persistence:
+        size: 20Gi
+        storageClass: civo-volume
 
 nginx-ingress:
   enabled: false
