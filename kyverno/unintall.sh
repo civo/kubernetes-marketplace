@@ -1,6 +1,4 @@
-#!/bin/bash
-
-kubectl delete -f https://raw.githubusercontent.com/kyverno/kyverno/main/definitions/release/install.yaml
+helm uninstall kyverno --namespace kyverno kyverno/kyverno
 
 kubectl delete mutatingwebhookconfigurations kyverno-policy-mutating-webhook-cfg kyverno-resource-mutating-webhook-cfg kyverno-verify-mutating-webhook-cfg
 

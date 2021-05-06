@@ -1,3 +1,5 @@
-#!/bin/bash
+helm repo add kyverno https://kyverno.github.io/kyverno/
 
-kubectl create -f https://raw.githubusercontent.com/kyverno/kyverno/main/definitions/release/install.yaml
+helm repo update
+
+helm install kyverno kyverno/kyverno --namespace kyverno --create-namespace
