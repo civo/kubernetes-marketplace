@@ -35,6 +35,15 @@ I0523 12:42:00.367609   34554 request.go:645] Throttling request took 1.01152296
 Skipping Gloo Instance check -- Gloo Federation not detected
 ```
 
+In case any of the checks fail you can try the gateway reinstall by:
+
+```shell
+# uninstall
+glooctl uninstall gateway
+# install again
+glooctl install gateway
+```
+
 ### Get started
 
 [Deploy Hello World](https://docs.solo.io/gloo-edge/latest/guides/traffic_management/hello_world/)
