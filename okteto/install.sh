@@ -22,7 +22,7 @@ helm repo update
 kubectl create namespace okteto --dry-run=client -o yaml | kubectl apply -f - 
 kubectl apply -f https://charts.okteto.com/crds.yaml
 
-helm upgrade --install civo okteto/okteto-enterprise --namespace okteto -f https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/okteto/config.yaml --set email="$email" --set adminToken="$adminToken" --set subdomain="$subdomain" --set ingress.ip=$ingress --version 0.8.4
+helm upgrade --install civo okteto/okteto-enterprise --namespace okteto -f https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/okteto/config.yaml --set email="$email" --set adminToken="$adminToken" --set subdomain="$subdomain" --set ingress.ip=$ingress --set publicOverride="$subdomain" --version 0.9.1
 if [ ! $? -eq 0 ]; then
   echo 'failed to install okteto-enterprise'
   exit 1
@@ -60,6 +60,5 @@ for i in {1..10}; do
 done
 
 echo 'waiting for the SSL certificates to get generated'
-
 kubectl rollout status deployment/civo-okteto-enterprise-api -n=okteto
-kubectl rollout status statefulset/civo-okteto-enterprise-buildkit -n=okteto
+echo 'okteto is ready to go'
