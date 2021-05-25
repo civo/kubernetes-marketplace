@@ -10,6 +10,10 @@
 
 [Sonatype Nexus Repository Documentation.](https://help.sonatype.com/docs?topnav=true)
 
+[Using Nexus Repository](https://blog.sonatype.com/using-nexus-3-as-your-repository-part-1-maven-artifacts)
+
+[Using Mirrors for Repositories with Maven](https://maven.apache.org/guides/mini/guide-mirror-settings.html)
+
 ### Admin Credentials
 
 The nexus url is set with default admin credentials with `username` as `admin` and password `admin123`. 
@@ -24,13 +28,50 @@ The nexus service is available in namespace `nexus3`:
 kubectl get service -n nexus3 nexus3-nexus-repository-manager
 ```
 
-__NOTE__: The service does not configured with Public IP, please use Kubernetes Ingress to expose the service to outside world.
-
 ## Using the Service
 
-You can configure your Java applications to use the deployed nexus as its Maven Mirror.
+### Outside the cluster
 
-e.g. a [Tektoncd Maven Task](https://hub.tekton.dev/tekton/task/maven) can use it by pointing the `MAVEN_MIRROR_URL` to `https://nexus3-nexus-repository-manager.nexus3.svc.cluster.local:8081/repository/maven-public/`
+__NOTE__: The service does not configured with Public IP, please use Kubernetes Ingress to expose the service to outside world.
+
+Create an ingress:
+
+```shell
+cat <<EOF | kubectl apply -f -
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nexus3
+  namespace: nexus3
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nexus3-nexus-repository-manager
+            port:
+              number: 8081
+EOF
+```
+
+Get the application url and open it in the browser
+
+```shell
+open "$(kubectl get ing -n nexus3 nexus3 -o=jsonpath='{.status.loadbalancer.ingress[0].ip}')"
+```
+
+### Inside the Cluster
+
+The nexus repository is always accessible within the cluster via the in cluster URL `http://nexus3-nexus-repository-manager.nexus3.svc.cluster.local:8081/repository/maven-public/`
+
+### With Tektoncd Tasks
+
+If you wish to use the Nexus repository manager with [Tekton](https://tekton.dev), you can configure your Java applications to use the deployed nexus as its Maven Mirror using `MAVEN_MIRROR_URL` environment variable. The environment variable will point to the in cluster repository URL `http://nexus3-nexus-repository-manager.nexus3.svc.cluster.local:8081/repository/maven-public/`
+
+You can check more details with the [Tektoncd Maven Task](https://hub.tekton.dev/tekton/task/maven).
 
 ## Nexus Configuration
 
