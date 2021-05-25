@@ -9,7 +9,6 @@ metadata:
   name: pvc-unifi
   namespace: unifi
 spec:
-  storageClassName: longhorn
   accessModes:
   - ReadWriteOnce
   resources:
