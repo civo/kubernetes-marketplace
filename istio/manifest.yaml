@@ -1,0 +1,21 @@
+---
+name: istio
+title: "Istio Service Mesh"
+version: "1.10.0"
+maintainer: kamesh.sampath@hotmail.com
+description: Simplify observability, traffic management, security, and policy with the leading service mesh.
+url: https://istio.io/latest/
+category: architecture
+plans:
+  - label: "Istio Latest"
+    configuration:
+      ISTIO_VERSION:
+        value: latest
+  - label: "Istio v1.10.0"
+    configuration:
+      ISTIO_VERSION:
+        value: 1.10.0
+configuration:  
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
