@@ -6,8 +6,3 @@ maintainer: kamesh.sampath@hotmail.com
 description: Gloo Edge is a feature-rich, Kubernetes-native ingress controller, and next-generation API gateway.
 url: https://docs.solo.io/gloo-edge/latest/
 category: architecture
-plans:
-  - label: "2GB"
-    configuration:
-      APP_SIZE_GB:
-        value: 15
