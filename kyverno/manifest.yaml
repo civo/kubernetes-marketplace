@@ -7,19 +7,19 @@ description: Kyverno is a policy engine designed for Kubernetes
 url: https://kyverno.io
 category: security
 plans:
-  - label: "Default Pod Security Standards in audit mode"
+  - label: "Default PSS Policies & audit"
     configuration:
       POD_SECURITY_STANDARDS:
         value: default_audit
-  - label: "Default Pod Security Standards in enforce mode"
+  - label: "Default PSS Policies & enforce"
     configuration:
       POD_SECURITY_STANDARDS:
         value: default_enforce
-  - label: "Restricted Pod Security Standards in audit mode"
+  - label: "Restricted PSS Policies & audit"
     configuration:
       POD_SECURITY_STANDARDS:
         value: restricted_audit
-  - label: "Restricted Pod Security Standards in enforce mode"
+  - label: "Restricted PSS Policies & enforce"
     configuration:
       POD_SECURITY_STANDARDS:
         value: restricted_enforce
