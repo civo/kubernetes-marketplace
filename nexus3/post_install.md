@@ -36,8 +36,7 @@ __NOTE__: The service does not configured with Public IP, please use Kubernetes 
 
 Create an ingress:
 
-```shell
-cat <<EOF | kubectl apply -f -
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -54,10 +53,9 @@ spec:
             name: nexus3-nexus-repository-manager
             port:
               number: 8081
-EOF
 ```
 
-Get the application url and open it in the browser
+Get the application url and open it in the browser:
 
 ```shell
 open "$(kubectl get ing -n nexus3 nexus3 -o=jsonpath='{.status.loadbalancer.ingress[0].ip}')"
