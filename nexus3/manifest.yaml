@@ -6,8 +6,3 @@ maintainer: kamesh.sampath@hotmail.com
 description: The free artifact repository with universal format support.
 url: https://www.sonatype.com/products/repository-oss
 category: ci_cd
-plans:
-  - label: "4GB"
-    configuration:
-      APP_SIZE_GB:
-        value: 15
