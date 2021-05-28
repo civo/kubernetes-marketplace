@@ -15,9 +15,6 @@ else
   curl -L https://istio.io/downloadIstio | ISTIO_VERSION=$ISTIO_VERSION sh -
 fi
 
-# TODO enable this once we are able to get the ISTIO_VERSION in sh
-#curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.10.0 sh -
-
 ISTIO_DIR=$(find . -name istio*)
 export PATH=$ISTIO_DIR/bin:$PATH
 
