@@ -1,4 +1,4 @@
-VERSION?="v0.19.0"
+VERSION?="v0.24.1"
 # For cli directly installed
 CIVO_CMD?="civo"
 # For Docker
