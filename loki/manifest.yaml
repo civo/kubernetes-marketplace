@@ -1,10 +1,10 @@
 ---
 name: loki-stack
 title: "Loki Stack "
-version: v0.41.2
+version: v2.1.2
 maintainer: "me@r15cookie.com"
 dependencies:
-  - prometheus-operator
+  - kube-prometheus-stack
 description: Prometheus for your logs.
 url: https://grafana.com/oss/loki/
 category: monitoring
