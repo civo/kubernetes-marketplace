@@ -1,4 +1,3 @@
-
 ## Keptn
 
 ### Start using Keptn
@@ -27,17 +26,10 @@
 
 1. Access the bridge via:
   ```
-  echo http://$(kubectl -n keptn get service api-gateway-nginx -o jsonpath='{$.status.loadBalancer.ingress[0].ip}')/bridge
-  ```
-  
-  Get the credentials with the following command:
-  ```
-  keptn configure bridge -o
+  keptn configure bridge --output
   ```
 
 1. Follow the [tutorials](https://tutorials.keptn.sh/?cat=quality-gates) to get started! Please note that Keptn is already installed and these parts of the tutorials can be skipped :)
-
-
 
 ## Documentation and tutorials
 

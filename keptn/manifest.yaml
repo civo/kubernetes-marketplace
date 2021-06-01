@@ -1,7 +1,7 @@
 ---
 name: keptn
-version: 0.8.2
-maintainer: sangambiradar@hotmail.com
-description: an event-based control plane for continuous delivery and automated operations for cloud-native applications.
+version: 0.8.3
+maintainer: gabriel.tanner@dynatrace.com, sangambiradar@hotmail.com
+description: 'Keptn is an event-based control plane for continuous delivery and automated operations for cloud-native applications. Please note: Traefik must not be selected since Keptn uses Istio as an Ingress Controller.'
 url: https://keptn.sh/
 category: ci_cd
