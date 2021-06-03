@@ -1,0 +1,8 @@
+---
+name: gloo-edge
+title: "Gloo Edge"
+version: "1.7.7"
+maintainer: kamesh.sampath@hotmail.com
+description: Gloo Edge is a feature-rich, Kubernetes-native ingress controller, and next-generation API gateway.
+url: https://docs.solo.io/gloo-edge/latest/
+category: architecture
