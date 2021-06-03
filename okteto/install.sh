@@ -61,4 +61,5 @@ done
 
 echo 'waiting for the SSL certificates to get generated'
 kubectl rollout status deployment/civo-okteto-enterprise-api -n=okteto
+kubectl rollout status statefulset/civo-okteto-enterprise-buildkit -n=okteto
 echo 'okteto is ready to go'
