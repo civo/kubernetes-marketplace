@@ -32,6 +32,3 @@ registry:
 
 nginx-ingress:
   enabled: false
-
-injectDevelopmentBinaries:
-  enabled: false
