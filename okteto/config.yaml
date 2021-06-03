@@ -11,6 +11,11 @@ auth:
   token:
     enabled: true
 
+buildkit:
+  storage:
+    size: 60Gi
+    cache: 58000
+
 ingress:
   class: traefik 
   tlsSecret: civo-cert-ingress
