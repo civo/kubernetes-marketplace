@@ -22,7 +22,7 @@ helm repo update
 kubectl create namespace okteto --dry-run=client -o yaml | kubectl apply -f - 
 kubectl apply -f https://charts.okteto.com/crds.yaml
 
-helm upgrade --install civo okteto/okteto-enterprise --namespace okteto -f https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/okteto/config.yaml --set email="$email" --set adminToken="$adminToken" --set subdomain="$subdomain" --set ingress.ip=$ingress --set publicOverride="$subdomain" --version 0.9.1
+helm upgrade --install civo okteto/okteto-enterprise --namespace okteto -f https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/okteto/config.yaml --set email="$email" --set adminToken="$adminToken" --set subdomain="$subdomain" --set ingress.ip=$ingress --version 0.9.2
 if [ ! $? -eq 0 ]; then
   echo 'failed to install okteto-enterprise'
   exit 1
