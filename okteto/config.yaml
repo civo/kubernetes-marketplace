@@ -14,7 +14,7 @@ auth:
 buildkit:
   storage:
     size: 60Gi
-    cache: 58000
+    cache: 40000
 
 ingress:
   class: traefik 
