@@ -1,6 +1,6 @@
 ---
 name: keptn
-version: 0.8.3
+version: "0.8.3"
 maintainer: gabriel.tanner@dynatrace.com, sangambiradar@hotmail.com
 description: 'Keptn is a control plane for continuous delivery and automated operations. Please note: Traefik must not be installed since Keptn exposes itself via Nginx.'
 url: https://keptn.sh/
