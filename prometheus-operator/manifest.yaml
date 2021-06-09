@@ -1,5 +1,5 @@
 ---
-name: kube-prometheus-stack
+name: prometheus-operator
 title: "Prometheus Operator"
 version: 0.38.1
 maintainer: "@puck"
