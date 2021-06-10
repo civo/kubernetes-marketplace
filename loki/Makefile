@@ -65,7 +65,7 @@ cluster-clean:
 
 $(CIVO_KUBECONFIG):
 	@echo "Creating $(CIVO_TEST_CLUSTER_NAME)"
-	@$(CIVO_CMD) k3s create $(CIVO_TEST_CLUSTER_NAME) -n 3 --size g3.k3s.small -a kube-prometheus-stack --wait
+	@$(CIVO_CMD) k3s create $(CIVO_TEST_CLUSTER_NAME) -n 3 --size g3.k3s.small -a prometheus-operator --wait
 	@$(CIVO_CMD) k3s config $(CIVO_TEST_CLUSTER_NAME) > $(CIVO_KUBECONFIG)
 	@echo "Waiting for all 3 nodes to come up"
 	@for i in $$(seq 1 10); do echo Test $$i; if [ "$$($(KUBECTL) get nodes | grep Ready | wc -l)" = "3" ]; then break; else sleep 10; fi; done
