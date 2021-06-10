@@ -1,4 +1,4 @@
-## The Istio service mesh
+## The Istio Service Mesh
 
 [Istio](https://istio.io)  addresses the challenges developers and operators face with a distributed or microservices architecture. Whether you're building from scratch or migrating existing applications to cloud native, Istio can help.
 
@@ -15,60 +15,52 @@ cd $ISTIO_DIR
 
 ### Get started
 
-### Access Istio Ingress Gateway
-
-The installation creates an *Ingress* for the `istio-ingressgateway`. You can use that to access the Istio service mesh applications.
-
-Run the following command to get Istio Ingress Gateway URL:
-
-```shell
-export ISTIO_GATEWAY_URL=$(kubectl get ing -n istio-system istio-ingressgateway-ingress -o=jsonpath='{.spec.rules[0].host}')
-curl -I $ISTIO_GATEWAY_URL 
-```
-
-The command should show an output with HTTP 502, as currently no application is part of the Istio Service mesh.
-
-```text
-HTTP/1.1 502 Bad Gateway
-Vary: Accept-Encoding
-Date: Wed, 26 May 2021 12:39:35 GMT
-Content-Length: 11
-Content-Type: text/plain; charset=utf-8
-```
+#### Enable Istio Service Mesh on `default` Namespace
 
 Label the `default` namespace for Istio automatic sidecar injection:
 
 ```shell
-kubectl label namespace default istio-injection=enabled
+kubectl label namespace default istio.io/rev=1-8-6
 ```
+__NOTE__: 
+The revision value corresponds to the Istio version that was installed. The example above shows Istio v1.8.6 was installed. For example if your use 1.10.0 then the `istio.io/rev` will be `istio.io/rev=1-10-0`
+
+#### Deploy BookInfo Application
 
 Now deploy [Deploy Bookinfo Application](https://istio.io/latest/docs/setup/getting-started/#bookinfo)
 
 Once successfully deployed, [expose the application](https://istio.io/latest/docs/setup/getting-started/#bookinfo) to outside world
 
-After you have exposed the application to outside world, try accessing it using the `$GATEWAY_URL`
+After you have exposed the application to outside world, try accessing it using the `$GATEWAY_IP`.
+
+Run the following command to get Istio Ingress IP:
 
 ```shell
-curl -I $ISTIO_GATEWAY_URL/productpage
+export GATEWAY_IP=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 ```
+Access the application,
+
+```shell
+curl -I $GATEWAY_IP/productpage
+```
+
 The curl should return you an HTTP 200
 
 ```text
 HTTP/1.1 200 OK
-Content-Length: 5179
-Content-Type: text/html; charset=utf-8
-Date: Wed, 26 May 2021 12:47:06 GMT
-Server: istio-envoy
-Vary: Accept-Encoding
-X-Envoy-Upstream-Service-Time: 1029
+content-type: text/html; charset=utf-8
+content-length: 5179
+server: istio-envoy
+date: Thu, 10 Jun 2021 06:51:29 GMT
+x-envoy-upstream-service-time: 107
 ```
 
 (OR)
 
-Opening the following url in the web browser should show you the sample book application landing page:
+Opening the following url in the web browser, to see the sample book application landing page:
 
 ```shell
-open "http://$ISTIO_GATEWAY_URL/productpage"
+"http://$GATEWAY_IP/productpage"
 ```
 
 ### Documentation
