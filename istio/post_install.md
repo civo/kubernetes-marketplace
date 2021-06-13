@@ -20,31 +20,33 @@ cd $ISTIO_DIR
 Label the `default` namespace for Istio automatic sidecar injection:
 
 ```shell
-kubectl label namespace default istio.io/rev=1-8-6
+kubectl label namespace default istio.io/rev=1-10-1
 ```
+
 __NOTE__: 
-The revision value corresponds to the Istio version that was installed. The example above shows Istio v1.8.6 was installed. For example if your use 1.10.0 then the `istio.io/rev` will be `istio.io/rev=1-10-0`
+The revision value corresponds to the Istio version that was installed. The example above shows Istio v1.10.1 was installed. For example if your use 1.8.6 then the `istio.io/rev` will be `istio.io/rev=1-8-6`
 
 #### Deploy BookInfo Application
 
 Now deploy [Deploy Bookinfo Application](https://istio.io/latest/docs/setup/getting-started/#bookinfo)
 
-Once successfully deployed, [expose the application](https://istio.io/latest/docs/setup/getting-started/#bookinfo) to outside world
+Once successfully deployed, [expose the application](https://istio.io/latest/docs/setup/getting-started/#ip) to outside world
 
-After you have exposed the application to outside world, try accessing it using the `$GATEWAY_IP`.
+After you have exposed the application to outside world, try accessing it using the **$GATEWAY_IP**.
 
 Run the following command to get Istio Ingress IP:
 
 ```shell
 export GATEWAY_IP=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 ```
-Access the application,
+
+Accessing the application,
 
 ```shell
 curl -I $GATEWAY_IP/productpage
 ```
 
-The curl should return you an HTTP 200
+The curl should return a response as shown below:
 
 ```text
 HTTP/1.1 200 OK

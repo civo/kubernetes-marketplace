@@ -1,1 +1,2 @@
-isito-*
+# omit all istio directories 
+istio-*
