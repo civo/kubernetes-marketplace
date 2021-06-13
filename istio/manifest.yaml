@@ -1,7 +1,7 @@
 ---
 name: istio
 title: "Istio Service Mesh"
-version: "latest"
+version: "multiple"
 maintainer: lin.sun@solo.io,kamesh.sampath@hotmail.com
 description: Simplify observability, traffic management, security, and policy with service mesh.
 url: https://istio.io/latest/
@@ -11,6 +11,10 @@ plans:
     configuration:
       ISTIO_VERSION:
         value: latest
+  - label: "Istio v1.10.1"
+    configuration:
+      ISTIO_VERSION:
+        value: 1.10.1
   - label: "Istio v1.9.5"
     configuration:
       ISTIO_VERSION:
