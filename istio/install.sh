@@ -5,15 +5,7 @@ set -o pipefail
 ISTIO_NS=istio-system
 ISTIO_INGRESS_NS=istio-ingress
 
-# Determines the operating system.
-OS="$(uname)"
-if [ "${OS}" = "Darwin" ] ; then
-  OSEXT="osx"
-else
-  OSEXT="linux"
-fi
-
-# Determin Istio version to download
+# Determine Istio version to download
 if [ -z "$ISTIO_VERSION" ] || [ "$ISTIO_VERSION" == "latest" ];
 then
   ISTIO_VERSION="$(curl -sL https://github.com/istio/istio/releases | \
@@ -24,14 +16,12 @@ fi
 
 echo "Downloading Istio Version $ISTIO_VERSION"
 
-DOWNLOAD_URL="https://github.com/istio/istio/releases/download/${ISTIO_VERSION}/istio-${ISTIO_VERSION}-${OSEXT}.tar.gz"
-
-wget -q "${DOWNLOAD_URL}" -O - | tar -zxf -
+curl -L https://istio.io/downloadIstio | sh -
 
 ISTIO_DIR="istio-$ISTIO_VERSION"
 export PATH=$ISTIO_DIR/bin:$PATH
 
-# Create a revision name
+# Compute the revision name
 ISTIO_REVISION="${ISTIO_VERSION//./-}"
 
 NS=$(kubectl get namespace $ISTIO_NS --ignore-not-found);
@@ -51,8 +41,7 @@ else
   -f https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/istio/istiod-service.yaml
 fi;
 
-istioctl install -y -n $ISTIO_NS \
-  -f control-plane.yaml \
+istioctl install -y -n $ISTIO_NS -f control-plane.yaml \
   --revision "$ISTIO_REVISION"
 
 ###########################################
@@ -67,6 +56,5 @@ else
   kubectl create namespace $ISTIO_INGRESS_NS;
 fi;
 
-istioctl install -y -n $ISTIO_INGRESS_NS \
-   -f https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/istio/ingress-gateways.yaml \
-  --revision "$ISTIO_REVISION"
+wget https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/istio/ingress-gateways.yaml -O - | \
+  istioctl install -y -n $ISTIO_INGRESS_NS --revision "$ISTIO_REVISION" -f -
