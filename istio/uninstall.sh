@@ -18,9 +18,19 @@ then
   ISTIO_VERSION="${ISTIO_VERSION##*/}"
 fi
 
+###########################################
+# Download and extract Istio release
+###########################################
+
 echo "Downloading Istio Version $ISTIO_VERSION"
 
-curl -L https://istio.io/downloadIstio | sh -
+wget -q "https://github.com/istio/istio/releases/download/$ISTIO_VERSION/istio-$ISTIO_VERSION-linux-amd64.tar.gz"
+
+wget -q "https://github.com/istio/istio/releases/download/$ISTIO_VERSION/istio-$ISTIO_VERSION-linux-amd64.tar.gz.sha256"
+
+sha256sum --check --status < "istio-$ISTIO_VERSION-linux-amd64.tar.gz.sha256"
+
+tar -zxf "istio-$ISTIO_VERSION-linux-amd64.tar.gz"
 
 ISTIO_DIR="istio-$ISTIO_VERSION"
 export PATH=$ISTIO_DIR/bin:$PATH
@@ -37,3 +47,5 @@ kubectl delete ns $ISTIO_NS --ignore-not-found=true
 
 # Set context namespace back to "default"
 kubectl config set-context --current --namespace=default
+
+rm -rf "istio-$ISTIO_VERSION-linux-amd64.tar.gz" "istio-$ISTIO_VERSION"

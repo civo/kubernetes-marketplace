@@ -1,2 +1,3 @@
 # omit all istio directories 
 istio-*
+*.sha256
