@@ -73,4 +73,4 @@ fi;
 wget https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/istio/ingress-gateways.yaml -O - | \
   istioctl install -y -n $ISTIO_INGRESS_NS --revision "$ISTIO_REVISION" -f -
 
-rm -rf "istio-$ISTIO_VERSION-linux-amd64.tar.gz" "istio-$ISTIO_VERSION"
+rm -rf "istio-$ISTIO_VERSION-linux-amd64.tar.gz" "istio-$ISTIO_VERSION" "istio-$ISTIO_VERSION-linux-amd64.tar.gz.sha256"

@@ -37,7 +37,7 @@ export PATH=$ISTIO_DIR/bin:$PATH
 
 # Delete Istio CRD and other resources
 istioctl manifest generate --set profile=demo |\
-   kubectl delete  -n$ISTIO_NS --ignore-not-found=true -f -
+   kubectl delete -n$ISTIO_NS --ignore-not-found=true -f - || true
 
 # Delete Istio Ingress Namespace
 kubectl delete ns $ISTIO_INGRESS_NS --ignore-not-found=true
@@ -48,4 +48,4 @@ kubectl delete ns $ISTIO_NS --ignore-not-found=true
 # Set context namespace back to "default"
 kubectl config set-context --current --namespace=default
 
-rm -rf "istio-$ISTIO_VERSION-linux-amd64.tar.gz" "istio-$ISTIO_VERSION"
+rm -rf "istio-$ISTIO_VERSION-linux-amd64.tar.gz" "istio-$ISTIO_VERSION" "istio-$ISTIO_VERSION-linux-amd64.tar.gz.sha256"
