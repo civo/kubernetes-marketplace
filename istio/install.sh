@@ -18,6 +18,10 @@ echo "Downloading Istio Version $ISTIO_VERSION"
 
 curl -L https://istio.io/downloadIstio | sh -
 
+###########################################
+# Deploy Control Plane
+###########################################
+
 ISTIO_DIR="istio-$ISTIO_VERSION"
 export PATH=$ISTIO_DIR/bin:$PATH
 
@@ -41,8 +45,8 @@ else
   -f https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/istio/istiod-service.yaml
 fi;
 
-istioctl install -y -n $ISTIO_NS -f control-plane.yaml \
-  --revision "$ISTIO_REVISION"
+wget https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/istio/control-plane.yaml -O - | \
+  istioctl install -y -n $ISTIO_NS --revision "$ISTIO_REVISION" -f -
 
 ###########################################
 # Deploy Ingress Gateways
