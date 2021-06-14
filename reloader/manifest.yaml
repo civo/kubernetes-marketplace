@@ -1,0 +1,8 @@
+---
+name: reloader
+title: "Reloader"
+version: "v0.0.91"
+maintainer: engin.diri@mail.schwarz
+description: A Kubernetes controller to automatically reload values for ConfigMaps and Secrets in Pods.
+url: https://stakater.com/opensource
+category: architecture
