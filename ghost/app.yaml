@@ -9,7 +9,6 @@ metadata:
   name: ghost-pv-claim
   namespace: ghost
 spec:
-  storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
   resources:

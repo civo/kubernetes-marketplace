@@ -3,7 +3,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: wordpress-pv-claim
 spec:
-  storageClassName: longhorn
   accessModes:
   - ReadWriteOnce
   resources:

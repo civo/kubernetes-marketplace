@@ -6,7 +6,6 @@ description: Nextcloud is a completely integrated self-managed content collabora
 url: https://nextcloud.com/
 category: management
 dependencies:
-  - longhorn
   - mariadb:5GB
   - cert-manager
 plans:

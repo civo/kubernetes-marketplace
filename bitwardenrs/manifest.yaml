@@ -6,7 +6,6 @@ description: Open Source Password Manager (Bitwarden server API implementation w
 url: https://github.com/dani-garcia/bitwarden_rs
 category: management
 dependencies:
-  - longhorn
   - cert-manager
 plans:
   - label: "1GB"

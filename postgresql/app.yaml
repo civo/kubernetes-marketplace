@@ -11,33 +11,10 @@ data:
   PGDATA: /var/lib/postgresql/data/pgdata
 ---
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: postgresql-pv-volume
-  labels:
-    type: local
-spec:
-  storageClassName: longhorn
-  csi:
-    driver: io.rancher.longhorn
-    fsType: ext4
-    volumeAttributes:
-      numberOfReplicates: '2'
-      staleReplicaTimeout: '20'
-    volumeHandle: mysql-data
-  capacity:
-    storage: $VOLUME_SIZE
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data"
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: postgresql-pv-claim
 spec:
-  storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
   resources:

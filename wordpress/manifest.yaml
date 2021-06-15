@@ -6,7 +6,6 @@ description: WordPress is open source software you can use to create a beautiful
 url: https://wordpress.org
 category: management
 dependencies:
-  - longhorn
   - mariadb:5GB
 plans:
   - label: "5GB"

@@ -5,8 +5,6 @@ maintainer: javicv@gmail.com
 description: Node-RED is a programming tool for wiring together hardware devices, APIs and online services in new and interesting ways.
 url: https://nodered.org/
 category: architecture
-dependencies:
-  - longhorn
 plans:
   - label: "5GB"
     configuration:

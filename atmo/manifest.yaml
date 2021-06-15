@@ -6,5 +6,3 @@ maintainer: connor@suborbital.dev
 description: Atmo allows you to run secure and high performance cloud native applications based on WebAssembly.
 url: https://suborbital.dev
 category: architecture
-dependencies:
-  - Longhorn

@@ -5,8 +5,6 @@ maintainer: hello@civo.com
 description: MongoDB document databases provide high availability and easy scalability.
 url: https://www.mongodb.com
 category: database
-dependencies:
-  - Longhorn
 plans:
   - label: "5GB"
     configuration:

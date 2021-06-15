@@ -22,7 +22,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: bw-pv-claim
 spec:
-  storageClassName: longhorn
   accessModes:
   - ReadWriteOnce
   resources:

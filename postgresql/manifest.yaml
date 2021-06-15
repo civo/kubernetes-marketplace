@@ -5,8 +5,6 @@ maintainer: hello@civo.com
 description: The PostgreSQL object-relational database system provides reliability and data integrity.
 url: https://www.postgresql.org
 category: database
-dependencies:
-  - Longhorn
 plans:
   - label: "5GB"
     configuration:
