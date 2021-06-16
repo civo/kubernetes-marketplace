@@ -1,7 +1,7 @@
 ---
 name: Test App 4
-version: "0.0.1"
+version: "0.0.4"
 maintainer: user@example.com
-description: Just a test app
-url: https://www.example.com/
+description: This is Test App 4 description...
+url: https://www.testapp4.com/
 category: architecture

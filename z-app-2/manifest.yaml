@@ -1,9 +1,9 @@
 ---
 name: Test App 2
-version: "0.0.1"
+version: "0.0.2"
 maintainer: user@example.com
-description: Just a test app
-url: https://www.example.com/
-category: architecture
+description: This is Test App 2 description...
+url: https://www.testapp2.com/
+category: management
 dependencies:
   - z-app-3
