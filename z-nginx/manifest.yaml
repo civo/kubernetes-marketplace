@@ -1,5 +1,6 @@
 ---
-name: Nginx Test
+name: z-nginx
+title: Nginx Test
 namespace: z-nginx
 version: "0.0.25"
 maintainer: user@example.com

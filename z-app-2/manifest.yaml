@@ -1,5 +1,6 @@
 ---
-name: Test App 2
+name: z-app-2
+title: Test App 2
 version: "0.0.2"
 maintainer: user@example.com
 description: This is Test App 2 description...
