@@ -16,7 +16,8 @@ fi
 
 echo "Downloading Istio Version $ISTIO_VERSION"
 
-curl -L https://istio.io/downloadIstio | sh -
+curl -L https://istio.io/downloadIstio | sh - &
+wait 
 
 ###########################################
 # Deploy Control Plane
