@@ -25,11 +25,7 @@ wait
 
 #ISTIO_DIR="istio-$ISTIO_VERSION"
 ISTIO_PATH=$(grep -oP '(?<=export PATH="\$PATH:).*(?=")' nohup.out)
-echo "Istio Path: $ISTIO_PATH"
-
 ISTIOCTL_CMD="$ISTIO_PATH/istioctl"
-
-[[ -f $ISTIOCTL_CMD ]] && echo "Using istioctl from: $ISTIOCTL_CMD" || echo "Unable to find istioctl at $ISTIOCTL_CMD"
 
 # Delete Istio CRD and other resources
 $ISTIOCTL_CMD manifest generate --set profile=demo |\
