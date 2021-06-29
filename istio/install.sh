@@ -25,11 +25,7 @@ wait
 
 #ISTIO_DIR="istio-$ISTIO_VERSION"
 ISTIO_PATH=$(grep -oP '(?<=export PATH="\$PATH:).*(?=")' nohup.out)
-echo "Istio Path: $ISTIO_PATH"
-
 ISTIOCTL_CMD="$ISTIO_PATH/istioctl"
-
-[[ -f $ISTIOCTL_CMD ]] && echo "Using istioctl from: $ISTIOCTL_CMD" || echo "Unable to find istioctl at $ISTIOCTL_CMD"
 
 # Compute the revision name
 ISTIO_REVISION="${ISTIO_VERSION//./-}"
