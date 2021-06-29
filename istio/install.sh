@@ -16,15 +16,20 @@ fi
 
 echo "Downloading Istio Version $ISTIO_VERSION"
 
-curl -L https://istio.io/downloadIstio | sh - &
+curl -L https://istio.io/downloadIstio | nohup sh - &
 wait 
 
 ###########################################
 # Deploy Control Plane
 ###########################################
 
-ISTIO_DIR="istio-$ISTIO_VERSION"
-export PATH=$ISTIO_DIR/bin:$PATH
+#ISTIO_DIR="istio-$ISTIO_VERSION"
+ISTIO_PATH=$(grep -oP '(?<=export PATH="\$PATH:).*(?=")' nohup.out)
+echo "Istio Path: $ISTIO_PATH"
+
+ISTIOCTL_CMD="$ISTIO_PATH/istioctl"
+
+[[ -f $ISTIOCTL_CMD ]] && echo "Using istioctl from: $ISTIOCTL_CMD" || echo "Unable to find istioctl at $ISTIOCTL_CMD"
 
 # Compute the revision name
 ISTIO_REVISION="${ISTIO_VERSION//./-}"
@@ -47,7 +52,7 @@ else
 fi;
 
 wget https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/istio/control-plane.yaml -O - | \
-  istioctl install -y -n $ISTIO_NS --revision "$ISTIO_REVISION" -f -
+  $ISTIOCTL_CMD install -y -n $ISTIO_NS --revision "$ISTIO_REVISION" -f -
 
 ###########################################
 # Deploy Ingress Gateways
@@ -62,4 +67,4 @@ else
 fi;
 
 wget https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/istio/ingress-gateways.yaml -O - | \
-  istioctl install -y -n $ISTIO_INGRESS_NS --revision "$ISTIO_REVISION" -f -
+  $ISTIOCTL_CMD install -y -n $ISTIO_INGRESS_NS --revision "$ISTIO_REVISION" -f -
