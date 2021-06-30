@@ -5,6 +5,31 @@ set -o pipefail
 ISTIO_NS=istio-system
 ISTIO_INGRESS_NS=istio-ingress
 
+basedir() {
+  # Default is current directory
+  local script=${BASH_SOURCE[0]}
+
+  # Resolve symbolic links
+  if [ -L "$script" ]; then
+      if readlink -f "$script" >/dev/null 2>&1; then
+          script=$(readlink -f "$script")
+      elif readlink "$script" >/dev/null 2>&1; then
+          script=$(readlink "$script")
+      elif realpath "$script" >/dev/null 2>&1; then
+          script=$(realpath "$script")
+      else
+          printf "ERROR: Cannot resolve symbolic link %s" "$script"
+          exit 1
+      fi
+  fi
+
+  local dir
+  dir=$(dirname "$script")
+  local full_dir
+  full_dir=$(cd "${dir}" && pwd)
+  echo "${full_dir}"
+}
+
 # Determine Istio version to download
 if [ -z "$ISTIO_VERSION" ] || [ "$ISTIO_VERSION" == "latest" ];
 then
@@ -16,7 +41,9 @@ fi
 
 echo "Downloading Istio Version $ISTIO_VERSION"
 
-curl -L https://istio.io/downloadIstio | nohup sh - &
+NOHUP_FILE="$(basedir)/nohup.out"
+rm -f "$NOHUP_FILE"
+curl -L https://istio.io/downloadIstio | nohup sh - > "$NOHUP_FILE" 2>&1 &
 wait 
 
 ###########################################
@@ -24,7 +51,7 @@ wait
 ###########################################
 
 #ISTIO_DIR="istio-$ISTIO_VERSION"
-ISTIO_PATH=$(grep -oP '(?<=export PATH="\$PATH:).*(?=")' nohup.out)
+ISTIO_PATH=$(grep -oP '(?<=export PATH="\$PATH:).*(?=")' "$NOHUP_FILE")
 ISTIOCTL_CMD="$ISTIO_PATH/istioctl"
 
 # Compute the revision name
