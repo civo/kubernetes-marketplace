@@ -55,7 +55,8 @@ ISTIO_PATH=$(grep -oP '(?<=export PATH="\$PATH:).*(?=")' "$NOHUP_FILE")
 ISTIOCTL_CMD="$ISTIO_PATH/istioctl"
 
 # Compute the revision name
-ISTIO_REVISION=$ISTIO_VERSION
+ISTIO_REVISION="${ISTIO_VERSION//./-}"
+echo "Appling Istio Revision: ${ISTIO_REVISION}"
 
 NS=$(kubectl get namespace $ISTIO_NS --ignore-not-found);
 if [[ "$NS" ]]; then
