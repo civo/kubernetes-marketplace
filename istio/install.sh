@@ -74,7 +74,7 @@ else
   -f https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/istio/istiod-service.yaml
 fi;
 
-wget https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/istio/control-plane.yaml -O - | \
+curl -sSL https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/istio/control-plane.yaml | \
   $ISTIOCTL_CMD install -y -n $ISTIO_NS --revision "$ISTIO_REVISION" -f -
 
 ###########################################
@@ -89,5 +89,5 @@ else
   kubectl create namespace $ISTIO_INGRESS_NS;
 fi;
 
-wget https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/istio/ingress-gateways.yaml -O - | \
+curl -sSL https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/istio/ingress-gateways.yaml | \
   $ISTIOCTL_CMD install -y -n $ISTIO_INGRESS_NS --revision "$ISTIO_REVISION" -f -
