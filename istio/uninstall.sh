@@ -20,11 +20,13 @@ fi
 
 echo "Downloading Istio Version $ISTIO_VERSION"
 
-curl -L https://istio.io/downloadIstio | nohup sh - &
-wait
+NOHUP_FILE="$(basedir)/nohup.out"
+rm -f "$NOHUP_FILE"
+curl -L https://istio.io/downloadIstio | nohup sh - > "$NOHUP_FILE" 2>&1 &
+wait 
 
 #ISTIO_DIR="istio-$ISTIO_VERSION"
-ISTIO_PATH=$(grep -oP '(?<=export PATH="\$PATH:).*(?=")' nohup.out)
+ISTIO_PATH=$(grep -oP '(?<=export PATH="\$PATH:).*(?=")' "$NOHUP_FILE")
 ISTIOCTL_CMD="$ISTIO_PATH/istioctl"
 
 # Delete Istio CRD and other resources
