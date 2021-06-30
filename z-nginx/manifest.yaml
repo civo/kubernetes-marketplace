@@ -2,7 +2,7 @@
 name: z-nginx
 title: Nginx Test
 namespace: z-nginx
-version: "0.0.25"
+version: "0.0.26"
 maintainer: user@example.com
 description: This is Nginx Test app description...
 url: https://www.nginxtestapp.com/
