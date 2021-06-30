@@ -43,7 +43,7 @@ echo "Downloading Istio Version $ISTIO_VERSION"
 
 NOHUP_FILE="$(basedir)/nohup.out"
 rm -f "$NOHUP_FILE"
-curl -L https://istio.io/downloadIstio | nohup sh - > "$NOHUP_FILE" 2>&1 &
+curl -sSL https://istio.io/downloadIstio | nohup sh - > "$NOHUP_FILE" 2>&1 &
 wait 
 
 ###########################################
