@@ -1,5 +1,5 @@
 ---
-name: argo
+name: argo-cd
 title: "Argo CD"
 version: (default)
 maintainer: "The Argo Project"
