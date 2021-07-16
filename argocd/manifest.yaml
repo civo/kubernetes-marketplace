@@ -1,6 +1,6 @@
 ---
 name: argo
-title: "Argo CI/CD"
+title: "Argo CD"
 version: (default)
 maintainer: "The Argo Project"
 description: Declarative continuous deployment for Kubernetes
