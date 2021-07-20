@@ -187,7 +187,7 @@ spec:
     spec:
       containers:
         - name: kubernetes-dashboard
-          image: kubernetesui/dashboard:v2.0.0
+          image: kubernetesui/dashboard:v2.3.1
           imagePullPolicy: Always
           ports:
             - containerPort: 8443
@@ -271,7 +271,7 @@ spec:
     spec:
       containers:
         - name: dashboard-metrics-scraper
-          image: kubernetesui/metrics-scraper:v1.0.4
+          image: kubernetesui/metrics-scraper:v1.0.6
           ports:
             - containerPort: 8000
               protocol: TCP
@@ -300,7 +300,6 @@ spec:
       volumes:
         - name: tmp-volume
           emptyDir: {}
-
 ---
 
 apiVersion: v1
@@ -323,4 +322,3 @@ subjects:
 - kind: ServiceAccount
   name: admin-user
   namespace: kubernetes-dashboard
-  
