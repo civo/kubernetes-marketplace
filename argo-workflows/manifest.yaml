@@ -1,8 +1,8 @@
 ---
 name: argo-workflows
 title: "Argo Workflows"
-version: (default)
 maintainer: "The Argo Project"
 description: Argo Workflows is an open source container-native workflow engine for orchestrating parallel jobs on Kubernetes.
 url: https://github.com/argoproj/argo-cd/
 category: ci_cd
+version: v3.0.3
