@@ -5,7 +5,7 @@ app.yaml:
 	@echo --- >> app.yaml
 	@kubectl apply --dry-run=client -n argocd -o yaml -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml >> app.yaml
 	@sed -i '' -e '/^version:/d' manifest.yaml
-	grep -m1 'image: .*/argocd:' app.yaml | cut -d: -f3 | sed 's/\(.*\)/version: \1/' >> manifest.yaml
+	grep -m1 'image: .*/argocd:' app.yaml | cut -d: -f3 | sed 's/\(.*\)/version: "\1"/' >> manifest.yaml
 .PHONY: clean
 clean:
 	@rm app.yaml
