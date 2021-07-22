@@ -1,7 +1,13 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: redis
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: redis
+  namespace: redis
 spec:
   ports:
     - port: 6379
@@ -14,6 +20,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: redis
+  namespace: redis
 spec:
   selector:
     matchLabels:

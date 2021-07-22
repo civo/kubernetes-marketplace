@@ -5,6 +5,7 @@ maintainer: hello@civo.com
 description: MongoDB document databases provide high availability and easy scalability.
 url: https://www.mongodb.com
 category: database
+namespace: mongodb
 plans:
   - label: "5GB"
     configuration:
@@ -21,7 +22,7 @@ plans:
 configuration:
   MONGODB_ROOT_USERNAME:
     label: "Root username"
-    value: "CIVO:ALPHANUMERIC(30)"
+    value: "KUBEMART:ALPHANUMERIC(30)"
   MONGODB_ROOT_PASSWORD:
     label: "Root password"
-    value: "CIVO:ALPHANUMERIC(30)"
+    value: "KUBEMART:ALPHANUMERIC(30)"

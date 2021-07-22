@@ -6,11 +6,7 @@ Thank you for deploying [OpenFaaS](https://github.com/openfaas/faas) to Civo's k
 
 The OpenFaaS gateway has been made available through a `NodePort` on port `31112` on each node.
 
-* Go to your Civo dashboard, click Kubernetes and then your OpenFaaS Cluster.
-
-Look for the DNS entry that you find there, it may look something like `6c1c1646-25cf-44f0-9bd5-53ee35cd7c84.k8s.civo.com`
-
-This DNS record which points at each of the nodes in your cluster.
+Get DNS record which points at each of the nodes in your cluster.
 
 * Set the following URL:
 
@@ -21,23 +17,7 @@ export OPENFAAS_URL=http://$DNS:31112
 
 ### Get your kubeconfig
 
-Pick A or B:
-
-* A) Get your kubeconfig via command-line
-
-    ```sh
-    civo k8s ls
-
-    civo k8s kubeconfig --save <CLUSTER_NAME>
-
-    kubectl config set-context <CLUSTER_NAME>
-    ```
-
-* B) Get your kubeconfig via the Dashboard
-
-    Download your `kubeconfig` file from the Civo dashboard.
-
-    Now set the `KUBECONFIG` environment variable, so that you point at your new cluster:
+Export the  `KUBECONFIG` environment variable, so that you point at your new cluster:
 
     ```
     export KUBECONFIG=$HOME/Downloads/config-file.yaml

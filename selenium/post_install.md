@@ -13,7 +13,7 @@ metadata:
   name: selenium-hub-ingress
 spec:
   rules:
-  - host: selenium.<your-cluster-id>.k8s.civo.com
+  - host: selenium.<DOMAIN_NAME>
     http:
       paths:
       - backend:
@@ -23,8 +23,8 @@ spec:
 
 ### Usage instruction
 
-Go to `http://selenium.<your-cluster-id>.k8s.civo.com` to access console
-Just add `http://selenium.<your-cluster-id>.k8s.civo.com` as your webdriver remote url for your test scripts. 
+Go to `http://selenium.<your-domain-name` to access console
+Just add `http://selenium.<your-domain-name` as your webdriver remote url for your test scripts. 
 
 ### Scaling (experimental)
 

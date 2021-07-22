@@ -5,6 +5,7 @@ maintainer: hello@civo.com
 description: The PostgreSQL object-relational database system provides reliability and data integrity.
 url: https://www.postgresql.org
 category: database
+namespace: postgres
 plans:
   - label: "5GB"
     configuration:
@@ -21,7 +22,7 @@ plans:
 configuration:
   USERNAME:
     label: "Admin username"
-    value: "CIVO:ALPHANUMERIC(10)"
+    value: "KUBEMART:ALPHANUMERIC(10)"
   PASSWORD:
     label: "Admin password"
-    value: "CIVO:ALPHANUMERIC(30)"
+    value: "KUBEMART:ALPHANUMERIC(30)"
