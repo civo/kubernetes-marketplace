@@ -5,3 +5,4 @@ maintainer: "scndeldev@gmail.com"
 description: Selenium is a framework for testing web applications. PLEASE PROVIDE AT LEAST 2 GB MEMORY FOR STABILITY.
 url: https://www.seleniumhq.org
 category: ci_cd
+namespace: selenium

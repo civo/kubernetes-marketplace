@@ -9,6 +9,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mongodb-service
+  namespace: mongodb
 spec:
   type: LoadBalancer
   ports:
@@ -19,14 +20,13 @@ spec:
     app: mongodb
 ```
 
-This will open up YOUR_CLUSTER_ID.k8s.civo.com:27017 to the whole world. You should lock this down in the [firewall](https://www.civo.com/account/firewalls) automatically created in Civo for your Kubernetes cluster. Locking down the firewall will only affect access from OUTSIDE of your Kubernetes cluster, access from your applications within Kubernetes will not be affected.
+This will open up {Loadbalancer_IP}:27017 to the whole world. You should lock this down in the firewall your Kubernetes cluster. Locking down the firewall will only affect access from OUTSIDE of your Kubernetes cluster, access from your applications within Kubernetes will not be affected.
 
 ### Usage instruction
 
-You can use this application from within your cluster by just using the hostname `mongodb` and can create databases and users using the `root` access credentials above this message. For example, to create an application's database and user credentials and given that the `kubectx` and [Civo CLI](https://github.com/civo/cli) are installed, with a Civo Kubernetes cluster called `my-cluster-name`:
+You can use this application from within your cluster by just using the hostname `mongodb` and can create databases and users using the `root` access credentials above this message. For example, to create an application's database and user credentials and given that the `kubectx` is installed and `KUBECONFIG` is pointing to the right cluster:
 
 ```
-$ civo k3s config my-cluster-name --save
 $ kubectx my-cluster-name
 $ kubectl run tmp-shell --generator=run-pod/v1 --rm -i \
   --tty --image alpine:3.9 -- /bin/sh

@@ -13,7 +13,7 @@ metadata:
   namespace: portainer
 spec:
   rules:
-  - host: portainer.<your-cluster-id>.k8s.civo.com
+  - host: portainer.$DOMAIN_NAME
     http:
       paths:
       - backend:
@@ -22,4 +22,4 @@ spec:
 ```
 
 
-This will open up http://portainer.YOUR_CLUSTER_ID.k8s.civo.com to the whole world.
+This will open up http://portainer.$DOMAIN_NAME to the whole world.

@@ -1,7 +1,13 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: nodered
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: nodered-pv-claim
+  namespace: nodered
 spec:
   accessModes:
   - ReadWriteOnce
@@ -13,6 +19,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nodered
+  namespace: nodered
 spec:
   replicas: 1
   strategy:
@@ -62,6 +69,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nodered
+  namespace: nodered
 spec:
   ports:
   - name: "http-1880"
@@ -76,7 +84,7 @@ metadata:
   name: nodered
 spec:
   rules:
-  - host: nodered.$CLUSTER_ID.k8s.civo.com
+  - host: nodered.$DOMAIN_NAME
     http:
       paths:
       - backend:

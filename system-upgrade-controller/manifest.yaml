@@ -3,4 +3,5 @@ version: v0.6.2
 maintainer: "@curx"
 description: "A general-purpose, Kubernetes-native upgrade controller (for nodes)."
 url: https://github.com/rancher/system-upgrade-controller
-category: architecture     
+category: architecture    
+namespace: system-upgrade 

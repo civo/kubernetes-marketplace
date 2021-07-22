@@ -18,9 +18,9 @@ MariaDB [(none)]> GRANT ALL ON nextcloud_db.* TO nc_user;
 
 ### External Access
 
-An ingress is automatically created during the application install. A certificate using cert manager and lets-encrypt is also applied automatically and registered against your Civo email address and the generated domain name.
+An ingress is automatically created during the application install. A certificate using cert manager and lets-encrypt is also applied automatically and registered against your  email address and the generated domain name.
 
-You can access this (replacing the clusterID with your own) via: https://nextcloud.YOUR_CLUSTER_ID.k8s.civo.com
+You can access this via: https://nextcloud.$DOMAIN_NAME
 
 ###
 You should now see the setup page where you can enter the database details created above.

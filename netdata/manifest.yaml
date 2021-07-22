@@ -7,3 +7,4 @@ url: https://github.com/netdata/netdata
 dependencies:
   - Helm
 category: monitoring
+namespace: netdata

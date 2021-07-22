@@ -6,3 +6,4 @@ maintainer: "@soukron"
 description: A Kubernetes controller and tool for one-way encrypted Secrets
 url: https://github.com/bitnami-labs/sealed-secrets
 category: architecture
+namespace: kube-system

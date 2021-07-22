@@ -49,7 +49,7 @@ Based on the database creation example above, the fields would be filled like th
 
 ## External Access
 
-An Ingress is created during the installation process. To access your wordpress use http://wordpress.YOUR_CLUSTER_ID.k8s.civo.com
+An Ingress is created during the installation process. To access your wordpress use http://wordpress.YOUR_DOMAIN_NAME
 
 If you want to change the hostname or modify the ingress, edit it with
 ```

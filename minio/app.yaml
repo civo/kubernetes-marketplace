@@ -1,8 +1,14 @@
 ---
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: minio
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: minio-pv-claim
+  namespace: minio
 spec:
   accessModes:
     - ReadWriteOnce
@@ -14,6 +20,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: minio
+  namespace: minio
 spec:
   strategy:
     type: Recreate
