@@ -7,7 +7,6 @@ url: https://wordpress.org
 category: management
 namespace: wordpress
 dependencies:
-  - longhorn
   - mariadb:5GB
 plans:
   - label: "5GB"

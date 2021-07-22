@@ -6,8 +6,6 @@ namespace: minio
 description: Minio is an Amazon S3 compatible object storage server.
 url: https://min.io
 category: storage
-dependencies:
-  - Longhorn
 configuration:
   MINIO_ACCESS_KEY:
     label: "Access key"

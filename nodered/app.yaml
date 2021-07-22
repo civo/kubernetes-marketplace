@@ -9,7 +9,6 @@ metadata:
   name: nodered-pv-claim
   namespace: nodered
 spec:
-  storageClassName: longhorn
   accessModes:
   - ReadWriteOnce
   resources:

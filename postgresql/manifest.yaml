@@ -6,8 +6,6 @@ description: The PostgreSQL object-relational database system provides reliabili
 url: https://www.postgresql.org
 category: database
 namespace: postgres
-dependencies:
-  - Longhorn
 plans:
   - label: "5GB"
     configuration:

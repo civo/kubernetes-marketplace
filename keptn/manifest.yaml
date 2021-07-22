@@ -1,7 +1,8 @@
 ---
 name: keptn
-version: 0.7.1
-maintainer: sangambiradar@hotmail.com
-description: an event-based control plane for continuous delivery and automated operations for cloud-native applications.
+title: Keptn
+version: "0.8.3"
+maintainer: gabriel.tanner@dynatrace.com, sangambiradar@hotmail.com
+description: Keptn is a control plane for continuous delivery and automated operations. Traefik must not be installed since Keptn exposes itself via Nginx.
 url: https://keptn.sh/
 category: ci_cd

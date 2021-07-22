@@ -1,4 +1,4 @@
-## Argo CI/CD
+## Argo CD
 
 ### Usage instruction
 

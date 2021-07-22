@@ -4,27 +4,11 @@ metadata:
   name: mongodb
 ---
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mongodb-pv-volume
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: $VOLUME_SIZE
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/data/db"
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mongodb-pv-claim
   namespace: mongodb
 spec:
-  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:

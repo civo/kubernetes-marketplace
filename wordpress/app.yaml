@@ -4,7 +4,6 @@ metadata:
   name: wordpress-pv-claim
   namespace: wordpress
 spec:
-  storageClassName: longhorn
   accessModes:
   - ReadWriteOnce
   resources:

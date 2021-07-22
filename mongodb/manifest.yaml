@@ -6,8 +6,6 @@ description: MongoDB document databases provide high availability and easy scala
 url: https://www.mongodb.com
 category: database
 namespace: mongodb
-dependencies:
-  - Longhorn
 plans:
   - label: "5GB"
     configuration:

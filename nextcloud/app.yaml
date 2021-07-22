@@ -29,7 +29,6 @@ metadata:
   name: nc-pv-claim
   namespace: nextcloud
 spec:
-  storageClassName: longhorn
   accessModes:
   - ReadWriteOnce
   resources:

@@ -1,25 +1,8 @@
 ---
 apiVersion: v1
-kind: PersistentVolume
+kind: Namespace
 metadata:
-  name: mariadb-pv-volume
-  labels:
-    type: local
-spec:
-  storageClassName: longhorn
-  csi:
-    driver: io.rancher.longhorn
-    fsType: ext4
-    volumeAttributes:
-      numberOfReplicates: '2'
-      staleReplicaTimeout: '20'
-    volumeHandle: mysql-data
-  capacity:
-    storage: $VOLUME_SIZE
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data"
+  name: mariadb
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -27,7 +10,6 @@ metadata:
   name: mariadb-pv-claim
   namespace: mariadb
 spec:
-  storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
   resources:

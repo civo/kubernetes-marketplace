@@ -5,35 +5,11 @@ metadata:
   name: minio
 ---
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: minio-pv
-  namespace: minio
-  labels:
-    name: minio-data
-    type: longhorn
-spec:
-  capacity:
-    storage: $PV_SIZE_GB
-  volumeMode: Filesystem
-  storageClassName: longhorn
-  accessModes:
-    - ReadWriteOnce
-  csi:
-    driver: io.rancher.longhorn
-    fsType: ext4
-    volumeAttributes:
-      numberOfReplicates: '2'
-      staleReplicaTimeout: '20'
-    volumeHandle: minio-data
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: minio-pv-claim
   namespace: minio
 spec:
-  storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
   resources:

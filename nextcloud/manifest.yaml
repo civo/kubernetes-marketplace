@@ -7,7 +7,6 @@ url: https://nextcloud.com/
 namespace: nextcloud
 category: management
 dependencies:
-  - longhorn
   - mariadb:5GB
   - cert-manager
 plans:

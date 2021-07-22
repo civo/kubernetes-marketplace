@@ -64,4 +64,23 @@ Run the patch command
 kubectl -n ghost patch deployment ghost-blog --patch "$(cat patch.yaml)"
 ```
 
+## Upgrade version
 
+Create file `patch.yaml` using template below :
+
+```yaml
+spec:
+  template:
+    spec:
+      containers:
+      - name: ghost-blog
+        image: ghost:image_tag
+```
+
+Run the patch command
+
+```
+kubectl -n ghost patch deployment ghost-blog --patch "$(cat patch.yaml)"
+```
+
+**NOTE :** You can find the latest image_tag from https://hub.docker.com/_/ghost

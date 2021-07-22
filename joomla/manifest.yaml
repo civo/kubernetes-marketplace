@@ -6,7 +6,6 @@ description: Popular open source content management system (CMS)
 url: https://www.joomla.org/
 category: management
 dependencies:
-  - longhorn
   - mariadb:5GB
   - cert-manager
 plans:

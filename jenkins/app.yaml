@@ -6,7 +6,6 @@ metadata:
     type: longhorn
     app: jenkins
 spec:
-  storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
   resources:

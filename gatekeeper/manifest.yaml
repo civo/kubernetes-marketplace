@@ -1,0 +1,8 @@
+---
+name: opa-gatekeeper
+title: "OPA Gatekeeper"
+version: "3.4.0"
+maintainer: "@_csor"
+description: Gatekeeper is a Policy Controller for Kubernetes
+url: https://open-policy-agent.github.io/gatekeeper/website/docs/
+category: security

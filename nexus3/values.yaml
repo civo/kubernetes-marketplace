@@ -1,0 +1,28 @@
+deployment:
+  initContainers:
+  - name: fmp-volume-permission
+    image: busybox
+    imagePullPolicy: IfNotPresent
+    command:
+      - sh
+      - -c 
+      - mkdir -p /nexus-data/etc && chown -R 200:200 /nexus-data/etc
+    volumeMounts:
+      - name: nexus-repository-manager-data
+        mountPath: /nexus-data
+nexus:
+  env:
+    - name: install4jAddVmParams
+      value: "-Xms1200M -Xmx1200M -XX:MaxDirectMemorySize=2G -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+    - name: NEXUS_SECURITY_RANDOMPASSWORD
+      value: "false"
+  properties:
+    override: true
+    # nexus.properties 
+    data:
+      nexus.scripts.allowCreation: true
+  securityContext:
+    fsGroup: 200
+service:
+  enabled: true
+  type: NodePort

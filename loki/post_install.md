@@ -2,7 +2,7 @@
 
 - Port forward to the grafana pod
 ```sh
-kubectl port-forward -n monitoring service/prometheus-operator-grafana 8080:80
+kubectl port-forward -n monitoring service/prometheus-grafana 8080:80
 ```
 - Log into the grafana stack 
   - URL: http://localhost:8080 

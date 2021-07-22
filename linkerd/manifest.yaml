@@ -1,7 +1,24 @@
 ---
 name: Linkerd
 version: Latest
-maintainer: hello@civo.com
+maintainer: hello@buoyant.io
 description: Linkerd is a service mesh, giving you runtime debugging, observability, reliability, and security.
 url: https://linkerd.io
 category: architecture
+plans:
+  - label: "Linkerd Minimal"
+    configuration:
+      LINKERD:
+        value: linkerd
+  - label: "Linkerd & Jaeger"
+    configuration:
+      LINKERD:
+        value: linkerdjaeger
+  - label: "Linkerd with Dashboard"
+    configuration:
+      LINKERD:
+        value: linkerdviz
+  - label: "Linkerd with Dashboard & Jaeger"
+    configuration:
+      LINKERD:
+        value: theworks

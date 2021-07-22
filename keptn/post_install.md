@@ -1,4 +1,3 @@
-
 ## Keptn
 
 ### Start using Keptn
@@ -18,10 +17,8 @@
 
 
 1. Connect the CLI to the Keptn installation
-  ```
-  API_PORT=$(kubectl get svc api-gateway-nginx -n keptn -o jsonpath='{.spec.ports[?(@.name=="http")].nodePort}')
-  EXTERNAL_NODE_IP=$(kubectl get nodes -o jsonpath='{ $.items[0].status.addresses[?(@.type=="ExternalIP")].address }')
-  KEPTN_ENDPOINT=http://${EXTERNAL_NODE_IP}:${API_PORT}/api
+  ```  
+  KEPTN_ENDPOINT=http://$(kubectl -n keptn get service api-gateway-nginx -o jsonpath='{$.status.loadBalancer.ingress[0].ip}')/api
   KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)
 
   keptn auth --endpoint=$KEPTN_ENDPOINT --api-token=$KEPTN_API_TOKEN
@@ -29,17 +26,10 @@
 
 1. Access the bridge via:
   ```
-  echo http://${EXTERNAL_NODE_IP}:${API_PORT}/bridge
-  ```
-  
-  Get the credentials with the following command:
-  ```
-  keptn configure bridge -o
+  keptn configure bridge --output
   ```
 
 1. Follow the [tutorials](https://tutorials.keptn.sh/?cat=quality-gates) to get started! Please note that Keptn is already installed and these parts of the tutorials can be skipped :)
-
-
 
 ## Documentation and tutorials
 

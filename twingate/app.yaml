@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: twingate-connector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: twingate
+      component: connector
+  template:
+    metadata:
+      labels:
+        app: twingate
+        component: connector
+    spec:
+      securityContext:
+        sysctls:
+          - name: net.ipv4.ping_group_range
+            value: "0  2147483647"
+      containers:
+        - name: twingate-connector
+          image: "twingate/connector:1"
+          imagePullPolicy: Always
+          env:
+            - name: TWINGATE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: connector
+                  key: url
+            - name: TWINGATE_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: connector
+                  key: accessToken
+            - name: TWINGATE_REFRESH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: connector
+                  key: refreshToken
+            - name: LOG_LEVEL
+              value: "3"

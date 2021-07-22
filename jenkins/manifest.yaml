@@ -5,8 +5,6 @@ maintainer: "@ruanbekker"
 description: Jenkins is a Continuous Integration and Delivery server
 url: https://jenkins.io
 category: ci_cd
-dependencies:
-  - Longhorn
 plans:
   - label: "5GB"
     configuration:

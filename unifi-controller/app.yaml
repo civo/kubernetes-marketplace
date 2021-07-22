@@ -1,0 +1,114 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: unifi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-unifi
+  namespace: unifi
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unifi
+  namespace: unifi
+  labels:
+    app: unifi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unifi
+  template:
+    metadata:
+      labels:
+        app: unifi
+    spec:
+      containers:
+      - env:
+        - name: TZ
+          value: Europe/London
+        image: jacobalberty/unifi:stable-6
+        imagePullPolicy: IfNotPresent
+        name: unifi-controller
+        ports:
+        - containerPort: 3478
+          name: stun
+          protocol: UDP
+        - containerPort: 8080
+          name: device-comms
+          protocol: TCP
+        - containerPort: 8443
+          name: https
+          protocol: TCP
+        - containerPort: 8880
+          name: directionhttp
+          protocol: TCP
+        - containerPort: 8843
+          name: directionhttps
+          protocol: TCP 
+        - containerPort: 6789
+          name: speedtest
+          protocol: TCP
+        resources:
+          limits:
+            memory: 1Gi
+          requests:
+            memory: 64Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /unifi
+          name: unifi
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: unifi
+        persistentVolumeClaim:
+          claimName: pvc-unifi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: unifi
+  creationTimestamp: null
+  labels:
+    app: unifi
+  name: unifi-srv
+spec:
+  ports:
+    - name: "3478"
+      port: 3478
+      protocol: UDP
+      targetPort: 3478
+    - name: "8080"
+      port: 8080
+      targetPort: 8080
+    - name: "8443"
+      port: 8443
+      targetPort: 8443
+    - name: "8880"
+      port: 8880
+      targetPort: 8880
+    - name: "8843"
+      port: 8843
+      targetPort: 8843       
+    - name: "6789"
+      port: 6789
+      targetPort: 6789            
+  selector:
+    app: unifi
+
+
+    

@@ -9,7 +9,6 @@ metadata:
   name: ghost-pv-claim
   namespace: ghost
 spec:
-  storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
   resources:
@@ -37,7 +36,7 @@ spec:
     spec:
       containers:
         - name: ghost-blog
-          image: ghost:3.35.5
+          image: ghost:4.8.3
           ports:
             - name: ghost-blog
               containerPort: 2368

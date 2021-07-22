@@ -1,28 +1,21 @@
-## Using LitmusChaos Operator 
+## Verify LitmusChaos Control Plane Installation
 
-- Verify that the chaos operator and chaos CRDs are successfully installed
+- Verify that the litmus control plane (portal) deployments (server, frontend, mongodb)are installed 
+and running succesfully. 
 
-  ```
-  $ kubectl get pods -n litmus
-  NAME                                 READY   STATUS    RESTARTS   AGE
-  chaos-operator-ce-56449c7d75-lt8jc   1/1     Running   0          90s
-  ```
+```
+kubectl get pods -n litmus
+```
 
-  ```
-  $ kubectl get crds | grep chaos
+Expected Output: 
 
-  chaosengines.litmuschaos.io       2020-11-06T14:23:59Z
-  chaosexperiments.litmuschaos.io   2020-11-06T14:24:00Z
-  chaosresults.litmuschaos.io       2020-11-06T14:24:00Z
-  ```
+```
+chaos-litmus-portal-frontend-ff8b554dc-q5rl4   1/1     Running   0          2m6s
+chaos-litmus-portal-mongo-6764cfdd59-c9r56     1/1     Running   0          2m6s
+chaos-litmus-portal-server-5ffbccbfff-dknv8    2/2     Running   0          2m6s
+```
 
-  ```
-  $ kubectl api-resources | grep chaos
-  chaosengines                                   litmuschaos.io                 true         ChaosEngine
-  chaosexperiments                               litmuschaos.io                 true         ChaosExperiment
-  chaosresults                                   litmuschaos.io                 true         ChaosResult
-  ```
+- Refer to the [litmuschaos 2.0 beta documentation](https://litmusdocs-beta.netlify.app/docs/getstarted) for registration of chaos targets (cluster/namespaces) and construction of chaos workflows
 
+- Refer to the [litmuschaos experiment documentation](https://docs.litmuschaos.io/docs/pod-delete/) for details on how you tune different chaos experiments within a chaos workflow. 
 
-- Refer to the litmuschaos documentation for detailed steps on how you can execute different chaos experiments: https://docs.litmuschaos.io.
-  You can also refer to this [blog](https://www.civo.com/learn/chaos-engineering-kubernetes-litmus) to get started with litmus on Civo Cloud.

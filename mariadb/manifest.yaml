@@ -6,8 +6,6 @@ description: MariaDB is a community-developed fork of MySQL intended to remain f
 url: https://mariadb.com
 category: database
 namespace: mariadb
-dependencies:
-  - Longhorn
 plans:
   - label: "5GB"
     configuration:
