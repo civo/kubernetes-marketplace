@@ -1,4 +1,10 @@
 #!/bin/bash
 
 # Delete the app
-kubectl delete -f cert-manager.yaml
+helm delete cert-manager -n=cert-manager
+
+# Delete the custom CRDs
+kubectl delete -f https://github.com/jetstack/cert-manager/releases/download/v1.0.2/cert-manager.crds.yaml
+
+# Delete the namespace
+kubectl delete namespace cert-manager
