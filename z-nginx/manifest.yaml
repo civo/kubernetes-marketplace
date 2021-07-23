@@ -1,0 +1,13 @@
+---
+name: z-nginx
+title: Nginx Test
+namespace: z-nginx
+version: "0.0.28"
+maintainer: user@example.com
+description: This is Nginx Test app description...
+url: https://www.nginxtestapp.com/
+category: architecture
+configuration:
+  RANDOM_WORDS:
+    label: "Random words"
+    value: "KUBEMART:WORDS(10)"

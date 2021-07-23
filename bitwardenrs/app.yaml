@@ -1,3 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bitwardenrs
+---
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
@@ -13,17 +18,18 @@ spec:
       name: letsencrypt-prod-bw
     # Enable the HTTP-01 challenge provider
     solvers:
-    - http01:
-        ingress:
-          class: traefik
+      - http01:
+          ingress:
+            class: traefik
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: bw-pv-claim
+  namespace: bitwardenrs
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
       storage: $VOLUME_SIZE
@@ -32,6 +38,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: bw-service
+  namespace: bitwardenrs
 spec:
   selector:
     app: bw
@@ -40,10 +47,19 @@ spec:
       port: 80
       targetPort: 80
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bitwardenrs-database-url
+  namespace: bitwardenrs
+data:
+  DATABASE_URL: dXBkYXRlLXRoaXMtYWZ0ZXItaW5zdGFsbGF0aW9uCg==
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bw
+  namespace: bitwardenrs
   labels:
     app: bw
 spec:
@@ -60,40 +76,43 @@ spec:
     spec:
       containers:
         - name: bw
-          image: bitwardenrs/server-mysql:1.17.0
+          image: bitwardenrs/server-mysql:1.19.0
           imagePullPolicy: IfNotPresent
           ports:
-          - containerPort: 80
-            protocol: TCP
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: bitwardenrs-database-url
+                  key: DATABASE_URL
           volumeMounts:
-          - name: bw-persistent-storage
-            mountPath: /data   
-           
+            - name: bw-persistent-storage
+              mountPath: /data
 
       volumes:
-      - name: bw-persistent-storage
-        persistentVolumeClaim:
-          claimName: bw-pv-claim            
+        - name: bw-persistent-storage
+          persistentVolumeClaim:
+            claimName: bw-pv-claim
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod-bw
-    ingress.kubernetes.io/ssl-redirect: "true"  
+    ingress.kubernetes.io/ssl-redirect: "true"
   name: bw
+  namespace: bitwardenrs
 spec:
   tls:
     - hosts:
-      - bw.$CLUSTER_ID.k8s.civo.com
-      secretName: letsencrypt-prod-bw  
+        - bw.$DOMAIN_NAME
+      secretName: letsencrypt-prod-bw
   rules:
-  - host: bw.$CLUSTER_ID.k8s.civo.com
-    http:
-      paths:
-      - backend:
-          serviceName: bw-service
-          servicePort: 80
-
-
-             
+    - host: bw.$DOMAIN_NAME
+      http:
+        paths:
+          - backend:
+              serviceName: bw-service
+              servicePort: 80

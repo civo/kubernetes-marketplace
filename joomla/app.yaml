@@ -1,3 +1,13 @@
+# ********
+# README
+# ********
+# When you are updating Joomla image e.g. from 3.9.22 to 3.9.24,
+# please also update the version in the init container. There are
+# two (3) occurrence of version number in this file. Update them all.
+# Please also update the download link inside the init container
+# e.g. 3-9-24 for 3.9.24 version.
+# Tip: use `Ctrl/Cmd + F` to search them.
+
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
@@ -13,17 +23,18 @@ spec:
       name: letsencrypt-prod-joomla
     # Enable the HTTP-01 challenge provider
     solvers:
-    - http01:
-        ingress:
-          class: traefik
+      - http01:
+          ingress:
+            class: traefik
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: joomla-pv-claim
+  namespace: joomla
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
       storage: $VOLUME_SIZE
@@ -32,6 +43,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: joomla-service
+  namespace: joomla
 spec:
   selector:
     app: joomla
@@ -44,6 +56,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: joomla
+  namespace: joomla
   labels:
     app: joomla
 spec:
@@ -58,49 +71,69 @@ spec:
       labels:
         app: joomla
     spec:
+      initContainers:
+        - name: update-joomla-files
+          image: joomla:3.9.24
+          command: ["sh", "-c"]
+          args:
+            - if test -f "configuration.php"; then
+              echo "--- start ---";
+              echo "Date & time - $(date)";
+              echo "Current directory - $(pwd)";
+              echo "User - $(whoami)";
+              curl -L https://downloads.joomla.org/cms/joomla3/3-9-24/Joomla_3-9-24-Stable-Full_Package.zip?format=zip --output joomla.zip;
+              apt-get update -y && apt-get install -y unzip;
+              unzip -o joomla.zip;
+              rm -rf joomla.zip;
+              rm -rf installation;
+              chown -R www-data:www-data .;
+              head administrator/manifests/files/joomla.xml;
+              echo "--- end ---";
+              fi;
+          volumeMounts:
+            - name: joomla-persistent-storage
+              mountPath: /var/www/html
       containers:
         - name: joomla
           image: joomla:3.9.24
           imagePullPolicy: IfNotPresent
           ports:
-          - containerPort: 80
-            protocol: TCP
+            - containerPort: 80
+              protocol: TCP
           volumeMounts:
-          - name: joomla-persistent-storage
-            mountPath: /var/www/html   
+            - name: joomla-persistent-storage
+              mountPath: /var/www/html
           env:
-          - name: JOOMLA_DB_HOST
-            value: mariadb
-          - name: JOOMLA_DB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: mysql-pass
-                key: MYSQL_ROOT_PASSWORD 
+            - name: JOOMLA_DB_HOST
+              value: mariadb.mariadb
+            - name: JOOMLA_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-pass
+                  key: MYSQL_ROOT_PASSWORD
 
       volumes:
-      - name: joomla-persistent-storage
-        persistentVolumeClaim:
-          claimName: joomla-pv-claim            
+        - name: joomla-persistent-storage
+          persistentVolumeClaim:
+            claimName: joomla-pv-claim
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod-joomla
-    ingress.kubernetes.io/ssl-redirect: "true"  
+    ingress.kubernetes.io/ssl-redirect: "true"
   name: joomla
+  namespace: joomla
 spec:
   tls:
     - hosts:
-      - joomla.$CLUSTER_ID.k8s.civo.com
-      secretName: letsencrypt-prod-joomla  
+        - joomla.$DOMAIN_NAME
+      secretName: letsencrypt-prod-joomla
   rules:
-  - host: joomla.$CLUSTER_ID.k8s.civo.com
-    http:
-      paths:
-      - backend:
-          serviceName: joomla-service
-          servicePort: 80
-
-
-             
+    - host: joomla.$DOMAIN_NAME
+      http:
+        paths:
+          - backend:
+              serviceName: joomla-service
+              servicePort: 80

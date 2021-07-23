@@ -19,9 +19,9 @@ spec:
       name: letsencrypt-prod-nextcloud
     # Enable the HTTP-01 challenge provider
     solvers:
-    - http01:
-        ingress:
-          class: traefik
+      - http01:
+          ingress:
+            class: traefik
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -30,11 +30,11 @@ metadata:
   namespace: nextcloud
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
       storage: $VOLUME_SIZE
-      
+
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
@@ -73,9 +73,9 @@ metadata:
   namespace: nextcloud
 spec:
   ports:
-  - name: "http-80"
-    port: 80
-    targetPort: 80
+    - name: "http-80"
+      port: 80
+      targetPort: 80
   selector:
     app: nextcloud
 ---
@@ -84,7 +84,7 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod-nextcloud
-    ingress.kubernetes.io/ssl-redirect: "true"  
+    ingress.kubernetes.io/ssl-redirect: "true"
   name: nextcloud
 spec:
   tls:

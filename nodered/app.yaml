@@ -10,7 +10,7 @@ metadata:
   namespace: nodered
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
       storage: $VOLUME_SIZE
@@ -61,9 +61,9 @@ spec:
           periodSeconds: 30
           timeoutSeconds: 5
       volumes:
-      - name: data
-        persistentVolumeClaim:
-          claimName: nodered-pv-claim
+        - name: data
+          persistentVolumeClaim:
+            claimName: nodered-pv-claim
 ---
 apiVersion: v1
 kind: Service
@@ -72,9 +72,9 @@ metadata:
   namespace: nodered
 spec:
   ports:
-  - name: "http-1880"
-    port: 1880
-    targetPort: web
+    - name: "http-1880"
+      port: 1880
+      targetPort: web
   selector:
     app: nodered
 ---

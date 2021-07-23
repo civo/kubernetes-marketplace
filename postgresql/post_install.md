@@ -33,7 +33,7 @@ $ kubectl run tmp-shell --generator=run-pod/v1 --rm -i \
 / # apk update
 / # apk add postgresql-client
 / # psql -U ADMIN_USERNAME -h postgresql postgresdb
-Password for user 12CNT2Eq6i: 
+Password for user 12CNT2Eq6i:
 psql (11.5)
 Type "help" for help.
 

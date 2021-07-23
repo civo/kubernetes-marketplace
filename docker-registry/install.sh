@@ -2,10 +2,15 @@
 
 htpasswd -Bbn $REGISTRY_USERNAME $REGISTRY_PASSWD > /tmp/auth
 
-kubectl create secret generic auth-ingress --from-file /tmp/auth
+kubectl create ns docker-registry
 
-# Update the helm repo
+kubectl -n docker-registry create secret generic auth-ingress --from-file /tmp/auth
+
+helm repo add stable https://charts.helm.sh/stable
+
 helm repo update
 
-helm install stable/docker-registry --name private-registry \
-  --namespace default --set persistence.enabled=false
+helm upgrade --install \
+  private-registry stable/docker-registry \
+  --namespace docker-registry \
+  --set persistence.enabled=false

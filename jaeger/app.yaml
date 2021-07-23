@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: observability
+  name: jaeger
 ---
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
@@ -9926,14 +9926,14 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: jaeger-operator
-  namespace: observability
+  namespace: jaeger
 ---
 ## this is a set of basic permissions the Jaeger Operator needs when restricted to work in specific namespaces
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: jaeger-operator
-  namespace: observability
+  namespace: jaeger
 rules:
 
 ## our own custom resources
@@ -10116,11 +10116,11 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: jaeger-operator
-  namespace: observability
+  namespace: jaeger
 subjects:
 - kind: ServiceAccount
   name: jaeger-operator
-  namespace: observability
+  namespace: jaeger
 roleRef:
   kind: Role
   name: jaeger-operator
@@ -10130,7 +10130,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jaeger-operator
-  namespace: observability
+  namespace: jaeger
 spec:
   replicas: 1
   selector:

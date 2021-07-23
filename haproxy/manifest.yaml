@@ -1,5 +1,6 @@
 ---
 name: haproxy
+namespace: haproxy
 title: "Haproxy"
 version: "1.5"
 maintainer: alejandro@civo.com, amit2cha@gmail.com

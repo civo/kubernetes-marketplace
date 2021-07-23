@@ -1,0 +1,10 @@
+---
+name: z-app-1
+title: Test App 1
+version: "0.0.1"
+maintainer: user@example.com
+description: This is Test App 1 description...
+url: https://www.testapp1.com/
+category: management
+dependencies:
+  - z-app-2

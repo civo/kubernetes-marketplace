@@ -1,9 +1,8 @@
 ---
 name: Maesh
+namespace: maesh
 version: Latest
 maintainer: hello@civo.com
 description: Maesh is an easy to configure and non-invasive service mesh that allows visibility and management of the traffic flows.
 url: https://mae.sh
-dependencies:
-  - Helm
 category: architecture

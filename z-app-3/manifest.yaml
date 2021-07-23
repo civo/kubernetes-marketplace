@@ -1,0 +1,10 @@
+---
+name: z-app-3
+title: Test App 3
+version: "0.0.3"
+maintainer: user@example.com
+description: This is Test App 3 description...
+url: https://www.testapp3.com/
+category: architecture
+dependencies:
+  - z-app-4
