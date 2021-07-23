@@ -27,5 +27,5 @@ configuration:
     label: "Domain name"
     value: "KUBEMART:DOMAIN_NAME"
   EMAIL_ADDRESS:
-    label: "Email Address"
+    label: "Email address"
     value: "KUBEMART:EMAIL_ADDRESS"    

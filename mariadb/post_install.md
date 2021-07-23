@@ -35,6 +35,6 @@ $ kubectl run tmp-shell --generator=run-pod/v1 --rm -i \
 / # mysql -u root -pYOUR_ROOT_PASSWORD_HERE -h mariadb
 
 mysql> CREATE DATABASE my_application;
-mysql> GRANT ALL ON my_application.* to my_user identified 
+mysql> GRANT ALL ON my_application.* to my_user identified
        by 'super-strong-password-here';
 ```

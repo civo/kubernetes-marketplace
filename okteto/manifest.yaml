@@ -1,9 +1,9 @@
 ---
 name: okteto-enterprise
 title: "Okteto Enterprise"
-version: 0.9.2
+version: 0.9.6
 maintainer: "@rberrelleza"
-description: Development Platform for Microservices, powered by Kubernetes
+description: Development Environments for your Cloud Native Apps, powered by Kubernetes
 url: https://okteto.com/enterprise
 category: management
 configuration:

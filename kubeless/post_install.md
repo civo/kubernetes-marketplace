@@ -5,7 +5,7 @@
 By default external access to the Kubeless UI isn't available. This is easily changed by applying the following YAML to your cluster with `kubectl apply -f kubeless-ingress.yaml` (or whatever you call the file containing the contents below):
 
 
-```
+```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -32,7 +32,7 @@ This will open up `http://ui.kubeless.<clusterDomainName>` to the whole world.
 By default external access to the functions isn't available. This is easily changed by applying the following YAML to your cluster with `kubectl apply -f kubeless-functions-ingress.yaml` (or whatever you call the file containing the contents below):
 
 
-```
+```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -63,4 +63,5 @@ This will open up
 to the whole world.
 
 #### Update
+
 The same creation `apply` command can be used to update ingress configuration after adding a new function path.

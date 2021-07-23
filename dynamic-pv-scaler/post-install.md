@@ -11,6 +11,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: dynamic-pv-scaler-config
+  namespace: dynamic-pv-scaler
   labels:
     name: dynamic-pv-scaler-config
     app: dynamic-pv-scaler-config

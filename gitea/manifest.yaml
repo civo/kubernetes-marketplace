@@ -1,5 +1,6 @@
 ---
 name: gitea
+namespace: gitea
 title: "Gitea"
 version: 1.12.5
 maintainer: "@giteaio"
@@ -9,7 +10,7 @@ category: management
 configuration:
   ADMIN_PASS:
     label: "Admin Password"
-    value: "CIVO:ALPHANUMERIC(30)"
+    value: "KUBEMART:ALPHANUMERIC(30)"
   ADMIN_EMAIL:
     label: "Admin Email"
-    value: "CIVO:EMAIL_ADDRESS"
+    value: "KUBEMART:EMAIL_ADDRESS"

@@ -1,5 +1,6 @@
 ---
 name: Jenkins
+namespace: jenkins
 version: 2.190.1
 maintainer: "@ruanbekker"
 description: Jenkins is a Continuous Integration and Delivery server
@@ -21,7 +22,7 @@ plans:
 configuration:
   JENKINS_USERNAME:
     label: "Jenkins username"
-    value: "CIVO:ALPHANUMERIC(8)"
+    value: "KUBEMART:ALPHANUMERIC(8)"
   JENKINS_PASSWORD:
     label: "Jenkins password"
-    value: "CIVO:ALPHANUMERIC(30)"
+    value: "KUBEMART:ALPHANUMERIC(30)"

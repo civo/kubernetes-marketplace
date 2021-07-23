@@ -1,5 +1,6 @@
 ---
 name: kube-hunter
+namespace: kube-hunter
 version: latest
 maintainer: "@milindchawre"
 description: kube-hunter is an open-source tool that hunts for security issues in your Kubernetes clusters.

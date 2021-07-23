@@ -1,6 +1,7 @@
 ---
 name: LitmusChaos
 version: 2.0.15-Beta4
+namespace: litmuschaos
 maintainer: gdsoumya@chaosnative.com, sayan@chaosnative.com
 description: LitmusChaos is a cloud-native Chaos Engineering framework
 url: https://github.com/litmuschaos/litmus

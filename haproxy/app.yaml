@@ -2,15 +2,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: haproxy-controller
-
+  name: haproxy
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: haproxy-ingress-service-account
-  namespace: haproxy-controller
-
+  namespace: haproxy
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -61,13 +59,12 @@ rules:
   - create
   - patch
   - update
-
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: haproxy-ingress-cluster-role-binding
-  namespace: haproxy-controller
+  namespace: haproxy
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -75,8 +72,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: haproxy-ingress-service-account
-  namespace: haproxy-controller
-
+  namespace: haproxy
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -92,7 +88,7 @@ metadata:
   labels:
     run: ingress-default-backend
   name: ingress-default-backend
-  namespace: haproxy-controller
+  namespace: haproxy
 spec:
   replicas: 1
   selector:
@@ -108,7 +104,6 @@ spec:
         image: gcr.io/google_containers/defaultbackend:1.0
         ports:
         - containerPort: 8080
-
 ---
 apiVersion: v1
 kind: Service
@@ -116,7 +111,7 @@ metadata:
   labels:
     run: ingress-default-backend
   name: ingress-default-backend
-  namespace: haproxy-controller
+  namespace: haproxy
 spec:
   selector:
     run: ingress-default-backend
@@ -125,7 +120,6 @@ spec:
     port: 8080
     protocol: TCP
     targetPort: 8080
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -133,7 +127,7 @@ metadata:
   labels:
     run: haproxy-ingress
   name: haproxy-ingress
-  namespace: haproxy-controller
+  namespace: haproxy
 spec:
   replicas: 1
   selector:
@@ -201,7 +195,7 @@ metadata:
   labels:
     run: haproxy-ingress
   name: haproxy-ingress
-  namespace: haproxy-controller
+  namespace: haproxy
 spec:
   selector:
     run: haproxy-ingress

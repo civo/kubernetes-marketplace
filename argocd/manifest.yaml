@@ -1,5 +1,6 @@
 ---
 name: argo-cd
+namespace: argocd
 title: "Argo CD"
 maintainer: "The Argo Project"
 description: Declarative continuous deployment for Kubernetes

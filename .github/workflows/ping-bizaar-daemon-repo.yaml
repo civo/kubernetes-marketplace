@@ -1,0 +1,15 @@
+name: ping-kubemart-daemon-repo
+on: push
+
+jobs:
+  ping-kubemart-daemon-repo:
+    name: Dispatch to kubemart/kubemart-daemon
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Emit repository_dispatch
+        uses: mvasigh/dispatch-action@main
+        with:
+          token: ${{ secrets.GH_PAT }}
+          owner: kubemart
+          repo: kubemart-daemon
+          event_type: ping-from-kubernetes-marketplace-repo

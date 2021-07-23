@@ -31,7 +31,7 @@ $ kubectl run tmp-shell --generator=run-pod/v1 --rm -i --tty \
 / # apk update
 / # apk add redis
 / # redis-cli -h redis -a YOUR_PASSWORD_HERE
-redis:6379> 
+redis:6379>
 ```
 
 When you quit the shell the pod for this temporary Alpine container will be deleted.

@@ -1,3 +1,11 @@
+# ********
+# README
+# ********
+# When you are updating WordPress image e.g. from 5.5.0 to 5.5.1,
+# please also update the version in the init container. There are
+# three (3) occurrence of version number in this file. Update them all.
+# Tip: use `Ctrl/Cmd + F` to search them.
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -5,7 +13,7 @@ metadata:
   namespace: wordpress
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
       storage: $VOLUME_SIZE
@@ -16,6 +24,8 @@ metadata:
   name: wordpress
   namespace: wordpress
 spec:
+  strategy:
+    type: Recreate
   replicas: 1
   selector:
     matchLabels:
@@ -51,34 +61,55 @@ spec:
           periodSeconds: 10
           timeoutSeconds: 5
       initContainers:
-      - name: prepare-ssl-config
-        image: busybox
-        command: ["sh", "-c"]
-        args:
-        - if [ ! -e /var/www/html/civo-init.sh ]; then
-            WP_CONFIG_FILE=/var/www/html/wp-config-sample.php;
-            
-            echo "LINES=\$(cat $WP_CONFIG_FILE | wc -l)" >> /var/www/html/civo-init.sh;
-            echo "let LINES=\$LINES-2" >> /var/www/html/civo-init.sh;
-            echo "head -\${LINES} wp-config-sample.php > /tmp/head_temp.txt" >> /var/www/html/civo-init.sh;
-            echo "tail -3 wp-config-sample.php > /tmp/tail_temp.txt" >> /var/www/html/civo-init.sh;
-            echo "echo 'if (isset(\$_SERVER[\"HTTP_X_FORWARDED_PROTO\"]) && \$_SERVER[\"HTTP_X_FORWARDED_PROTO\"] === \"https\") {' >> /tmp/head_temp.txt" >> /var/www/html/civo-init.sh;
-            echo "echo '    \$_SERVER[\"HTTPS\"] = \"on\";' >> /tmp/head_temp.txt" >> /var/www/html/civo-init.sh;
-            echo "echo '}' >> /tmp/head_temp.txt" >> /var/www/html/civo-init.sh;
-            echo "cat /tmp/head_temp.txt > $WP_CONFIG_FILE" >> /var/www/html/civo-init.sh;
-            echo "cat /tmp/tail_temp.txt >> $WP_CONFIG_FILE" >> /var/www/html/civo-init.sh;
-            echo "rm -f /tmp/head_temp.txt /tmp/tail_temp.txt" >> /var/www/html/civo-init.sh;
+        - name: update-wordpress-files
+          image: wordpress:5.5.3
+          command: ["sh", "-c"]
+          args:
+            - if test -f "/var/www/html/wp-config.php"; then
+              echo "--- start ---";
+              echo "Date & time - $(date)";
+              echo "Current directory - $(pwd)";
+              echo "User - $(whoami)";
+              curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar;
+              php wp-cli.phar --info;
+              chmod +x wp-cli.phar;
+              mv wp-cli.phar /usr/local/bin/wp;
+              wp core download --force --allow-root --version=5.5.3;
+              chown -R www-data:www-data .;
+              echo "--- end ---";
+              fi;
+          volumeMounts:
+            - mountPath: /var/www/html
+              name: data
+              subPath: html
+        - name: prepare-ssl-config
+          image: busybox
+          command: ["sh", "-c"]
+          args:
+            - if [ ! -e /var/www/html/civo-init.sh ]; then
+              WP_CONFIG_FILE=/var/www/html/wp-config-sample.php;
 
-            chmod +x /var/www/html/civo-init.sh;
-          fi;
-        volumeMounts:
-        - mountPath: /var/www/html
-          name: data
-          subPath: html
+              echo "LINES=\$(cat $WP_CONFIG_FILE | wc -l)" >> /var/www/html/civo-init.sh;
+              echo "let LINES=\$LINES-2" >> /var/www/html/civo-init.sh;
+              echo "head -\${LINES} wp-config-sample.php > /tmp/head_temp.txt" >> /var/www/html/civo-init.sh;
+              echo "tail -3 wp-config-sample.php > /tmp/tail_temp.txt" >> /var/www/html/civo-init.sh;
+              echo "echo 'if (isset(\$_SERVER[\"HTTP_X_FORWARDED_PROTO\"]) && \$_SERVER[\"HTTP_X_FORWARDED_PROTO\"] === \"https\") {' >> /tmp/head_temp.txt" >> /var/www/html/civo-init.sh;
+              echo "echo '    \$_SERVER[\"HTTPS\"] = \"on\";' >> /tmp/head_temp.txt" >> /var/www/html/civo-init.sh;
+              echo "echo '}' >> /tmp/head_temp.txt" >> /var/www/html/civo-init.sh;
+              echo "cat /tmp/head_temp.txt > $WP_CONFIG_FILE" >> /var/www/html/civo-init.sh;
+              echo "cat /tmp/tail_temp.txt >> $WP_CONFIG_FILE" >> /var/www/html/civo-init.sh;
+              echo "rm -f /tmp/head_temp.txt /tmp/tail_temp.txt" >> /var/www/html/civo-init.sh;
+
+              chmod +x /var/www/html/civo-init.sh;
+              fi;
+          volumeMounts:
+            - mountPath: /var/www/html
+              name: data
+              subPath: html
       volumes:
-      - name: data
-        persistentVolumeClaim:
-          claimName: wordpress-pv-claim
+        - name: data
+          persistentVolumeClaim:
+            claimName: wordpress-pv-claim
 ---
 apiVersion: v1
 kind: Service
@@ -87,9 +118,9 @@ metadata:
   namespace: wordpress
 spec:
   ports:
-  - name: "http-80"
-    port: 80
-    targetPort: web
+    - name: "http-80"
+      port: 80
+      targetPort: web
   selector:
     app: wordpress
 ---
@@ -100,9 +131,9 @@ metadata:
   namespace: wordpress
 spec:
   rules:
-  - host: wordpress.$CLUSTER_ID.k8s.civo.com
-    http:
-      paths:
-      - backend:
-          serviceName: wordpress
-          servicePort: 80
+    - host: wordpress.$DOMAIN_NAME
+      http:
+        paths:
+          - backend:
+              serviceName: wordpress
+              servicePort: 80
