@@ -1,7 +1,7 @@
 ## Flux
 
 Flux is a Continuous Delivery solution for Kubernetes.
-Flux is constructed with the [GitOps Toolkit](https://toolkit.fluxcd.io/components/),
+Flux is constructed with the [GitOps Toolkit](https://fluxcd.io/components/),
 a set of composable APIs and specialized tools for keeping Kubernetes clusters in sync
 with sources of configuration (like Git & Helm repositories), and automating updates
 to configuration when there is new code to deploy.
@@ -14,12 +14,12 @@ Flux is a [CNCF](https://cncf.io) project made for:
 
 ### Usage instruction
 
-To get started with Flux, [browse the documentation](https://toolkit.fluxcd.io) or try the following guides:
+To get started with Flux, [browse the documentation](https://fluxcd.io) or try the following guides:
 
-- [Get started with Flux](https://toolkit.fluxcd.io/get-started/)
+- [Get started with Flux](https://fluxcd.io/get-started/)
 - [GitOps workflow for multi-env deployments with Flux, Kustomize and Helm](https://github.com/fluxcd/flux2-kustomize-helm-example)
-- [Manage Kubernetes secrets with Mozilla SOPS](https://toolkit.fluxcd.io/guides/mozilla-sops/)
-- [Automate container image updates to Git](https://toolkit.fluxcd.io/guides/image-update/)
+- [Manage Kubernetes secrets with Mozilla SOPS](https://fluxcd.io/guides/mozilla-sops/)
+- [Automate container image updates to Git](https://fluxcd.io/guides/image-update/)
 - [Manage multi-tenant clusters with Flux](https://github.com/fluxcd/flux2-multi-tenancy)
 
 ## Upgrade instruction
@@ -27,7 +27,7 @@ To get started with Flux, [browse the documentation](https://toolkit.fluxcd.io) 
 Install the latest Flux CLI:
 
 - Homebrew: `brew install fluxcd/tap/flux`
-- Bash: `curl -s https://toolkit.fluxcd.io/install.sh | sudo bash`
+- Bash: `curl -s https://fluxcd.io/install.sh | sudo bash`
 
 Binaries for macOS AMD64/AARCH64, Linux AMD64/ARM and Windows are available for download on the
 [release page](https://github.com/fluxcd/flux2/releases).
