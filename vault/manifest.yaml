@@ -5,3 +5,12 @@ maintainer: "@dirsigler"
 description: "Secure, store and tightly control access to tokens, passwords, certificates, encryption keys for protecting secrets and other sensitive data."
 url: https://www.vaultproject.io/
 category: security
+plans:
+  - label: "Standalone"
+    configuration:
+      INSTALL_MODE:
+        value: standalone
+  - label: "Dev"
+    configuration:
+      INSTALL_MODE:
+        value: dev
