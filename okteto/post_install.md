@@ -1,8 +1,8 @@
 ## Okteto Enterprise
 
-Okteto Enterprise is a Developer Platform for Microservices powered by Kubernetes. 
+Thank you for deploying [Okteto Enterprise](https://okteto.com/enterprise) to Civo's Kubernetes service.
 
-Thank you for deploying [Okteto Enterprise](https://okteto.com/enterprise) to Civo's k3s service.
+Okteto Enterprise gives you Development Environments for your Cloud Native Apps, powered by Kubernetes.
 
 ## Obtain access
 

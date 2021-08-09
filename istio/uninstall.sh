@@ -20,13 +20,17 @@ fi
 
 echo "Downloading Istio Version $ISTIO_VERSION"
 
-curl -L https://istio.io/downloadIstio | sh -
+NOHUP_FILE="$(basedir)/nohup.out"
+rm -f "$NOHUP_FILE"
+curl -sSL https://istio.io/downloadIstio | nohup sh - > "$NOHUP_FILE" 2>&1 &
+wait 
 
-ISTIO_DIR="istio-$ISTIO_VERSION"
-export PATH=$ISTIO_DIR/bin:$PATH
+#ISTIO_DIR="istio-$ISTIO_VERSION"
+ISTIO_PATH=$(grep -oP '(?<=export PATH="\$PATH:).*(?=")' "$NOHUP_FILE")
+ISTIOCTL_CMD="$ISTIO_PATH/istioctl"
 
 # Delete Istio CRD and other resources
-istioctl manifest generate --set profile=demo |\
+$ISTIOCTL_CMD manifest generate --set profile=demo |\
    kubectl delete  -n$ISTIO_NS --ignore-not-found=true -f -
 
 # Delete Istio Ingress Namespace

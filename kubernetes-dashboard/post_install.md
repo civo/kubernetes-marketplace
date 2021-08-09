@@ -8,15 +8,16 @@ In order to access the dashboard, you must obtain the bearer token for the admin
 kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^token
 ```
 
-Once you have that token, you can proxy into the cluster by running:
+Once you have that token, you can do a port forward by running:
 
 ```
-kubectl proxy
+kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard  8000:443
+
 ```
 
 The dashboard will now be accessible at the following url:
 
-http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+https://localhost:8000/
 
 To access it, enter the token you obtained by selecting "Sign In" and "Bearer Token".
 
