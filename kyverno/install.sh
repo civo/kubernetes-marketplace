@@ -4,6 +4,8 @@ helm repo add kyverno https://kyverno.github.io/kyverno/
 
 helm repo update
 
+helm install kyverno-crds kyverno/kyverno-crds --namespace kyverno --create-namespace
+
 VALUES=""
 
 case $POD_SECURITY_STANDARDS in
