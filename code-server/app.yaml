@@ -1,0 +1,118 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod-coder
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: $EMAIL_ADDRESS
+    privateKeySecretRef:
+      name: letsencrypt-prod-coder
+    solvers:
+    - http01:
+        ingress:
+          class: traefik
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: coder-pv-claim
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: $VOLUME_SIZE
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coder-service
+spec:
+  selector:
+    app: coder
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coder
+  labels:
+    app: coder
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: coder
+  template:
+    metadata:
+      labels:
+        app: coder
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 1000
+        runAsUser: 1000
+      containers:
+        - name: coder
+          image: codercom/code-server:3.11.1
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: DOCKER_USER
+            value: civo
+          - name: PASSWORD
+            value: $ADMIN_PASS
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /healthz
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /healthz
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5  
+          volumeMounts:
+          - name: coder-persistent-storage
+            mountPath: /home/coder/workspace
+      volumes:
+      - name: coder-persistent-storage
+        persistentVolumeClaim:
+          claimName: coder-pv-claim
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: coder
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod-coder
+    ingress.kubernetes.io/ssl-redirect: "true"  
+spec:
+  tls:
+    - hosts:
+      - coder.$CLUSTER_ID.k8s.civo.com
+      secretName: letsencrypt-prod-coder 
+  rules:
+  - host: coder.$CLUSTER_ID.k8s.civo.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: coder-service
+            port: 
+              number: 8080
+

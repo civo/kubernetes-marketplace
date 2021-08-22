@@ -1,0 +1,33 @@
+---
+name: codeserver
+title: "Code Server"
+version: 3.11.1
+maintainer: "@ruanbekker"
+description: Run VS Code on any machine anywhere and access it through the browser.
+url: https://github.com/cdr/code-server
+category: management
+dependencies:
+  - cert-manager
+plans:
+  - label: "1GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 1Gi
+  - label: "2GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 2Gi
+  - label: "5GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 5Gi
+configuration:
+  ADMIN_PASS:
+    label: "Admin Password"
+    value: "CIVO:ALPHANUMERIC(30)"
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
+  EMAIL_ADDRESS:
+    label: "Email Address"
+    value: "CIVO:EMAIL_ADDRESS"
