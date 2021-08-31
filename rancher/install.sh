@@ -1,6 +1,6 @@
 #!/bin/sh
 
-subdomain="$CLUSTER_ID.k8s.civo.com"
+subdomain="rancher.$CLUSTER_ID.k8s.civo.com"
 email="$EMAIL"
 
 kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.3.1/cert-manager.yaml
