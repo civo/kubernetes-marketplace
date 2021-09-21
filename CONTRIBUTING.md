@@ -1,6 +1,6 @@
 # Contribution Guidelines
 
-Thank you for interest in contributing to the Civo Kubernetes Marketplace! To ensure consistency and quality of applications available on the marketplace we have prepared this guideline document. It details the criteria for acceptance into the marketplace, maintenance requirements and responsibilities for applications, and measures we may take concerning submitted applications if issues are discovered.
+Thank you for your interest in contributing to the Civo Kubernetes Marketplace! To ensure consistency and quality of applications available on the marketplace we have prepared this guideline document. It details the criteria for acceptance into the marketplace, maintenance requirements and responsibilities for applications, and measures we may take concerning submitted applications if issues are discovered.
 
 ### Acceptance Criteria
 
