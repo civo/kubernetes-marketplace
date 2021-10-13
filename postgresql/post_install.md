@@ -28,8 +28,9 @@ You can use this application from within your cluster by just using the hostname
 ```
 $ civo k3s config my-cluster-name --save
 $ kubectx my-cluster-name
-$ kubectl run tmp-shell --generator=run-pod/v1 --rm -i \
-  --tty --image alpine -- /bin/sh
+$ kubectl run tmp-shell --rm -i \
+  --tty --image alpine -- /bin/sh \
+  --generator=run-pod/v1
 
 / # apk update
 / # apk add postgresql-client
