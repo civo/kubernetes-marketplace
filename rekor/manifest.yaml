@@ -1,0 +1,18 @@
+---
+name: rekor
+title: "rekor"
+version: "0.2.2"
+maintainer: engin.diri@mail.schwarz
+description: Rekor provides a restful API based server for validation and a transparency log for storage.
+url: https://sigstore.dev/
+category: architecture
+configuration:
+  MYSQL_PASSWORD:
+    label: "MySQL password"
+    value: "CIVO:ALPHANUMERIC(30)"
+  MYSQL_ROOT_PASSWORD:
+    label: "MySQL root password"
+    value: "CIVO:ALPHANUMERIC(30)"
+  SERVER_INGRESS_HOSTNAME:
+    label: "Ingress hostname"
+    value: "CIVO:ALPHANUMERIC(30)"
