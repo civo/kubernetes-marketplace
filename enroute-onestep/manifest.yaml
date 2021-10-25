@@ -1,0 +1,8 @@
+---
+name: enroute-onestep
+title: "EnRoute OneStep Ingress API Gateway"
+version: "0.8.0"
+maintainer: "@chintan8saaras"
+description: EnRoute OneStep is a lightweight shim on Envoy Proxy used to secure and route traffic destined for microservices in Kubernetes Cluster. It runs as a Kubernetes-native API Gateway.
+url: https://getenroute.io/docs/getting-started-enroute-ingress-controller/
+category: architecture
