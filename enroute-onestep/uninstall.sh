@@ -2,7 +2,7 @@
 
 ENROUTE_NS=enroutedemo
 
-kubectl config set-context --current --namespace=$NS
+kubectl config set-context --current --namespace=$ENROUTE_NS
 
 # Uninstall EnRoute chart
 helm uninstall enroute

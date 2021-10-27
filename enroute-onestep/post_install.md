@@ -6,4 +6,4 @@ EnRoute-OneStep can be programmed by a developer using one command. Policy Overl
 
 ## Getting Started
 
-[Gettin started](https://getenroute.io/docs/getting-started-enroute-ingress-controller/) with EnRoute-OneStep involves running [only one command](https://getenroute.io/docs/one-step-ingress/)
+[Getting started](https://getenroute.io/docs/getting-started-enroute-ingress-controller/) with EnRoute-OneStep involves running [only one command](https://getenroute.io/docs/one-step-ingress/)
