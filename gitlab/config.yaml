@@ -1,0 +1,29 @@
+global:
+  ingress:
+    enabled: true
+    class: traefik
+prometheus:
+  install: false
+certmanager:
+  install: false
+nginx-ingress:
+  enabled: false
+gitlab:
+  gitaly:
+    persistence:
+      storageClass: civo-volume
+      size: 50Gi
+postgresql:
+  persistence:
+    storageClass: civo-volume
+    size: 8Gi
+minio:
+  persistence:
+    storageClass: civo-volume
+    size: 10Gi
+redis:
+  master:
+    persistence:
+      storageClass: civo-volume
+      size: 5Gi
+
