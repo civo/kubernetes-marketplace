@@ -1,17 +1,15 @@
-## Falco is a Cloud Native Runtime Security tool designed to detect anomalous activity in your applications
+### GitLab is The DevOps Platform, delivered as a single application. This makes GitLab unique and creates a streamlined software workflow, unlocking your organization from the constraints of a pieced together toolchain. Learn how GitLab offers unmatched visibility and higher levels of efficiency in a single application across the DevOps lifecycle.
 
-### Falco community on Slack can help with the chart if there are any questions, but Civo are responsible for the install.sh and manifest.yaml
 
 ### Get started
 
-[Falco Security docs](https://falco.org/docs/)
+You can get started with the [GitLab Documentation](https://docs.gitlab.com/ee/).
+
+You can access the GitLab instance by visiting the domain specified during installation. The default domain would be `gitlab.$CLLUSTER_ID.k8s.civo.com`. The initial login user is `root` and password you can get from following command 
+
+```
+kubectl get secret gitlab-gitlab-initial-root-password -ojsonpath='{.data.password}' | base64 --decode ; echo
+
+```
 
 
-[Add your Rules](https://falco.org/docs/rules/)
-
-Falco does not Expose to Web out of the box. You can use Following command 
-``` kubectl port-forward service/falco-falcosidekick-ui 2802:2802 -n falco ```, But it's already noticed that it can trigger events because of kubectl port-forward triggers a Falco rule.
-
-You can use following link to get more resources [At this Blog](https://blog.webdev-jogeleit.de/blog/falco-security-and-monitoring-on-rke-bare-metal-cluster-with-rancher/)
-
-For advanced configurations like ingress visit [Values.yaml](https://github.com/falcosecurity/charts/blob/427bf5c8eb1a80b93e142376eb338bde4efa899a/falcosidekick/values.yaml#L211)
