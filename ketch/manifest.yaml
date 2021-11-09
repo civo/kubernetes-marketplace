@@ -1,7 +1,9 @@
 ---
 name: Ketch
-version: "0.5"
+version: "0.6"
 maintainer: "@ravilach"
 description: Ketch improves the developer experience and productivity by implementing a standard application-level definition. 
 url: https://learn.theketch.io/docs/getting-started
 category: management
+dependencies:
+  - cert-manager
