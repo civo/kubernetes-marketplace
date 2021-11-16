@@ -1,0 +1,25 @@
+---
+name: gitlab
+title: "GitLab"
+version: "14.4.0"
+maintainer: saiyam@civo.com
+description: GitLab is a single application that spans the entire software development lifecycle. 
+category: management
+dependencies:
+  - cert-manager
+plans:
+  - label: "Community edition"
+    configuration:
+      EDITION:
+        value: ce
+  - label: "Enterprise edition"
+    configuration:
+      EDITION:
+        value: ee
+configuration:
+  EMAIL:
+    label: "Email"
+    value: "CIVO:EMAIL_ADDRESS"
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
