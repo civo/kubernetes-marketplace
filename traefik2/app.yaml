@@ -180,7 +180,7 @@ spec:
       serviceAccountName: traefik-ingress-controller
       containers:
         - name: traefik
-          image: 'traefik:v2.3'
+          image: 'traefik:v2.5'
           args:
             - --api
             - --api.dashboard
@@ -194,7 +194,7 @@ spec:
             - --metrics.prometheus.buckets=0.100000, 0.300000, 1.200000, 5.000000
             - --metrics.prometheus.addEntryPointsLabels=true
             - --metrics.prometheus.addServicesLabels=true
-            - --entryPoints.metrics.address=:8080
+            - --entryPoints.metrics.address=:9000
             - --metrics.prometheus.entryPoint=metrics
           ports:
             - name: web
@@ -204,7 +204,7 @@ spec:
               containerPort: 443
               protocol: TCP
             - name: metrics
-              containerPort: 8080
+              containerPort: 9000
               protocol: TCP
           resources:
             requests:
