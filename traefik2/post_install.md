@@ -60,8 +60,8 @@ websecure endpoint (443).
 
 ### Dashboard
 
-The traefik api / dashboard is enabled by default on the `internal@api`. If you do not wish to set up a ingress route to
-the dashboard, you can update the DaemonSet and add the following values:
+The traefik api / dashboard is enabled by default on `internal@api` (default TraefikService). 
+If you do not wish to set up an ingress route to the dashboard, you can update the DaemonSet and add the following values:
 
 ```yaml
 args:
