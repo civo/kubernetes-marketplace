@@ -1,6 +1,6 @@
-title: "Vault"
-name: vault
-version: v0.13.0
+title: "Hashicorp Vault"
+name: hashicorp-vault
+version: "0.18.0"
 maintainer: "@dirsigler"
 description: "Secure, store and tightly control access to tokens, passwords, certificates, encryption keys for protecting secrets and other sensitive data."
 url: https://www.vaultproject.io/
