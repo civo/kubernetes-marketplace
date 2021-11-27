@@ -26,7 +26,7 @@ This is simply the application you want KEDA to scale based on a scale trigger. 
 Once this is done, KEDA will start collecting information from the event source and drive the autoscaling accordingly. Here is an example of a `ScaledObject`, which defines how to autoscale a Redis list consumer called processor that is running in a cluster as a Kubernetes `Deployment`.
 
 ```yaml
-apiVersion: keda.k8s.io/v1alpha1
+apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
   name: redis-scaledobject
@@ -68,4 +68,4 @@ The event source or trigger specific parameters are:
 
 ### More details
 
-See https://keda.sh/docs/2.4/concepts/ for the usage of the different event sources and scalers.
+See https://keda.sh/docs/2.5/concepts/ for the usage of the different event sources and scalers.
