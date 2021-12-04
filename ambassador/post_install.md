@@ -4,5 +4,5 @@
 
 ### Get started
 
-[Quickstart guide for ambassador edge stack.](https://www.getambassador.io/docs/edge-stack/latest/tutorials/getting-started/)
+[Quickstart guide for ambassador edge stack.](https://www.getambassador.io/docs/edge-stack/1.13/tutorials/getting-started/)
 
