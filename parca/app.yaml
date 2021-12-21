@@ -32,7 +32,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.4.1
+    app.kubernetes.io/version: v0.6.1
   name: parca
   namespace: parca
 spec:
@@ -48,7 +48,7 @@ spec:
         app.kubernetes.io/component: observability
         app.kubernetes.io/instance: parca
         app.kubernetes.io/name: parca
-        app.kubernetes.io/version: v0.4.1
+        app.kubernetes.io/version: v0.6.1
     spec:
       containers:
       - args:
@@ -56,7 +56,7 @@ spec:
         - --config-path=/var/parca/parca.yaml
         - --log-level=info
         - --cors-allowed-origins=*
-        image: ghcr.io/parca-dev/parca:v0.4.1
+        image: ghcr.io/parca-dev/parca:v0.6.1
         livenessProbe:
           exec:
             command:
@@ -139,7 +139,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.4.1
+    app.kubernetes.io/version: v0.6.1
   name: parca
   namespace: parca
 rules:
@@ -159,7 +159,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.4.1
+    app.kubernetes.io/version: v0.6.1
   name: parca
   namespace: parca
 roleRef:
@@ -177,7 +177,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.4.1
+    app.kubernetes.io/version: v0.6.1
   name: parca
   namespace: parca
 spec:
@@ -197,7 +197,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.4.1
+    app.kubernetes.io/version: v0.6.1
   name: parca
   namespace: parca
 ---
@@ -217,7 +217,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.2.0
+    app.kubernetes.io/version: v0.3.0
   name: parca-agent
   namespace: parca
 rules:
@@ -242,7 +242,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.2.0
+    app.kubernetes.io/version: v0.3.0
   name: parca-agent
   namespace: parca
 roleRef:
@@ -261,7 +261,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.2.0
+    app.kubernetes.io/version: v0.3.0
   name: parca-agent
   namespace: parca
 spec:
@@ -276,7 +276,7 @@ spec:
         app.kubernetes.io/component: observability
         app.kubernetes.io/instance: parca-agent
         app.kubernetes.io/name: parca-agent
-        app.kubernetes.io/version: v0.2.0
+        app.kubernetes.io/version: v0.3.0
     spec:
       containers:
       - args:
@@ -294,7 +294,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ghcr.io/parca-dev/parca-agent:v0.2.0
+        image: ghcr.io/parca-dev/parca-agent:v0.3.0
         name: parca-agent
         ports:
         - containerPort: 7071
@@ -303,15 +303,10 @@ spec:
         resources: {}
         securityContext:
           privileged: true
+          readOnlyRootFilesystem: true
         volumeMounts:
         - mountPath: /tmp
           name: tmp
-        - mountPath: /host/root
-          name: root
-          readOnly: true
-        - mountPath: /host/proc
-          name: proc
-          readOnly: true
         - mountPath: /run
           name: run
         - mountPath: /lib/modules
@@ -322,8 +317,6 @@ spec:
           name: cgroup
         - mountPath: /sys/fs/bpf
           name: bpffs
-        - mountPath: /etc/localtime
-          name: localtime
       hostPID: true
       nodeSelector:
         kubernetes.io/arch: amd64
@@ -337,12 +330,6 @@ spec:
       volumes:
       - emptyDir: {}
         name: tmp
-      - hostPath:
-          path: /
-        name: root
-      - hostPath:
-          path: /proc
-        name: proc
       - hostPath:
           path: /run
         name: run
@@ -358,9 +345,6 @@ spec:
       - hostPath:
           path: /sys/kernel/debug
         name: debugfs
-      - hostPath:
-          path: /etc/localtime
-        name: localtime
 ---
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
@@ -369,7 +353,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.2.0
+    app.kubernetes.io/version: v0.3.0
   name: parca-agent
   namespace: parca
 spec:
@@ -377,11 +361,8 @@ spec:
   allowedCapabilities:
   - '*'
   allowedHostPaths:
-  - pathPrefix: /proc
   - pathPrefix: /sys
-  - pathPrefix: /
-  - pathPrefix: /lib
-  - pathPrefix: /etc
+  - pathPrefix: /lib/modules
   fsGroup:
     rule: RunAsAny
   hostIPC: true
@@ -414,7 +395,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.2.0
+    app.kubernetes.io/version: v0.3.0
   name: parca-agent
   namespace: parca
 rules:
@@ -434,7 +415,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.2.0
+    app.kubernetes.io/version: v0.3.0
   name: parca-agent
   namespace: parca
 roleRef:
@@ -452,6 +433,6 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.2.0
+    app.kubernetes.io/version: v0.3.0
   name: parca-agent
   namespace: parca
