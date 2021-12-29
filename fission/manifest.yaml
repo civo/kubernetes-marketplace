@@ -1,6 +1,6 @@
 ---
 name: Fission
-version: "v1.15.0"
+version: "v1.15.1"
 maintainer: "@fissionio"
 description: Fission is a Kubernetes-native serverless framework. Deploy functions in any language and map them to events like HTTP requests with fast cold-start time.
 url: https://fission.io/
