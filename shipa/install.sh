@@ -12,6 +12,6 @@ helm upgrade --install shipa shipa-charts/shipa \
 --timeout=15m \
 --version 1.5.2 \
 --set=metrics.image=gcr.io/shipa-1000/metrics:30m \
---set=auth.adminUser=admin@acme.io \
---set=auth.adminPassword=shipa1234 \
+--set=auth.adminUser="$ADMIN_EMAIL" \
+--set=auth.adminPassword="$ADMIN_PW" \
 --namespace shipa-system --create-namespace 
