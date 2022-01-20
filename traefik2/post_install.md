@@ -57,3 +57,20 @@ This will open up http://www.example.com (assuming you pointed that non-real dom
 Port 80 and 443 are both exposed through a `LoadBalancer` service, with the help of [cert-manager](https://cert-manager.io/) you can
 issue your own TLS/SSL certificates for your domains, by default, Traefik generates a self-signed certificate for the
 websecure endpoint (443). 
+
+### Dashboard
+
+The traefik api / dashboard is enabled by default on `internal@api` (default TraefikService). 
+If you do not wish to set up an ingress route to the dashboard, you can update the DaemonSet and add the following values:
+
+```yaml
+args:
+  - '--api.insecure'
+...
+ports:
+  - name: api
+    containerPort: 8080
+    protocol: TCP
+```
+
+When that is done, it's possible to access the dashboard and api through a port-forward on 8080.

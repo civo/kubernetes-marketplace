@@ -146,6 +146,11 @@ To contribute an application or a fix for an application to Civo, please fork ou
 
 For details on contribution requirements and responsibilities, see our [Contributing](CONTRIBUTING.md) document.
 
+## Thanks to all the contributors ❤️
+<a href = "https://github.com/civo/kubernetes-marketplace/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=civo/kubernetes-marketplace"/>
+</a>
+
 ## License
 
 The marketplace is provided by Civo Ltd as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT), however software installed as part of a marketplace app may be licensed under another licence.
