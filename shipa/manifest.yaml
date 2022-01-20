@@ -1,0 +1,14 @@
+---
+name: Shipa
+version: "1.5.2"
+maintainer: "@ravilach"
+description: Shipa does for applications what Terraform did for infrastructure. A consistent application definition for an evolving infrastructure. 
+url: https://learn.shipa.io/docs/quickstart
+category: management
+configuration:
+  ADMIN_EMAIL:
+    label: "Admin Bootstrap Email for Shipa"
+    value: "CIVO:ALPHANUMERIC(30)"
+  ADMIN_PW:
+    label: "Admin Bootstrap Password for Shipa"
+    value: "CIVO:ALPHANUMERIC(30)"
