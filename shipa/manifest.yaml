@@ -5,6 +5,8 @@ maintainer: "@ravilach"
 description: Shipa does for applications what Terraform did for infrastructure. A consistent application definition for an evolving infrastructure. 
 url: https://learn.shipa.io/docs/quickstart
 category: management
+dependencies:
+  - cert-manager
 configuration:
   ADMIN_EMAIL:
     label: "Admin Bootstrap Email for Shipa"
