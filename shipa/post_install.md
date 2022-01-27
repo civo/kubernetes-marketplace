@@ -7,8 +7,8 @@ curl -s https://storage.googleapis.com/shipa-client/install.sh | bash
 ```
 
 ### Wiring
-Shipa for itself installs Nginx as a default ingress controller for the control plane. If
-leveraging Civo, make sure as of Shipa 1.5.2, to unselect Nginx from the ingrress controllers
+Shipa for itself installs Nginx as a default ingress controller for the control plane which needs a public IP. If
+leveraging Civo, make sure as of Shipa 1.5.2, to unselect default Traefik [and any other ingress controllers] from the launch Marketplace
 when spinning up a Civo Cloud instance. 
 
 
