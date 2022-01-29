@@ -1,0 +1,112 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gitpod
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: installer
+  namespace: gitpod
+  labels:
+    app: gitpod
+    component: gitpod-installer
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: installer
+  namespace: gitpod
+  labels:
+    app: gitpod
+    component: gitpod-installer
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: installer
+    namespace: gitpod
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: https-certificates
+  namespace: gitpod
+spec:
+  secretName: https-certificates
+  issuerRef:
+    name: ca-issuer-ca
+    kind: Issuer
+  dnsNames:
+    - "gitpod.$CLUSTER_ID.k8s.civo.com"
+    - "*.gitpod.$CLUSTER_ID.k8s.civo.com"
+    - "*.ws.gitpod.$CLUSTER_ID.k8s.civo.com"
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: installer
+  namespace: gitpod
+  labels:
+    app: gitpod
+    component: gitpod-installer
+spec:
+  ttlSecondsAfterFinished: 60
+  template:
+    metadata:
+      labels:
+        app: gitpod
+        component: gitpod-installer
+    spec:
+      serviceAccountName: installer
+      restartPolicy: OnFailure
+      containers:
+        - name: installer
+          image: eu.gcr.io/gitpod-core-dev/build/installer:release-2022.04.1.2
+          volumeMounts:
+            - mountPath: /config
+              name: config
+              readOnly: false
+          env:
+            - name: CLUSTER_ID
+              value: $CLUSTER_ID
+            - name: CONFIG_FILE
+              value: /config/config.yaml
+          command:
+            - /bin/sh
+            - -c
+          args:
+            - |
+              set -e
+
+              echo "Gitpod: Generate the base Installer config"
+              /app/installer init > "${CONFIG_FILE}"
+
+              echo "Gitpod: setting containerd dir as k3s"
+              yq e -i '.workspace.runtime.containerdRuntimeDir = "/run/k3s/containerd/io.containerd.runtime.v2.task/k8s.io"' "${CONFIG_FILE}"
+
+              echo "Gitpod: settings containerd socket as k3s"
+              yq e -i '.workspace.runtime.containerdSocket = "/run/k3s/containerd/containerd.sock"' "${CONFIG_FILE}"
+
+              echo "Gitpod: setting domain"
+              yq e -i ".domain = \"gitpod.${CLUSTER_ID}.k8s.civo.com\"" "${CONFIG_FILE}"
+
+              echo "Gitpod: setting fsShiftMethod to shiftfs"
+              yq e -i '.workspace.runtime.fsShiftMethod = "shiftfs"' "${CONFIG_FILE}"
+
+              echo "Gitpod: Generate the Kubernetes objects"
+              /app/installer render -c "${CONFIG_FILE}" --namespace gitpod > /config/gitpod.yaml 
+
+              echo "Gitpod: Post-process the YAML"
+              yq eval-all --inplace '(select(.kind == "Service" and .metadata.name == "proxy") | .spec.type) |= "ClusterIP"' /config/gitpod.yaml
+
+              echo "Gitpod: Apply the config"
+              kubectl apply -f /config/gitpod.yaml
+
+              echo "Gitpod: Installer job finished - goodbye"
+      volumes:
+        - name: config
+          emptyDir: {}
