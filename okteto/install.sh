@@ -20,7 +20,7 @@ done
 helm repo add okteto https://charts.okteto.com
 helm repo update
 kubectl create namespace okteto --dry-run=client -o yaml | kubectl apply -f - 
-kubectl apply -f https://charts.okteto.com/crds.yaml
+kubectl apply -f https://charts.okteto.com/0.9.6/crds.yaml
 
 helm upgrade --install civo okteto/okteto-enterprise --namespace okteto -f https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/okteto/config.yaml --set email="$email" --set adminToken="$adminToken" --set subdomain="$subdomain" --set ingress.ip=$ingress --version 0.9.6
 if [ ! $? -eq 0 ]; then
