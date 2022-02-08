@@ -5,4 +5,4 @@ version: "2.7.0"
 maintainer: amit2cha@gmail.com
 description: Kafka is a distributed streaming platform used for building real-time data pipelines and streaming apps.
 url: https://kafka.apache.org/
-category: database
+category: architecture
