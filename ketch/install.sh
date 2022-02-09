@@ -7,4 +7,4 @@ sleep 5
 kubectl wait --for=condition=available --timeout=300s deployment/cert-manager-webhook  -n cert-manager
 
 #Install Ketch
-kubectl apply -f https://github.com/theketchio/ketch/releases/download/v0.6.1/ketch-controller.yaml
+kubectl apply -f https://github.com/theketchio/ketch/releases/download/v0.6.2/ketch-controller.yaml

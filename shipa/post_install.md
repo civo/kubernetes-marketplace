@@ -8,8 +8,9 @@ curl -s https://storage.googleapis.com/shipa-client/install.sh | bash
 
 ### Wiring
 Shipa for itself installs Nginx as a default ingress controller for the control plane which needs a public IP. If
-leveraging Civo, make sure as of Shipa 1.5.2, to unselect default Traefik [and any other ingress controllers] from the launch Marketplace
-when spinning up a Civo Cloud instance. 
+leveraging Civo, make sure as of Shipa 1.6.0, to unselect default Traefik [and any other ingress controllers] from the launch Marketplace
+when spinning up a Civo Cloud instance. Civo will be introducing an LBAAS service which will allow for this. Use your provided Marketplace
+e-mail and password to login to the Shipa CLI. You will need kubectl access to the cluster initialy to get the ingress address. 
 
 
 ```
