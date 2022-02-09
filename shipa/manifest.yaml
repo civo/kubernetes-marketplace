@@ -10,7 +10,7 @@ dependencies:
 configuration:
   ADMIN_EMAIL:
     label: "Admin Bootstrap Email for Shipa"
-    value: "CIVO:ALPHANUMERIC(30)"
+    value: "CIVO:EMAIL_ADDRESS"
   ADMIN_PW:
     label: "Admin Bootstrap Password for Shipa"
     value: "CIVO:ALPHANUMERIC(30)"
