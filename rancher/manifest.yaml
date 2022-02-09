@@ -4,6 +4,8 @@ maintainer: "@saiyampathak"
 description: "Addresses the operational and security challenges of managing multiple Kubernetes clusters with integrated tools for running containerized workloads."
 url: https://rancher.com/
 category: management
+dependencies:
+  - cert-manager
 configuration:
   ADMIN_PASS:
     label: "Admin Password"

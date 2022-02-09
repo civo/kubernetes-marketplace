@@ -3,8 +3,9 @@
 subdomain="rancher.$CLUSTER_ID.k8s.civo.com"
 email="$EMAIL"
 
-kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.3.1/cert-manager.yaml
-sleep 30
+#Wait for the Cert Manager deployment to be done.
+kubectl wait --for=condition=available --timeout=300s deployment/cert-manager-webhook  -n cert-manager
+
 helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
 helm repo update
 kubectl create namespace cattle-system

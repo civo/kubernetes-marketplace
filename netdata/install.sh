@@ -2,4 +2,4 @@
 
 helm repo add netdata https://netdata.github.io/helmchart/
 helm repo update
-helm install --name=netdata --namespace=netdata --set ingress.enabled=false netdata/netdata
+helm install netdata netdata/netdata --namespace netdata --create-namespace --set ingress.enabled=false

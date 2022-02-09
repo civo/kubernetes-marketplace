@@ -1,9 +1,7 @@
 ---
-name: Maesh
-version: Latest
-maintainer: hello@civo.com
-description: Maesh is an easy to configure and non-invasive service mesh that allows visibility and management of the traffic flows.
-url: https://mae.sh
-dependencies:
-  - Helm
+name: Mesh
+version: "v1.4.5"
+maintainer: saiyam@civo.com
+description: Traefik Mesh is a straight-forward, easy to configure, and non-invasive service mesh.
+url: https://traefik.io/traefik-mesh/
 category: architecture

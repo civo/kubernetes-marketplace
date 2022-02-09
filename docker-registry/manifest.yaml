@@ -6,7 +6,6 @@ maintainer: alejandro@civo.com
 description: A registry is a storage and content delivery system, holding named Docker images, available in different tagged versions.
 url:
 dependencies:
-  - Helm
   - cert-manager
   - Traefik
 category: architecture
