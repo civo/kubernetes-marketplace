@@ -1,5 +1,6 @@
-## Maesh - a straight-forward, easy to configure, and non-invasive service mesh
+## Traefik Mesh is a lightweight and simpler service mesh designed from the ground up to be straightforward, easy to install and easy to use.
+
 
 ### Usage instruction
 
-You configure your services to use Maesh with a simple annotation. For more instructions on configuring your services to use Maesh see [their website](https://docs.mae.sh/configuration/).
+Follow the docs to use Traefik Mesh - https://doc.traefik.io/traefik-mesh/quickstart/#using-traefik-mesh

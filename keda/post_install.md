@@ -68,4 +68,4 @@ The event source or trigger specific parameters are:
 
 ### More details
 
-See https://keda.sh/docs/2.5/concepts/ for the usage of the different event sources and scalers.
+See https://keda.sh/docs/2.6/concepts/ for the usage of the different event sources and scalers.

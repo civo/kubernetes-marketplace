@@ -1,13 +1,15 @@
 #!/bin/bash
 
-VERSION=1.13.10
-NS=ambassador
 
 # Add the Helm repository for Ambassador Edge Stack
 helm repo add datawire https://www.getambassador.io
 helm repo update
 
-# Create the namespace and install the Helm chart
-kubectl create namespace $NS
-helm install ambassador --namespace $NS --set image.tag=$VERSION datawire/ambassador
+#Install CRD's
+kubectl apply -f https://app.getambassador.io/yaml/edge-stack/2.1.2/aes-crds.yaml
+kubectl wait --timeout=90s --for=condition=available deployment emissary-apiext -n emissary-system
+
+#Install stack
+helm install -n ambassador --create-namespace edge-stack datawire/edge-stack --set controller.image.tag=2.1.2  && kubectl rollout status  -n ambassador deployment/edge-stack -w
+
 
