@@ -16,3 +16,4 @@ configuration:
   REGISTRY_PASSWD:
     label: "Registry password"
     value: "CIVO:ALPHANUMERIC(10)"
+disable: true
