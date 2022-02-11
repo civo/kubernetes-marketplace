@@ -1,6 +1,52 @@
 ## Keptn
-
+Keptn installs nginx as a LoadBalancer which will launch a [Civo Load Balancer](https://www.civo.com/load-balancers) (at an additional charge).
 ### Start using Keptn
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: traefik-crd
+  namespace: kube-system
+spec:
+  chart: https://%{KUBERNETES_API}%/static/charts/traefik-crd-10.3.0.tgz
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  chart: https://%{KUBERNETES_API}%/static/charts/traefik-10.9.100.tgz
+  set:
+    global.systemDefaultRegistry: ""
+  valuesContent: |-
+    deployment:
+      kind: DaemonSet
+    rbac:
+      enabled: true
+    ports:
+      websecure:
+        tls:
+          enabled: true
+    podAnnotations:
+      prometheus.io/port: "8082"
+      prometheus.io/scrape: "true"
+    providers:
+      kubernetesIngress:
+        publishedService:
+          enabled: true
+    priorityClassName: "system-cluster-critical"
+    image:
+      name: "rancher/mirrored-library-traefik"
+    tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Exists"
+    - key: "node-role.kubernetes.io/control-plane"
+      operator: "Exists"
+      effect: "NoSchedule"
+    - key: "node-role.kubernetes.io/master"
+      operator: "Exists"
+      effect: "NoSchedule"
 
 1. Download the Keptn CLI: 
   ```
