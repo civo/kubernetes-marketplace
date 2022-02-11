@@ -2,7 +2,7 @@
 
 ### External access
 
-By default external access to the PostgreSQL port isn't available. This is easily changed by applying the following YAML to your cluster with `kubectl apply -f postgresql-service.yaml` (or whatever you call the file containing the contents below):
+By default external access to the PostgreSQL port isn't available. This is easily changed by applying the following YAML to your cluster with `kubectl apply -f postgresql-service.yaml` (or whatever you call the file containing the contents below) which will launch a [Civo Load Balancer](https://www.civo.com/load-balancers) (at an additional charge):
 
 ```
 apiVersion: v1
@@ -35,7 +35,7 @@ $ kubectl run tmp-shell --rm -i \
 / # apk update
 / # apk add postgresql-client
 / # psql -U ADMIN_USERNAME -h postgresql postgresdb
-Password for user 12CNT2Eq6i: 
+Password for user 12CNT2Eq6i:
 psql (11.5)
 Type "help" for help.
 

@@ -7,3 +7,5 @@ description: HAProxy is free, open source software that provides a high availabi
 url: https://github.com/haproxytech/kubernetes-ingress
 dependencies:
 category: architecture
+required_services:
+  - loadbalancer

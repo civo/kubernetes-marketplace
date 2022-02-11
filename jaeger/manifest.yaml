@@ -5,3 +5,4 @@ dependencies:
 maintainer: "@kaipmdh"
 url: https://github.com/jaegertracing/jaeger-operator
 category: monitoring
+disable: true
