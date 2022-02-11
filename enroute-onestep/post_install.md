@@ -1,4 +1,5 @@
 ## EnRoute-OneStep Kubernetes Native API Gateway - An Envoy-Powered API Gateway
+EnRoute will create enroute-demo service of type LoadBalancer which will launch a [Civo Load Balancer](https://www.civo.com/load-balancers) (at an additional charge).
 
 [EnRoute-OneStep](https://getenroute.io) is a lightweight shim on Envoy proxy that makes it extremely easy to secure and route traffic destined to microservices running inside Kubernetes Cluster.
 

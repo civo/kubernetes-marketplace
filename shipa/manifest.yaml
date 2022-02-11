@@ -14,3 +14,5 @@ configuration:
   ADMIN_PW:
     label: "Admin Bootstrap Password for Shipa"
     value: "CIVO:ALPHANUMERIC(30)"
+required_services:
+  - loadbalancer

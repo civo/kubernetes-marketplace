@@ -1,10 +1,13 @@
-## Traefik (v2) - Ingress Controller
+## Traefik (v2) - Ingress Controller (LoadBalancer)
 
 Traefik is a open source Edge Router which is usable as a ingress controller for kubernetes.  
 It supports both the kubernetes Ingress object (`extensions/v1beta1`) as well as the traefik provided CDRs (custom resource definition).
 
 Trafik is very customizable and can do very much for you, but all of its features can not be covered in this message,
 if you wish to find more information, check out the [official documentation](https://doc.traefik.io/traefik/)!
+
+This installation is inline with what comes by default with K3s, the service for this will be a LoadBalancer service which will launch a [Civo Load Balancer](https://www.civo.com/load-balancers) (at an additional charge).
+
 
 ### External access to your services
 
@@ -29,7 +32,7 @@ spec:
           servicePort: http
 ```
 
-Traefik also includes a CDR called IngressRoute, which would look like this:
+Traefik also includes a CRD called IngressRoute, which would look like this:
 
 ```
 apiVersion: traefik.containo.us/v1alpha1
@@ -54,23 +57,5 @@ spec:
 This will open up http://www.example.com (assuming you pointed that non-real domain record to your cluster's IPs) to the whole world.
 
 
-Port 80 and 443 are both exposed through a `LoadBalancer` service, with the help of [cert-manager](https://cert-manager.io/) you can
-issue your own TLS/SSL certificates for your domains, by default, Traefik generates a self-signed certificate for the
-websecure endpoint (443). 
+Port 80 and 443 are both exposed through a `LoadBalancer` service which will launch a [Civo Load Balancer](https://www.civo.com/load-balancers) (at an additional charge).
 
-### Dashboard
-
-The traefik api / dashboard is enabled by default on `internal@api` (default TraefikService). 
-If you do not wish to set up an ingress route to the dashboard, you can update the DaemonSet and add the following values:
-
-```yaml
-args:
-  - '--api.insecure'
-...
-ports:
-  - name: api
-    containerPort: 8080
-    protocol: TCP
-```
-
-When that is done, it's possible to access the dashboard and api through a port-forward on 8080.
