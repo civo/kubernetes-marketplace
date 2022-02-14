@@ -3,6 +3,7 @@ name: metrics-server
 title: "Metrics Server"
 version: (default)
 default: true
+builtin: true
 maintainer: "@Rancher_Labs"
 description: Metrics Server is a cluster-wide aggregator of resource usage data.
 url: https://kubernetes.io/docs/tasks/debug-application-cluster/resource-metrics-pipeline/#metrics-server
