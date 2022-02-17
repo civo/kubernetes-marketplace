@@ -7,7 +7,6 @@ description: A registry is a storage and content delivery system, holding named 
 url:
 dependencies:
   - cert-manager
-  - Traefik
 category: architecture
 configuration:
   REGISTRY_USERNAME:
