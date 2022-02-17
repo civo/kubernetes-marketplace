@@ -1,7 +1,7 @@
 ---
 name: Traefik
 version: (default)
-default: true
+default: false
 maintainer: "@Rancher_Labs"
 description: A reverse proxy/load-balancer that's easy, dynamic, automatic, fast, full-featured, open source, production proven and provides metrics.
 url: https://traefik.io
