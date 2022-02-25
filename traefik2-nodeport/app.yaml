@@ -34,11 +34,13 @@ spec:
       websecure:
         expose: true
         exposePort: 443
+        port: 443
         tls:
           enabled: true
       web:
         expose: true
         exposePort: 80
+        port: 80
     podAnnotations:
       prometheus.io/port: "8082"
       prometheus.io/scrape: "true"
