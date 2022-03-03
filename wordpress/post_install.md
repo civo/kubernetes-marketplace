@@ -55,3 +55,14 @@ If you want to change the hostname or modify the ingress, edit it with
 ```
 kubectl edit ingress wordpress
 ```
+
+## Troubleshooting
+
+In some cases, after install has finished `wordpress` pod goes into a CrashLoopBackOff loop, because readiness probe fails.
+
+One possible solution should be to add the following lines into *wp-config.php*.
+
+```
+define('WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST'] . '/');
+define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST'] . '/');
+```
