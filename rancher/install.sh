@@ -10,4 +10,5 @@ helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
 helm repo update
 kubectl create namespace cattle-system
 
-helm upgrade --install rancher rancher-latest/rancher --namespace cattle-system --set hostname="$subdomain" --set bootstrapPassword="$ADMIN_PASS"
+  
+helm upgrade --install rancher rancher-latest/rancher --namespace cattle-system --set hostname="$subdomain" --set bootstrapPassword="$ADMIN_PASS" --set ingress.tls.source=letsEncrypt --set letsEncrypt.ingress.class=traefik --set letsEncrypt.email="$email" 

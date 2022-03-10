@@ -17,16 +17,30 @@ spec:
   set:
     global.systemDefaultRegistry: ""
   valuesContent: |-
+    hostNetwork: true
+    securityContext:
+      capabilities:
+        add:
+          - NET_BIND_SERVICE
+      runAsNonRoot: false
+      runAsUser: 0
     service:
-      type: NodePort
+      enabled: false
     deployment:
       kind: DaemonSet
     rbac:
       enabled: true
     ports:
       websecure:
+        expose: true
+        exposePort: 443
+        port: 443
         tls:
           enabled: true
+      web:
+        expose: true
+        exposePort: 80
+        port: 80
     podAnnotations:
       prometheus.io/port: "8082"
       prometheus.io/scrape: "true"
