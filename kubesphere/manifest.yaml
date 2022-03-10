@@ -1,6 +1,6 @@
 ---
 name: KUBESPHERE
-title: "Kubesphere"
+title: "KubeSphere"
 version: v3.2.1
 maintainer: xuwei.mango@gmail.com
 description: The container platform tailored for Kubernetes multi-cloud, datacenter, and edge management

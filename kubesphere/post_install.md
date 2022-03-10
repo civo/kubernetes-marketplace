@@ -1,6 +1,6 @@
-## Kubesphere
+## KubeSphere
 
-### Login the console of kubesphere
+### Login the console of KubeSphere
 
 You can inspect the logs of installation.
 
