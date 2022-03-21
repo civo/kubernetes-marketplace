@@ -1,6 +1,9 @@
 ## Keptn
 Keptn installs nginx as a LoadBalancer which will launch a [Civo Load Balancer](https://www.civo.com/load-balancers) (at an additional charge).
+
 ### Start using Keptn
+
+```yaml
 ---
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
@@ -47,6 +50,7 @@ spec:
     - key: "node-role.kubernetes.io/master"
       operator: "Exists"
       effect: "NoSchedule"
+```
 
 1. Download the Keptn CLI: 
   ```
