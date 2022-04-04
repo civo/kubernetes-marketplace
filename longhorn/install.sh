@@ -1,4 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-kubectl patch storageclass longhorn -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
-kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
+helm repo add longhorn https://charts.longhorn.io
+helm repo update
+
+kubectl create namespace longhorn-system
+
+helm install longhorn longhorn/longhorn --namespace longhorn-system --version 1.2.4
