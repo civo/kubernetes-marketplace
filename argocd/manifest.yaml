@@ -1,8 +1,8 @@
 ---
 name: argo-cd
 title: "Argo CD"
-maintainer: "The Argo Project"
+maintainer: engin.diri@mail.schwarz
 description: Declarative continuous deployment for Kubernetes
 url: https://github.com/argoproj/argo-cd/
 category: ci_cd
-version: "v2.0.4"
+version: "v2.3.3"
