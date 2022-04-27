@@ -1,31 +1,15 @@
-## Rancher - with Civo k3s cluster imported
+## Rancher - the dashboard will have your civo kubernetes cluster imported already
 
 ### External access
 
-By default external access to the Rancher isn't available. This is easily changed by applying the following YAML to your cluster with `kubectl apply -f rancher-ingress.yaml` (or whatever you call the file containing the contents below):
+By Default Rancher will create an ingress in the cattle-system namespace.
+Note - the install is in such a way that it uses your cluster DNS which will work with Traefik-Nodeport ingress controller, if you happen to install any other ingress controller or as a loadbalancer then you would have to make the changes accordingly. 
 
-```yaml
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: cattle-ingress
-  namespace: cattle-system
-  annotations:
-    kubernetes.io/ingress.class: traefik
-spec:
-  rules:
-  - host: rancher.<your-cluster-id>.k8s.civo.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-             name: cattle-service
-             port:
-               name: http
+
 ```
-
-If you are using a NGINX ingress, simply change `kubernetes.io/ingress.class` to `nginx`.
-
-This will open up https://<masterIP>:<traefik443PORT> to the whole world.
+kubectl get ing -n cattle-system
+NAMESPACE       NAME                                   CLASS    HOSTS                                                    ADDRESS        PORTS     AGE
+cattle-system   rancher                                <none>   rancher.$CLUSTER_ID.k8s.civo.com                                             80, 443   38h
+cattle-system   cm-acme-http-solver-jstgl              nginx    rancher.$CLUSTER_ID.k8s.civo.com                            
+```
+To open up the dashboard you can visit https://rancher.$CLUSTER_ID.k8s.civo.com

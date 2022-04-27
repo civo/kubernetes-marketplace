@@ -1,7 +1,7 @@
 ---
 name: Longhorn
-version: 1.1.0
-maintainer: hello@civo.com
+version: 1.2.4
+maintainer: engin.diri@mail.schwarz
 description: Longhorn is a lightweight, reliable, and powerful distributed block storage system for Kubernetes.
 url: https://github.com/longhorn/longhorn
 category: storage
