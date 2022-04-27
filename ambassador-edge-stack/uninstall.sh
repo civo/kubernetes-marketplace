@@ -10,3 +10,5 @@ helm uninstall ambassador
 # Delete the namespace
 kubectl delete namespace $NS
 
+# Delete CRDs
+kubectl delete -f https://app.getambassador.io/yaml/edge-stack/2.1.2/aes-crds.yaml
