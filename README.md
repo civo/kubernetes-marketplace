@@ -25,7 +25,7 @@
 Once an application is part of the marketplace, you can install it using the GUI on Civo.com or by using the [Civo CLI](https://github.com/civo/cli) with a command line:
 
 ```
-civo k8s create my-cluster --app=longhorn,minio
+civo k8s create my-cluster --applications=longhorn,minio
 
 # or
 
@@ -132,7 +132,7 @@ Testing a marketplace application during development is easy, use the Civo CLI t
 
 ```
 # Create a cluster with any prerequisites
-civo k8s create my-cluster --app=longhorn --save --wait
+civo k8s create my-cluster --applications=longhorn --save --wait
 
 # Then apply your app.yaml
 kubectl apply -f app.yaml
