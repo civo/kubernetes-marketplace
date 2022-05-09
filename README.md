@@ -24,12 +24,12 @@
 
 Once an application is part of the marketplace, you can install it using the GUI on Civo.com or by using the [Civo CLI](https://github.com/civo/cli) with a command line:
 
-```
-civo k8s create my-cluster --applications=longhorn,minio
+```console
+civo k8s create my-cluster --applications=Longhorn,MinIO:5GB
 
 # or
 
-civo k8s add-app my-cluster longhorn
+civo k8s application add -c my-cluster Longhorn
 ```
 
 ## Writing
