@@ -3,6 +3,8 @@ Kubevious is an app-centric assurance, validation, and introspection platform fo
 
 For more information refer to the root repository: https://github.com/kubevious/kubevious
 
+![Kubevious](https://github.com/kubevious/media/raw/master/screens/intro.png)
+
 ### Accessing Kubevious
 
 You can access Kubevious Web UI by turning on port forwarding and accessing from the browser: http://localhost:8080
