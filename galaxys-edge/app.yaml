@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: galaxys-edge
-          image: djbird/kubecon-entry:latest
+          image: djbird/kubeconentry:latest
           ports:
             - containerPort: 3000
               protocol: TCP
