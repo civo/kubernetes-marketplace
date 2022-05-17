@@ -91,6 +91,8 @@ The applications can't ask the user for these values, so they must be either a p
   <dd>A combination of <code>num</code> random words, separated by <code>-</code> for use as a readable name</dd>
   <dt>CIVO:CLUSTER_NAME</dt>
   <dd>The name of your Kubernetes cluster</dd>
+  <dt>CIVO:REGION</dt>
+  <dd>The code of the region where the application is deployed</dd>
   <dt>CIVO:CLUSTER_ID</dt>
   <dd>The ID of your Kubernetes cluster (for injecting something.ID.k8s.civo.com as a domain)</dd>
   <dt>CIVO:EMAIL_ADDRESS</dt>
