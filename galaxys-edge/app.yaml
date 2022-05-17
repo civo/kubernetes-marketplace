@@ -50,7 +50,7 @@ spec:
       targetPort: 3000
       nodePort: 30000
   selector:
-    app: entry
+    app: galaxys-edge
   type: NodePort
   sessionAffinity: None
   externalTrafficPolicy: Cluster
