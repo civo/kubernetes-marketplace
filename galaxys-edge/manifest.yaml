@@ -1,0 +1,8 @@
+---
+name: galaxys-edge
+title: "Galaxy's Edge"
+version: "0.1"
+maintainer: david@civo.com
+description: Galaxy's Edge is a KubeCon EU 2022 competition app. Deploy it on the KUBECON region during the event to enter the competition
+url: https://civo.com/
+category: management

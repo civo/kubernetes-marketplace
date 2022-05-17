@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: entry-deployment
+  namespace: kube-system
+  labels:
+    app: entry
+  annotations:
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: entry
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: entry
+    spec:
+      containers:
+        - name: entry
+          image: registry.civo.com/civo.kubeconentry
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          env:
+            - name: CIVOCLUSTERID
+              value: "CIVO:CLUSTER_ID"
+            - name: CIVOCLUSTERREGION
+              value: "CIVO:REGION"
+            - name: TARGETREGION
+              value: "KUBECON"
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: entry-ingress
+  namespace: kube-system
+spec:
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30000
+  selector:
+    app: entry
+  type: NodePort
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  internalTrafficPolicy: Cluster
+
+
