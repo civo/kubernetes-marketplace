@@ -10,6 +10,6 @@ configuration:
   CIVO_CLUSTER_ID:
     label: "Cluster ID"
     value: "CIVO:CLUSTER_ID"
-  CIVO_CLUSTER_REGION:
+  CIVO_REGION:
     label: "Region"
     value: "CIVO:REGION"
