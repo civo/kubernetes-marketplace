@@ -6,3 +6,10 @@ maintainer: david@civo.com
 description: Galaxy's Edge is a KubeCon EU 2022 competition app. Deploy it on the KUBECON region during the event to enter the competition
 url: https://civo.com/
 category: management
+configuration: 
+  CIVO_CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
+  CIVO_CLUSTER_REGION:
+    label: "Region"
+    value: "CIVO:REGION"

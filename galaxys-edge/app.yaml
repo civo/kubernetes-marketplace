@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: entry-deployment
+  name: galaxys-edge
   namespace: kube-system
   labels:
-    app: entry
+    app: galaxys-edge
   annotations:
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: entry
+      app: galaxys-edge
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: entry
+        app: galaxys-edge
     spec:
       containers:
-        - name: entry
-          image: registry.civo.com/civo.kubeconentry
+        - name: galaxys-edge
+          image: djbird/kubecon-entry:latest
           ports:
             - containerPort: 3000
               protocol: TCP
           env:
             - name: CIVOCLUSTERID
-              value: "CIVO:CLUSTER_ID"
+              value: $CIVO_CLUSTER_ID
             - name: CIVOCLUSTERREGION
-              value: "CIVO:REGION"
+              value: $CIVO_REGION
             - name: TARGETREGION
               value: "KUBECON"
           resources: {}
@@ -41,7 +41,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: entry-ingress
+  name: galaxys-edge-ingress
   namespace: kube-system
 spec:
   ports:
@@ -58,5 +58,3 @@ spec:
     - IPv4
   ipFamilyPolicy: SingleStack
   internalTrafficPolicy: Cluster
-
-
