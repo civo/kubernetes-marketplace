@@ -15,7 +15,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.3.0
+    app.kubernetes.io/version: v0.8.2
   name: parca-agent
   namespace: parca
 rules:
@@ -40,7 +40,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.3.0
+    app.kubernetes.io/version: v0.8.2
   name: parca-agent
   namespace: parca
 roleRef:
@@ -59,7 +59,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.3.0
+    app.kubernetes.io/version: v0.8.2
   name: parca-agent
   namespace: parca
 spec:
@@ -74,7 +74,7 @@ spec:
         app.kubernetes.io/component: observability
         app.kubernetes.io/instance: parca-agent
         app.kubernetes.io/name: parca-agent
-        app.kubernetes.io/version: v0.3.0
+        app.kubernetes.io/version: v0.8.2
     spec:
       containers:
       - args:
@@ -91,7 +91,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ghcr.io/parca-dev/parca-agent:v0.3.0
+        image: ghcr.io/parca-dev/parca-agent:v0.8.2
         name: parca-agent
         ports:
         - containerPort: 7071
@@ -150,7 +150,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.3.0
+    app.kubernetes.io/version: v0.8.2
   name: parca-agent
   namespace: parca
 spec:
@@ -192,7 +192,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.3.0
+    app.kubernetes.io/version: v0.8.2
   name: parca-agent
   namespace: parca
 rules:
@@ -212,7 +212,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.3.0
+    app.kubernetes.io/version: v0.8.2
   name: parca-agent
   namespace: parca
 roleRef:
@@ -230,6 +230,6 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.3.0
+    app.kubernetes.io/version: v0.8.2
   name: parca-agent
   namespace: parca
