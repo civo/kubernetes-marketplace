@@ -1,6 +1,6 @@
 ---
 name: Shipa
-version: "1.6.3"
+version: "1.7.2"
 maintainer: "@ravilach"
 description: Shipa does for applications what Terraform did for infrastructure. A consistent application definition for an evolving infrastructure. 
 url: https://learn.shipa.io/docs/quickstart
