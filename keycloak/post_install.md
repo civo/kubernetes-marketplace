@@ -7,6 +7,10 @@ Keycloak provides user federation, strong authentication, user management, fine-
 
 ### External access
 
+`Service type : LoadBalancer` will provide the External IP and Keycloak dashboard will be accessible using that directly. 
+
+### External access - (Optional) 
+
 Use ingress to expose the keycloak deployment. This is easily changed by applying the following YAML to apply ingress via traefik or nginx:
 
 ```
