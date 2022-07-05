@@ -1,5 +1,5 @@
 ---
-name: Netdata
+name: netdata
 version: Latest
 maintainer: "@milindchawre"
 description: Netdata is distributed, real-time performance and health monitoring for systems and applications.

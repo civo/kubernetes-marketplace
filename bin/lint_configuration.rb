@@ -24,6 +24,8 @@ Dir.glob('**/*.yaml').each do |filename|
         # OK
       elsif v["value"][/^CIVO\:MASTER_IP/]
         # OK
+      elsif v["value"][/^CIVO\:REGION/]
+        # OK
       elsif v["value"][/^CIVO\:/]
         puts "#{filename} has a configuration for #{v["value"]} that is invalid"
         exit_code = 1

@@ -1,0 +1,8 @@
+---
+name: Prometheus-Blackbox-Exporter
+title: "Prometheus-Blackbox-Exporter"
+version: "5.8.2"
+maintainer: "cedric@desaintmartin.fr,gianrubio@gmail.com,monotek23@gmail.com"
+description: Prometheus-Blackbox-Exporter App install  Prometheus-Blackbox-Exporter to monitor endpoints services in kubernetes cluster.
+url: https://github.com/prometheus-community
+category: monitoring

@@ -61,6 +61,17 @@ rules:
   - create
   - patch
   - update
+- verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - delete
+  apiGroups:
+    - discovery.k8s.io
+  resources:
+    - endpointslices
 
 ---
 kind: ClusterRoleBinding

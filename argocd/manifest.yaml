@@ -5,4 +5,4 @@ maintainer: engin.diri@mail.schwarz
 description: Declarative continuous deployment for Kubernetes
 url: https://github.com/argoproj/argo-cd/
 category: ci_cd
-version: "v2.3.3"
+version: "v2.4.2"
