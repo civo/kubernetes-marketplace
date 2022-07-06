@@ -4,6 +4,6 @@ version: Latest
 maintainer: harsh.manvar111@gmail.com
 description: Open Source Identity and Access Management
 url: https://www.keycloak.org/
-category: Identity & Access Management
+category: security
 required_services:
   - loadbalancer
