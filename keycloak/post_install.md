@@ -37,5 +37,5 @@ spec:
 
 ### Usage instruction
 
-Go to `[http://selenium.<your-cluster-id>.k8s.civo.com](https://www.keycloak.org/getting-started/getting-started-kube)` for more details
+Go to [Documentation](https://www.keycloak.org/getting-started/getting-started-kube) for more details
 
