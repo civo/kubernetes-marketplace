@@ -12,5 +12,5 @@ If your pull request concerns an existing Marketplace application, please make s
 
 * [ ] Notified the Maintainer of the application in this pull request so that they are aware of your proposal.
 * [ ] Outlined the changes you are proposing, and the reasons these are required (e.g. stability, compatibility with new versions of Kubernetes implementations, etc).
-* [ ] Tested that the application works with the proposed updates applied (including a screenshot)
-* [ ] Updated the version number of the app?
+* [ ] Tested that the application works with the proposed updates applied (including a screenshot).
+* [ ] Updated the version number of the app if that has changed.
