@@ -1,0 +1,25 @@
+---
+name: percona-mysql
+title: "Percona MySQL"
+version: "1.11.0"
+maintainer: saiyam@civo.com
+description: Percona Operator for MySQL based on Percona XtraDB Cluster.
+url: https://www.percona.com/doc/kubernetes-operator-for-pxc/
+category: database
+plans:
+  - label: "10GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 10Gi
+  - label: "20GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 20Gi
+  - label: "50GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 50Gi
+configuration:
+  PERCONA_ROOT_PASSWORD:
+    label: "Root password"
+    value: "CIVO:ALPHANUMERIC(30)"
