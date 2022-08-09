@@ -18,6 +18,8 @@ spec:
     global.systemDefaultRegistry: ""
   valuesContent: |-
     hostNetwork: true
+    additionalArguments:
+    - --providers.kubernetesingress.ingressendpoint.hostname=$CLUSTER_ID.k8s.civo.com
     securityContext:
       capabilities:
         add:
