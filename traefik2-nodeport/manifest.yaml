@@ -7,3 +7,7 @@ maintainer: "johannes@jitesoft.com, saiyam@civo.com"
 description: An open source Edge Router working as an ingress controller and load balancer inside your kubernetes cluster.
 url: https://traefik.io
 category: architecture
+configuration:
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
