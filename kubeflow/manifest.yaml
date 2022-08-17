@@ -1,6 +1,6 @@
 name: Kubeflow
 version: "1.6.0-rc.1"
-maintainer: @Rishit-dagli
+maintainer: "Rishit-dagli"
 description: The Kubeflow project is dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable and scalable.
 url: https://www.kubeflow.org/
 category: management
