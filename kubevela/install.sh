@@ -2,4 +2,4 @@
 
 helm repo add kubevela https://charts.kubevela.net/core
 helm repo update
-helm install --create-namespace -n vela-system kubevela kubevela/vela-core --wait
+helm install --create-namespace -n vela-system kubevela kubevela/vela-core --wait --version v1.5.2
