@@ -1,5 +1,8 @@
 #!/bin/bash
 
-helm repo add kubevela https://charts.kubevela.net/core
-helm repo update
-helm install --create-namespace -n vela-system kubevela kubevela/vela-core --wait --version v1.5.2
+curl -fsSl https://static.kubevela.net/script/install.sh | sudo bash -s 1.5.3
+vela install
+
+## enable velaux by default
+
+vela addon enable velaux
