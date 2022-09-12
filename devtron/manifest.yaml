@@ -1,5 +1,5 @@
-name: evtron
-maintainer: @abhinavd26
-description: A Helm Integration platform for Kubernetes
-url: https://devtron.ai/
-category: management
+name: Devtron
+maintainer: "Devtron Team"
+description: A tool integration platform for Kubernetes
+url: https://github.com/devtron-labs/devtron
+category: ci_cd
