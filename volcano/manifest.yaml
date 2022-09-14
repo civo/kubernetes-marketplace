@@ -1,0 +1,7 @@
+---
+name: Volcano
+version: "1.6.0"
+maintainer: "Rishit-dagli"
+description: Cloud native batch scheduling system for compute-intensive workloads
+url: https://volcano.sh/
+category: management
