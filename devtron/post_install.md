@@ -11,12 +11,13 @@ After you have selected Devtron from the Civo Marketplace, you will have to do t
 
 You will get a similar result to the screenshot. Copy the `hostname` and paste it into your browser.
 
-2. You will require the admin credentials to log into the dashboard. To get them, enter the following command in your terminal
+2. You will require the admin credentials to log into the dashboard. To get the credentials, please enter the following command in your terminal
  
  ``` 
 kubectl -n devtroncd get secret devtron-secret \
 -o jsonpath='{.data.ACD_PASSWORD}' | base64 -d 
 ```
+This will give you the admin credentials which you can use to log into the dashboard.
 
 You should now be able to see the Devtron Dashboard as shown in the picture below.
 
