@@ -9,7 +9,7 @@ After you have selected Devtron from the Civo Marketplace, you will have to do t
 
 ![](https://i.imgur.com/ClnMpGK.png)
 
-    You will get a similar result to the screenshot. Copy the `hostname` and paste it into your browser.
+You will get a similar result to the screenshot. Copy the `hostname` and paste it into your browser.
 
 2. You will require the admin credentials to log into the dashboard. To get them, enter the following command in your terminal
  
