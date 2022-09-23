@@ -1,6 +1,6 @@
 image:
     repository: ghcr.io/gimlet-io/gimlet-installer
-    tag: v0.4.2-rc.2
+    tag: v0.4.2
 containerPort: 9000
 vars:
   HOST: "will be replaced by install.sh"
