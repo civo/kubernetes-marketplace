@@ -1,0 +1,10 @@
+name: Gimlet
+version: installer-v0.4.2-rc.2
+maintainer: "@laszlocph"
+description: "Gimlet provides a paved path to Kubernetes from day one, so you can focus on advanced platform needs instead of the tablestakes."
+url: https://www.gimlet.io/
+category: management
+configuration:
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
