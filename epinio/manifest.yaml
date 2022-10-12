@@ -1,0 +1,12 @@
+name: Epinio
+version: v1.3.0
+maintainer: "@enrichman"
+description: "The Application Development Engine for Kubernetes"
+url: https://epinio.io/
+category: management
+dependencies:
+  - cert-manager
+configuration:
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
