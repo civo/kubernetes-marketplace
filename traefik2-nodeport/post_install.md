@@ -24,12 +24,15 @@ metadata:
 spec:
   rules:
   - host: www.example.com
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: yourapp-service
-          servicePort: http
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: yourapp-service
+                port:
+                  number: 80
 ```
 
 Traefik also includes a CRD called IngressRoute, which would look like this:
