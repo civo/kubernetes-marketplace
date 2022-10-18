@@ -1,0 +1,17 @@
+---
+name: gitpod
+title: "Gitpod"
+version: "2022.04.1"
+maintainer: "simon@gitpod.io"
+description: Spin up fresh, automated dev environments for each task, in the cloud, in seconds. Always ready to code
+url: gitpod.io
+dependencies:
+  - cert-manager
+category: management
+configuration:
+  EMAIL:
+    label: "Email"
+    value: "CIVO:EMAIL_ADDRESS"
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
