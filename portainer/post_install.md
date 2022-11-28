@@ -18,7 +18,7 @@ spec:
       paths:
       - backend:
           serviceName: portainer
-          servicePort: 9000
+          servicePort: 9443
 ```
 
 
