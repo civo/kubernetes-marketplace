@@ -5,8 +5,7 @@ case $EDITION in
     kubectl apply -f https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/portainer/ce-app.yaml
     ;;
   ee)  
-    kubectl apply -f https://raw.githubusercontent.com/civo/kuber
-netes-marketplace/master/portainer/ee-app.yaml
+    kubectl apply -f https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/portainer/ee-app.yaml
     ;;
 esac
 
