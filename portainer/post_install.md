@@ -6,19 +6,26 @@ By default external access to the Portainer isn't available. This is easily chan
 
 
 ```
-apiVersion: extensions/v1beta1
+apiVersion:  networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: portainer
   namespace: portainer
 spec:
+  tls:
+  - hosts:
+      - portainer.<Cluster_ID>.k8s.civo.com
   rules:
-  - host: portainer.<your-cluster-id>.k8s.civo.com
+  - host: portainer.<Cluster_ID>.k8s.civo.com
     http:
       paths:
-      - backend:
-          serviceName: portainer
-          servicePort: 9443
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: portainer
+            port: 
+              number: 9443
 ```
 
 
