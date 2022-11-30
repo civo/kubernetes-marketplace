@@ -5,3 +5,12 @@ maintainer: "@saiyampathak"
 description: An open source kubernetes management platform
 url: https://portainer.io
 category: management
+plans:
+  - label: "Community edition"
+    configuration:
+      EDITION:
+        value: ce
+  - label: "Enterprise edition"
+    configuration:
+      EDITION:
+        value: ee
