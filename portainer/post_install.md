@@ -2,31 +2,13 @@
 
 ### External access
 
-By default external access to the Portainer isn't available. This is easily changed by applying the following YAML to your cluster with `kubectl apply -f portainer-ingress.yaml` (or whatever you call the file containing the contents below):
-
+Portainer is exposed using a Civo Load Balancer, so to determine the IP/DNS name, please click on "Cluster Information" and find the Load Balancers section. You can then access Portainer using https://<IP or FQDN>:9443.
+You can also check the LB IP it via the cli 
+  
+```
+kubectl get svc -n portainer
+NAME        TYPE           CLUSTER-IP    EXTERNAL-IP    PORT(S)                                        AGE
+portainer   LoadBalancer   10.43.38.66   212.2.246.73   9000:32452/TCP,9443:32231/TCP,8000:31646/TCP   48s
 
 ```
-apiVersion:  networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: portainer
-  namespace: portainer
-spec:
-  tls:
-  - hosts:
-      - portainer.<Cluster_ID>.k8s.civo.com
-  rules:
-  - host: portainer.<Cluster_ID>.k8s.civo.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service: 
-            name: portainer
-            port: 
-              number: 9443
-```
 
-
-This will open up http://portainer.YOUR_CLUSTER_ID.k8s.civo.com to the whole world.
