@@ -68,10 +68,6 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - port: 9000
-      targetPort: 9000
-      protocol: TCP
-      name: http
     - port: 9443
       targetPort: 9443
       protocol: TCP
@@ -125,6 +121,9 @@ spec:
             - name: data
               mountPath: /data              
           ports:
+            - name: http
+              containerPort: 9000
+              protocol: TCP
             - name: https
               containerPort: 9443
               protocol: TCP              
