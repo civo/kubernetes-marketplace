@@ -5,4 +5,4 @@ helm repo update
 
 kubectl create namespace longhorn-system
 
-helm install longhorn longhorn/longhorn --namespace longhorn-system --version 1.3.0
+helm install longhorn longhorn/longhorn --namespace longhorn-system --version 1.3.2
