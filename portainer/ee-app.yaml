@@ -125,9 +125,6 @@ spec:
             - name: data
               mountPath: /data              
           ports:
-            - name: http
-              containerPort: 9000
-              protocol: TCP
             - name: https
               containerPort: 9443
               protocol: TCP              
