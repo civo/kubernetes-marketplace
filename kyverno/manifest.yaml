@@ -1,7 +1,7 @@
 ---
 name: kyverno
 title: "Kyverno"
-version: "1.7.1"
+version: "1.8.2"
 maintainer: "Kyverno Authors"
 description: Kyverno is a policy engine designed for Kubernetes
 url: https://kyverno.io
