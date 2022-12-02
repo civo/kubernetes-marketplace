@@ -10,7 +10,9 @@ plans:
     configuration:
       EDITION:
         value: ce
-  - label: "Enterprise edition"
+  - label: "Business edition"
     configuration:
       EDITION:
         value: ee
+required_services:
+  - loadbalancer
