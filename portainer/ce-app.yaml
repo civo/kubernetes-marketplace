@@ -14,7 +14,7 @@ metadata:
   labels:
     app.kubernetes.io/name: portainer
     app.kubernetes.io/instance: portainer
-    app.kubernetes.io/version: "ce-latest-ee-2.16.2"
+    app.kubernetes.io/version: "ce-latest-ce-2.16.2"
 ---
 # Source: portainer/templates/pvc.yaml
 kind: "PersistentVolumeClaim"
@@ -28,7 +28,7 @@ metadata:
     io.portainer.kubernetes.application.stack: portainer
     app.kubernetes.io/name: portainer
     app.kubernetes.io/instance: portainer
-    app.kubernetes.io/version: "ce-latest-ee-2.16.2"
+    app.kubernetes.io/version: "ce-latest-ce-2.16.2"
 spec:
   accessModes:
     - "ReadWriteOnce"
@@ -44,7 +44,7 @@ metadata:
   labels:
     app.kubernetes.io/name: portainer
     app.kubernetes.io/instance: portainer
-    app.kubernetes.io/version: "ce-latest-ee-2.16.2"
+    app.kubernetes.io/version: "ce-latest-ce-2.16.2"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -64,7 +64,7 @@ metadata:
     io.portainer.kubernetes.application.stack: portainer
     app.kubernetes.io/name: portainer
     app.kubernetes.io/instance: portainer
-    app.kubernetes.io/version: "ce-latest-ee-2.16.2"
+    app.kubernetes.io/version: "ce-latest-ce-2.16.2"
 spec:
   type: LoadBalancer
   ports:
@@ -94,7 +94,7 @@ metadata:
     io.portainer.kubernetes.application.stack: portainer
     app.kubernetes.io/name: portainer
     app.kubernetes.io/instance: portainer
-    app.kubernetes.io/version: "ce-latest-ee-2.16.2"
+    app.kubernetes.io/version: "ce-latest-ce-2.16.2"
 spec:
   replicas: 1
   strategy:
