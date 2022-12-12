@@ -25,7 +25,3 @@ kubectl top pod --all-namespaces
 See the Kubernetes documentation for a worked-example of how to use HPAv2.
 
 [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
-
-You can also see the OpenFaaS documentation for a detailed tutorial.
-
-* [OpenFaaS - install the metrics server](https://docs.openfaas.com/tutorials/kubernetes-hpa/#install-the-metrics-server)
