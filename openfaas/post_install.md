@@ -101,4 +101,4 @@ echo $OPENFAAS_URL
 
 * Learn OpenFaaS: [Try The Official Workshop](https://github.com/openfaas/workshop)
 
-* Get help: Join the [OpenFaaS Slack](https://slack.openfaas.io/)
+* Get help: Join the [OpenFaaS Community](https://docs.openfaas.com/community/)
