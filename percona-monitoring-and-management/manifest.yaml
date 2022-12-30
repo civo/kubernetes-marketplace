@@ -1,0 +1,15 @@
+---
+name: PMM
+title: "Percona Monitoring and Management"
+version: "2.33.0"
+maintainer: sergey.pronin@percona.com
+description: "Open source database monitoring, management, and observability solution for MySQL, PostgreSQL, and MongoDB."
+url: https://www.percona.com/software/database-tools/percona-monitoring-and-management
+category: monitoring
+configuration:
+  PERCONA_ROOT_PASSWORD:
+    label: "Root password"
+    value: "CIVO:ALPHANUMERIC(30)"
+  SERVICE_TYPE:
+    label: "Kubernetes service type"
+    value: LoadBalancer 
