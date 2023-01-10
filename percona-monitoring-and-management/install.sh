@@ -14,7 +14,7 @@ helm repo update
 helm install pmm percona/pmm --set secret.create=false --set service.type=$SERVICE_TYPE
 
 # Wait for pod to be ready
-kubectl wait pods --for condition=Ready --timeout=120s pmm-0
+kubectl wait pods --for condition=Ready --timeout=5m pmm-0
 
 # Getting public address for the next step
 public_address=$(kubectl get svc monitoring-service -o jsonpath="{.status.loadBalancer.ingress[0].ip"})
