@@ -1,0 +1,8 @@
+---
+name: pmm
+title: "Percona monitoring and management"
+version: "2.33.0"
+maintainer: "@gen1us2k"
+description: Percona Monitoring and Management: an open source database monitoring, observability and management tool
+url: https://github.com/percona/pmm
+category: monitoring
