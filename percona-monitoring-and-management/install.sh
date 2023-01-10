@@ -22,7 +22,7 @@ public_address=$(kubectl get svc monitoring-service -o jsonpath="{.status.loadBa
 # Setting PMM settings to enable DBaaS correctly. It requires public address to be set
 settings_data="{\"enable_dbaas\": true, \"pmm_public_address\": \"$public_address\"}"
 
-curl -k -XPOST -u "admin:$admin_password" https://$public_address/v1/Settings/Change\
+curl -k -XPOST -u "admin:$PMM_ADMIN_PASSWORD" https://$public_address/v1/Settings/Change\
 	-H 'Content-type: application/json'\
 	-H 'Accept: application/json'\
 	--data-raw "$settings_data"
