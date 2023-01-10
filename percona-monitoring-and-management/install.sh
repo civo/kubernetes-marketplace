@@ -1,5 +1,5 @@
 #!/bin/bash
-PMM_PASSWORD=$(echo ${PMM_ADMIN_PASSWORD}|base64)
+export PMM_PASSWORD=$(echo ${PMM_ADMIN_PASSWORD}|base64)
 
 # Creating secret
 envsubst < secret.yml|kubectl apply -f -
