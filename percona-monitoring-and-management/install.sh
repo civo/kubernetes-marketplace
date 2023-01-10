@@ -1,8 +1,4 @@
 #!/bin/bash
-export PMM_PASSWORD=$(echo ${PMM_ADMIN_PASSWORD}|base64)
-
-# Creating secret
-envsubst < secret.yml|kubectl apply -f -
 
 # Add the Percona Helm repository
 helm repo add percona https://percona.github.io/percona-helm-charts/
@@ -11,7 +7,7 @@ helm repo add percona https://percona.github.io/percona-helm-charts/
 helm repo update
 
 # Install the PMM  Helm chart
-helm install pmm percona/pmm --set secret.create=false --set service.type=$SERVICE_TYPE
+helm install pmm percona/pmm --set secret.pmm_password=$PMM_ADMIN_PASSWORD --set service.type=$SERVICE_TYPE
 
 # Wait for pod to be ready
 kubectl wait pods --for condition=Ready --timeout=5m pmm-0
