@@ -17,7 +17,6 @@ kubectl wait pods -n default --for condition=Ready --timeout=120s pmm-0
 public_address=$(kubectl get service monitoring-service -o json|jq -r '.status.loadBalancer.ingress[0].ip')
 
 # Setting PMM settings to enable DBaaS correctly. It requires public address to be set
-admin_password="NjMxY2FiZmJkNzUx"
 settings_data="{\"enable_dbaas\": true, \"pmm_public_address\": \"$public_address\"}"
 
 curl -k -XPOST -u "admin:$admin_password" https://$public_address/v1/Settings/Change\
