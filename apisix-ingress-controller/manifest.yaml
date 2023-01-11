@@ -1,0 +1,8 @@
+---
+name: apisix-ingress-controller
+title: "Apache APISIX Ingress Controller"
+version: "1.6.0"
+maintainer: "@tao12345666333"
+description: Apache APISIX Ingress Controller is an open-source Ingress Controller for Kubernetes that provides rich traffic management features.
+url: https://apisix.apache.org/
+category: architecture
