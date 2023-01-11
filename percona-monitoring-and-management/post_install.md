@@ -11,4 +11,4 @@ Get the IP-address of the Load Balancer:
   echo https://$SERVICE_IP
 ```
 
-Connect the link you get from the above.
+Connect to the link you get from the above.
