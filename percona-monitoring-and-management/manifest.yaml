@@ -7,9 +7,9 @@ description: "Open source database monitoring, management, and observability sol
 url: https://www.percona.com/software/database-tools/percona-monitoring-and-management
 category: monitoring
 configuration:
-  PERCONA_ROOT_PASSWORD:
-    label: "Root password"
+  PMM_ADMIN_PASSWORD:
+    label: "Percona Monitoring and Management admin password"
     value: "CIVO:ALPHANUMERIC(30)"
   SERVICE_TYPE:
     label: "Kubernetes service type"
-    value: LoadBalancer 
+    value: LoadBalancer
