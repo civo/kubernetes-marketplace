@@ -13,6 +13,14 @@ helm install pmm percona/pmm --set secret.pmm_password=$PMM_ADMIN_PASSWORD --set
 kubectl wait pods --for condition=Ready --timeout=5m pmm-0
 
 # Getting public address for the next step
+while true
+do
+	ip=kubectl get svc monitoring-service -o jsonpath="{.status.loadBalancer.ingress[0].ip"}
+	if [ "$ip" != "" ]
+	then
+		break
+	fi
+done
 public_address=$(kubectl get svc monitoring-service -o jsonpath="{.status.loadBalancer.ingress[0].ip"})
 
 # Setting PMM settings to enable DBaaS correctly. It requires public address to be set
