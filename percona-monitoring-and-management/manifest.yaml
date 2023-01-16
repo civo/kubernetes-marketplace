@@ -12,6 +12,3 @@ configuration:
   PMM_ADMIN_PASSWORD:
     label: "Percona Monitoring and Management admin password"
     value: "CIVO:ALPHANUMERIC(30)"
-  SERVICE_TYPE:
-    label: "Kubernetes service type"
-    value: LoadBalancer
