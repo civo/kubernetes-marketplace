@@ -1,11 +1,24 @@
 ---
 name: Acorn
-version: 0.1
-maintainer: darren@acorn.io, saiyam@civo.com
+version: 0.5.1
+maintainer: darren@acorn.io, saiyam@civo.com, daniel.bodky@netways.de
 description: A simple application deployment framework for Kubernetes
 url: https://acorn.io
 category: management
-configuration:
-  CLUSTER_ID:
-    label: "Cluster ID"
-    value: "CIVO:CLUSTER_ID"
+plans:
+- label: "Disabled Auto-TLS"
+  configuration:
+    CLUSTER_ID:
+      value: "CIVO:CLUSTER_ID"
+    USER_EMAIL:
+      value: "CIVO:EMAIL_ADDRESS"
+    ENABLE_TLS:
+      value: "disabled"
+- label: "Enabled Auto-TLS (uses your Civo account's email to register with Let's Encrypt)"
+  configuration:
+    CLUSTER_ID:
+      value: "CIVO:CLUSTER_ID"
+    USER_EMAIL:
+      value: "CIVO:EMAIL_ADDRESS"
+    ENABLE_TLS:
+      value: "enabled"
