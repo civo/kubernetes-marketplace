@@ -1,0 +1,15 @@
+---
+name: galaxys-edge
+title: "Galaxy's Edge"
+version: "0.1"
+maintainer: david@civo.com
+description: Galaxy's Edge is a competition app for Civo Navigate. Deploy it on the TAM1 region during the event to enter the competition.
+url: https://civo.com/
+category: management
+configuration: 
+  CIVO_CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
+  CIVO_REGION:
+    label: "Region"
+    value: "CIVO:REGION"
