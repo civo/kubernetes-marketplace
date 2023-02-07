@@ -1,7 +1,7 @@
 ---
 name: parca
 title: "Parca"
-version: v0.11.1
+version: v0.15.0
 maintainer: "matthias.loibl@polarsignals.com"
 description: Continuous profiling for analysis of CPU, memory usage over time, and down to the line number. Saving infrastructure cost, improving performance.
 url: https://www.parca.dev/
