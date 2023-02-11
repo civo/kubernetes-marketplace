@@ -14,7 +14,7 @@ plans:
       value: "CIVO:EMAIL_ADDRESS"
     ENABLE_TLS:
       value: "disabled"
-- label: "Enabled Auto-TLS (uses your Civo account's email to register with Let's Encrypt)"
+- label: "Enabled Auto-TLS"
   configuration:
     CLUSTER_ID:
       value: "CIVO:CLUSTER_ID"
