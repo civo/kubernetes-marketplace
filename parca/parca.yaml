@@ -2,18 +2,19 @@
 apiVersion: v1
 data:
   parca.yaml: |-
-    "debug_info":
+    "object_storage":
       "bucket":
         "config":
-          "directory": "./tmp"
-        "type": "FILESYSTEM"
-      "cache":
-        "config":
-          "directory": "./tmp"
+          "directory": "/var/lib/parca"
         "type": "FILESYSTEM"
 kind: ConfigMap
 metadata:
-  name: parca-config
+  labels:
+    app.kubernetes.io/component: observability
+    app.kubernetes.io/instance: parca
+    app.kubernetes.io/name: parca
+    app.kubernetes.io/version: v0.15.0
+  name: parca
   namespace: parca
 ---
 apiVersion: apps/v1
@@ -23,7 +24,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.11.1
+    app.kubernetes.io/version: v0.15.0
   name: parca
   namespace: parca
 spec:
@@ -39,21 +40,22 @@ spec:
         app.kubernetes.io/component: observability
         app.kubernetes.io/instance: parca
         app.kubernetes.io/name: parca
-        app.kubernetes.io/version: v0.11.1
+        app.kubernetes.io/version: v0.15.0
     spec:
       containers:
       - args:
         - /parca
-        - --config-path=/var/parca/parca.yaml
+        - --http-address=:7070
+        - --config-path=/etc/parca/parca.yaml
         - --log-level=info
         - --cors-allowed-origins=*
         - --debug-infod-upstream-servers=https://debuginfod.systemtap.org
         - --debug-infod-http-request-timeout=5m
-        image: ghcr.io/parca-dev/parca:v0.11.1
+        image: ghcr.io/parca-dev/parca:v0.15.0
         livenessProbe:
           exec:
             command:
-            - /grpc-health-probe
+            - /grpc_health_probe
             - -v
             - -addr=:7070
           initialDelaySeconds: 5
@@ -64,15 +66,17 @@ spec:
         readinessProbe:
           exec:
             command:
-            - /grpc-health-probe
+            - /grpc_health_probe
             - -v
             - -addr=:7070
           initialDelaySeconds: 10
         resources: {}
         terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
-        - mountPath: /var/parca
-          name: parca-config
+        - mountPath: /etc/parca
+          name: config
+        - mountPath: /var/lib/parca
+          name: data
       nodeSelector:
         kubernetes.io/os: linux
       securityContext:
@@ -82,8 +86,10 @@ spec:
       terminationGracePeriodSeconds: 120
       volumes:
       - configMap:
-          name: parca-config
-        name: parca-config
+          name: parca
+        name: config
+      - emptyDir: {}
+        name: data
 ---
 apiVersion: v1
 kind: Namespace
@@ -131,7 +137,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.11.1
+    app.kubernetes.io/version: v0.15.0
   name: parca
   namespace: parca
 rules:
@@ -151,7 +157,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.11.1
+    app.kubernetes.io/version: v0.15.0
   name: parca
   namespace: parca
 roleRef:
@@ -169,7 +175,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.11.1
+    app.kubernetes.io/version: v0.15.0
   name: parca
   namespace: parca
 spec:
@@ -189,6 +195,6 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.11.1
+    app.kubernetes.io/version: v0.15.0
   name: parca
   namespace: parca
