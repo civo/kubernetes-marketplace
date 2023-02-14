@@ -1,0 +1,6 @@
+github:
+  epinio:
+    user: "GitHub Actions"
+    email: "41898282+github-actions[bot]@users.noreply.github.com"
+    username: "UPDATECLI_GITHUB_ACTOR"
+    token: "UPDATECLI_GITHUB_TOKEN"

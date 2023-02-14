@@ -1,0 +1,38 @@
+---
+name: "Updatecli: Dependency Management"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 7 * * *'
+  repository_dispatch:
+    types: [epinio-release]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  updatecli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Updatecli in the runner
+        uses: updatecli/updatecli-action@v2
+      
+      # sync repo with upstream
+      - name: Sync upstream changes
+        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
+        with:
+          target_sync_branch: master
+          target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+          upstream_sync_branch: master
+          upstream_sync_repo: civo/kubernetes-marketplace
+
+      - name: Updatecli apply
+        run: "updatecli apply --config .github/updatecli/updatecli.d --values .github/updatecli/values.yaml --experimental"
+        env:
+          UPDATECLI_GITHUB_ACTOR: ${{ github.actor }}
+          UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
