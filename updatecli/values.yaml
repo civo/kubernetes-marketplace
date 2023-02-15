@@ -1,0 +1,7 @@
+github:
+  owner: olblak
+  repository: kubernetes-marketplace
+  branch: master
+  user: Updatebot
+  username: olblak
+  email: bot@updatecli.io

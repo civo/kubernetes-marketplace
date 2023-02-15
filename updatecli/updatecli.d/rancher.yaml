@@ -1,0 +1,56 @@
+---
+name: "Bump CIVO marketplace Rancher version"
+
+sources:
+  chart:
+    kind: helmchart
+    name: Get latest Rancher Helm Chart version
+    spec:
+      url: https://releases.rancher.com/server-charts/latest
+      name: rancher
+
+targets:
+  update-manifest:
+    kind: yaml
+    name: Update rancher/manifest.yaml
+    scmid: kubernetes-marketplace
+    spec:
+      file: rancher/manifest.yaml
+      key: version
+    sourceid: chart
+
+  update-install:
+    kind: file
+    name: Update rancher/install.sh
+    scmid: kubernetes-marketplace
+    disablesourceinput: true
+    spec:
+      file: rancher/install.sh
+      matchpattern: '--version (\d*.\d*.\d*)'
+      replacepattern: '--version {{ source "chart" }}'
+
+# Define git repository configuration to know where to push changes
+# Values are templated and provided via the values.yaml so we can easily 
+# adapt to the repository owner.
+scms:
+  kubernetes-marketplace:
+    kind: "github"
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner }}"
+      repository: "{{ .github.repository }}"
+      branch: "{{ .github.branch }}"
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+
+actions:  
+  kubernetes-marketplace:
+    kind: "github/pullrequest"
+    scmid: kubernetes-marketplace
+    title: 'Bump Rancher Helm chart to {{ source "chart" }}'
+    spec:
+      usetitleforautomerge: true
+      mergemethod: squash
+      labels:
+        - enhancement 

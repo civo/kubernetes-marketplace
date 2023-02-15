@@ -1,0 +1,64 @@
+---
+name: "Bump CIVO marketplace Argocd version"
+
+sources:
+  chart:
+    kind: helmchart
+    name: Get latest Argocd Helm Chart version
+    spec:
+      url: https://argoproj.github.io/argo-helm
+      name: argo-cd
+  app:
+    kind: githubrelease
+    name: Get latest Argocd version
+    spec:
+      owner: argoproj 
+      repository: argo-cd
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+
+targets:
+  update-manifest:
+    kind: yaml
+    name: Update argocd/manifest.yaml
+    scmid: kubernetes-marketplace
+    spec:
+      file: argocd/manifest.yaml
+      key: version
+    sourceid: app
+
+  update-install:
+    kind: file
+    name: Update argocd/install.sh
+    scmid: kubernetes-marketplace
+    disablesourceinput: true
+    spec:
+      file: argocd/install.sh
+      matchpattern: '--version (\d*.\d*.\d*)'
+      replacepattern: '--version {{ source "chart" }}'
+
+# Define git repository configuration to know where to push changes
+# Values are templated and provided via the values.yaml so we can easily 
+# adapt to the repository owner.
+scms:
+  kubernetes-marketplace:
+    kind: "github"
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner }}"
+      repository: "{{ .github.repository }}"
+      branch: "{{ .github.branch }}"
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+
+actions:  
+  kubernetes-marketplace:
+    kind: "github/pullrequest"
+    scmid: kubernetes-marketplace
+    title: 'Bump Argocd Helm chart to {{ source "chart" }}'
+    spec:
+      usetitleforautomerge: true
+      mergemethod: squash
+      labels:
+        - enhancement 
