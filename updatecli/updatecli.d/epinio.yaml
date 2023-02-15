@@ -1,0 +1,66 @@
+---
+name: "Bump CIVO marketplace Epinio version"
+
+sources:
+  chart:
+    kind: helmchart
+    name: Get latest Epinio Helm chart version
+    spec:
+      url: https://epinio.github.io/helm-charts
+      name: epinio
+  app:
+    kind: githubrelease
+    name: Get latest Epinio app version
+    spec:
+      owner: epinio
+      repository: epinio
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+
+targets:
+  manifest:
+    kind: yaml
+    name: Update epinio/manifest.yaml
+    scmid: kubernetes-marketplace
+    transformers:
+      - addprefix: v
+    spec:
+      file: epinio/manifest.yaml
+      key: version
+    sourceid: chart
+
+  install:
+    kind: file
+    name: Update epinio/install.sh
+    disablesourceinput: true
+    scmid: kubernetes-marketplace
+    spec:
+      file: epinio/install.sh
+      matchpattern: '--version (\d*.\d*.\d*)'
+      replacepattern: '--version {{ source "chart" }}'
+
+# Define git repository configuration to know where to push changes
+# Values are templated and provided via the values.yaml so we can easily 
+# adapt to the repository owner.
+scms:
+  kubernetes-marketplace:
+    kind: "github"
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner }}"
+      repository: "{{ .github.repository }}"
+      branch: "{{ .github.branch }}"
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+
+actions:  
+  kubernetes-marketplace:
+    kind: "github/pullrequest"
+    scmid: kubernetes-marketplace
+    title: 'Bump Epinio Helm chart to {{ source "chart" }}'
+    spec:
+      usetitleforautomerge: true
+      mergemethod: squash
+      labels:
+        - enhancement 

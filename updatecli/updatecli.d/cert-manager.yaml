@@ -1,0 +1,58 @@
+---
+name: "Bump CIVO marketplace cert-manager version"
+
+sources:
+  app:
+    kind: githubrelease
+    name: Get latest cert-manager version
+    spec:
+      owner: cert-manager
+      repository: cert-manager
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+
+targets:
+  update-manifest:
+    kind: yaml
+    name: Update cert-manager/manifest.yaml
+    scmid: kubernetes-marketplace
+    spec:
+      file: cert-manager/manifest.yaml
+      key: version
+    sourceid: app
+
+  update-install:
+    kind: file
+    name: Update cert-manager/install.sh
+    scmid: kubernetes-marketplace
+    disablesourceinput: true
+    spec:
+      file: cert-manager/install.sh
+      matchpattern: '/download/v(\d*.\d*.\d*)/'
+      replacepattern: '/download/v{{ source "app" }}/'
+
+# Define git repository configuration to know where to push changes
+# Values are templated and provided via the values.yaml so we can easily 
+# adapt to the repository owner.
+scms:
+  kubernetes-marketplace:
+    kind: "github"
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner }}"
+      repository: "{{ .github.repository }}"
+      branch: "{{ .github.branch }}"
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+
+actions:  
+  kubernetes-marketplace:
+    kind: "github/pullrequest"
+    scmid: kubernetes-marketplace
+    title: 'Bump Cert-manager Helm chart to {{ source "app" }}'
+    spec:
+      usetitleforautomerge: true
+      mergemethod: squash
+      labels:
+        - enhancement 
