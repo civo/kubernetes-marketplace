@@ -8,6 +8,7 @@ sources:
     spec:
       url: https://kedacore.github.io/charts
       name: keda
+
   app:
     kind: githubrelease
     name: Get latest Keda version
@@ -58,7 +59,7 @@ actions:
   kubernetes-marketplace:
     kind: "github/pullrequest"
     scmid: kubernetes-marketplace
-    title: 'Bump Argocd Helm chart to {{ source "chart" }}'
+    title: 'Bump Keda Helm chart to {{ source "chart" }}'
     spec:
       usetitleforautomerge: true
       mergemethod: squash
