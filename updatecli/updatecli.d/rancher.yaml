@@ -10,7 +10,7 @@ sources:
       name: rancher
 
 targets:
-  update-manifest:
+  manifest:
     kind: yaml
     name: Update rancher/manifest.yaml
     scmid: kubernetes-marketplace
@@ -19,7 +19,7 @@ targets:
       key: version
     sourceid: chart
 
-  update-install:
+  install:
     kind: file
     name: Update rancher/install.sh
     scmid: kubernetes-marketplace

@@ -21,7 +21,7 @@ sources:
       - trimprefix: v
 
 targets:
-  update-manifest:
+  manifest:
     kind: yaml
     name: Update keda/manifest.yaml
     scmid: kubernetes-marketplace
@@ -30,7 +30,7 @@ targets:
       key: version
     sourceid: app
 
-  update-install:
+  install:
     kind: file
     name: Update keda/install.sh
     scmid: kubernetes-marketplace
