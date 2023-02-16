@@ -12,7 +12,7 @@ sources:
       username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
 
 targets:
-  update-manifest:
+  manifest:
     kind: yaml
     name: Update cert-manager/manifest.yaml
     scmid: kubernetes-marketplace
@@ -21,7 +21,7 @@ targets:
       key: version
     sourceid: app
 
-  update-install:
+  install:
     kind: file
     name: Update cert-manager/install.sh
     scmid: kubernetes-marketplace
