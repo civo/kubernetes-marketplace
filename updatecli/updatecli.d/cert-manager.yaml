@@ -29,7 +29,7 @@ targets:
     disablesourceinput: true
     spec:
       file: cert-manager/install.sh
-      matchpattern: '/download/(\d*.\d*.\d*)/'
+      matchpattern: '/download/(v{0,1})(\d*.\d*.\d*)/'
       replacepattern: '/download/{{ source "app" }}/'
 
 # Define git repository configuration to know where to push changes

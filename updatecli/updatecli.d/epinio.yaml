@@ -37,7 +37,7 @@ targets:
     scmid: kubernetes-marketplace
     spec:
       file: epinio/install.sh
-      matchpattern: '--version (\d*.\d*.\d*)'
+      matchpattern: '--version (v{0,1})(\d*.\d*.\d*)'
       replacepattern: '--version {{ source "chart" }}'
 
 # Define git repository configuration to know where to push changes
