@@ -37,7 +37,8 @@ An Updatecli typical project has:
 │   ├── cert-manager.yaml
 │   ├── epinio.yaml
 │   ├── keda.yaml
-│   └── rancher.yaml
+│   ├── rancher.yaml
+│   └── <your_manifest>.yaml
 └── values.yaml
 ```
 
