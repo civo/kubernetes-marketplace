@@ -1,5 +1,6 @@
 ---
 name: "Bump CIVO marketplace Keda version"
+pipelineid: keda
 
 sources:
   chart:

@@ -1,5 +1,6 @@
 ---
 name: "Bump CIVO marketplace Epinio version"
+pipelineid: epinio
 
 sources:
   chart:
