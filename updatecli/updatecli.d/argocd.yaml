@@ -1,5 +1,6 @@
 ---
 name: "Bump CIVO marketplace Argocd version"
+pipelineid: argocd
 
 sources:
   chart:
