@@ -3,20 +3,51 @@ name: "Bump CIVO marketplace Argocd version"
 pipelineid: argocd
 
 sources:
+  # Monitor the version in the Chart.yaml file from the argocd git repository referenced by scmid
   chart:
-    kind: helmchart
+    kind: yaml
     name: Get latest Argocd Helm Chart version
+    scmid: argo-helm
     spec:
-      url: https://argoproj.github.io/argo-helm
-      name: argo-cd
+      file: charts/argo-cd/Chart.yaml
+      key: version
+
+  # Monitor the appVersion in the Chart.yaml file from the argocd git repository referenced by scmid
+  appVersion:
+    kind: yaml
+    name: Get latest Argocd Helm Chart version
+    scmid: argo-helm
+    spec:
+      file: charts/argo-cd/Chart.yaml
+      key: appVersion
+
   app:
+    # Using the githubrelease allows us to retrieve the changelog information
+    # It will fails if the version mentionned by appVersion do not have an equivalent published
+    # GitHub release
     kind: githubrelease
     name: Get latest Argocd version
+    dependson:
+      - appVersion
     spec:
       owner: argoproj 
       repository: argo-cd
       token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
       username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+      versionfilter:
+        kind: semver
+        pattern: '{{ source "appVersion" }}'
+
+conditions:
+  chart:
+    # Ensure that the Helm chart version specified on the git repository
+    # is correctly published on the argoproj helm repository
+    kind: helmchart
+    name: Get latest Argocd Helm Chart version
+    sourceid: app
+    spec:
+      url: https://argoproj.github.io/argo-helm
+      name: argo-cd
 
 targets:
   manifest:
@@ -53,12 +84,22 @@ scms:
       username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
       token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
 
+  argo-helm:
+    kind: "github"
+    spec:
+      owner: argoproj
+      repository: argo-helm
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+      branch: main
+
 actions:  
   kubernetes-marketplace:
     kind: "github/pullrequest"
     scmid: kubernetes-marketplace
     title: 'Bump Argocd Helm chart to {{ source "chart" }}'
     spec:
+      description: For full list of changes please check ArtifactHub [changelog](https://artifacthub.io/packages/helm/argo/argo-cd?modal=changelog)
       usetitleforautomerge: true
       mergemethod: squash
       labels:
