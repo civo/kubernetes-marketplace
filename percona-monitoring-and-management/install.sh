@@ -7,7 +7,7 @@ helm repo add percona https://percona.github.io/percona-helm-charts/
 helm repo update
 
 # Install the PMM  Helm chart
-helm install pmm percona/pmm --set secret.pmm_password=$PMM_ADMIN_PASSWORD --set service.type=LoadBalancer
+helm install pmm percona/pmm --set secret.pmm_password=$PMM_ADMIN_PASSWORD --set service.type=LoadBalancer --set-string pmmEnv.ENABLE_DBAAS="1"
 
 # Wait for pod to be ready
 kubectl wait pods --for condition=Ready --timeout=5m pmm-0
