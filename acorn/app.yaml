@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: acorn-init
-          image: ghcr.io/acorn-io/acorn:v0.5.1
+          image: ghcr.io/acorn-io/acorn:v0.6.0
           command: ["acorn", "init", "--cluster-domain=$CLUSTER_ID.k8s.civo.com", "--lets-encrypt=$ENABLE_TLS", "--lets-encrypt-email=$USER_EMAIL", "--lets-encrypt-tos-agree=true"]
       restartPolicy: Never
       serviceAccountName: acorn-init

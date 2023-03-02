@@ -1,6 +1,6 @@
 ---
 name: Acorn
-version: 0.5.1
+version: 0.6.0
 maintainer: darren@acorn.io, saiyam@civo.com, daniel.bodky@netways.de
 description: A simple application deployment framework for Kubernetes
 url: https://acorn.io
