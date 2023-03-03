@@ -1,5 +1,5 @@
 github:
-  owner: olblak
+  owner: civo
   repository: kubernetes-marketplace
   branch: master
   user: Updatebot
