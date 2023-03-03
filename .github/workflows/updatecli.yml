@@ -24,7 +24,7 @@ jobs:
         uses: updatecli/updatecli-action@v2
 
       - name: Apply
-        run: "updatecli apply --config ./updatecli/updatecli.d --values ./updatecli/values.yaml"
+        run: "updatecli apply --config .github/updatecli/updatecli.d --values .github/updatecli/values.yaml"
         env:
           UPDATECLI_GITHUB_ACTOR: ${{ github.actor }}
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
