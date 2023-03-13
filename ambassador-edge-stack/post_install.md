@@ -1,10 +1,10 @@
-## Ambassador Edge Stack - An Envoy-Powered API Gateway
-This app create a service edge-stack of type LoadBalancer  which will launch a [Civo Load Balancer](https://www.civo.com/load-balancers) (at an additional charge).
+## Description
 
 
-[Ambassador Edge Stack](https://www.getambassador.io/docs/edge-stack/) is a Kubernetes-native API Gateway built on the Envoy Proxy which can route and secure traffic to your kubernetes cluster.
+Introducing the [Ambassador Edge Stack](https://www.getambassador.io/docs/edge-stack/), the cutting-edge API Gateway that leverages the power of Envoy Proxy to route traffic to your Kubernetes cluster securely. With this app, you can easily create a service edge-stack of the LoadBalancer type, which includes the option to launch a [Civo Load Balancer](https://www.civo.com/load-balancers) (additional charges apply). Designed specifically for Kubernetes, the Ambassador Edge Stack is the perfect solution for streamlining your API management needs.
 
-### Get started
 
-[Quickstart guide for ambassador edge stack.](https://www.getambassador.io/docs/edge-stack/1.13/tutorials/getting-started/)
+## Support
 
+
+If you require additional support, check out this [quickstart guide](https://www.getambassador.io/docs/edge-stack/1.13/tutorials/getting-started/) for Ambassador Edge Stack. 
