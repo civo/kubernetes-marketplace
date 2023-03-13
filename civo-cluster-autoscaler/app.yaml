@@ -154,7 +154,7 @@ spec:
             - --v=4
             - --stderrthreshold=info
             - --cloud-provider=civo
-            - --nodes=1:10:workers
+            - --nodes=3:10:workers
             - --skip-nodes-with-local-storage=false
             - --skip-nodes-with-system-pods=false
           env:
