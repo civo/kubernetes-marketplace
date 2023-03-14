@@ -1,6 +1,6 @@
 ---
 name: polaris
-version: 1.2.0
+version: 7.3.2
 maintainer: "@milindchawre"
 description: Polaris identifies Kubernetes deployment configuration errors that can cause security vulnerabilities, outages, scaling limitations and more.
 url: https://www.fairwinds.com/polaris
