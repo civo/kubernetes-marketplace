@@ -11,13 +11,19 @@ metadata:
   namespace: polaris
   labels:
     app: polaris
+    app.kubernetes.io/component: dashboard
+    app.kubernetes.io/instance: polaris
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: polaris
   labels:
     app: polaris
+    app.kubernetes.io/component: dashboard
+    app.kubernetes.io/instance: polaris
+    app.kubernetes.io/name: polaris
+    app.kubernetes.io/part-of: polaris
 rules:
   # required by controller-runtime code doing a cluster wide lookup
   # when it seems namespace would suffice
@@ -28,13 +34,35 @@ rules:
     verbs:
       - 'get'
       - 'list'
+  - apiGroups:
+      - 'monitoring.coreos.com'
+    resources:
+      - 'prometheuses'
+      - 'alertmanagers'
+    verbs:
+      - 'get'
+      - 'list'
+  - apiGroups:
+      - 'rbac.authorization.k8s.io'
+    resources:
+      - 'clusterroles'
+      - 'clusterrolebindings'
+      - 'roles'
+      - 'rolebindings'
+    verbs:
+      - 'get'
+      - 'list'
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: polaris-view
   labels:
     app: polaris
+    app.kubernetes.io/component: dashboard
+    app.kubernetes.io/instance: polaris
+    app.kubernetes.io/name: polaris
+    app.kubernetes.io/part-of: polaris
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -44,12 +72,16 @@ subjects:
     name: polaris
     namespace: polaris
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: polaris
   labels:
     app: polaris
+    app.kubernetes.io/component: dashboard
+    app.kubernetes.io/instance: polaris
+    app.kubernetes.io/name: polaris
+    app.kubernetes.io/part-of: polaris
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -66,6 +98,10 @@ metadata:
   namespace: polaris
   labels:
     app: polaris
+    app.kubernetes.io/component: dashboard
+    app.kubernetes.io/instance: polaris
+    app.kubernetes.io/name: polaris
+    app.kubernetes.io/part-of: polaris
   annotations:
 spec:
   ports:
@@ -75,6 +111,8 @@ spec:
     targetPort: 8080
   selector:
     app: polaris
+    app.kubernetes.io/name: polaris
+    app.kubernetes.io/instance: polaris
     component: dashboard
   type: ClusterIP
 ---
@@ -85,24 +123,36 @@ metadata:
   namespace: polaris
   labels:
     app: polaris
+    app.kubernetes.io/component: dashboard
+    app.kubernetes.io/instance: polaris
+    app.kubernetes.io/name: polaris
+    app.kubernetes.io/part-of: polaris
     component: dashboard
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: polaris
+      app.kubernetes.io/name: polaris
+      app.kubernetes.io/instance: polaris
       component: dashboard
   template:
     metadata:
       labels:
         app: polaris
+        app.kubernetes.io/name: polaris
+        app.kubernetes.io/instance: polaris
         component: dashboard
     spec:
       containers:
       - command:
         - polaris
         - dashboard
-        image: 'quay.io/fairwinds/polaris:7.3.2'
+        - --port
+        - "8080"
+        - --log-level
+        - "Info"
+        image: 'quay.io/fairwinds/polaris:7.1'
         imagePullPolicy: 'Always'
         name: dashboard
         ports:
@@ -127,13 +177,11 @@ spec:
             cpu: 100m
             memory: 128Mi
         securityContext:
-          allowPrivilegeEscalation: false
-          privileged: false
-          readOnlyRootFilesystem: true
-          runAsNonRoot: true
-          capabilities:
-            drop:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
               - ALL
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
       serviceAccountName: polaris
-      nodeSelector:
-      tolerations:
