@@ -152,7 +152,7 @@ spec:
         - "8080"
         - --log-level
         - "Info"
-        image: 'quay.io/fairwinds/polaris:7.1'
+        image: 'quay.io/fairwinds/polaris:7.2'
         imagePullPolicy: 'Always'
         name: dashboard
         ports:
