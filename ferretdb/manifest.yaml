@@ -1,0 +1,14 @@
+---
+name: FerretDB
+version: 0.9.4-rc.2
+maintainer: packages@ferretdb.io
+description: A truly Open Source MongoDB alternative.
+url: https://www.ferretdb.io
+category: database
+configuration:
+  POSTGRES_USER:
+    label: "PostgreSQL superuser name"
+    value: "CIVO:WORDS(2)"
+  POSTGRES_PASSWORD:
+    label: "PostgreSQL superuser password"
+    value: "CIVO:ALPHANUMERIC(30)"

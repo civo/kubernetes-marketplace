@@ -1,0 +1,41 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ferretdb
+spec:
+  ports:
+    - port: 27017
+  selector:
+    app: ferretdb
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ferretdb
+spec:
+  selector:
+    matchLabels:
+      app: ferretdb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ferretdb
+    spec:
+      containers:
+        - image: ghcr.io/ferretdb/all-in-one:0.9.4-rc.2
+          name: ferretdb
+          env:
+            # remove default username and password
+            - name: FERRETDB_POSTGRESQL_URL
+              value: postgres://127.0.0.1:5432/ferretdb
+            - name: POSTGRES_USER
+              value: $POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              value: $POSTGRES_PASSWORD
+          ports:
+            - containerPort: 27017
+              name: ferretdb
