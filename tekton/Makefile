@@ -1,4 +1,5 @@
-VERSION?="v0.24.1"
+# Moving to LTS Version - Yearly Support
+VERSION?="v0.44.0"
 # For cli directly installed
 CIVO_CMD?="civo"
 # For Docker
