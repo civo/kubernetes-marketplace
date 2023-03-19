@@ -14,7 +14,7 @@ build: app.yaml
 app.yaml:
 	@curl https://storage.googleapis.com/tekton-releases/pipeline/previous/$(VERSION)/release.yaml > app.yaml
 	@echo "---" >> app.yaml
-	@curl https://storage.googleapis.com/tekton-releases/dashboard/latest/tekton-dashboard-release.yaml >> app.yaml
+	@curl https://storage.googleapis.com/tekton-releases/dashboard/latest/release.yaml >> app.yaml
 	@echo "---" >> app.yaml
 	@curl https://storage.googleapis.com/tekton-releases/triggers/latest/release.yaml >> app.yaml
 
