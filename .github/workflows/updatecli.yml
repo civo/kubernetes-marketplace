@@ -16,7 +16,7 @@ jobs:
   updatecli:
     runs-on: ubuntu-latest
     # Only run on non-forked repos
-    if: github.ref == 'refs/heads/master' && github.event.pull_request.head.repo.fork == false
+    if: github.ref == 'refs/heads/master' && github.repository.fork == false
     steps:
       - name: Checkout
         uses: actions/checkout@v3
