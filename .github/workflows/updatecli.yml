@@ -15,8 +15,7 @@ permissions:
 jobs:
   updatecli:
     runs-on: ubuntu-latest
-    # Only run on non-forked repos
-    if: github.ref == 'refs/heads/master' && github.repository.fork == false
+    if: ${{ github.ref == 'refs/heads/master' && github.repository_owner == 'civo' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
