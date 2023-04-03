@@ -98,6 +98,7 @@ actions:
     kind: "github/pullrequest"
     scmid: kubernetes-marketplace
     title: 'Bump Argocd Helm chart to {{ source "chart" }}'
+    branch: master
     spec:
       description: For full list of changes please check ArtifactHub [changelog](https://artifacthub.io/packages/helm/argo/argo-cd?modal=changelog)
       usetitleforautomerge: true
