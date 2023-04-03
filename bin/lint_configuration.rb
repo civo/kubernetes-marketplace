@@ -12,7 +12,7 @@ Dir.glob('**/*.yaml').each do |filename|
     yaml["configuration"].each do |k,v|
       if v["value"][/^CIVO\:ALPHANUMERIC\(\d+\)(\:BASE64)?/]
         # OK
-      elsif v["value"][/^CIVO\:WORDS\(\dn+\)(\:BASE64)?/]
+      elsif v["value"][/^CIVO\:WORDS\(\d+\)(\:BASE64)?/]
         # OK
       elsif v["value"][/^CIVO\:CLUSTER_NAME/]
         # OK
