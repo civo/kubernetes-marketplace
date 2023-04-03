@@ -50,6 +50,7 @@ actions:
     kind: "github/pullrequest"
     scmid: kubernetes-marketplace
     title: 'Bump Rancher Helm chart to {{ source "chart" }}'
+    branch: master
     spec:
       usetitleforautomerge: true
       mergemethod: squash
