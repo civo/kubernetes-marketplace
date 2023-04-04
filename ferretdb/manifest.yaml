@@ -8,7 +8,7 @@ category: database
 configuration:
   POSTGRES_USER:
     label: "PostgreSQL superuser name"
-    value: "CIVO:WORDS(10)"
+    value: "CIVO:WORDS(2)"
   POSTGRES_PASSWORD:
     label: "PostgreSQL superuser password"
     value: "CIVO:ALPHANUMERIC(30)"

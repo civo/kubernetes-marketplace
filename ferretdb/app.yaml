@@ -26,16 +26,37 @@ spec:
         app: ferretdb
     spec:
       containers:
-        - image: ghcr.io/ferretdb/all-in-one:0.9.4-rc.2
+        - image: ghcr.io/ferretdb/ferretdb:1.0.0
           name: ferretdb
           env:
-            # remove default username and password
             - name: FERRETDB_POSTGRESQL_URL
               value: postgres://127.0.0.1:5432/ferretdb
+            - name: FERRETDB_STATE_DIR
+              value: /state
+            - name: FERRETDB_TEST_TELEMETRY_PACKAGE
+              value: civo
+          volumeMounts:
+            - name: ferretdb-persistent-storage
+              mountPath: /state
+              subPath: ferretdb
+          ports:
+            - containerPort: 27017
+              name: ferretdb
+        - image: postgres:15.2
+          name: postgresql
+          env:
             - name: POSTGRES_USER
               value: $POSTGRES_USER
             - name: POSTGRES_PASSWORD
               value: $POSTGRES_PASSWORD
+          volumeMounts:
+            - name: ferretdb-persistent-storage
+              mountPath: /var/lib/postgresql/data
+              subPath: postgresql
           ports:
-            - containerPort: 27017
-              name: ferretdb
+            - containerPort: 5432
+              name: postgresql
+      volumes:
+        - name: ferretdb-persistent-storage
+          persistentVolumeClaim:
+            claimName: ferretdb-pv-claim
