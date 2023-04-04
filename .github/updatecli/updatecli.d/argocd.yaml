@@ -44,7 +44,7 @@ conditions:
     # is correctly published on the argoproj helm repository
     kind: helmchart
     name: Get latest Argocd Helm Chart version
-    sourceid: app
+    sourceid: chart
     spec:
       url: https://argoproj.github.io/argo-helm
       name: argo-cd
