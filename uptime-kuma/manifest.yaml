@@ -1,0 +1,12 @@
+title: "Uptime-Kuma"
+name: uptime-kuma
+version: "2.8.1"
+maintainer: "@dirsigler"
+description: "Modern and fast self-hosted Monitoring solution similar to 'Uptime Robot'."
+url: https://uptime.kuma.pet/
+category: monitoring
+plans:
+  - label: "Standalone"
+    configuration:
+      INSTALL_MODE:
+        value: standalone
