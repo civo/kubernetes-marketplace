@@ -1,6 +1,6 @@
-title: "Hashicorp Vault"
+title: "HashiCorp Vault"
 name: hashicorp-vault
-version: "0.18.0"
+version: "0.24.0"
 maintainer: "@dirsigler"
 description: "Secure, store and tightly control access to tokens, passwords, certificates, encryption keys for protecting secrets and other sensitive data."
 url: https://www.vaultproject.io/
@@ -14,3 +14,7 @@ plans:
     configuration:
       INSTALL_MODE:
         value: dev
+  - label: "High-Availability"
+    configuration:
+      INSTALL_MODE:
+        value: ha-raft

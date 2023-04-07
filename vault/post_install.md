@@ -1,4 +1,4 @@
-## Hashicorp Vault
+## HashiCorp Vault
 
 ### Security Warning
 
@@ -8,21 +8,37 @@ Source: https://www.vaultproject.io/docs/platform/k8s/helm#using-the-helm-chart
 
 ### Post installation configuration
 
-After installing Hashicorp Vault on your [Civo K3S Cluster](https://www.civo.com/) you need to [initialize the Vault server](https://www.vaultproject.io/docs/commands/operator/init).
+After installing HashiCorp Vault on your [Civo K3S Cluster](https://www.civo.com/) you need to [initialize the Vault server](https://www.vaultproject.io/docs/commands/operator/init).
 This generates all needed data and prints out the [unseal keys](https://www.vaultproject.io/docs/concepts/seal)
 and the [root token](https://www.vaultproject.io/docs/concepts/tokens#root-tokens).
 
+```sh
+# Initialize the Vault operator.
+# ATTENTION: Write down the "Unseal Keys" and "Initial Root Token".
+kubectl --namespace vault exec --tty --stdin vault-0 -- vault operator init
+
+# Unseal the cluster.
+# Repeat this step 3 times each time with a different unseal key.
+kubectl --namespace vault exec --tty --stdin vault-0 -- vault operator unseal
+```
+
 Additionally you have to make sure that you have the [Vault binary installed locally](https://www.vaultproject.io/downloads) on your workstation.
+
+#### High Availability with Raft
+
+Please refer to the official documentation:
+https://developer.hashicorp.com/vault/docs/platform/k8s/helm/examples/ha-with-raft
 
 ### Accessing the UI Frontend
 
 Vault comes with a nice UI where you can do most of the management instead of using the terminal.
-To access it you need to install a Kubernetes Ingress Controller like Nginx or [HAProxy](https://www.civo.com/learn/install-haproxy-as-ingress-in-civo-kubernetes).
+To access it you need to install a Kubernetes Ingress Controller like [Nginx](https://www.civo.com/marketplace/Nginx) or [HAProxy](https://www.civo.com/learn/install-haproxy-as-ingress-in-civo-kubernetes).
 
 Next create the Kubernetes Manifest for the Ingress resource and apply it.
+Here an example for [Nginx](https://www.civo.com/marketplace/Nginx):
 
 ```sh
-cat <<EOF | kubectl apply -f -
+cat <<EOF | kubectl -n vault apply -f -
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -38,7 +54,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-             name: vault
+             name: vault-internal
              port:
                number: 8200
 EOF
