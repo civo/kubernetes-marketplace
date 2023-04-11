@@ -5,10 +5,23 @@ maintainer: packages@ferretdb.io
 description: A truly Open Source MongoDB alternative.
 url: https://www.ferretdb.io
 category: database
+plans:
+  - label: "5GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 5Gi
+  - label: "10GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 10Gi
+  - label: "20GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 20Gi
 configuration:
   POSTGRES_USER:
     label: "PostgreSQL superuser name"
-    value: "CIVO:WORDS(10)"
+    value: "CIVO:WORDS(2)"
   POSTGRES_PASSWORD:
     label: "PostgreSQL superuser password"
     value: "CIVO:ALPHANUMERIC(30)"
