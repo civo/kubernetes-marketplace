@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Add the Helm repository for kubeclarity
-helm repo add kubeclarity https://cisco-open.github.io/kubei
+helm repo add kubeclarity https://openclarity.github.io/kubeclarity
 helm repo update
 
 # Install kubeclarity
