@@ -5,6 +5,8 @@ maintainer: packages@ferretdb.io
 description: A truly Open Source MongoDB alternative.
 url: https://www.ferretdb.io
 category: database
+required_services:
+  - loadbalancer
 plans:
   - label: "5GB"
     configuration:
@@ -25,3 +27,4 @@ configuration:
   POSTGRES_PASSWORD:
     label: "PostgreSQL superuser password"
     value: "CIVO:ALPHANUMERIC(30)"
+    
