@@ -26,5 +26,5 @@ to encrypt `Secrets` stored in etcd.
 
 ## More details
 
-See https://github.com/external-secrets/kubernetes-external-secrets/blob/master/README.md for the usage of the different
+See https://github.com/external-secrets/external-secrets/blob/main/README.md for the usage of the different
 backends
