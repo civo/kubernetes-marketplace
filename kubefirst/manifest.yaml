@@ -1,6 +1,6 @@
 ---
 name: kubefirst
-version: "2.1.13"
+version: "2.1.19"
 maintainer: @kubefirst
 description: kubefirst is an instant kubernetes platform for engineering teams
 url: https://kubefirst.io
