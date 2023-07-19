@@ -1,6 +1,6 @@
 ---
 name: kubefirst
-version: "2.1.19"
+version: "2.2.5"
 maintainer: "@kubefirst"
 description: kubefirst is an instant open source Kubernetes platform powered by the most popular Cloud Native tools to provide app delivery and automated infrastructure as code
 url: https://kubefirst.io
