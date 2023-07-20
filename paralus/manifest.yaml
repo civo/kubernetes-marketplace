@@ -1,0 +1,8 @@
+---
+name: paralus
+title: "Paralus"
+version: "0.2.3"
+maintainer: "Paralus Authors"
+description: Paralus is a Kubernetes access management tool
+url: https://www.paralus.io/
+category: security
