@@ -37,3 +37,4 @@ helm upgrade \
   --version "$KUBEWARDEN_DEFAULTS_CHART_VERSION"
   kubewarden-defaults \
   kubewarden/kubewarden-defaults
+
