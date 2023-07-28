@@ -1,0 +1,10 @@
+---
+name: Kubewarden
+title: Kubewarden
+description: "Kubewarden is a Kubernetes Dynamic Admission Controller that validates incoming requests using policies written in WebAssembly."
+maintainer: cncf-kubewarden-maintainers@lists.cncf.io
+url: https://www.kubewarden.io/
+category: security
+dependencies:
+  - cert-manager
+
