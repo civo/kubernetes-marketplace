@@ -26,7 +26,7 @@ helm upgrade \
   --install \
   --wait \
   -n kubewarden \
-  --version "$KUBEWARDEN_CONTROLLER_CHART_VERSION"
+  --version "$KUBEWARDEN_CONTROLLER_CHART_VERSION" \
   kubewarden-controller \
   kubewarden/kubewarden-controller
 
@@ -34,7 +34,7 @@ helm upgrade \
   --install \
   --wait \
   -n kubewarden \
-  --version "$KUBEWARDEN_DEFAULTS_CHART_VERSION"
+  --version "$KUBEWARDEN_DEFAULTS_CHART_VERSION" \
   kubewarden-defaults \
   kubewarden/kubewarden-defaults
 
