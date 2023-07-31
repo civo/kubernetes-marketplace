@@ -43,7 +43,6 @@ helm upgrade \
   --set recommendedPolicies.enabled=True \
   --set recommendedPolicies.skipAdditionalNamespaces[0]="kube-system" \
   --set recommendedPolicies.skipAdditionalNamespaces[1]="cert-manager" \
-  --set recommendedPolicies.defaultPolicyMode=monitor \
   kubewarden-defaults \
   kubewarden/kubewarden-defaults
 
