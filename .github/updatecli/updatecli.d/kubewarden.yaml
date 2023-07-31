@@ -1,4 +1,5 @@
 name: Bump Kubewarden Helm charts
+pipelineid: kubewarden
 
 sources:
   kubewarden-crds:
