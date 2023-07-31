@@ -30,11 +30,20 @@ helm upgrade \
   kubewarden-controller \
   kubewarden/kubewarden-controller
 
+# WARNING Enforcing the policies to the kube-system namespace could break your cluster.
+# Be aware that some pods could need break this rules.
+# Therefore, the user must be sure which namespaces the policies will be applied.
+# Remember that when you define the --set command line flag the default values are overwritten.
+# So, the user must define the kube-system namespace manually.
 helm upgrade \
   --install \
   --wait \
   -n kubewarden \
   --version "$KUBEWARDEN_DEFAULTS_CHART_VERSION" \
+  --set recommendedPolicies.enabled=True \
+  --set recommendedPolicies.skipAdditionalNamespaces[0]="kube-system" \
+  --set recommendedPolicies.skipAdditionalNamespaces[1]="cert-manager" \
+  --set recommendedPolicies.defaultPolicyMode=protect \
   kubewarden-defaults \
   kubewarden/kubewarden-defaults
 
