@@ -7,4 +7,4 @@ helm repo add paralus https://paralus.github.io/helm-charts
 
 helm repo update
 
-helm install paralus-ztka paralus/ztka --namespace paralus --create-namespace --set fqdn.domain="$domain" --paralus.initialize.adminEmail="$email"
+helm install paralus-ztka paralus/ztka --namespace paralus --create-namespace --set fqdn.domain="$domain" --set paralus.initialize.adminEmail="$email" --set deploy.postgresql.enable=true
