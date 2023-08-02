@@ -1,1 +1,4 @@
 .gitpod.yml
+
+# For Makefile based tests
+kubeconfig.*
