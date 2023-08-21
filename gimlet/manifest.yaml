@@ -1,7 +1,7 @@
 name: Gimlet
-version: v0.4.2
+version: v0.17.2
 maintainer: "@laszlocph"
-description: "Gimlet provides a paved path to Kubernetes from day one, so you can focus on advanced platform needs instead of the tablestakes."
+description: "As little, or as much Kubernetes as you want. With Gimlet, you can start with one-click-deploys then stair-step your way to a gitops based application delivery platform when you need to. Gimlet features the best of open-source out of the box."
 url: https://www.gimlet.io/
 category: management
 configuration:
