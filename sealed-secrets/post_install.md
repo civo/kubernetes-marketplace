@@ -2,7 +2,7 @@
 
 ### Client installation
 
-Install client-side tool from [0.12.4 release page](https://github.com/bitnami-labs/sealed-secrets/releases/tag/v0.12.4)
+Install client-side tool from [0.23.1 release page](https://github.com/bitnami-labs/sealed-secrets/releases/tag/v0.23.1)
 
 ### Usage
 
