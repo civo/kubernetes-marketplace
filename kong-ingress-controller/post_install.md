@@ -4,5 +4,5 @@
 
 ### Get started
 
-[Quickstart guide for kong ingress controller.](https://docs.konghq.com/kubernetes-ingress-controller/1.3.x/guides/getting-started/)
+[Quickstart guide for kong ingress controller.](https://docs.konghq.com/kubernetes-ingress-controller/2.11.x/guides/getting-started/)
 
