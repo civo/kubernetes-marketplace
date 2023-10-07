@@ -6,38 +6,33 @@ Otomi is a self-hosted PaaS for Kubernetes and adds developer- and operations-ce
 
 Otomi requires at least:
 
-* A node pool with 3 Medium Standard nodes (more is preferred)
-* A node pool with 3 Small Performance nodes 
+* A node pool with `3` Large Standard nodes (4 CPU Cores and 8 GB RAM)
 * Kubernetes version `1.26` or `1.27`
+
+Otomi installs and configures Nginx as a default ingress controller. When launching from the marketplace, make sure to unselect the default Traefik v2 (NodePort).
 
 ## Access and activation
 
 Follow the steps described [here](https://otomi.io/docs/get-started/activation) after initial installation.
 
-## Running Otomi with Civo DNS
+## Switch from nip.io to Civo DNS
 
-When Otomi is installed, it will use the load balancer IP with nip.io for name resolution. To unlock the full potential of Otomi, it's advised to run Otomi with DNS. You can configure DNS after installation. Follow these steps to configure Otomi with Civo DNS:
+When Otomi is installed using the Civo marketplace, Otomi will use a generated (untrusted) CA and use the ip address of the load balancer with nip.io for all the host names. To see the full potential of Otomi, it is advised to switch to using a DNS zone. Follow the instructions to switch to using Civo DNS.
 
-1. Under `Networking` in the Civo Dashboard, click `DNS` and then `Add a domain name`
-2. Fill in a domain name and then click `Add domain`
-3. Create a NS record in the zone where your domain is hosted and add the Civo name servers `ns0.civo.com` ans `ns1.civo.com`
-4. Under `Settings`, `Profile`, click on the tab `Security` and copy the API key
-5. Sign in to Otomi Console
-6. In the left menu click on `Settings` and then `Otomi`
-7. Enable `External DNS` and click on `Submit`
-8. Go back to the `Settings` and click DNS
-9. Under `Domain filters`, click `Add item` and fill in the domain name you just added in Civo
-10. Under `Provider`, select `Civo Cloud` and fill in the Civo Api key in the `apiToken` field
-11. Click `Submit`
-12. In the left menu, go to `Apps` under `Platform`. Hoover over the `cert-manager` app and click on the configuration button
-13. Click on the `Values` tab
-14. Select `letsencrypt`, fill in a valid `email address` and select stage `production`
-15. Click `Submit`
-16. Now click on `Deploy Changes` in the top of the left menu bar
+In Civo:
 
-Note that the connection to the Console will be lost and you will need to reconnect using the new domain name `otomi.<your-domain>`.
+* Under `Networking` in the Civo Dashboard, click `DNS` and then `Add a domain name`
+* Fill in a domain name and then click `Add domain`
+* Create a NS record in the zone where your domain is hosted and add the Civo name servers `ns0.civo.com` ans `ns1.civo.com`
+* Under `Settings`, `Profile`, click on the tab `Security` and copy the `API key`
 
-Otomi supports the most popular cloud DNS services. Read more about using DNS in Otomi in de documentation (see link below).
+In Otomi:
+
+Follow the instructions [here](https://otomi.io/docs/for-ops/how-to/switch-to-dns).
+
+## Known issues on Civo
+
+* During initial installation the job `job-keycloak` in the `maintenance` namespace might fail and go into an `error` status. The job will automatically retry and (after 1 or 2 retries) eventually succeed.
 
 ## Next steps
 
