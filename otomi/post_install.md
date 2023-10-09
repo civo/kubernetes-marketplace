@@ -4,8 +4,6 @@ Otomi is a self-hosted PaaS for Kubernetes and adds developer- and operations-ce
 
 ## Minimal requirements
 
-Otomi requires at least:
-
 Check the minimal requirements for running Otomi on Civo [here].(https://otomi.io/docs/get-started/prerequisites#civo)
 
 ## Access and activation
