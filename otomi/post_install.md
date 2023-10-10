@@ -4,6 +4,8 @@ Otomi is a self-hosted PaaS for Kubernetes and adds developer- and operations-ce
 
 ## Minimal requirements
 
+Otomi installs and configures Nginx as a default ingress controller. When launching from the marketplace, make sure to unselect the default Traefik v2 (NodePort).
+
 Check the minimal requirements for running Otomi on Civo [here](https://otomi.io/docs/get-started/prerequisites#civo).
 
 ## Access and activation
