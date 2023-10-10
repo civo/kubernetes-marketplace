@@ -1,5 +1,5 @@
 ---
-name: Traefik-v2-nodeport
+name: traefik2-nodeport
 title: Traefik v2 (NodePort)
 version: "2.9.4"
 default: true
