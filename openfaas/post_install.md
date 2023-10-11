@@ -55,7 +55,7 @@ echo $(kubectl get secret -n openfaas basic-auth -o jsonpath="{.data.basic-auth-
 
 ### Use the CLI to log in
 
-Now install the [faas-cli](http://github.com/openfaas/faas-cli) and log in:
+Now install the [faas-cli](https://github.com/openfaas/faas-cli) and log in:
 
 ```
 cat password.txt | faas-cli login --username admin --password-stdin
