@@ -4,7 +4,7 @@ title: "EnRoute OneStep Ingress API Gateway"
 version: "0.8.0"
 maintainer: "@chintan8saaras"
 description: EnRoute OneStep is an Envoy based Kubernetes-native API Gateway.
-url: https://getenroute.io/docs/getting-started-enroute-ingress-controller/
+url: https://docs.getenroute.io/docs/prologue/introduction/
 category: architecture
 required_services:
   - loadbalancer
