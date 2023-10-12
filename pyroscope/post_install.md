@@ -43,4 +43,4 @@ When you're setting up your applications to send data to pyroscope, set server a
 
 ### Additional Documentation
 
-For more information on how to use Pyroscope, check out the [documentation](https://pyroscope.io/docs/).
+For more information on how to use Pyroscope, check out the [documentation](https://grafana.com/docs/pyroscope/latest/).

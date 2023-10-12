@@ -3,7 +3,7 @@ name: Acorn
 version: 0.1
 maintainer: darren@acorn.io, saiyam@civo.com
 description: A simple application deployment framework for Kubernetes
-url: https://acorn.io
+url: https://www.acorn.io/
 category: management
 configuration:
   CLUSTER_ID:

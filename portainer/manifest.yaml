@@ -3,7 +3,7 @@ name: Portainer
 version: "2.16.2"
 maintainer: "@saiyampathak"
 description: An open source kubernetes management platform
-url: https://portainer.io
+url: https://www.portainer.io/
 category: management
 plans:
   - label: "Community edition"

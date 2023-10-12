@@ -4,7 +4,7 @@ title: "Gitea"
 version: 1.12.5
 maintainer: "@giteaio"
 description: Gitea is a community managed lightweight code hosting solution written in Go.
-url: https://gitea.io
+url: https://about.gitea.com/
 category: management
 configuration:
   ADMIN_PASS:
