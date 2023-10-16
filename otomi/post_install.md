@@ -31,7 +31,7 @@ Follow the instructions [here](https://otomi.io/docs/for-ops/how-to/switch-to-dn
 
 ### Install Otomi on Civo with Civo DNS
 
-Follow the instructions [here](https://otomi.io/docs/for-ops/how-to/install-with-dns#civo-dns) to install Otomi on Civo using Civo DNS.
+Follow the instructions [here](https://otomi.io/docs/get-started/install-with-dns#civo-dns) to install Otomi on Civo using Civo DNS.
 
 ## Known installation issues
 
