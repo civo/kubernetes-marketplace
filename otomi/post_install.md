@@ -14,7 +14,9 @@ Follow the steps described [here](https://otomi.io/docs/get-started/activation) 
 
 ## Switch from nip.io to Civo DNS
 
-When Otomi is installed using the Civo marketplace, Otomi will use a generated (untrusted) CA and use the ip address of the load balancer with nip.io for all the host names. To see the full potential of Otomi, it is advised to switch to using a DNS zone. Follow the instructions to switch to using Civo DNS.
+When Otomi is installed using the Civo marketplace, Otomi will use a generated (untrusted) CA and use the ip address of the load balancer with nip.io for all the host names. To see the full potential of Otomi, it is advised to install Otomi with DNS or to switch to using a DNS zone. 
+
+### Switch to using Civo DNS after installing Otomi using Civo marketplace
 
 In Civo:
 
@@ -27,12 +29,17 @@ In Otomi:
 
 Follow the instructions [here](https://otomi.io/docs/for-ops/how-to/switch-to-dns).
 
-## Install Otomi on Civo with Civo DNS
+### Install Otomi on Civo with Civo DNS
 
-Follow the instructions described [here](https://otomi.io/docs/for-ops/how-to/install-with-dns#civo-dns) to install Otomi on Civo using Civo DNS.
+Follow the instructions [here](https://otomi.io/docs/for-ops/how-to/install-with-dns#civo-dns) to install Otomi on Civo using Civo DNS.
+
+## Known installation issues
+
+Check the known issues when installing Otomi on Civo [here](https://otomi.io/docs/get-started/known-issues).
 ## Next steps
 
-* Read the [documentation](https://otomi.io)
+* Compose your platform by activating the K8s apps you would like to use
+* Create a [Team](https://otomi.io/docs/for-ops/console/teams#creating-new-teams) in Otomi
 * Go through the [Get Started Labs](https://otomi.io/docs/for-devs/get-started/overview)
 * Join our [Slack channel](https://join.slack.com/t/otomi/shared_invite/zt-1axa4vima-E~LHN36nbLR~ay5r5pGq9A)
 * Get involved on [GitHub](https://github.com/redkubes/otomi-core)
