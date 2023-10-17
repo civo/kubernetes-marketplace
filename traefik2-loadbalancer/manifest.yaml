@@ -1,5 +1,5 @@
 ---
-name: Traefik-v2-loadbalancer
+name: traefik2-loadbalancer
 title: Traefik v2 (LoadBalancer)
 version: "2.9.4"
 default: false
