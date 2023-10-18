@@ -15,5 +15,4 @@ helm install otomi otomi/otomi \
     --set apps.keycloak.resources.operator.limits.cpu="1000m" \
     --set apps.keycloak.resources.operator.limits.memory="512Mi" \
     --set apps.keycloak.resources.operator.requests.cpu="100m" \
-    --set apps.keycloak.resources.operator.requests.memory="128Mi" \
-    --set apps.host-mods.enabled=false
+    --set apps.keycloak.resources.operator.requests.memory="128Mi"
