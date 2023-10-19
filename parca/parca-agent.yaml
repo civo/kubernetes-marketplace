@@ -15,7 +15,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.23.2
+    app.kubernetes.io/version: v0.26.0
   name: parca-agent
   namespace: parca
 rules:
@@ -40,7 +40,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.23.2
+    app.kubernetes.io/version: v0.26.0
   name: parca-agent
   namespace: parca
 roleRef:
@@ -59,7 +59,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.23.2
+    app.kubernetes.io/version: v0.26.0
   name: parca-agent
   namespace: parca
 spec:
@@ -74,7 +74,7 @@ spec:
         app.kubernetes.io/component: observability
         app.kubernetes.io/instance: parca-agent
         app.kubernetes.io/name: parca-agent
-        app.kubernetes.io/version: v0.23.2
+        app.kubernetes.io/version: v0.26.0
     spec:
       containers:
       - args:
@@ -94,11 +94,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ghcr.io/parca-dev/parca-agent:v0.23.2
-        livenessProbe:
-          httpGet:
-            path: /healthy
-            port: http
+        image: ghcr.io/parca-dev/parca-agent:v0.26.0
         name: parca-agent
         ports:
         - containerPort: 7071
@@ -173,6 +169,6 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.23.2
+    app.kubernetes.io/version: v0.26.0
   name: parca-agent
   namespace: parca
