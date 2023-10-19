@@ -6,11 +6,11 @@
 
 ### Get started
 
-[Sonatype Nexus Repository OSS](https://www.sonatype.com/products/repository-oss)
+[Sonatype Nexus Repository OSS](https://www.sonatype.com/products/sonatype-nexus-oss)
 
-[Sonatype Nexus Repository Documentation.](https://help.sonatype.com/docs?topnav=true)
+[Sonatype Nexus Repository Documentation.](https://help.sonatype.com/docs)
 
-[Using Nexus Repository](https://blog.sonatype.com/using-nexus-3-as-your-repository-part-1-maven-artifacts)
+[Using Nexus Repository](https://blog.sonatype.com/using-sonatype-nexus-repository-3-part-1-maven-artifacts)
 
 [Using Mirrors for Repositories with Maven](https://maven.apache.org/guides/mini/guide-mirror-settings.html)
 

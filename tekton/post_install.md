@@ -20,7 +20,7 @@ kubectl --namespace tekton-pipelines port-forward svc/tekton-dashboard 9097:9097
 
 ### Exposing Trigger EventListeners
 
-Incoming triggers can be exposed through an Ingress.  [The core instructions](https://tekton.dev/docs/triggers/exposing-eventlisteners/) can be used with the following modifications:
+Incoming triggers can be exposed through an Ingress.  [The core instructions](https://tekton.dev/docs/triggers/eventlisteners/) can be used with the following modifications:
 
 1. Skip step one under "Using Nginx Ingress", as the Traefik ingress should work
 2. Obtain the event-lister with a `kubectl get el <EVENTLISTENR_NAME> -o=jsonpath='{.status.configuration.generatedName}'` command

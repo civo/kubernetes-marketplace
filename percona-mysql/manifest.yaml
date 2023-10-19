@@ -4,7 +4,7 @@ title: "Percona MySQL"
 version: "1.11.0"
 maintainer: saiyam@civo.com
 description: Percona Operator for MySQL based on Percona XtraDB Cluster.
-url: https://www.percona.com/doc/kubernetes-operator-for-pxc/
+url: https://docs.percona.com/percona-operator-for-mysql/pxc/
 category: database
 plans:
   - label: "10GB"

@@ -26,7 +26,7 @@ spec:
                number: 8080
 ```
 
-This will open up http://jenkins.YOUR-CLUSTER-ID.k8s.civo.com to the whole world. You should lock this down in the [firewall](https://www.civo.com/account/firewalls) automatically created in Civo for your Kubernetes cluster. Locking down the firewall will only affect access from OUTSIDE of your Kubernetes cluster, access from your applications within Kubernetes will not be affected.
+This will open up http://jenkins.YOUR-CLUSTER-ID.k8s.civo.com to the whole world. You should lock this down in the [firewall](https://dashboard.civo.com/firewalls) automatically created in Civo for your Kubernetes cluster. Locking down the firewall will only affect access from OUTSIDE of your Kubernetes cluster, access from your applications within Kubernetes will not be affected.
 
 ### Usage instruction
 
