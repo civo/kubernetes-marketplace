@@ -1,13 +1,13 @@
 #!/bin/bash
 
-name="$CLUSTER_NAME"
+name=$CLUSTER_NAME
 echo $name
 
 helm repo add otomi https://otomi.io/otomi-core
 helm repo update
 
 helm install otomi otomi/otomi \
-    --set cluster.name="$name" \
+    --set cluster.name=$name \
     --set cluster.provider=civo \
     --set apps.keycloak.resources.keycloak.limits.cpu="2000m" \
     --set apps.keycloak.resources.keycloak.limits.memory="1Gi" \
