@@ -1,6 +1,7 @@
 #!/bin/bash
 
 name="$CLUSTER_NAME"
+echo $name
 
 helm repo add otomi https://otomi.io/otomi-core
 helm repo update
@@ -16,3 +17,4 @@ helm install otomi otomi/otomi \
     --set apps.keycloak.resources.operator.limits.memory="512Mi" \
     --set apps.keycloak.resources.operator.requests.cpu="100m" \
     --set apps.keycloak.resources.operator.requests.memory="128Mi"
+env
