@@ -83,5 +83,5 @@ spec:
 
 ## Documentation and tutorials
 
-- Find more information in the [Keptn documentation](https://keptn.sh/docs).
+- Find more information in the [Keptn documentation](https://keptn.sh/docs/).
 - Check out the [Keptn tutorials](https://tutorials.keptn.sh/?cat=quality-gates) that help you get started with different use-cases.

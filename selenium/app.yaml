@@ -1,12 +1,27 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: selenium
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: selenium-hub
+  namespace: selenium
 spec:
   ports:
-  - name: selenium-hub
-    port: 4444
-    targetPort: 4444
+    - name: publish
+      port: 4442
+      protocol: TCP
+      targetPort: 4442
+    - name: subscribe
+      port: 4443
+      protocol: TCP
+      targetPort: 4443
+    - name: hub
+      port: 4444
+      protocol: TCP
+      targetPort: 4444
   selector:
     app: selenium-hub
   type: ClusterIP
@@ -15,6 +30,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: selenium-hub
+  namespace: selenium
   labels:
     app: selenium-hub
 spec:
@@ -29,14 +45,24 @@ spec:
     spec:
       containers:
         - name: selenium-hub
-          image: selenium/hub:3.141
+          image: selenium/hub:4
+          imagePullPolicy: Always
           ports:
+            - containerPort: 4442
+              name: publish
+              protocol: TCP
+            - containerPort: 4443
+              name: subscribe
+              protocol: TCP
             - containerPort: 4444
+              name: hub
+              protocol: TCP
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: selenium-node-chrome
+  namespace: selenium
   labels:
     app: selenium-node-chrome
 spec:
@@ -55,14 +81,37 @@ spec:
             medium: Memory
       containers:
         - name: selenium-node-chrome
-          image: selenium/node-chrome-debug:3.141
+          image: selenium/node-chrome:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 5555
           volumeMounts:
             - mountPath: /dev/shm
               name: dshm
           env:
-            - name: HUB_HOST
+            - name: SE_EVENT_BUS_HOST
               value: "selenium-hub"
-            - name: HUB_PORT
-              value: "4444"
+            - name: SE_EVENT_BUS_PUBLISH_PORT
+              value: "4442"
+            - name: SE_EVENT_BUS_SUBSCRIBE_PORT
+              value: "4443"
+            - name: SE_NODE_GRID_URL
+              value: "http://selenium-hub:4444"
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: selenium-hub-ingress
+  namespace: selenium
+spec:
+  rules:
+    - host: selenium.$CLUSTER_ID.k8s.civo.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: selenium-hub
+                port:
+                  number: 4444

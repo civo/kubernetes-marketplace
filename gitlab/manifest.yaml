@@ -1,7 +1,7 @@
 ---
 name: gitlab
 title: "GitLab"
-version: "14.4.0"
+version: "16.2.3"
 maintainer: saiyam@civo.com
 description: GitLab is a single application that spans the entire software development lifecycle. 
 category: management

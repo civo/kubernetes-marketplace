@@ -1,0 +1,74 @@
+---
+name: Bump Jenkins version
+pipelineid: jenkins
+
+# Define git repository configuration to know where to push changes
+# Values are templated and provided via the values.yaml so we can easily 
+# adapt to the repository owner.
+scms:
+  kubernetes-marketplace:
+    kind: "github"
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner }}"
+      repository: "{{ .github.repository }}"
+      branch: "{{ .github.branch }}"
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+
+  jenkins:
+    kind: "git"
+    spec:
+      url: "https://github.com/jenkinsci/helm-charts.git"
+      branch: main
+
+sources:
+  appVersion:
+    kind: yaml
+    name: Get Jenkins chart appVersion
+    scmid: jenkins
+    spec:
+      file: charts/jenkins/Chart.yaml
+      key: $.appVersion
+  
+  version:
+    kind: yaml
+    name: Get Jenkins chart version
+    scmid: jenkins
+    spec:
+      file: charts/jenkins/Chart.yaml
+      key: $.version
+
+targets:
+  manifest:
+    kind: yaml
+    name: Update jenkins manifest
+    sourceid: appVersion
+    scmid: kubernetes-marketplace
+    spec:
+      file: jenkins/manifest.yaml
+      key: $.version
+  install:
+    kind: file
+    name: Update jenkins install.sh
+    scmid: kubernetes-marketplace
+    disablesourceinput: true
+    spec:
+      file: jenkins/install.sh
+      matchpattern: '--version (v{0,1})(\d*.\d*.\d*)'
+      replacepattern: '--version {{ source "version" }}'
+
+actions:  
+  kubernetes-marketplace:
+    kind: "github/pullrequest"
+    scmid: kubernetes-marketplace
+    title: 'Bump Jenkins Helm chart to {{ source "version" }}'
+    spec:
+      usetitleforautomerge: true
+      description: |
+        * https://www.jenkins.io/doc/upgrade-guide/
+        * https://www.jenkins.io/changelog-stable/#{{ source "appVersion" }}
+      mergemethod: squash
+      labels:
+        - enhancement 
