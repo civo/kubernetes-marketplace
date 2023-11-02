@@ -5,8 +5,7 @@ Kubefirst delivers instant GitOps platforms so you can have the most popular ope
 ### Access your console
 
 ```shell
-civo kubernetes config $CLUSTER_NAME > ./kubefirst-kubeconfig
-export KUBECONFIG=./kubefirst-kubeconfig
+civo kubernetes config $CIVO:CLUSTER_NAME --save
 
 kubectl --namespace kubefirst port-forward svc/kubefirst-console 8080:8080
 ```
