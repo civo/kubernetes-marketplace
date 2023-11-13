@@ -2,7 +2,8 @@
 
 subdomain="rancher.$CLUSTER_ID.k8s.civo.com"
 email="$EMAIL"
-
+echo "$subdomain"
+echo "$email"
 #Wait for the Cert Manager deployment to be done.
 kubectl wait --for=condition=available --timeout=300s deployment/cert-manager-webhook  -n cert-manager
 
