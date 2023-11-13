@@ -5,6 +5,13 @@ email="$EMAIL"
 echo "$subdomain"
 echo "$email"
 #Wait for the Cert Manager deployment to be done.
+if kubectl get ns | grep -q cert-manager; then
+    echo "cert-manager namespace exists, proceeding to next command..."
+    # Place your next command here
+else
+    sleep 10
+fi
+
 kubectl wait --for=condition=available --timeout=300s deployment/cert-manager-webhook  -n cert-manager
 
 helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
