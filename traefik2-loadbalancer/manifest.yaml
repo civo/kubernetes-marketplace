@@ -1,6 +1,6 @@
 ---
-name: Traefik-v2-loadbalancer
-title: Traefik v2 (LoadBalancer)
+name: traefik2-loadbalancer
+title: traefik2-loadbalancer
 version: "2.9.4"
 default: false
 maintainer: "johannes@jitesoft.com, saiyam@civo.com"
