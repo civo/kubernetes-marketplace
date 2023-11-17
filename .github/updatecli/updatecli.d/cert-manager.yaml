@@ -11,6 +11,10 @@ sources:
       repository: cert-manager
       token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
       username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+      versionfilter:
+        # The cert-manager maintains multiple release line and we want to be sure to pick
+        # the latest one based on semantic versioning rules and not the latest release.
+        kind: semver
 
 targets:
   manifest:
@@ -33,7 +37,7 @@ targets:
       replacepattern: '/download/{{ source "app" }}/'
 
 # Define git repository configuration to know where to push changes
-# Values are templated and provided via the values.yaml so we can easily 
+# Values are templated and provided via the values.yaml so we can easily
 # adapt to the repository owner.
 scms:
   kubernetes-marketplace:
