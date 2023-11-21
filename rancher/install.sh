@@ -1,7 +1,7 @@
 #!/bin/sh
 
-subdomain="rancher.$CLUSTER_ID.k8s.civo.com"
-email="$EMAIL"
+subdomain="rancher.${CLUSTER_ID}.k8s.civo.com"
+email="${EMAIL}"
 echo "$subdomain"
 echo "$email"
 #Wait for the Cert Manager deployment to be done.
