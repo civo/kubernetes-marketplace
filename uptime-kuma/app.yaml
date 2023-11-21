@@ -13,7 +13,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: $VOLUME_SIZE
+      storage: ${VOLUME_SIZE}
 ---
 apiVersion: v1
 kind: Service
@@ -66,7 +66,7 @@ metadata:
     kubernetes.io/ingress.class: "traefik" 
 spec:
   rules:
-  - host: uk.$CLUSTER_ID.k8s.civo.com
+  - host: uk.${CLUSTER_ID}.k8s.civo.com
     http:
       paths:
       - path: /

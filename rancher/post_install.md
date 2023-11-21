@@ -9,7 +9,7 @@ Note - the install is in such a way that it uses your cluster DNS which will wor
 ```
 kubectl get ing -n cattle-system
 NAMESPACE       NAME                                   CLASS    HOSTS                                                    ADDRESS        PORTS     AGE
-cattle-system   rancher                                <none>   rancher.$CLUSTER_ID.k8s.civo.com                                             80, 443   38h
-cattle-system   cm-acme-http-solver-jstgl              nginx    rancher.$CLUSTER_ID.k8s.civo.com                            
+cattle-system   rancher                                <none>   rancher.${CLUSTER_ID}.k8s.civo.com                                             80, 443   38h
+cattle-system   cm-acme-http-solver-jstgl              nginx    rancher.${CLUSTER_ID}.k8s.civo.com                            
 ```
-To open up the dashboard you can visit https://rancher.$CLUSTER_ID.k8s.civo.com
+To open up the dashboard you can visit https://rancher.${CLUSTER_ID}.k8s.civo.com

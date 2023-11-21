@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ROOT_USERNAME=$USERNAME
-ROOT_PASSWORD=$PASSWORD
+ROOT_USERNAME=${USERNAME}
+ROOT_PASSWORD=${PASSWORD}
 
 if [ $1 eq "create" ]; then
   NEW_USERNAME=`cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1`

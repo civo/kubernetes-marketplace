@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SYSTEM_DOMAIN="$CLUSTER_ID.k8s.civo.com"
+SYSTEM_DOMAIN="${CLUSTER_ID}.k8s.civo.com"
 
 #Wait for the Cert Manager deployment to be done.
 kubectl wait --for=condition=available --timeout=300s deployment/cert-manager-webhook  -n cert-manager

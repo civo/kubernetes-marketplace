@@ -6,7 +6,7 @@ helm repo add openfaas https://openfaas.github.io/faas-netes/
 
 kubectl -n openfaas create secret generic basic-auth \
 --from-literal=basic-auth-user=admin \
---from-literal=basic-auth-password="$GATEWAY_PASSWORD"
+--from-literal=basic-auth-password="${GATEWAY_PASSWORD}"
 
 helm repo update \
  && helm upgrade openfaas --install openfaas/openfaas \
