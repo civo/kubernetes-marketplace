@@ -1,5 +1,5 @@
 ---
-name: Prometheus-Blackbox-Exporter
+name: blackbox-exporter
 title: "Prometheus-Blackbox-Exporter"
 version: "5.8.2"
 maintainer: "cedric@desaintmartin.fr,gianrubio@gmail.com,monotek23@gmail.com"

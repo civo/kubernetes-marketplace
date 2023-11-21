@@ -1,5 +1,6 @@
 ---
-name: MariaDB
+name: mariadb
+title: MariaDB
 version: 10.4.7
 maintainer: hello@civo.com
 description: MariaDB is a community-developed fork of MySQL intended to remain free under the GNU GPL.

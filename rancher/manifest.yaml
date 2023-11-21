@@ -1,4 +1,6 @@
-name: Rancher
+---
+name: rancher
+title: Rancher
 version: 2.7.8
 maintainer: "@saiyampathak"
 description: "Addresses the operational and security challenges of managing multiple Kubernetes clusters with integrated tools for running containerized workloads."

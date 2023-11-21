@@ -1,5 +1,6 @@
 ---
-name: Ketch
+name: ketch
+title: Ketch
 version: "0.7.0"
 maintainer: "@ravilach"
 description: Ketch improves the developer experience and productivity by implementing a standard application-level definition. 

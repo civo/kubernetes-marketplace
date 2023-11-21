@@ -1,5 +1,5 @@
 ---
-name: external-secrets
+name: kubernetes-external-secrets
 title: "Kubernetes External Secrets"
 version: "0.8.3"
 maintainer: engin.diri@mail.schwarz

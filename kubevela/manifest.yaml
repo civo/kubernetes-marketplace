@@ -1,5 +1,6 @@
 ---
-name: KubeVela
+name: kubevela
+title: KubeVela
 version: 1.0.1
 maintainer: qiaozhongpei.qzp@alibaba-inc.com
 description: The Modern Application Platform.

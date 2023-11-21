@@ -1,5 +1,5 @@
 ---
-name: PMM
+name: pmm
 title: "Percona Monitoring and Management"
 version: "2.36.0"
 maintainer: sergey.pronin@percona.com

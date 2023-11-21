@@ -1,4 +1,5 @@
-name: Devtron
+name: devtron
+title: Devtron
 maintainer: "abhinav@devtron.ai"
 description: A tool integration platform for Kubernetes
 url: https://github.com/devtron-labs/devtron
