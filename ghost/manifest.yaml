@@ -1,5 +1,6 @@
 ---
-name: Ghost
+name: ghost
+title: Ghost
 version: 4.8.3
 namespace: ghost
 maintainer: saka@lnxid.com

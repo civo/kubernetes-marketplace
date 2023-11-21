@@ -1,5 +1,5 @@
 ---
-name: Traefik-v2
+name: traefik2
 title: Traefik v2
 version: "2.3"
 default: false

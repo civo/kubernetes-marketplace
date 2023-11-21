@@ -1,5 +1,6 @@
 ---
-name: Joomla
+name: joomla
+title: Joomla
 namespace: joomla
 version: 3.9.24
 maintainer: keith@hubner.co.uk, amit2cha@gmail.com

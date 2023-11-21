@@ -1,5 +1,6 @@
 ---
-name: RabbitMQ
+title: RabbitMQ
+name: rabbitmq
 namespace: rabbitmq
 version: "3.8.8-management"
 maintainer: habil@bozali.com

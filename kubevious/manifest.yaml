@@ -1,4 +1,5 @@
-name: Kubevious
+name: kubevious
+title: Kubevious
 version: v0.8.15
 maintainer: "@saiyampathak"
 description: "open-source software that provides a usable and highly graphical interface for Kubernetes"

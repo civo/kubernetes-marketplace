@@ -1,5 +1,5 @@
 ---
-name: argo-cd
+name: argocd
 namespace: argocd
 title: "Argo CD"
 maintainer: "The Argo Project"

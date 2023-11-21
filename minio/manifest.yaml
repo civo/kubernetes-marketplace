@@ -1,5 +1,6 @@
 ---
-name: MinIO
+name: minio
+title: MinIO
 version: "2021-02-19"
 maintainer: hello@civo.com
 namespace: minio

@@ -1,5 +1,6 @@
 ---
-name: Longhorn
+name: longhorn
+title: Longhorn
 version: 1.1.0
 namespace: longhorn-system
 maintainer: hello@civo.com

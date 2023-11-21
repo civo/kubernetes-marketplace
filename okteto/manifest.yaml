@@ -1,5 +1,5 @@
 ---
-name: okteto-enterprise
+name: okteto
 title: "Okteto Enterprise"
 version: 0.9.6
 maintainer: "@rberrelleza"

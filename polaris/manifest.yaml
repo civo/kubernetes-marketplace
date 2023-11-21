@@ -1,5 +1,6 @@
 ---
-name: Polaris
+title: Polaris
+name: polaris
 version: 1.2.0
 maintainer: "@milindchawre"
 namespace: polaris

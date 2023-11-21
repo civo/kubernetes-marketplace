@@ -1,4 +1,6 @@
-name: OpenFaaS
+---
+name: openfaas
+title: OpenFaaS
 version: 0.18.0
 maintainer: "@openfaasltd"
 namespace: openfaas

@@ -1,5 +1,6 @@
 ---
-name: Traefik
+name: traefik
+title: Traefik
 version: (default)
 default: true
 maintainer: "@Rancher_Labs"

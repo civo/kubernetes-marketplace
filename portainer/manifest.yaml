@@ -1,5 +1,6 @@
 ---
-name: Portainer
+name: portainer
+title: Portainer
 version: ce
 maintainer: "@saiyampathak"
 description: An open source kubernetes management platform

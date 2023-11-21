@@ -1,4 +1,4 @@
-name: unifi-network-controller
+name: unifi-controller
 title: "Unifi network controller"
 version: "stable-6"
 maintainer: keith@hubner.co.uk

@@ -1,5 +1,6 @@
 ---
-name: Jenkins
+name: jenkins
+title: Jenkins
 namespace: jenkins
 version: 2.190.1
 maintainer: "@ruanbekker"

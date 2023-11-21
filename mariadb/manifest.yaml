@@ -1,5 +1,6 @@
 ---
-name: MariaDB
+name: mariadb
+title: MariaDB
 namespace: mariadb
 version: 10.5.8
 maintainer: hello@civo.com

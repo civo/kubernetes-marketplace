@@ -1,5 +1,6 @@
 ---
-name: Maesh
+name: maesh
+title: Maesh
 namespace: maesh
 version: Latest
 maintainer: hello@civo.com

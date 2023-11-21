@@ -1,5 +1,6 @@
 ---
-name: Linkerd
+name: linkerd
+title: Linkerd
 namespace: linkerd
 version: Latest
 maintainer: hello@buoyant.io

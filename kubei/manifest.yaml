@@ -1,5 +1,6 @@
 ---
-name: Kubei
+name: kubei
+title: Kubei
 namespace: kubei
 version: 1.0.7
 maintainer: "@milindchawre"

@@ -1,5 +1,6 @@
 ---
-name: loki-stack
+name: loki
+title: Loki
 title: "Loki Stack "
 version: v2.1.2
 maintainer: "me@r15cookie.com"
