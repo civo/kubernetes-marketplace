@@ -1,5 +1,6 @@
 ---
-name: PostgreSQL
+title: PostgreSQL
+name: postgresql
 version: "11.5"
 maintainer: hello@civo.com
 description: The PostgreSQL object-relational database system provides reliability and data integrity.

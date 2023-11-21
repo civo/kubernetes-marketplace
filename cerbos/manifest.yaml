@@ -1,4 +1,5 @@
-name: Cerbos
+name: cerbos
+title: Cerbos
 version: 0.29.0
 maintainer: "help@cerbos.dev"
 description: "The scalable, open-source authorization layer for implementing roles and permissions"

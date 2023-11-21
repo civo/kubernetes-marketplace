@@ -1,5 +1,6 @@
 ---
-name: Keycloak
+name: keycloak
+title: Keycloak
 version: Latest
 maintainer: harsh.manvar111@gmail.com
 description: Open Source Identity and Access Management

@@ -1,5 +1,5 @@
 ---
-name: codeserver
+name: code-server
 title: "Code Server"
 version: 3.11.1
 maintainer: "@ruanbekker"
