@@ -3,7 +3,7 @@
 subdomain="rancher.${CLUSTER_ID}.k8s.civo.com"
 email="${EMAIL}"
 echo "$subdomain"
-echo "$email"
+echo "${EMAIL}"
 #Wait for the Cert Manager deployment to be done.
 if kubectl get ns | grep -q cert-manager; then
     echo "cert-manager namespace exists, proceeding to next command..."
@@ -19,4 +19,4 @@ helm repo update
 kubectl create namespace cattle-system
 
   
-helm upgrade --install rancher rancher-latest/rancher --namespace cattle-system --set hostname="$subdomain" --set bootstrapPassword="$ADMIN_PASS" --set ingress.tls.source=letsEncrypt --set letsEncrypt.ingress.class=traefik --set letsEncrypt.email="$email" --version 2.8.0-rc3
+helm upgrade --install rancher rancher-latest/rancher --namespace cattle-system --set hostname="$subdomain" --set bootstrapPassword="${ADMIN_PASS}" --set ingress.tls.source=letsEncrypt --set letsEncrypt.ingress.class=traefik --set letsEncrypt.email="${EMAIL}" --version 2.8.0-rc3

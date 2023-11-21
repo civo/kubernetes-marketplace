@@ -7,7 +7,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: $VOLUME_SIZE
+      storage: ${VOLUME_SIZE}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -96,7 +96,7 @@ metadata:
   name: wordpress
 spec:
   rules:
-  - host: wordpress.$CLUSTER_ID.k8s.civo.com
+  - host: wordpress.${CLUSTER_ID}.k8s.civo.com
     http:
       paths:
       - backend:

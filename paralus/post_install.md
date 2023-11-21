@@ -35,9 +35,9 @@ While you are on your DNS Setting page, for the selected domain name, you need t
 
 Type |	Address |	Resolves To |	TTL
 --- | --- | --- | ---
-A |	console.paralus.$CLUSTER_ID.k8s.civo.com |	34.121.64.88 |	1 Hour
-A |	*.core-connector.paralus.$CLUSTER_ID.k8s.civo.com |	34.121.64.88 |	1 Hour
-A |	*.user.paralus.$CLUSTER_ID.k8s.civo.com |	34.121.64.88 |	1 Hour
+A |	console.paralus.${CLUSTER_ID}.k8s.civo.com |	34.121.64.88 |	1 Hour
+A |	*.core-connector.paralus.${CLUSTER_ID}.k8s.civo.com |	34.121.64.88 |	1 Hour
+A |	*.user.paralus.${CLUSTER_ID}.k8s.civo.com |	34.121.64.88 |	1 Hour
 
 Checkout a similar documentation at https://www.paralus.io/blog/eks-quickstart#configuring-dns-settings
 

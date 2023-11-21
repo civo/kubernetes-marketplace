@@ -121,7 +121,7 @@ spec:
         - --providers.kubernetescrd
         - --providers.kubernetesingress
         - --entrypoints.websecure.http.tls=true
-        - --providers.kubernetesingress.ingressendpoint.hostname=$CLUSTER_ID.k8s.civo.com
+        - --providers.kubernetesingress.ingressendpoint.hostname=${CLUSTER_ID}.k8s.civo.com
         image: rancher/mirrored-library-traefik:2.9.4
         imagePullPolicy: IfNotPresent
         livenessProbe:

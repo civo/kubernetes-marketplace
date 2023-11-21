@@ -11,7 +11,7 @@ metadata:
   namespace: civo-system
 type: Opaque
 stringData:
-  MYSQL_ROOT_PASSWORD: "$MYSQL_ROOT_PASSWORD" # password used mysql root
+  MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}" # password used mysql root
 EOF
 
 cat <<EOF | kubectl get secret mysql-pass --namespace=civo-system -oyaml | grep -v '^\s*namespace:\s' | kubectl apply --namespace=default -f -

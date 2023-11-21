@@ -35,4 +35,4 @@ spec:
               name: redis
           env:
           - name: REDIS_PASS
-            value: $REDIS_PASS
+            value: ${REDIS_PASS}
