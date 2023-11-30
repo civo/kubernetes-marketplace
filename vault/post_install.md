@@ -32,10 +32,10 @@ https://developer.hashicorp.com/vault/docs/platform/k8s/helm/examples/ha-with-ra
 ### Accessing the UI Frontend
 
 Vault comes with a nice UI where you can do most of the management instead of using the terminal.
-To access it you need to install a Kubernetes Ingress Controller like [Nginx](https://www.civo.com/marketplace/Nginx) or [HAProxy](https://www.civo.com/learn/install-haproxy-as-ingress-in-civo-kubernetes).
+To access it you need to install a Kubernetes Ingress Controller like [Nginx](https://www.civo.com/marketplace/nginx) or [HAProxy](https://www.civo.com/learn/install-haproxy-as-ingress-in-civo-kubernetes).
 
 Next create the Kubernetes Manifest for the Ingress resource and apply it.
-Here an example for [Nginx](https://www.civo.com/marketplace/Nginx):
+Here an example for [Nginx](https://www.civo.com/marketplace/nginx):
 
 ```sh
 cat <<EOF | kubectl -n vault apply -f -
