@@ -2,7 +2,7 @@
 
 NAMESPACE=ngrok-ingress-controller
 SECRET_NAME=ngrok-ingress-controller-credentials
-VERSION=$(helm search hub ngrok kubernetes-ingress-controller -o json | jq -r '.[0].version')
+VERSION=0.12.1
 
 echo "Enabling ngrok ingress controller in {$NAMESPACE} namespace"
 
