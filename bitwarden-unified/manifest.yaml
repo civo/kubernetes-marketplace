@@ -1,0 +1,29 @@
+---
+name: BitwardenUnified
+version: 
+maintainer: keith@hubner.co.uk
+description: Open Source Password Manager (Unified Deployment BETA)
+url: https://github.com/bitwarden/self-host
+category: management
+dependencies:
+  - cert-manager
+plans:
+  - label: "1GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 1Gi
+  - label: "2GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 2Gi
+  - label: "5GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 5Gi
+configuration:
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
+  EMAIL_ADDRESS:
+    label: "Email Address"
+    value: "CIVO:EMAIL_ADDRESS"  
