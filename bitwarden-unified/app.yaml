@@ -59,7 +59,7 @@ spec:
         app: bw
     spec:
       containers:
-        - name: bw
+        - name: db
           image: bitwardenrs/server-mysql:1.17.0
           imagePullPolicy: IfNotPresent
           ports:
