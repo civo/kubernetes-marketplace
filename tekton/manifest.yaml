@@ -1,7 +1,7 @@
 ---
 name: tekton
 title: Tekton
-version: v0.50.0
+version: v0.50.5
 maintainer: "me@r15cookie.com"
 description: Tekton is a Kubernetes Native Framework for building CI/CD Pipelines.  The core pipeline, dashboard, and trigger components are included.
 url: https://cloud.google.com/tekton
