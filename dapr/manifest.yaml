@@ -1,0 +1,8 @@
+---
+name: dapr
+title: "Dapr"
+version: "1.11.0"
+maintainer: "Dapr Authors"
+description: Dapr provides integrated APIs for communication, state, and workflow. Dapr leverages industry best practices for security, resiliency, and observability, so you can focus on your code.
+url: https://dapr.io
+category: appdev
