@@ -37,7 +37,7 @@ spec:
         app: ferretdb
     spec:
       containers:
-        - image: ghcr.io/ferretdb/ferretdb:1.17.0
+        - image: ghcr.io/ferretdb/ferretdb:1.18.0
           name: ferretdb
           env:
             - name: FERRETDB_POSTGRESQL_URL
@@ -46,6 +46,8 @@ spec:
               value: /state
             - name: FERRETDB_TEST_TELEMETRY_PACKAGE
               value: civo
+            - name: FERRETDB_REPL_SET_NAME
+              value: rs0
           volumeMounts:
             - name: ferretdb-persistent-storage
               mountPath: /state
@@ -53,7 +55,7 @@ spec:
           ports:
             - containerPort: 27017
               name: ferretdb
-        - image: postgres:16.0
+        - image: postgres:16.1
           name: postgresql
           env:
             - name: POSTGRES_USER
