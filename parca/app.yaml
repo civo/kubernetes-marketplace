@@ -13,7 +13,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.15.0
+    app.kubernetes.io/version: v0.19.0
   name: parca
   namespace: parca
 ---
@@ -24,7 +24,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.15.0
+    app.kubernetes.io/version: v0.19.0
   name: parca
   namespace: parca
 spec:
@@ -40,7 +40,7 @@ spec:
         app.kubernetes.io/component: observability
         app.kubernetes.io/instance: parca
         app.kubernetes.io/name: parca
-        app.kubernetes.io/version: v0.15.0
+        app.kubernetes.io/version: v0.19.0
     spec:
       containers:
       - args:
@@ -49,9 +49,9 @@ spec:
         - --config-path=/etc/parca/parca.yaml
         - --log-level=info
         - --cors-allowed-origins=*
-        - --debug-infod-upstream-servers=https://debuginfod.systemtap.org
-        - --debug-infod-http-request-timeout=5m
-        image: ghcr.io/parca-dev/parca:v0.15.0
+        - --debuginfod-upstream-servers=debuginfod.systemtap.org
+        - --debuginfod-http-request-timeout=5m
+        image: ghcr.io/parca-dev/parca:v0.19.0
         livenessProbe:
           exec:
             command:
@@ -71,6 +71,11 @@ spec:
             - -addr=:7070
           initialDelaySeconds: 10
         resources: {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
         terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
         - mountPath: /etc/parca
@@ -81,7 +86,12 @@ spec:
         kubernetes.io/os: linux
       securityContext:
         fsGroup: 65534
+        runAsNonRoot: true
         runAsUser: 65534
+        seccompProfile:
+          type: RuntimeDefault
+        supplementalGroups:
+        - 65534
       serviceAccountName: parca
       terminationGracePeriodSeconds: 120
       volumes:
@@ -100,74 +110,6 @@ metadata:
     pod-security.kubernetes.io/warn: privileged
   name: parca
 ---
-apiVersion: policy/v1beta1
-kind: PodSecurityPolicy
-metadata:
-  name: parca
-spec:
-  allowPrivilegeEscalation: false
-  fsGroup:
-    ranges:
-    - max: 65535
-      min: 1
-    rule: MustRunAs
-  requiredDropCapabilities:
-  - ALL
-  runAsUser:
-    rule: MustRunAsNonRoot
-  seLinux:
-    rule: RunAsAny
-  supplementalGroups:
-    ranges:
-    - max: 65535
-      min: 1
-    rule: MustRunAs
-  volumes:
-  - configMap
-  - emptyDir
-  - projected
-  - secret
-  - downwardAPI
-  - persistentVolumeClaim
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  labels:
-    app.kubernetes.io/component: observability
-    app.kubernetes.io/instance: parca
-    app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.15.0
-  name: parca
-  namespace: parca
-rules:
-- apiGroups:
-  - policy
-  resourceNames:
-  - parca
-  resources:
-  - podsecuritypolicies
-  verbs:
-  - use
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  labels:
-    app.kubernetes.io/component: observability
-    app.kubernetes.io/instance: parca
-    app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.15.0
-  name: parca
-  namespace: parca
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: parca
-subjects:
-- kind: ServiceAccount
-  name: parca
----
 apiVersion: v1
 kind: Service
 metadata:
@@ -175,7 +117,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.15.0
+    app.kubernetes.io/version: v0.19.0
   name: parca
   namespace: parca
 spec:
@@ -195,7 +137,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.15.0
+    app.kubernetes.io/version: v0.19.0
   name: parca
   namespace: parca
 ---
@@ -215,7 +157,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.12.0
+    app.kubernetes.io/version: v0.26.0
   name: parca-agent
   namespace: parca
 rules:
@@ -240,7 +182,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.12.0
+    app.kubernetes.io/version: v0.26.0
   name: parca-agent
   namespace: parca
 roleRef:
@@ -259,7 +201,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.12.0
+    app.kubernetes.io/version: v0.26.0
   name: parca-agent
   namespace: parca
 spec:
@@ -274,7 +216,7 @@ spec:
         app.kubernetes.io/component: observability
         app.kubernetes.io/instance: parca-agent
         app.kubernetes.io/name: parca-agent
-        app.kubernetes.io/version: v0.12.0
+        app.kubernetes.io/version: v0.26.0
     spec:
       containers:
       - args:
@@ -288,16 +230,13 @@ spec:
         - --debuginfo-strip
         - --debuginfo-temp-dir=/tmp
         - --debuginfo-upload-cache-duration=5m
+        - --debuginfo-upload-timeout-duration=2m
         env:
         - name: NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ghcr.io/parca-dev/parca-agent:v0.12.0
-        livenessProbe:
-          httpGet:
-            path: /healthy
-            port: http
+        image: ghcr.io/parca-dev/parca-agent:v0.26.0
         name: parca-agent
         ports:
         - containerPort: 7071
@@ -308,8 +247,11 @@ spec:
             port: http
         resources: {}
         securityContext:
+          allowPrivilegeEscalation: true
+          capabilities:
+            add:
+            - SYS_ADMIN
           privileged: true
-          readOnlyRootFilesystem: true
         volumeMounts:
         - mountPath: /tmp
           name: tmp
@@ -331,6 +273,9 @@ spec:
       hostPID: true
       nodeSelector:
         kubernetes.io/os: linux
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       serviceAccountName: parca-agent
       tolerations:
       - operator: Exists
@@ -359,86 +304,6 @@ spec:
           path: /var/run/dbus/system_bus_socket
         name: dbus-system
 ---
-apiVersion: policy/v1beta1
-kind: PodSecurityPolicy
-metadata:
-  labels:
-    app.kubernetes.io/component: observability
-    app.kubernetes.io/instance: parca-agent
-    app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.12.0
-  name: parca-agent
-  namespace: parca
-spec:
-  allowPrivilegeEscalation: true
-  allowedCapabilities:
-  - '*'
-  allowedHostPaths:
-  - pathPrefix: /sys
-  - pathPrefix: /boot
-  - pathPrefix: /var/run/dbus
-  - pathPrefix: /run
-  - pathPrefix: /lib/modules
-  fsGroup:
-    rule: RunAsAny
-  hostIPC: true
-  hostNetwork: true
-  hostPID: true
-  privileged: true
-  readOnlyRootFilesystem: true
-  runAsUser:
-    rule: RunAsAny
-  seLinux:
-    rule: RunAsAny
-  supplementalGroups:
-    rule: RunAsAny
-  volumes:
-  - configMap
-  - emptyDir
-  - projected
-  - secret
-  - downwardAPI
-  - persistentVolumeClaim
-  - hostPath
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  labels:
-    app.kubernetes.io/component: observability
-    app.kubernetes.io/instance: parca-agent
-    app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.12.0
-  name: parca-agent
-  namespace: parca
-rules:
-- apiGroups:
-  - policy
-  resourceNames:
-  - parca-agent
-  resources:
-  - podsecuritypolicies
-  verbs:
-  - use
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  labels:
-    app.kubernetes.io/component: observability
-    app.kubernetes.io/instance: parca-agent
-    app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.12.0
-  name: parca-agent
-  namespace: parca
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: parca-agent
-subjects:
-- kind: ServiceAccount
-  name: parca-agent
----
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -446,6 +311,6 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.12.0
+    app.kubernetes.io/version: v0.26.0
   name: parca-agent
   namespace: parca

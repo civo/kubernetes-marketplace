@@ -1,7 +1,7 @@
 ---
 name: ambassador-edge-stack
 title: "Ambassador Edge Stack"
-version: "2.1.2"
+version: "3.8.0"
 maintainer: "@milindchawre, saiyam@civo.com"
 description: Ambassador Edge Stack is a Kubernetes-native API Gateway built on the Envoy Proxy which can route and secure traffic to your kubernetes cluster.
 url: https://www.getambassador.io/docs/edge-stack/

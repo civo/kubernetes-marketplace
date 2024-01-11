@@ -1,0 +1,7 @@
+---
+name: kubefirst
+version: "latest"
+maintainer: "@kubefirst"
+description: kubefirst is an instant open source Kubernetes platform powered by the most popular Cloud Native tools providing app delivery & automated infrastructure as code
+url: https://kubefirst.io
+category: management 

@@ -1,0 +1,98 @@
+name: Bump Kubewarden Helm charts
+pipelineid: kubewarden
+
+sources:
+  kubewarden-crds:
+    kind: helmchart
+    name: Get latest Kubewarden CRDS Helm Chart version
+    spec:
+      url: https://charts.kubewarden.io
+      name: kubewarden-crds
+
+  kubewarden-controller-version:
+    kind: helmchart
+    name: Get latest Kubewarden controller Helm Chart version
+    spec:
+      url: https://charts.kubewarden.io
+      name: kubewarden-controller
+
+  kubewarden-controller-appversion:
+    dependson:
+      - kubewarden-controller-version
+    kind: yaml
+    spec:
+      file: 'https://raw.githubusercontent.com/kubewarden/helm-charts/kubewarden-controller-{{ source "kubewarden-controller-version"}}/charts/kubewarden-controller/Chart.yaml'
+      key: $.appVersion
+
+  kubewarden-defaults:
+    kind: helmchart
+    name: Get latest Kubewarden default Helm Chart version
+    spec:
+      url: https://charts.kubewarden.io
+      name: kubewarden-defaults
+
+targets:
+  kubewarden-crd:
+    kind: file
+    name: Update Kubewarden CRDS Chart
+    scmid: kubernetes-marketplace
+    disablesourceinput: true
+    spec:
+      file: kubewarden/install.sh
+      matchpattern: 'KUBEWARDEN_CRDS_CHART_VERSION=.*'
+      replacepattern: 'KUBEWARDEN_CRDS_CHART_VERSION="{{ source "kubewarden-crds" }}"'
+
+  kubewarden-defaults:
+    kind: file
+    name: Update Kubewarden Defaults Chart
+    scmid: kubernetes-marketplace
+    disablesourceinput: true
+    spec:
+      file: kubewarden/install.sh
+      matchpattern: 'KUBEWARDEN_DEFAULTS_CHART_VERSION=.*'
+      replacepattern: 'KUBEWARDEN_DEFAULTS_CHART_VERSION="{{ source "kubewarden-defaults" }}"'
+
+  kubewarden-controller:
+    kind: file
+    name: Update Kubewarden Controller Chart
+    scmid: kubernetes-marketplace
+    disablesourceinput: true
+    spec:
+      file: kubewarden/install.sh
+      matchpattern: 'KUBEWARDEN_CONTROLLER_CHART_VERSION=.*'
+      replacepattern: 'KUBEWARDEN_CONTROLLER_CHART_VERSION="{{ source "kubewarden-controller-version" }}"'
+
+  kubewarden-controller-appversion:
+    kind: yaml
+    name: Update Kubewarden Controller manifest version
+    scmid: kubernetes-marketplace
+    sourceid: kubewarden-controller-appversion
+    spec:
+      file: kubewarden/manifest.yaml
+      key: $.version
+
+# Define git repository configuration to know where to push changes
+# Values are templated and provided via the values.yaml so we can easily 
+# adapt to the repository owner.
+scms:
+  kubernetes-marketplace:
+    kind: "github"
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner }}"
+      repository: "{{ .github.repository }}"
+      branch: "{{ .github.branch }}"
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+
+actions:  
+  kubernetes-marketplace:
+    kind: "github/pullrequest"
+    scmid: kubernetes-marketplace
+    title: 'Bump Kubewarden Helm chart'
+    spec:
+      usetitleforautomerge: true
+      mergemethod: squash
+      labels:
+        - enhancement 

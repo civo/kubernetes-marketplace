@@ -1,8 +1,8 @@
 #!/bin/bash
 
-helm repo add external-secrets https://external-secrets.github.io/kubernetes-external-secrets/
+helm repo add external-secrets-operator https://charts.external-secrets.io/
 helm repo update
 
 kubectl create namespace external-secrets
 
-helm install external-secrets external-secrets/kubernetes-external-secrets --namespace external-secrets --version 8.2.2
+helm upgrade -i external-secrets external-secrets-operator/external-secrets --namespace external-secrets --version 0.8.3

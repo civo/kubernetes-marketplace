@@ -2,18 +2,12 @@
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
-  name: traefik-crd
-  namespace: kube-system
-spec:
-  chart: https://%{KUBERNETES_API}%/static/charts/traefik-crd-10.19.300.tgz
----
-apiVersion: helm.cattle.io/v1
-kind: HelmChart
-metadata:
   name: traefik
   namespace: kube-system
 spec:
-  chart: https://%{KUBERNETES_API}%/static/charts/traefik-10.19.300.tgz
+  repo: https://traefik.github.io/charts
+  chart: traefik
+  version: '20.2.1'
   set:
     global.systemDefaultRegistry: ""
   valuesContent: |-
@@ -35,6 +29,7 @@ spec:
     priorityClassName: "system-cluster-critical"
     image:
       name: "rancher/mirrored-library-traefik"
+      tag: "2.9.4"
     tolerations:
     - key: "CriticalAddonsOnly"
       operator: "Exists"

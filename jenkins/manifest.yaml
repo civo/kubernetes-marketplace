@@ -1,9 +1,9 @@
 ---
 name: Jenkins
-version: 2.289.3
+version: 2.414.3
 maintainer: "@dirien"
 description: Jenkins is a Continuous Integration and Delivery server
-url: https://jenkins.io
+url: https://www.jenkins.io/
 category: ci_cd
 plans:
   - label: "5GB"

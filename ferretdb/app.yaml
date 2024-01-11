@@ -19,7 +19,7 @@ spec:
     - port: 27017
   selector:
     app: ferretdb
-  clusterIP: None
+  type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -37,7 +37,7 @@ spec:
         app: ferretdb
     spec:
       containers:
-        - image: ghcr.io/ferretdb/ferretdb:1.0.0
+        - image: ghcr.io/ferretdb/ferretdb:1.11.0
           name: ferretdb
           env:
             - name: FERRETDB_POSTGRESQL_URL
