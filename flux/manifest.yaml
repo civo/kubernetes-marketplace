@@ -1,5 +1,6 @@
 ---
-name: Flux
+name: flux
+title: Flux
 version: Latest
 maintainer: stefan@weave.works
 description: Open and extensible continuous delivery solution for Kubernetes. Powered by GitOps Toolkit.

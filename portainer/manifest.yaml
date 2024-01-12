@@ -1,5 +1,6 @@
 ---
-name: Portainer
+name: portainer
+title: Portainer
 version: "2.16.2"
 maintainer: "@saiyampathak"
 description: An open source kubernetes management platform

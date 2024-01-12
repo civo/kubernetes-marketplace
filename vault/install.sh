@@ -3,7 +3,7 @@
 kubectl create namespace vault
 helm repo add hashicorp https://helm.releases.hashicorp.com
 
-case $INSTALL_MODE in
+case ${INSTALL_MODE} in
   standalone)
     helm upgrade --atomic --install --namespace vault --version 0.24.0 vault hashicorp/vault
     ;;

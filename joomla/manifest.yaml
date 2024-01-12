@@ -1,5 +1,6 @@
 ---
-name: Joomla
+name: joomla
+title: Joomla
 version: 3.9.24
 maintainer: keith@hubner.co.uk, amit2cha@gmail.com
 description: Popular open source content management system (CMS)

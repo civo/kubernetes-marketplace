@@ -11,6 +11,6 @@ kubectl wait --for=condition=available --timeout=300s deployment/cert-manager-we
 helm upgrade --install shipa shipa-charts/shipa \
 --timeout=15m \
 --version 1.7.2 \
---set=auth.adminUser="$ADMIN_EMAIL" \
---set=auth.adminPassword="$ADMIN_PW" \
+--set=auth.adminUser="${ADMIN_EMAIL}" \
+--set=auth.adminPassword="${ADMIN_PW}" \
 --namespace shipa-system --create-namespace 

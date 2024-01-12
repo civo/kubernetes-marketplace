@@ -1,6 +1,6 @@
 #!/bin/bash
 
-htpasswd -Bbn $REGISTRY_USERNAME $REGISTRY_PASSWD > /tmp/auth
+htpasswd -Bbn ${REGISTRY_USERNAME} ${REGISTRY_PASSWD} > /tmp/auth
 
 kubectl create secret generic auth-ingress --from-file /tmp/auth
 

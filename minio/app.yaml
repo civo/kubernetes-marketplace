@@ -8,7 +8,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: $PV_SIZE_GB
+      storage: ${PV_SIZE_GB}
 ---
 apiVersion: apps/v1
 kind: Deployment

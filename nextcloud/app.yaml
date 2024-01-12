@@ -7,7 +7,7 @@ spec:
     # The ACME server URL
     server: https://acme-v02.api.letsencrypt.org/directory
     # Email address used for ACME registration
-    email: $EMAIL_ADDRESS
+    email: ${EMAIL_ADDRESS}
     # Name of a secret used to store the ACME account private key
     privateKeySecretRef:
       name: letsencrypt-prod-nextcloud
@@ -26,7 +26,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: $VOLUME_SIZE
+      storage: ${VOLUME_SIZE}
       
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
@@ -80,10 +80,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - nextcloud.$CLUSTER_ID.k8s.civo.com
+      - nextcloud.${CLUSTER_ID}.k8s.civo.com
       secretName: letsencrypt-prod-nextcloud  
   rules:
-  - host: nextcloud.$CLUSTER_ID.k8s.civo.com
+  - host: nextcloud.${CLUSTER_ID}.k8s.civo.com
     http:
       paths:
       - backend:

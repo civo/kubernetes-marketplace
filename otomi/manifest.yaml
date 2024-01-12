@@ -1,4 +1,5 @@
-name: Otomi
+title: Otomi
+name: otomi
 version: "1.0.0"
 maintainer: "@SanderRodenhuis"
 description: Self-hosted PaaS for Kubernetes

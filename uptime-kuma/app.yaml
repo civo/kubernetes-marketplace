@@ -1,0 +1,78 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kuma
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: uptime-pv-claim
+  namespace: kuma
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: ${VOLUME_SIZE}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: uptime-kuma-service
+  namespace: kuma
+spec:
+  selector:
+    app: uptime-kuma
+  ports:
+  - name: uptime-kuma
+    port: 3001
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: uptime-kuma
+  namespace: kuma
+spec:
+  replicas: 1
+  serviceName: uptime-kuma-service
+  selector:
+    matchLabels:
+      app: uptime-kuma
+  template:
+    metadata:
+      labels:
+        app: uptime-kuma
+    spec:
+      containers:
+        - name: uptime-kuma
+          image: louislam/uptime-kuma:1.23.3
+          ports:
+            - containerPort: 3001
+              protocol: TCP
+          volumeMounts:
+            - name: uptime-pv-claim
+              mountPath: /app/data
+      volumes:
+      - name: uptime-pv-claim
+        persistentVolumeClaim:
+          claimName: uptime-pv-claim       
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: uptime-kuma
+  namespace: kuma
+  annotations:
+    kubernetes.io/ingress.class: "traefik" 
+spec:
+  rules:
+  - host: uk.${CLUSTER_ID}.k8s.civo.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: uptime-kuma-service
+            port:
+              number: 3001

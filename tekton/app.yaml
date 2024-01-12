@@ -564,8 +564,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-pipelines
-    pipeline.tekton.dev/release: "v0.50.0"
-    version: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
+    version: "v0.50.5"
 spec:
   group: tekton.dev
   preserveUnknownFields: false
@@ -627,8 +627,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-pipelines
-    pipeline.tekton.dev/release: "v0.50.0"
-    version: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
+    version: "v0.50.5"
 spec:
   group: tekton.dev
   preserveUnknownFields: false
@@ -695,8 +695,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-pipelines
-    pipeline.tekton.dev/release: "v0.50.0"
-    version: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
+    version: "v0.50.5"
 spec:
   group: tekton.dev
   preserveUnknownFields: false
@@ -774,8 +774,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-pipelines
-    pipeline.tekton.dev/release: "v0.50.0"
-    version: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
+    version: "v0.50.5"
 spec:
   group: tekton.dev
   preserveUnknownFields: false
@@ -987,8 +987,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-pipelines
-    pipeline.tekton.dev/release: "v0.50.0"
-    version: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
+    version: "v0.50.5"
 spec:
   group: tekton.dev
   preserveUnknownFields: false
@@ -1069,8 +1069,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-pipelines
-    pipeline.tekton.dev/release: "v0.50.0"
-    version: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
+    version: "v0.50.5"
 spec:
   group: tekton.dev
   preserveUnknownFields: false
@@ -1179,8 +1179,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-pipelines
-    pipeline.tekton.dev/release: "v0.50.0"
-    version: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
+    version: "v0.50.5"
 spec:
   group: tekton.dev
   versions:
@@ -1231,7 +1231,7 @@ metadata:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-pipelines
-    pipeline.tekton.dev/release: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
 # The data is populated at install time.
 ---
 apiVersion: admissionregistration.k8s.io/v1
@@ -1242,7 +1242,7 @@ metadata:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-pipelines
-    pipeline.tekton.dev/release: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
 webhooks:
   - admissionReviewVersions: ["v1"]
     clientConfig:
@@ -1261,7 +1261,7 @@ metadata:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-pipelines
-    pipeline.tekton.dev/release: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
 webhooks:
   - admissionReviewVersions: ["v1"]
     clientConfig:
@@ -1280,7 +1280,7 @@ metadata:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-pipelines
-    pipeline.tekton.dev/release: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
 webhooks:
   - admissionReviewVersions: ["v1"]
     clientConfig:
@@ -1662,7 +1662,7 @@ data:
   # this ConfigMap such that even if we don't have access to
   # other resources in the namespace we still can have access to
   # this ConfigMap.
-  version: "v0.50.0"
+  version: "v0.50.5"
 
 ---
 # Copyright 2020 Tekton Authors LLC
@@ -1935,12 +1935,12 @@ metadata:
     app.kubernetes.io/name: controller
     app.kubernetes.io/component: controller
     app.kubernetes.io/instance: default
-    app.kubernetes.io/version: "v0.50.0"
+    app.kubernetes.io/version: "v0.50.5"
     app.kubernetes.io/part-of: tekton-pipelines
     # tekton.dev/release value replaced with inputs.params.versionTag in pipeline/tekton/publish.yaml
-    pipeline.tekton.dev/release: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
     # labels below are related to istio and should not be used for resource lookup
-    version: "v0.50.0"
+    version: "v0.50.5"
 spec:
   replicas: 1
   selector:
@@ -1955,13 +1955,13 @@ spec:
         app.kubernetes.io/name: controller
         app.kubernetes.io/component: controller
         app.kubernetes.io/instance: default
-        app.kubernetes.io/version: "v0.50.0"
+        app.kubernetes.io/version: "v0.50.5"
         app.kubernetes.io/part-of: tekton-pipelines
         # tekton.dev/release value replaced with inputs.params.versionTag in pipeline/tekton/publish.yaml
-        pipeline.tekton.dev/release: "v0.50.0"
+        pipeline.tekton.dev/release: "v0.50.5"
         # labels below are related to istio and should not be used for resource lookup
         app: tekton-pipelines-controller
-        version: "v0.50.0"
+        version: "v0.50.5"
     spec:
       affinity:
         nodeAffinity:
@@ -1975,11 +1975,11 @@ spec:
       serviceAccountName: tekton-pipelines-controller
       containers:
         - name: tekton-pipelines-controller
-          image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.50.0@sha256:582f4eae20d77e4bc9b6e24d6d1ea97d457e6a50ac7205519bb6b4856093d856
+          image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.50.5@sha256:63172d739a9b83311bdfc5dda02c7edc2d3eb4c74bf693b101f8520f800cbe54
           args: [
             # These images are built on-demand by `ko resolve` and are replaced
             # by image references by digest.
-            "-entrypoint-image", "gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/entrypoint:v0.50.0@sha256:fe1f6108091a54de3e16fd836e9e0d29d0e408d76ece8dd3eccc735b3dde0e6f", "-nop-image", "gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/nop:v0.50.0@sha256:a048ec206f615e8532798190bbedf11195eeac7abc099851c0ef42a64a1c8e68", "-sidecarlogresults-image", "gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/sidecarlogresults:v0.50.0@sha256:6f12e4223a8b78a5024437eb889a7d947a5807cb76cb72b40b2f8030796d6e60", "-workingdirinit-image", "gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/workingdirinit:v0.50.0@sha256:b8bbfcd7e09cf95680f99f5a31129de59293668f0d703642e9f57803b7a0c4c8",
+            "-entrypoint-image", "gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/entrypoint:v0.50.5@sha256:68e13dcaf0f9da9558213c8797ecc4d4809b07b86a3876733d910a705c981c85", "-nop-image", "gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/nop:v0.50.5@sha256:2f1ea7b3039a828665f6c67cc419e3e68e5ed76213cea22b4348c0e7836fa3c4", "-sidecarlogresults-image", "gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/sidecarlogresults:v0.50.5@sha256:6e5516c1cc3e6c25794c71840021b66ee27ea549aad729ad12db7b2a2e8348ab", "-workingdirinit-image", "gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/workingdirinit:v0.50.5@sha256:2e5d99c5c02abeb3f19de0cea08ad77de583c872be3462a04d21f6808c370c5c",
             # The shell image must allow root in order to create directories and copy files to PVCs.
             # cgr.dev/chainguard/busybox as of April 14 2022
             # image shall not contains tag, so it will be supported on a runtime like cri-o
@@ -2074,13 +2074,13 @@ metadata:
     app.kubernetes.io/name: controller
     app.kubernetes.io/component: controller
     app.kubernetes.io/instance: default
-    app.kubernetes.io/version: "v0.50.0"
+    app.kubernetes.io/version: "v0.50.5"
     app.kubernetes.io/part-of: tekton-pipelines
     # tekton.dev/release value replaced with inputs.params.versionTag in pipeline/tekton/publish.yaml
-    pipeline.tekton.dev/release: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
     # labels below are related to istio and should not be used for resource lookup
     app: tekton-pipelines-controller
-    version: "v0.50.0"
+    version: "v0.50.5"
   name: tekton-pipelines-controller
   namespace: tekton-pipelines
 spec:
@@ -2124,12 +2124,12 @@ metadata:
     app.kubernetes.io/name: events
     app.kubernetes.io/component: events
     app.kubernetes.io/instance: default
-    app.kubernetes.io/version: "v0.50.0"
+    app.kubernetes.io/version: "v0.50.5"
     app.kubernetes.io/part-of: tekton-pipelines
     # tekton.dev/release value replaced with inputs.params.versionTag in pipeline/tekton/publish.yaml
-    pipeline.tekton.dev/release: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
     # labels below are related to istio and should not be used for resource lookup
-    version: "v0.50.0"
+    version: "v0.50.5"
 spec:
   replicas: 1
   selector:
@@ -2144,13 +2144,13 @@ spec:
         app.kubernetes.io/name: events
         app.kubernetes.io/component: events
         app.kubernetes.io/instance: default
-        app.kubernetes.io/version: "v0.50.0"
+        app.kubernetes.io/version: "v0.50.5"
         app.kubernetes.io/part-of: tekton-pipelines
         # tekton.dev/release value replaced with inputs.params.versionTag in pipeline/tekton/publish.yaml
-        pipeline.tekton.dev/release: "v0.50.0"
+        pipeline.tekton.dev/release: "v0.50.5"
         # labels below are related to istio and should not be used for resource lookup
         app: tekton-events-controller
-        version: "v0.50.0"
+        version: "v0.50.5"
     spec:
       affinity:
         nodeAffinity:
@@ -2164,7 +2164,7 @@ spec:
       serviceAccountName: tekton-events-controller
       containers:
         - name: tekton-events-controller
-          image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/events:v0.50.0@sha256:9f90f568a7f56c3e418f3d25fb87fb73ad5bd52632a769f4ec8b8ba874495337
+          image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/events:v0.50.5@sha256:824b1b92c4e175d80688b58bf50c8dc43bf2e59ee810133e4718faedb0850d25
           args: []
           volumeMounts:
             - name: config-logging
@@ -2240,13 +2240,13 @@ metadata:
     app.kubernetes.io/name: events
     app.kubernetes.io/component: events
     app.kubernetes.io/instance: default
-    app.kubernetes.io/version: "v0.50.0"
+    app.kubernetes.io/version: "v0.50.5"
     app.kubernetes.io/part-of: tekton-pipelines
     # tekton.dev/release value replaced with inputs.params.versionTag in pipeline/tekton/publish.yaml
-    pipeline.tekton.dev/release: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
     # labels below are related to istio and should not be used for resource lookup
     app: tekton-events-controller
-    version: "v0.50.0"
+    version: "v0.50.5"
   name: tekton-events-controller
   namespace: tekton-pipelines
 spec:
@@ -2825,12 +2825,12 @@ metadata:
     app.kubernetes.io/name: resolvers
     app.kubernetes.io/component: resolvers
     app.kubernetes.io/instance: default
-    app.kubernetes.io/version: "v0.50.0"
+    app.kubernetes.io/version: "v0.50.5"
     app.kubernetes.io/part-of: tekton-pipelines
     # tekton.dev/release value replaced with inputs.params.versionTag in pipeline/tekton/publish.yaml
-    pipeline.tekton.dev/release: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
     # labels below are related to istio and should not be used for resource lookup
-    version: "v0.50.0"
+    version: "v0.50.5"
 spec:
   replicas: 1
   selector:
@@ -2845,13 +2845,13 @@ spec:
         app.kubernetes.io/name: resolvers
         app.kubernetes.io/component: resolvers
         app.kubernetes.io/instance: default
-        app.kubernetes.io/version: "v0.50.0"
+        app.kubernetes.io/version: "v0.50.5"
         app.kubernetes.io/part-of: tekton-pipelines
         # tekton.dev/release value replaced with inputs.params.versionTag in pipeline/tekton/publish.yaml
-        pipeline.tekton.dev/release: "v0.50.0"
+        pipeline.tekton.dev/release: "v0.50.5"
         # labels below are related to istio and should not be used for resource lookup
         app: tekton-pipelines-resolvers
-        version: "v0.50.0"
+        version: "v0.50.5"
     spec:
       affinity:
         podAntiAffinity:
@@ -2868,7 +2868,7 @@ spec:
       serviceAccountName: tekton-pipelines-resolvers
       containers:
         - name: controller
-          image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/resolvers:v0.50.0@sha256:03c3707dd8df1a49ab747a2ec81457830fd94bf117055e685d24eb97c0f6113a
+          image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/resolvers:v0.50.5@sha256:297d7086394dde5c8ff12e468ef90a6e4091217543bae106d7bae599c35e3521
           resources:
             requests:
               cpu: 100m
@@ -2934,12 +2934,12 @@ metadata:
     app.kubernetes.io/name: webhook
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: default
-    app.kubernetes.io/version: "v0.50.0"
+    app.kubernetes.io/version: "v0.50.5"
     app.kubernetes.io/part-of: tekton-pipelines
     # tekton.dev/release value replaced with inputs.params.versionTag in pipeline/tekton/publish.yaml
-    pipeline.tekton.dev/release: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
     # labels below are related to istio and should not be used for resource lookup
-    version: "v0.50.0"
+    version: "v0.50.5"
 spec:
   minReplicas: 1
   maxReplicas: 5
@@ -2982,12 +2982,12 @@ metadata:
     app.kubernetes.io/name: webhook
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: default
-    app.kubernetes.io/version: "v0.50.0"
+    app.kubernetes.io/version: "v0.50.5"
     app.kubernetes.io/part-of: tekton-pipelines
     # tekton.dev/release value replaced with inputs.params.versionTag in pipeline/tekton/publish.yaml
-    pipeline.tekton.dev/release: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
     # labels below are related to istio and should not be used for resource lookup
-    version: "v0.50.0"
+    version: "v0.50.5"
 spec:
   selector:
     matchLabels:
@@ -3001,13 +3001,13 @@ spec:
         app.kubernetes.io/name: webhook
         app.kubernetes.io/component: webhook
         app.kubernetes.io/instance: default
-        app.kubernetes.io/version: "v0.50.0"
+        app.kubernetes.io/version: "v0.50.5"
         app.kubernetes.io/part-of: tekton-pipelines
         # tekton.dev/release value replaced with inputs.params.versionTag in pipeline/tekton/publish.yaml
-        pipeline.tekton.dev/release: "v0.50.0"
+        pipeline.tekton.dev/release: "v0.50.5"
         # labels below are related to istio and should not be used for resource lookup
         app: tekton-pipelines-webhook
-        version: "v0.50.0"
+        version: "v0.50.5"
     spec:
       affinity:
         nodeAffinity:
@@ -3034,7 +3034,7 @@ spec:
         - name: webhook
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook:v0.50.0@sha256:8ca5c85f62307fe753624de443deb3a4cc4b8dcc735c3971068820e14030c69c
+          image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook:v0.50.5@sha256:98bc3e91d8cdaa51396ef6af6d4f91eb3dfc7781b25cdea91ddb582c44792513
           # Resource request required for autoscaler to take any action for a metric
           resources:
             requests:
@@ -3128,13 +3128,13 @@ metadata:
     app.kubernetes.io/name: webhook
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: default
-    app.kubernetes.io/version: "v0.50.0"
+    app.kubernetes.io/version: "v0.50.5"
     app.kubernetes.io/part-of: tekton-pipelines
     # tekton.dev/release value replaced with inputs.params.versionTag in pipeline/tekton/publish.yaml
-    pipeline.tekton.dev/release: "v0.50.0"
+    pipeline.tekton.dev/release: "v0.50.5"
     # labels below are related to istio and should not be used for resource lookup
     app: tekton-pipelines-webhook
-    version: "v0.50.0"
+    version: "v0.50.5"
   name: tekton-pipelines-webhook
   namespace: tekton-pipelines
 spec:
@@ -3363,7 +3363,7 @@ subjects:
 ---
 apiVersion: v1
 data:
-  version: v0.38.0
+  version: v0.42.0
 kind: ConfigMap
 metadata:
   labels:
@@ -3381,9 +3381,9 @@ metadata:
     app.kubernetes.io/instance: default
     app.kubernetes.io/name: dashboard
     app.kubernetes.io/part-of: tekton-dashboard
-    app.kubernetes.io/version: v0.38.0
-    dashboard.tekton.dev/release: v0.38.0
-    version: v0.38.0
+    app.kubernetes.io/version: v0.42.0
+    dashboard.tekton.dev/release: v0.42.0
+    version: v0.42.0
   name: tekton-dashboard
   namespace: tekton-pipelines
 spec:
@@ -3407,9 +3407,9 @@ metadata:
     app.kubernetes.io/instance: default
     app.kubernetes.io/name: dashboard
     app.kubernetes.io/part-of: tekton-dashboard
-    app.kubernetes.io/version: v0.38.0
-    dashboard.tekton.dev/release: v0.38.0
-    version: v0.38.0
+    app.kubernetes.io/version: v0.42.0
+    dashboard.tekton.dev/release: v0.42.0
+    version: v0.42.0
   name: tekton-dashboard
   namespace: tekton-pipelines
 spec:
@@ -3428,7 +3428,7 @@ spec:
         app.kubernetes.io/instance: default
         app.kubernetes.io/name: dashboard
         app.kubernetes.io/part-of: tekton-dashboard
-        app.kubernetes.io/version: v0.38.0
+        app.kubernetes.io/version: v0.42.0
       name: tekton-dashboard
     spec:
       containers:
@@ -3441,6 +3441,7 @@ spec:
             - --log-level=info
             - --log-format=json
             - --namespace=
+            - --namespaces=
             - --stream-logs=true
             - --external-logs=
           env:
@@ -3448,7 +3449,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-          image: gcr.io/tekton-releases/github.com/tektoncd/dashboard/cmd/dashboard:v0.38.0@sha256:a26f1c2272c31f0fc7bbde141030663b4e8fa3c727d2ca2dd06b2217450926ad
+          image: gcr.io/tekton-releases/github.com/tektoncd/dashboard/cmd/dashboard:v0.42.0@sha256:166afa47eda4982546fc996661f6c251ae7d69f7f0b09e19a1ac3fb5b045174f
           livenessProbe:
             httpGet:
               path: /health
@@ -3895,8 +3896,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
-    triggers.tekton.dev/release: "v0.24.1"
-    version: "v0.24.1"
+    triggers.tekton.dev/release: "v0.25.3"
+    version: "v0.25.3"
 spec:
   group: triggers.tekton.dev
   scope: Cluster
@@ -3951,8 +3952,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
-    triggers.tekton.dev/release: "v0.24.1"
-    version: "v0.24.1"
+    triggers.tekton.dev/release: "v0.25.3"
+    version: "v0.25.3"
 spec:
   group: triggers.tekton.dev
   scope: Cluster
@@ -4021,8 +4022,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
-    triggers.tekton.dev/release: "v0.24.1"
-    version: "v0.24.1"
+    triggers.tekton.dev/release: "v0.25.3"
+    version: "v0.25.3"
 spec:
   group: triggers.tekton.dev
   scope: Namespaced
@@ -4127,8 +4128,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
-    triggers.tekton.dev/release: "v0.24.1"
-    version: "v0.24.1"
+    triggers.tekton.dev/release: "v0.25.3"
+    version: "v0.25.3"
 spec:
   group: triggers.tekton.dev
   scope: Namespaced
@@ -4183,8 +4184,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
-    triggers.tekton.dev/release: "v0.24.1"
-    version: "v0.24.1"
+    triggers.tekton.dev/release: "v0.25.3"
+    version: "v0.25.3"
 spec:
   group: triggers.tekton.dev
   scope: Namespaced
@@ -4255,8 +4256,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
-    triggers.tekton.dev/release: "v0.24.1"
-    version: "v0.24.1"
+    triggers.tekton.dev/release: "v0.25.3"
+    version: "v0.25.3"
 spec:
   group: triggers.tekton.dev
   scope: Namespaced
@@ -4329,8 +4330,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
-    triggers.tekton.dev/release: "v0.24.1"
-    version: "v0.24.1"
+    triggers.tekton.dev/release: "v0.25.3"
+    version: "v0.25.3"
 spec:
   group: triggers.tekton.dev
   scope: Namespaced
@@ -4405,7 +4406,7 @@ metadata:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
-    triggers.tekton.dev/release: "v0.24.1"
+    triggers.tekton.dev/release: "v0.25.3"
 # The data is populated at install time.
 ---
 apiVersion: admissionregistration.k8s.io/v1
@@ -4416,7 +4417,7 @@ metadata:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
-    triggers.tekton.dev/release: "v0.24.1"
+    triggers.tekton.dev/release: "v0.25.3"
 webhooks:
   - admissionReviewVersions:
       - v1
@@ -4436,7 +4437,7 @@ metadata:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
-    triggers.tekton.dev/release: "v0.24.1"
+    triggers.tekton.dev/release: "v0.25.3"
 webhooks:
   - admissionReviewVersions:
       - v1
@@ -4456,7 +4457,7 @@ metadata:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
-    triggers.tekton.dev/release: "v0.24.1"
+    triggers.tekton.dev/release: "v0.25.3"
 webhooks:
   - admissionReviewVersions:
       - v1
@@ -4660,7 +4661,115 @@ data:
   # this ConfigMap such that even if we don't have access to
   # other resources in the namespace we still can have access to
   # this ConfigMap.
-  version: "v0.24.1"
+  version: "v0.25.3"
+
+---
+# Copyright 2023 Tekton Authors LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-leader-election-triggers-controller
+  namespace: tekton-pipelines
+  labels:
+    app.kubernetes.io/instance: default
+    app.kubernetes.io/part-of: tekton-triggers
+data:
+  _example: |
+    ################################
+    #                              #
+    #    EXAMPLE CONFIGURATION     #
+    #                              #
+    ################################
+    # This block is not actually functional configuration,
+    # but serves to illustrate the available configuration
+    # options and document them in a way that is accessible
+    # to users that `kubectl edit` this config map.
+    #
+    # These sample configuration options may be copied out of
+    # this example block and unindented to be in the data block
+    # to actually change the configuration.
+    # lease-duration is how long non-leaders will wait to try to acquire the
+    # lock; 15 seconds is the value used by core kubernetes controllers.
+    lease-duration: "60s"
+    # renew-deadline is how long a leader will try to renew the lease before
+    # giving up; 10 seconds is the value used by core kubernetes controllers.
+    renew-deadline: "40s"
+    # retry-period is how long the leader election client waits between tries of
+    # actions; 2 seconds is the value used by core kubernetes controllers.
+    retry-period: "10s"
+    # buckets is the number of buckets used to partition key space of each
+    # Reconciler. If this number is M and the replica number of the controller
+    # is N, the N replicas will compete for the M buckets. The owner of a
+    # bucket will take care of the reconciling for the keys partitioned into
+    # that bucket.
+    buckets: "1"
+
+---
+# Copyright 2023 Tekton Authors LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-leader-election-triggers-webhook
+  namespace: tekton-pipelines
+  labels:
+    app.kubernetes.io/instance: default
+    app.kubernetes.io/part-of: tekton-triggers
+data:
+  _example: |
+    ################################
+    #                              #
+    #    EXAMPLE CONFIGURATION     #
+    #                              #
+    ################################
+    # This block is not actually functional configuration,
+    # but serves to illustrate the available configuration
+    # options and document them in a way that is accessible
+    # to users that `kubectl edit` this config map.
+    #
+    # These sample configuration options may be copied out of
+    # this example block and unindented to be in the data block
+    # to actually change the configuration.
+    # lease-duration is how long non-leaders will wait to try to acquire the
+    # lock; 15 seconds is the value used by core kubernetes controllers.
+    lease-duration: "60s"
+    # renew-deadline is how long a leader will try to renew the lease before
+    # giving up; 10 seconds is the value used by core kubernetes controllers.
+    renew-deadline: "40s"
+    # retry-period is how long the leader election client waits between tries of
+    # actions; 2 seconds is the value used by core kubernetes controllers.
+    retry-period: "10s"
+    # buckets is the number of buckets used to partition key space of each
+    # Reconciler. If this number is M and the replica number of the controller
+    # is N, the N replicas will compete for the M buckets. The owner of a
+    # bucket will take care of the reconciling for the keys partitioned into
+    # that bucket.
+    buckets: "1"
 
 ---
 # Copyright 2019 Tekton Authors LLC
@@ -4797,11 +4906,11 @@ metadata:
     app.kubernetes.io/name: controller
     app.kubernetes.io/component: controller
     app.kubernetes.io/instance: default
-    app.kubernetes.io/version: "v0.24.1"
+    app.kubernetes.io/version: "v0.25.3"
     app.kubernetes.io/part-of: tekton-triggers
-    triggers.tekton.dev/release: "v0.24.1"
+    triggers.tekton.dev/release: "v0.25.3"
     app: tekton-triggers-controller
-    version: "v0.24.1"
+    version: "v0.25.3"
   name: tekton-triggers-controller
   namespace: tekton-pipelines
 spec:
@@ -4840,10 +4949,10 @@ metadata:
     app.kubernetes.io/name: controller
     app.kubernetes.io/component: controller
     app.kubernetes.io/instance: default
-    app.kubernetes.io/version: "v0.24.1"
+    app.kubernetes.io/version: "v0.25.3"
     app.kubernetes.io/part-of: tekton-triggers
     # tekton.dev/release value replaced with inputs.params.versionTag in triggers/tekton/publish.yaml
-    triggers.tekton.dev/release: "v0.24.1"
+    triggers.tekton.dev/release: "v0.25.3"
 spec:
   replicas: 1
   selector:
@@ -4858,18 +4967,18 @@ spec:
         app.kubernetes.io/name: controller
         app.kubernetes.io/component: controller
         app.kubernetes.io/instance: default
-        app.kubernetes.io/version: "v0.24.1"
+        app.kubernetes.io/version: "v0.25.3"
         app.kubernetes.io/part-of: tekton-triggers
         app: tekton-triggers-controller
-        triggers.tekton.dev/release: "v0.24.1"
+        triggers.tekton.dev/release: "v0.25.3"
         # version value replaced with inputs.params.versionTag in triggers/tekton/publish.yaml
-        version: "v0.24.1"
+        version: "v0.25.3"
     spec:
       serviceAccountName: tekton-triggers-controller
       containers:
         - name: tekton-triggers-controller
-          image: "gcr.io/tekton-releases/github.com/tektoncd/triggers/cmd/controller:v0.24.1@sha256:d928774533783ce98fdc95f1fa2b7ac3b2c519e8366512a2e65ed9f540e3c0bb"
-          args: ["-logtostderr", "-stderrthreshold", "INFO", "-el-image", "gcr.io/tekton-releases/github.com/tektoncd/triggers/cmd/eventlistenersink:v0.24.1@sha256:37d41d06d0c306e7b875baa594b9e1ff51ad56d2828703144680b547d56ec2ef", "-el-port", "8080", "-el-security-context=true", "-el-events", "disable", "-el-readtimeout", "5", "-el-writetimeout", "40", "-el-idletimeout", "120", "-el-timeouthandler", "30", "-el-httpclient-readtimeout", "30", "-el-httpclient-keep-alive", "30", "-el-httpclient-tlshandshaketimeout", "10", "-el-httpclient-responseheadertimeout", "10", "-el-httpclient-expectcontinuetimeout", "1", "-period-seconds", "10", "-failure-threshold", "1"]
+          image: "gcr.io/tekton-releases/github.com/tektoncd/triggers/cmd/controller:v0.25.3@sha256:2e58e53fc208473b7e49fd1f1263fc770d4fd857030d4b0847c6cc3d32cfc43e"
+          args: ["-logtostderr", "-stderrthreshold", "INFO", "-el-image", "gcr.io/tekton-releases/github.com/tektoncd/triggers/cmd/eventlistenersink:v0.25.3@sha256:f75e31644a5727a6c0721f70e3b6fce8456626940cd6f7b53f50bf1d68b5d5ba", "-el-port", "8080", "-el-security-context=true", "-el-events", "disable", "-el-readtimeout", "5", "-el-writetimeout", "40", "-el-idletimeout", "120", "-el-timeouthandler", "30", "-el-httpclient-readtimeout", "30", "-el-httpclient-keep-alive", "30", "-el-httpclient-tlshandshaketimeout", "10", "-el-httpclient-responseheadertimeout", "10", "-el-httpclient-expectcontinuetimeout", "1", "-period-seconds", "10", "-failure-threshold", "3"]
           env:
             - name: SYSTEM_NAMESPACE
               valueFrom:
@@ -4885,6 +4994,8 @@ spec:
               value: tekton.dev/triggers
             - name: METRICS_PROMETHEUS_PORT
               value: "9000"
+            - name: CONFIG_LEADERELECTION_NAME
+              value: config-leader-election-triggers-controllers
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
@@ -4921,11 +5032,11 @@ metadata:
     app.kubernetes.io/name: webhook
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: default
-    app.kubernetes.io/version: "v0.24.1"
+    app.kubernetes.io/version: "v0.25.3"
     app.kubernetes.io/part-of: tekton-triggers
     app: tekton-triggers-webhook
-    version: "v0.24.1"
-    triggers.tekton.dev/release: "v0.24.1"
+    version: "v0.25.3"
+    triggers.tekton.dev/release: "v0.25.3"
 spec:
   ports:
     - name: https-webhook
@@ -4961,10 +5072,10 @@ metadata:
     app.kubernetes.io/name: webhook
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: default
-    app.kubernetes.io/version: "v0.24.1"
+    app.kubernetes.io/version: "v0.25.3"
     app.kubernetes.io/part-of: tekton-triggers
     # tekton.dev/release value replaced with inputs.params.versionTag in triggers/tekton/publish.yaml
-    triggers.tekton.dev/release: "v0.24.1"
+    triggers.tekton.dev/release: "v0.25.3"
 spec:
   replicas: 1
   selector:
@@ -4979,19 +5090,19 @@ spec:
         app.kubernetes.io/name: webhook
         app.kubernetes.io/component: webhook
         app.kubernetes.io/instance: default
-        app.kubernetes.io/version: "v0.24.1"
+        app.kubernetes.io/version: "v0.25.3"
         app.kubernetes.io/part-of: tekton-triggers
         app: tekton-triggers-webhook
-        triggers.tekton.dev/release: "v0.24.1"
+        triggers.tekton.dev/release: "v0.25.3"
         # version value replaced with inputs.params.versionTag in triggers/tekton/publish.yaml
-        version: "v0.24.1"
+        version: "v0.25.3"
     spec:
       serviceAccountName: tekton-triggers-webhook
       containers:
         - name: webhook
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: "gcr.io/tekton-releases/github.com/tektoncd/triggers/cmd/webhook:v0.24.1@sha256:314d28791b9adeee9e38c6fb0b1ed40deeee097f495f73a82e5831ff6393dfcc"
+          image: "gcr.io/tekton-releases/github.com/tektoncd/triggers/cmd/webhook:v0.25.3@sha256:f5d35a86487e84f99bd855757630b68c37e16499ab2d42cd1871bc5c354c2d6b"
           env:
             - name: SYSTEM_NAMESPACE
               valueFrom:
@@ -5005,6 +5116,8 @@ spec:
               value: triggers-webhook-certs
             - name: METRICS_DOMAIN
               value: tekton.dev/triggers
+            - name: CONFIG_LEADERELECTION_NAME
+              value: config-leader-election-triggers-webhook
           ports:
             - name: metrics
               containerPort: 9000
@@ -5023,5 +5136,235 @@ spec:
                 - "ALL"
             seccompProfile:
               type: RuntimeDefault
+
+---
+---
+# Copyright 2022 The Tekton Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tekton-triggers-core-interceptors-certs
+  namespace: tekton-pipelines
+  labels:
+    app.kubernetes.io/name: core-interceptors
+    app.kubernetes.io/component: interceptors
+    app.kubernetes.io/instance: default
+    app.kubernetes.io/part-of: tekton-triggers
+    triggers.tekton.dev/release: "v0.25.3"
+# The data is populated at install time.
+
+---
+# Copyright 2020 The Tekton Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tekton-triggers-core-interceptors
+  namespace: tekton-pipelines
+  labels:
+    app.kubernetes.io/name: core-interceptors
+    app.kubernetes.io/component: interceptors
+    app.kubernetes.io/instance: default
+    app.kubernetes.io/version: "v0.25.3"
+    app.kubernetes.io/part-of: tekton-triggers
+    # tekton.dev/release value replaced with inputs.params.versionTag in triggers/tekton/publish.yaml
+    triggers.tekton.dev/release: "v0.25.3"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: core-interceptors
+      app.kubernetes.io/component: interceptors
+      app.kubernetes.io/instance: default
+      app.kubernetes.io/part-of: tekton-triggers
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: core-interceptors
+        app.kubernetes.io/component: interceptors
+        app.kubernetes.io/instance: default
+        app.kubernetes.io/version: "v0.25.3"
+        app.kubernetes.io/part-of: tekton-triggers
+        app: tekton-triggers-core-interceptors
+        triggers.tekton.dev/release: "v0.25.3"
+        # version value replaced with inputs.params.versionTag in triggers/tekton/publish.yaml
+        version: "v0.25.3"
+    spec:
+      serviceAccountName: tekton-triggers-core-interceptors
+      containers:
+        - name: tekton-triggers-core-interceptors
+          image: "gcr.io/tekton-releases/github.com/tektoncd/triggers/cmd/interceptors:v0.25.3@sha256:777e1489bc37e8f06956319331e353a21d53f8d645dec7b1eb986a42fd94316b"
+          ports:
+            - containerPort: 8443
+          args: ["-logtostderr", "-stderrthreshold", "INFO"]
+          env:
+            - name: SYSTEM_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: CONFIG_LOGGING_NAME
+              value: config-logging-triggers
+            - name: CONFIG_OBSERVABILITY_NAME
+              value: config-observability-triggers
+            - name: METRICS_DOMAIN
+              value: tekton.dev/triggers
+            # assuming service and deployment names are same always for consistency
+            - name: INTERCEPTOR_TLS_SVC_NAME
+              value: tekton-triggers-core-interceptors
+            - name: INTERCEPTOR_TLS_SECRET_NAME
+              value: tekton-triggers-core-interceptors-certs
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8443
+              scheme: HTTPS
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+          securityContext:
+            allowPrivilegeEscalation: false
+            # User 65532 is the distroless nonroot user ID
+            runAsUser: 65532
+            runAsGroup: 65532
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - "ALL"
+            seccompProfile:
+              type: RuntimeDefault
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: tekton-triggers-core-interceptors
+    app.kubernetes.io/component: interceptors
+    app.kubernetes.io/instance: default
+    app.kubernetes.io/version: "v0.25.3"
+    app.kubernetes.io/part-of: tekton-triggers
+    triggers.tekton.dev/release: "v0.25.3"
+    app: tekton-triggers-core-interceptors
+    version: "v0.25.3"
+  name: tekton-triggers-core-interceptors
+  namespace: tekton-pipelines
+spec:
+  ports:
+    - name: "https"
+      port: 8443
+  selector:
+    app.kubernetes.io/name: core-interceptors
+    app.kubernetes.io/component: interceptors
+    app.kubernetes.io/instance: default
+    app.kubernetes.io/part-of: tekton-triggers
+
+---
+# Copyright 2021 The Tekton Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: ClusterInterceptor
+metadata:
+  name: cel
+  labels:
+    server/type: https
+spec:
+  clientConfig:
+    service:
+      name: tekton-triggers-core-interceptors
+      namespace: tekton-pipelines
+      path: "cel"
+      port: 8443
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: ClusterInterceptor
+metadata:
+  name: bitbucket
+  labels:
+    server/type: https
+spec:
+  clientConfig:
+    service:
+      name: tekton-triggers-core-interceptors
+      namespace: tekton-pipelines
+      path: "bitbucket"
+      port: 8443
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: ClusterInterceptor
+metadata:
+  name: slack
+  labels:
+    server/type: https
+spec:
+  clientConfig:
+    service:
+      name: tekton-triggers-core-interceptors
+      namespace: tekton-pipelines
+      path: "slack"
+      port: 8443
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: ClusterInterceptor
+metadata:
+  name: github
+  labels:
+    server/type: https
+spec:
+  clientConfig:
+    service:
+      name: tekton-triggers-core-interceptors
+      namespace: tekton-pipelines
+      path: "github"
+      port: 8443
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: ClusterInterceptor
+metadata:
+  name: gitlab
+  labels:
+    server/type: https
+spec:
+  clientConfig:
+    service:
+      name: tekton-triggers-core-interceptors
+      namespace: tekton-pipelines
+      path: "gitlab"
+      port: 8443
 
 ---

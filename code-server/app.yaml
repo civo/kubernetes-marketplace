@@ -5,7 +5,7 @@ metadata:
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: $EMAIL_ADDRESS
+    email: ${EMAIL_ADDRESS}
     privateKeySecretRef:
       name: letsencrypt-prod-coder
     solvers:
@@ -22,7 +22,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: $VOLUME_SIZE
+      storage: ${VOLUME_SIZE}
 ---
 apiVersion: v1
 kind: Service
@@ -66,7 +66,7 @@ spec:
           - name: DOCKER_USER
             value: civo
           - name: PASSWORD
-            value: $ADMIN_PASS
+            value: ${ADMIN_PASS}
           ports:
           - containerPort: 8080
             protocol: TCP
@@ -102,10 +102,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - coder.$CLUSTER_ID.k8s.civo.com
+      - coder.${CLUSTER_ID}.k8s.civo.com
       secretName: letsencrypt-prod-coder 
   rules:
-  - host: coder.$CLUSTER_ID.k8s.civo.com
+  - host: coder.${CLUSTER_ID}.k8s.civo.com
     http:
       paths:
       - path: /

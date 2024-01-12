@@ -6,8 +6,8 @@ metadata:
     app: postgres
 data:
   POSTGRES_DB: postgresdb
-  POSTGRES_USER: $USERNAME
-  POSTGRES_PASSWORD: $PASSWORD
+  POSTGRES_USER: ${USERNAME}
+  POSTGRES_PASSWORD: ${PASSWORD}
   PGDATA: /var/lib/postgresql/data/pgdata
 ---
 apiVersion: v1
@@ -19,7 +19,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: $VOLUME_SIZE
+      storage: ${VOLUME_SIZE}
 ---
 apiVersion: v1
 kind: Service

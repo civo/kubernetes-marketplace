@@ -1,5 +1,5 @@
 ---
-name: opa-gatekeeper
+name: gatekeeper
 title: "OPA Gatekeeper"
 version: "3.4.0"
 maintainer: "@_csor"

@@ -1,0 +1,8 @@
+---
+name: ngrok-ingress-controller
+title: ngrok
+version: 0.12.1
+maintainer: "@ngrokHQ"
+description: ngrok Ingress Controller instantly adds connectivity, load balancing, authentication, and observability to your services
+url: https://github.com/ngrok/kubernetes-ingress-controller
+category: architecture
