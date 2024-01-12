@@ -2,4 +2,3 @@
 
 # For Makefile based tests
 kubeconfig.*
-.DS_Store
