@@ -1,6 +1,7 @@
 ---
-name: Bitwarden Password Manager Unified (BETA)
-version: 2023.12.0
+name: bitwarden
+title: "Bitwarden Unified (BETA)"
+version: 2024.1.0
 maintainer: keith@hubner.co.uk
 description: Open Source Password Manager 
 url: https://bitwarden.com/help/install-and-deploy-unified-beta/
