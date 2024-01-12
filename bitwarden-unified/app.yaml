@@ -86,10 +86,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - bitwarden.${CLUSTER_ID}.k8s.civo.com
+      - bitwarden.$CLUSTER_ID.k8s.civo.com
       secretName: letsencrypt-prod-bitwarden  
   rules:
-      - host: bitwarden.${CLUSTER_ID}.k8s.civo.com
+      - host: bitwarden.$CLUSTER_ID.k8s.civo.com
         http:
           paths:
             - path: /
