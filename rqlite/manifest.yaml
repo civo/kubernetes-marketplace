@@ -1,0 +1,27 @@
+---
+name: rqlite
+title: rqlite
+version: 8.16.3
+maintainer: "shawn@nebarilabs.com"
+description: "The lightweight, distributed relational database built on SQLite."
+url: https://rqlite.io
+category: database
+plans:
+  - label: "1GB"
+    persistence:
+      size:
+        value: 1Gi
+  - label: "5GB"
+    persistence:
+      size:
+        value: 5Gi
+  - label: "10GB"
+    persistence:
+      size:
+        value: 10Gi
+  - label: "3Replicas"
+    persistence:
+      size:
+        value: 10Gi
+    replicaCount:
+      value: 3
