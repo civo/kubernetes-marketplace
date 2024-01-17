@@ -2,7 +2,7 @@ name: edp
 title: EDP
 version: 3.7.3
 maintainer: "sergiy_kulanov@epam.com"
-description: EPAM Delivery Platform (EDP) is a platform that provides a set of tools and services for the development and operation of applications in a containerized environment.
+description: EPAM Delivery Platform is a platform that provides a set of tools and services for the development & operation of applications in a containerized environment.
 url: https://github.com/epam/edp-install
 category: ci_cd
 dependencies:
