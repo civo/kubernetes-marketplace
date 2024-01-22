@@ -1,7 +1,7 @@
 ---
 name: rancher
 title: Rancher
-version: 2.8.0
+version: 2.8.1
 maintainer: "@saiyampathak"
 description: "Addresses the operational and security challenges of managing multiple Kubernetes clusters with integrated tools for running containerized workloads."
 url: https://www.rancher.com/
