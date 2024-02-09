@@ -1,0 +1,134 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: siglens
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: siglens
+  template:
+    metadata:
+      labels:
+        app: siglens
+    spec:
+      containers:
+        - name: siglens
+          image: siglens/siglens:0.1.20
+          ports:
+            - containerPort: 8081
+            - containerPort: 5122
+          volumeMounts:
+            - name: data-volume
+              mountPath: ./data
+            - name: logs-volume
+              mountPath: ./logs
+            - name: config-volume
+              mountPath: ./server.yaml
+          env:
+            - name: UI_PORT
+              value: "5122"
+            - name: WORK_DIR
+              value: "/siglens"
+            - name: CONFIG_FILE
+              value: "server.yaml"
+      volumes:
+        - name: data-volume
+          emptyDir: {}
+        - name: logs-volume
+          emptyDir: {}
+        - name: config-volume
+          configMap:
+            name: siglens-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: siglens
+spec:
+  type: ClusterIP
+  ports:
+    - name: siglens-ingest
+      port: 8081
+      targetPort: 8081
+    - name: siglens-ui
+      port: 5122
+      targetPort: 5122
+  selector:
+    app: siglens
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotrod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hotrod
+  template:
+    metadata:
+      labels:
+        app: hotrod
+    spec:
+      containers:
+        - name: hotrod
+          image: jaegertracing/example-hotrod:1.53
+          ports:
+            - containerPort: 8080
+          env:
+            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+              value: "http://siglens:8081/otlp/v1/traces"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hotrod
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: hotrod
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: siglens-metrics-otel-collector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: siglens-metrics-otel-collector
+  template:
+    metadata:
+      labels:
+        app: siglens-metrics-otel-collector
+    spec:
+      containers:
+        - name: otel-collector
+          image: otel/opentelemetry-collector:latest
+          args:
+            - "--config=/etc/otel-collector-config/ssmetrics-otel-collector-config.yaml"
+          ports:
+            - containerPort: 4318
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/otel-collector-config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: ssmetrics-otel-collector-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: siglens-metrics-otel-collector
+spec:
+  type: ClusterIP
+  ports:
+    - port: 4318
+      targetPort: 4318
+  selector:
+    app: siglens-metrics-otel-collector

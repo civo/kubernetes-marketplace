@@ -1,0 +1,6 @@
+name: SigLens
+version: "0.1.20"
+maintainer: knawale@sigscalr.io
+description: Opensource Observability platform that offers 100x Efficient Log Management.
+url: https://www.siglens.com/
+category: monitoring
