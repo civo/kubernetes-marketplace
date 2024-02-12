@@ -46,7 +46,7 @@ kind: Service
 metadata:
   name: siglens
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - name: siglens-ingest
       port: 8081
