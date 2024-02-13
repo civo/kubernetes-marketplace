@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: siglens
+  name: siglens-oss
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: siglens
+      app: siglens-oss
   template:
     metadata:
       labels:
-        app: siglens
+        app: siglens-oss
     spec:
       containers:
         - name: siglens
@@ -44,18 +44,28 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: siglens
+  name: siglens-oss-ui
 spec:
   type: LoadBalancer
   ports:
-    - name: siglens-ingest
-      port: 8081
-      targetPort: 8081
     - name: siglens-ui
       port: 5122
       targetPort: 5122
   selector:
-    app: siglens
+    app: siglens-oss
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: siglens-oss-ingestion
+spec:
+  type: ClusterIP
+  ports:
+    - name: siglens-ingest
+      port: 8081
+      targetPort: 8081
+  selector:
+    app: siglens-oss
 ---
 apiVersion: apps/v1
 kind: Deployment
