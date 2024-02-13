@@ -1,7 +1,5 @@
 # SigLens-OSS
 
-SigLens-OSS provides a powerful UI and an efficient ingestion server for handling your data. This document outlines how to access these components.
-
 ## Accessing SigLens UI
 
 The SigLens UI can be accessed through `http://<YOUR_CLUSTER_EXTERNAL_IP>:5122/`. Replace `<YOUR_CLUSTER_EXTERNAL_IP>` with the external IP address of your cluster. This information can typically be found in your cloud provider's Kubernetes cluster dashboard or by querying your cluster's services if a LoadBalancer is used for the UI service.
