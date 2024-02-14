@@ -67,6 +67,19 @@ spec:
   selector:
     app: siglens-oss
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: siglens-oss-metrics
+spec:
+  type: ClusterIP
+  ports:
+    - name: siglens-metrics
+      port: 2222
+      targetPort: 2222
+  selector:
+    app: siglens-oss
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -88,7 +101,7 @@ spec:
             - containerPort: 8080
           env:
             - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-              value: "http://siglens:8081/otlp/v1/traces"
+              value: "http://siglens-oss-ingestion:8081/otlp/v1/traces"
 ---
 apiVersion: v1
 kind: Service
