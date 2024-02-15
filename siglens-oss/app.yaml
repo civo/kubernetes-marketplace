@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: siglens
-          image: siglens/siglens:0.1.21
+          image: siglens/siglens:0.1.22
           ports:
             - containerPort: 8081
             - containerPort: 5122

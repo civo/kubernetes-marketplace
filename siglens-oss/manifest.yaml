@@ -1,6 +1,6 @@
 name: siglens-oss
 title: Siglens-OSS
-version: "0.1.21"
+version: "0.1.22"
 maintainer: knawale@sigscalr.io
 description: OpenSource Observability at 100x efficiency.
 url: https://www.siglens.com/
