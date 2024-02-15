@@ -64,16 +64,6 @@ spec:
     - name: siglens-ingest
       port: 8081
       targetPort: 8081
-  selector:
-    app: siglens-oss
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: siglens-oss-metrics
-spec:
-  type: ClusterIP
-  ports:
     - name: siglens-metrics
       port: 2222
       targetPort: 2222
