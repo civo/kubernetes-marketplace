@@ -14,4 +14,5 @@ curl https://get.acorn.io | sh
 
 Then head over to:
 *[Acorn documentation getting started page](https://docs.acorn.io/getting-started)
-*[Civo Acron tutorials](https://www.civo.com/learn/categories/acorn)
+
+*[Civo Acorn tutorials](https://www.civo.com/learn/categories/acorn)
