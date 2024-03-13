@@ -5,4 +5,4 @@ helm repo update
 
 kubectl create namespace argocd
 
-helm install argo-cd argo/argo-cd --version 6.7.1 --namespace argocd
+helm install argo-cd argo/argo-cd --version 6.7.2 --namespace argocd
