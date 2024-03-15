@@ -2,15 +2,15 @@
 
 After installing EDP from the Civo Marketplace, you need to get the `EDP Portal URL` and `admin credentials` to log in to the portal.
 
-1. Get Portal Url from Ingress run:
+1. Get Portal Url from Ingress, run command:
 
 ```bash
-kubectl get ingress edp-headlamp -n edp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
+kubectl get ingress portal -n edp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
 ```
 
-For example you will get:
+The output will be the URL to access the EDP Portal, for example:
 
-https://edp-headlamp-edp.xxxxx-xxxxx-xxxxx-xxxxx-xxxxx.k8s.civo.com/
+https://portal-edp.xxxxx-xxxxx-xxxxx-xxxxx-xxxxx.k8s.civo.com/
 
 where `xxxxx-xxxxx-xxxxx-xxxxx-xxxxx` is your cluster id.
 
@@ -27,3 +27,7 @@ For more details please refer to [EDP documentation](https://epam.github.io/edp-
 ## Argo CD Integration
 
 For Argo CD integration please consult [Official Documentation](https://epam.github.io/edp-install/quick-start/integrate-argocd/)
+
+## Tekton Dashboard
+
+As a part of EDP, Tekton Dashboard is installed and is **available for external access**. You have to [enable SSO](https://epam.github.io/edp-install/operator-guide/oauth2-proxy/), or disable external access.
