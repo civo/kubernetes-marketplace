@@ -1,5 +1,5 @@
 ---
-name: "Bump CIVO marketplace cert-manager version"
+name: "deps: bump cert-manager version"
 pipelineid: certmanager
 
 sources:
@@ -23,7 +23,7 @@ targets:
     scmid: kubernetes-marketplace
     spec:
       file: cert-manager/manifest.yaml
-      key: version
+      key: $.version
     sourceid: app
 
   install:
@@ -55,7 +55,7 @@ actions:
   kubernetes-marketplace:
     kind: "github/pullrequest"
     scmid: kubernetes-marketplace
-    title: 'Bump Cert-manager Helm chart to {{ source "app" }}'
+    title: 'deps: bump cert-manager Helm chart to {{ source "app" }}'
     spec:
       usetitleforautomerge: true
       mergemethod: squash

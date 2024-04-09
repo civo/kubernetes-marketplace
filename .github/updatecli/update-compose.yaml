@@ -1,0 +1,8 @@
+policies:
+  - name: Local Policies
+    config:
+      - updatecli.d
+    values: 
+      - values.d/scm.yaml
+      - values.d/apps.yaml
+

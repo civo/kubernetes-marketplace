@@ -1,5 +1,5 @@
 ---
-name: "Bump CIVO marketplace Rancher version"
+name: "deps: bump Rancher version"
 pipelineid: rancher
 
 sources:
@@ -17,7 +17,7 @@ targets:
     scmid: kubernetes-marketplace
     spec:
       file: rancher/manifest.yaml
-      key: version
+      key: $.version
     sourceid: chart
 
   install:
@@ -49,7 +49,7 @@ actions:
   kubernetes-marketplace:
     kind: "github/pullrequest"
     scmid: kubernetes-marketplace
-    title: 'Bump Rancher Helm chart to {{ source "chart" }}'
+    title: 'deps: bump Rancher Helm chart to {{ source "chart" }}'
     spec:
       usetitleforautomerge: true
       mergemethod: squash
