@@ -27,8 +27,8 @@ targets:
     disablesourceinput: true
     spec:
       file: rancher/install.sh
-      matchpattern: '--version (v{0,1})(\d*.\d*.\d*)'
-      replacepattern: '--version {{ source "chart" }}'
+      matchpattern: 'RANCHER_VERSION=(.*)'
+      replacepattern: 'RANCHER_VERSION="{{ source "chart" }}"'
 
 # Define git repository configuration to know where to push changes
 # Values are templated and provided via the values.yaml so we can easily 
