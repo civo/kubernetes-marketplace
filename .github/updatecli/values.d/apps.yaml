@@ -9,10 +9,6 @@
 #
 # Please note that the version of the first container will be used as the manifest version in the file manifest.yaml
 apps:
-  civo-cluster-autoscaler:
-    - image: registry.k8s.io/autoscaling/cluster-autoscaler
-      versionfilter:
-        kind: semver
   ferretdb:
     - image: ghcr.io/ferretdb/ferretdb
       versionfilter:
