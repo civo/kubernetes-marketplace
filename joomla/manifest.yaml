@@ -1,7 +1,7 @@
 ---
 name: joomla
 title: Joomla
-version: 3.9.24
+version: 5.1
 maintainer: keith@hubner.co.uk, amit2cha@gmail.com
 description: Popular open source content management system (CMS)
 url: https://www.joomla.org/
@@ -28,4 +28,4 @@ configuration:
     value: "CIVO:CLUSTER_ID"
   EMAIL_ADDRESS:
     label: "Email Address"
-    value: "CIVO:EMAIL_ADDRESS"  
+    value: "CIVO:EMAIL_ADDRESS"
