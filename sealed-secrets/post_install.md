@@ -2,25 +2,27 @@
 
 ### Client installation
 
-Install client-side tool from [0.23.1 release page](https://github.com/bitnami-labs/sealed-secrets/releases/tag/v0.23.1)
+Install the kubeseal CLI by downloading the binary from [sealed-secrets/releases](https://github.com/bitnami-labs/sealed-secrets/releases/tag/v0.26.2)
 
 ### Usage
 
 ```sh
 # Create a json/yaml-encoded Secret somehow:
 # (note use of `--dry-run` - this is just a local file!)
-$ echo -n bar | kubectl create secret generic mysecret --dry-run --from-file=foo=/dev/stdin -o json >mysecret.json
+echo -n bar | kubectl create secret generic mysecret --dry-run=client --from-file=foo=/dev/stdin -o json >mysecret.json
 
 # This is the important bit:
 # (note default format is json!)
-$ kubeseal <mysecret.json >mysealedsecret.json
+kubeseal -f mysecret.json -w mysealedsecret.json
 
-# mysealedsecret.json is safe to upload to github, post to twitter,
-# etc.  Eventually:
-$ kubectl create -f mysealedsecret.json
+# At this point mysealedsecret.json is safe to upload to Github,
+# post on Twitter, etc.
+
+# Eventually:
+kubectl create -f mysealedsecret.json
 
 # Profit!
-$ kubectl get secret mysecret
+kubectl get secret mysecret
 ```
 
 * Official [sealed-secret docs](https://github.com/bitnami-labs/sealed-secrets#overview)

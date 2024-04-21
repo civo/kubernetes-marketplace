@@ -1,4 +1,4 @@
-name: Bump Kubewarden Helm charts
+name: "deps: bump Kubewarden Helm charts"
 pipelineid: kubewarden
 
 sources:
@@ -90,7 +90,7 @@ actions:
   kubernetes-marketplace:
     kind: "github/pullrequest"
     scmid: kubernetes-marketplace
-    title: 'Bump Kubewarden Helm chart'
+    title: 'deps: bump Kubewarden Helm chart'
     spec:
       usetitleforautomerge: true
       mergemethod: squash

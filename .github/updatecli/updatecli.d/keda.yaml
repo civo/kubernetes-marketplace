@@ -1,5 +1,5 @@
 ---
-name: "Bump CIVO marketplace Keda version"
+name: "deps: bump Keda version"
 pipelineid: keda
 
 sources:
@@ -28,7 +28,7 @@ targets:
     scmid: kubernetes-marketplace
     spec:
       file: keda/manifest.yaml
-      key: version
+      key: $.version
     sourceid: app
 
   install:
@@ -60,7 +60,7 @@ actions:
   kubernetes-marketplace:
     kind: "github/pullrequest"
     scmid: kubernetes-marketplace
-    title: 'Bump Keda Helm chart to {{ source "chart" }}'
+    title: 'deps: bump Keda Helm chart to {{ source "chart" }}'
     spec:
       usetitleforautomerge: true
       mergemethod: squash

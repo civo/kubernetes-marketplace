@@ -5,6 +5,6 @@ helm repo update
 
 kubectl create namespace jenkins
 
-helm install jenkins jenkins/jenkins --version 5.0.17 --namespace jenkins --set persistence.size=${VOLUME_SIZE} \
+helm install jenkins jenkins/jenkins --version 5.1.5 --namespace jenkins --set persistence.size=${VOLUME_SIZE} \
 --set controller.adminUser=${JENKINS_USERNAME} \
 --set controller.adminPassword=${JENKINS_PASSWORD}

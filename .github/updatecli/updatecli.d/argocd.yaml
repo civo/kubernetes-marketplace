@@ -1,5 +1,5 @@
 ---
-name: "Bump CIVO marketplace Argocd version"
+name: "deps: bump CIVO marketplace Argocd version"
 pipelineid: argocd
 
 sources:
@@ -10,7 +10,7 @@ sources:
     scmid: argo-helm
     spec:
       file: charts/argo-cd/Chart.yaml
-      key: version
+      key: $.version
 
   # Monitor the appVersion in the Chart.yaml file from the argocd git repository referenced by scmid
   appVersion:
@@ -19,7 +19,7 @@ sources:
     scmid: argo-helm
     spec:
       file: charts/argo-cd/Chart.yaml
-      key: appVersion
+      key: $.appVersion
 
   app:
     # Using the githubrelease allows us to retrieve the changelog information
@@ -56,7 +56,7 @@ targets:
     scmid: kubernetes-marketplace
     spec:
       file: argocd/manifest.yaml
-      key: version
+      key: $.version
     sourceid: app
 
   install:
@@ -97,7 +97,7 @@ actions:
   kubernetes-marketplace:
     kind: "github/pullrequest"
     scmid: kubernetes-marketplace
-    title: 'Bump Argocd Helm chart to {{ source "chart" }}'
+    title: 'deps: bump Argocd Helm chart to {{ source "chart" }}'
     spec:
       description: For full list of changes please check ArtifactHub [changelog](https://artifacthub.io/packages/helm/argo/argo-cd?modal=changelog)
       usetitleforautomerge: true

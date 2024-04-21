@@ -56,4 +56,4 @@ EOF
 
 kubectl create namespace edp
 
-helm install edp epamedp/edp-install --version 3.7.5 --namespace edp --set global.dnsWildCard="$domain" --set global.gitProvider=${GITPROVIDER} --timeout 10m
+helm install edp epamedp/edp-install --version 3.8.1 --namespace edp --set global.dnsWildCard="$domain" --set 'global.gitProviders[0]'=${GITPROVIDER} --timeout 10m
