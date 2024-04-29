@@ -13,6 +13,55 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  name: ferretdb-postgres
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: ferretdb
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ferretdb-postgres
+spec:
+  selector:
+    matchLabels:
+      app: ferretdb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ferretdb
+    spec:
+      containers:
+        - image: postgres:16.2
+          name: postgresql
+          env:
+            - name: POSTGRES_USER
+              value: ${POSTGRES_USER}
+            - name: POSTGRES_PASSWORD
+              value: ${POSTGRES_PASSWORD}
+            - name: POSTGRES_DB
+              value: ferretdb
+            - name:  PGDATA
+              value: /var/lib/postgresql/data
+          volumeMounts:
+            - name: ferretdb-persistent-storage
+              mountPath: /var/lib/postgresql/data
+              subPath: postgresql
+          ports:
+            - containerPort: 5432
+              name: postgresql
+      volumes:
+        - name: ferretdb-persistent-storage
+          persistentVolumeClaim:
+            claimName: ferretdb-pv-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
   name: ferretdb
 spec:
   ports:
@@ -37,11 +86,11 @@ spec:
         app: ferretdb
     spec:
       containers:
-        - image: ghcr.io/ferretdb/ferretdb:1.18.0
+        - image: ghcr.io/ferretdb/ferretdb:1.21.0
           name: ferretdb
           env:
             - name: FERRETDB_POSTGRESQL_URL
-              value: postgres://127.0.0.1:5432/ferretdb
+              value: postgres://ferretdb-postgres:5432/ferretdb
             - name: FERRETDB_STATE_DIR
               value: /state
             - name: FERRETDB_TEST_TELEMETRY_PACKAGE
@@ -55,24 +104,6 @@ spec:
           ports:
             - containerPort: 27017
               name: ferretdb
-        - image: postgres:16.1
-          name: postgresql
-          env:
-            - name: POSTGRES_USER
-              value: ${POSTGRES_USER}
-            - name: POSTGRES_PASSWORD
-              value: ${POSTGRES_PASSWORD}
-            - name: POSTGRES_DB
-              value: ferretdb
-            - name:  PGDATA
-              value: /var/lib/postgresql/data
-          volumeMounts:
-            - name: ferretdb-persistent-storage
-              mountPath: /var/lib/postgresql/data
-              subPath: postgresql
-          ports:
-            - containerPort: 5432
-              name: postgresql
       volumes:
         - name: ferretdb-persistent-storage
           persistentVolumeClaim:

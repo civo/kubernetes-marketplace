@@ -2,11 +2,15 @@
 name: "Updatecli"
 
 on:
-  workflow_dispatch:
+  # Trigger Updatecli on changes done on Master
+  push:
+    branches:
+      - master
+  # Trigger Updatecli on a hourly basis
   schedule:
-    # * is a special character in YAML so you have to quote this string
-    # Run every hour
     - cron: '0 * * * *'
+  # Trigger Updatecli manually when needed
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -24,7 +28,7 @@ jobs:
         uses: updatecli/updatecli-action@v2
 
       - name: Apply
-        run: "updatecli apply --config .github/updatecli/updatecli.d --values .github/updatecli/values.yaml"
+        run: "updatecli compose apply --file .github/updatecli/update-compose.yaml"
         env:
           UPDATECLI_GITHUB_ACTOR: ${{ github.actor }}
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

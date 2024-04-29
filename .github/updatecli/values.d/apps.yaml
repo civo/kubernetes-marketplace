@@ -1,0 +1,75 @@
+# The "apps" value is used by the Updatecli policy named "updatecli.d/apps/containers.tpl"
+# to automate docker image tag
+# apps is a map of container's array
+# The map id represents the directory name for a specific app.yaml file
+# the container array represents the container that needs to be updated for a specific app.yaml
+# container image specifies the container image that needs to be updated in the file <id>/app.yaml
+# The container tagfilter allows to restrict tags retrieved from a remote registry by using a regular expression.
+# container versionfilter provides parameters to specify version pattern and its type like regex, semver, or just latest.
+#
+# Please note that the version of the first container will be used as the manifest version in the file manifest.yaml
+apps:
+  ferretdb:
+    - image: ghcr.io/ferretdb/ferretdb
+      versionfilter:
+        kind: semver
+    - image: postgres
+      tagfilter: '^(\d*).(\d*)$'
+      versionfilter:
+        kind: semver
+  ghost:
+    - image: ghost
+      versionfilter:
+        kind: semver
+        strict: true
+  joomla:
+    - image: joomla
+      versionfilter:
+        kind: semver
+  keycloak:
+    - image: quay.io/keycloak/keycloak
+      versionfilter:
+        kind: semver
+  kubesphere:
+    - image: kubesphere/ks-installer
+      versionfilter:
+        kind: semver
+  mariadb:
+    - image: mariadb
+      versionfilter:
+        kind: semver
+        pattern: '*'
+  nextcloud:
+    - image: nextcloud
+      versionfilter:
+        kind: semver
+  postgresql:
+    - image: postgres
+      tagfilter: '^(\d*).(\d*)$'
+      versionfilter:
+        kind: semver
+  rabbitmq:
+    - image: rabbitmq
+      tagfilter: '^(\d*)\.(\d*)\.(\d*)-management$'
+      versionfilter:
+        kind: semver
+        # for the semver constraint to work, we must explicitely mention
+        # that we want to include pre-release using the pattern >=0.0.0-0
+        pattern: '>=0.0.0-0'
+  redis:
+    - image: redis
+      tagfilter: '^(\d*).(\d*)-alpine$'
+  volcano:
+    - image: volcanosh/vc-webhook-manager
+      tagfilter: '^v(\d*).(\d*).(\d*)$'
+      versionfilter:
+        kind: semver
+    - image: volcanosh/vc-scheduler
+      tagfilter: '^v(\d*).(\d*).(\d*)$'
+      versionfilter:
+        kind: semver
+    - image: volcanosh/vc-controller-manager
+      tagfilter: '^v(\d*).(\d*).(\d*)$'
+      versionfilter:
+        kind: semver
+

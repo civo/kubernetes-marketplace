@@ -1,5 +1,5 @@
 ---
-name: Bump Jenkins version
+name: "deps: Bump Jenkins version"
 pipelineid: jenkins
 
 # Define git repository configuration to know where to push changes
@@ -63,7 +63,7 @@ actions:
   kubernetes-marketplace:
     kind: "github/pullrequest"
     scmid: kubernetes-marketplace
-    title: 'Bump Jenkins Helm chart to {{ source "version" }}'
+    title: 'deps: bump Jenkins Helm chart to {{ source "version" }}'
     spec:
       usetitleforautomerge: true
       description: |
