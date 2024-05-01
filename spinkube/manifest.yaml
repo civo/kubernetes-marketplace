@@ -1,6 +1,6 @@
 name: spinkube
 title: Spinkube
-version: v0.2.0
+version: v0.1.0
 maintainer: saiyam@civo.com, radu@fermyon.com
 description: Operator that helps to deploy Spin applications to your Kubernetes clusters.
 url: https://github.com/spinkube/spin-operator
