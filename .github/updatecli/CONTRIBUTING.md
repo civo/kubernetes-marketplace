@@ -1,6 +1,6 @@
 # Contributing
 
-Gad to see that you want to automate your application update.
+Glad to see that you want to automate your application update.
 This both helps you and the CIVO community to benefits from the latest version published.
 
 We assume that your application has:
