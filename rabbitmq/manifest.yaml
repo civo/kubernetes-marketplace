@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ
 name: rabbitmq
-version: 3.13.1-management
+version: 3.13.2-management
 maintainer: habil@bozali.com
 description: RabbitMQ is an open-source message-broker software that originally implemented the Advanced Message Queuing Protocol.
 url: https://www.rabbitmq.com/
