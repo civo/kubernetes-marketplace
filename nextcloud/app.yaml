@@ -45,7 +45,7 @@ spec:
         app: nextcloud
     spec:
       containers:
-      - image: nextcloud:28.0.4
+      - image: nextcloud:29.0.0
         name: nextcloud
         ports:
         - containerPort: 80
