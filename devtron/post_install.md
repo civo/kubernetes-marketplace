@@ -30,7 +30,7 @@ This will give you the admin credentials which you can use to log into the dashb
 
 You should now be able to see the Devtron Dashboard as shown in the picture below.
 
-![](https://i.imgur.com/UX3kMfQ.png) 
+![](https://i.imgur.com/25YjmrE.png) 
 
 # Usage Instructions
 
