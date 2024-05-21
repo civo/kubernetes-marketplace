@@ -37,12 +37,12 @@ You should now be able to see the Devtron Dashboard as shown in the picture belo
 
 Dive into the world of Kubernetes and Platform Engineering with Devtron.
 
-GitHub: https://github.com/devtron-labs/devtron
-Video: https://devtron.ai/video-home
-Documentation: https://docs.devtron.ai/
-e-Book: https://devtron.ai/ebook-home
-Youtube: https://www.youtube.com/@devtronL
-Blog: https://devtron.ai/blog/
-Webinars: https://devtron.ai/webinars-home
+GitHub: https://github.com/devtron-labs/devtron <br/>
+Video: https://devtron.ai/video-home <br/>
+Documentation: https://docs.devtron.ai/ <br/>
+e-Book: https://devtron.ai/ebook-home <br/>
+Youtube: https://www.youtube.com/@devtronL <br/>
+Blog: https://devtron.ai/blog/ <br/>
+Webinars: https://devtron.ai/webinars-home <br/>
 
 
