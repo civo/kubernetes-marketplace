@@ -10,9 +10,10 @@ After you have installed Devtron from the Civo Marketplace, and it is ready to u
 
 1. **Get the Dashboard URL**
     For this, you can either copy the DNS link from the Civo dashboard or enter the following command in your terminal
-    ```
-    kubectl get svc -n devtroncd devtron-service -o jsonpath='{.status.loadBalancer.ingress}'
-    ```
+
+```
+kubectl get svc -n devtroncd devtron-service -o jsonpath='{.status.loadBalancer.ingress}'
+```
 
 ![](https://i.imgur.com/ClnMpGK.png)
 
@@ -30,11 +31,18 @@ This will give you the admin credentials which you can use to log into the dashb
 
 You should now be able to see the Devtron Dashboard as shown in the picture below.
 
-![](https://i.imgur.com/25YjmrE.png) 
+![](https://i.imgur.com/54Ee2e0.png) 
 
-# Usage Instructions
+# Additional Resources
 
-[Documentation](https://docs.devtron.ai/) <br/>
-[Blogs](https://devtron.ai/blog/) <br/>
+Dive into the world of Kubernetes and Platform Engineering with Devtron.
+
+GitHub: https://github.com/devtron-labs/devtron
+Video: https://devtron.ai/video-home
+Documentation: https://docs.devtron.ai/
+e-Book: https://devtron.ai/ebook-home
+Youtube: https://www.youtube.com/@devtronL
+Blog: https://devtron.ai/blog/
+Webinars: https://devtron.ai/webinars-home
 
 
