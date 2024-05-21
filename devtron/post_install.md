@@ -8,7 +8,7 @@ To ensure that Devtron is up and running, you can use `kubectl get pods -ndevtro
 
 After you have installed Devtron from the Civo Marketplace, and it is ready to use, you will have to do two additional steps.
 
-1. **Get the Dashboard URL**
+**Step 1: Get the Dashboard URL**
     For this, you can either copy the DNS link from the Civo dashboard or enter the following command in your terminal
 
 ```
@@ -19,7 +19,7 @@ kubectl get svc -n devtroncd devtron-service -o jsonpath='{.status.loadBalancer.
 
 You will get a similar result to the screenshot. Copy the `hostname` and paste it into your browser.
 
-2. **Obtain the Credentials**
+**Step 2. Obtain the Credentials**
 
 You will require the admin credentials to log into the dashboard. To get the credentials, please enter the following command in your terminal
  
