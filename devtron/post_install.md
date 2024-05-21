@@ -1,6 +1,13 @@
+# Devtron
+
+Devtron is a software delivery platform for kubernetes apps that helps you achieve advanced maturity in just a few weeks. It is built in a modular fashion, and comes with a Kubernetes dashboard as a base module and can be extended to provide a seamless Kubernetes native CI/CD with a 360-degree overview of k8s applications and clusters. Deploy on demand and enable faster triage on a web-based Dashboard Interface with integrated SecOps.
+
 # Getting started
 
-After you have selected Devtron from the Civo Marketplace, you will have to do two additional tasks.
+After you have selected Devtron from the Civo Marketplace, and it is ready to use, you will have to do two additional tasks./
+
+To ensure that Devtron is up and running, you can use `kubectl get pods -ndevtroncd` to make sure all the pods are running. If some pods are in CrashLoopBackOff, or not in a running state, wait for a few minutes. It can take about 5 minutes for Devtron to be fully running.
+
 1. Get the Dashboard URL.
     For this, you can either copy the DNS link from the Civo dashboard or enter the following command in your terminal
     ```
@@ -15,13 +22,17 @@ You will get a similar result to the screenshot. Copy the `hostname` and paste i
  
  ``` 
 kubectl -n devtroncd get secret devtron-secret \
--o jsonpath='{.data.ACD_PASSWORD}' | base64 -d 
+-o jsonpath='{.data.ADMIN_PASSWORD}' | base64 -d
 ```
 This will give you the admin credentials which you can use to log into the dashboard.
 
 You should now be able to see the Devtron Dashboard as shown in the picture below.
 
-![](https://i.imgur.com/d5jtTq6.png)
+![](https://i.imgur.com/UX3kMfQ.png) 
 
-The dashboard is quite intuitive to use. If you have any difficulties, please refer to our [documentation](https://docs.devtron.ai/), or reach out to us on our [discord server](https://discord.com/invite/jsRG5qx2gp) and we will be happy to help. 
+# Usage Instructions
+
+[Documentation](https://docs.devtron.ai/) <br/>
+[Blogs](https://devtron.ai/blog/) <br/>
+
 
