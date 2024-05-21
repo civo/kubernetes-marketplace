@@ -4,11 +4,11 @@ Devtron is a software delivery platform for kubernetes apps that helps you achie
 
 # Getting started
 
-After you have selected Devtron from the Civo Marketplace, and it is ready to use, you will have to do two additional tasks./
+To ensure that Devtron is up and running, you can use `kubectl get pods -ndevtroncd` to make sure all the pods are running. If some pods are in CrashLoopBackOff, or not in a running state, wait for a few minutes. It can take up to 5 minutes for Devtron to be fully running.
 
-To ensure that Devtron is up and running, you can use `kubectl get pods -ndevtroncd` to make sure all the pods are running. If some pods are in CrashLoopBackOff, or not in a running state, wait for a few minutes. It can take about 5 minutes for Devtron to be fully running.
+After you have installed Devtron from the Civo Marketplace, and it is ready to use, you will have to do two additional steps.
 
-1. Get the Dashboard URL.
+1. **Get the Dashboard URL**
     For this, you can either copy the DNS link from the Civo dashboard or enter the following command in your terminal
     ```
     kubectl get svc -n devtroncd devtron-service -o jsonpath='{.status.loadBalancer.ingress}'
@@ -18,7 +18,9 @@ To ensure that Devtron is up and running, you can use `kubectl get pods -ndevtro
 
 You will get a similar result to the screenshot. Copy the `hostname` and paste it into your browser.
 
-2. You will require the admin credentials to log into the dashboard. To get the credentials, please enter the following command in your terminal
+2. **Obtain the Credentials**
+
+You will require the admin credentials to log into the dashboard. To get the credentials, please enter the following command in your terminal
  
  ``` 
 kubectl -n devtroncd get secret devtron-secret \
