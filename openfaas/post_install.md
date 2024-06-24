@@ -97,7 +97,7 @@ echo $OPENFAAS_URL
 
 ## Next steps
 
-* Read the docs: [Deploy TLS with LetsEncrypt to enable HTTPS](https://docs.openfaas.com/reference/ssl/kubernetes-with-cert-manager/)
+* Read the docs: [Deploy TLS with LetsEncrypt to enable HTTPS](https://docs.openfaas.com/reference/tls-openfaas/)
 
 * Learn OpenFaaS: [Try The Official Workshop](https://github.com/openfaas/workshop)
 
