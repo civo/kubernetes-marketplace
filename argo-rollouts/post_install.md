@@ -14,4 +14,5 @@ The Argo Rollout Dashboard can now be accessed from `http://localhost:3100/rollo
 
 ### Usage instruction
 
-See the [documentations](https://argo-rollouts.readthedocs.io/en/stable/)
+* [Argo Rollouts documentations](https://argo-rollouts.readthedocs.io/en/stable/)
+* [Progressive Delivery of Applications on Kubernetes with Argo Rollouts and Argo CD](https://www.civo.com/learn/progressive-delivery-of-applications)
