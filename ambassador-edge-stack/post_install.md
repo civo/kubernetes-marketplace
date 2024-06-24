@@ -15,5 +15,5 @@ helm upgrade --install -n ambassador --create-namespace edge-stack datawire/edge
 
 ### Get started
 
-[Quickstart guide for ambassador edge stack.](https://www.getambassador.io/docs/edge-stack/3.8/tutorials/getting-started/)
+[Quickstart guide for ambassador edge stack.](https://www.getambassador.io/docs/edge-stack/latest/tutorials/getting-started)
 
