@@ -2,7 +2,7 @@
 
 Thank you for deploying [OpenFaaS](https://github.com/openfaas/faas) to Civo's k3s service.
 
-## Obtain access
+### Obtain access
 
 The OpenFaaS gateway has been made available through a `NodePort` on port `31112` on each node.
 
@@ -98,7 +98,5 @@ echo $OPENFAAS_URL
 ## Next steps
 
 * Read the docs: [Deploy TLS with LetsEncrypt to enable HTTPS](https://docs.openfaas.com/reference/tls-openfaas/)
-
 * Learn OpenFaaS: [Try The Official Workshop](https://github.com/openfaas/workshop)
-
 * Get help: Join the [OpenFaaS Community](https://docs.openfaas.com/community/)
