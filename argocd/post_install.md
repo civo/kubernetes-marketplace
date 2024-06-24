@@ -21,4 +21,13 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 ### Usage instruction
 
-See the [documentations](https://argoproj.github.io/argo-cd/)
+See the [Argo CD documentations](https://argoproj.github.io/argo-cd/)
+
+### Further reading 
+
+* A [Collection of Argo CD and Civo tutorials](https://www.civo.com/learn/categories/argo-cd)
+* Example of Civo and Argo CD use cases:
+   * [Using Argo CD in Kubernetes to deploy applications with GitOps](https://www.civo.com/learn/install-argo-cd-in-k3s-civo-cloud-for-deploy-applications)
+   * [Progressive Delivery of Applications on Kubernetes with Argo Rollouts and Argo CD](https://www.civo.com/learn/progressive-delivery-of-applications)
+   * [Deploying serverless workload on Kubernetes using Knative and ArgoCD](https://www.civo.com/learn/deploying-knative-serverless-argocd)
+   * [Installing an Apache Kafka cluster on Kubernetes using Strimzi and GitOps](https://www.civo.com/learn/installing-an-apache-kafka-cluster-on-kubernetes-using-strimzi-and-gitops)
