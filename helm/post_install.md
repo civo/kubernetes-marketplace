@@ -9,7 +9,7 @@ Helm is available to anyone with the credentials to access your Kubernetes clust
 Helm has [very comprehensive documentation](https://helm.sh/docs/) on all things from writing your own charts to installing, upgrading and deleting applications written as Helm charts.
 
 Here are some example Civo tutorial using Helm:
-* A [Collection of Heln and Civo tutorials](https://www.civo.com/learn/categories/helm)
+* A [Collection of Helm and Civo tutorials](https://www.civo.com/learn/categories/helm)
 * Example of Civo and Argo CD use cases:
    * [Introduction to Helm: Automating Kubernetes Deployments](https://www.civo.com/learn/helm-introduction)
    * [Using Civo’s Object storage as a Helm Chart repository](https://www.civo.com/learn/civo-object-storage-helm-chart-repository)
