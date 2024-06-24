@@ -3,7 +3,7 @@ title: Gimlet
 version: v0.17.2
 maintainer: "@laszlocph"
 description: "Start with one-click-deploys then stair-step your way to a gitops based application delivery platform when you need to."
-url: https://www.gimlet.io/
+url: https://gimlet.io/
 category: management
 configuration:
   CLUSTER_ID:
