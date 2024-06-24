@@ -64,6 +64,8 @@ spec:
 EOF
 ```
 
+#### Further reading 
+
 Tutorials on using Vault on Civo: 
 * [Managing application secrets with Vault](https://www.civo.com/learn/managing-application-secrets-with-vault)
 * [Managing SSH access with Hashicorp Vault](https://www.civo.com/learn/managing-ssh-access-with-hashicorp-vault)
