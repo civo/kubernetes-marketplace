@@ -1,6 +1,6 @@
 ## FerretDB –  a truly Open Source MongoDB alternative
 
-### External access
+### External access
 
 By default, external access to the FerretDB port isn't available.
 This could be changed by applying the following YAML to your cluster with `kubectl apply -f ferretdb-service.yaml`
