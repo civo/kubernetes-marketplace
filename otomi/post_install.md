@@ -2,7 +2,7 @@
 
 Otomi is a self-hosted PaaS for Kubernetes and adds developer- and operations-centric tools, automation, and self-service on top of Kubernetes in any infrastructure or cloud, to code, build, and run containerized applications.
 
-##m Minimal requirements
+## Minimal requirements
 
 Otomi installs and configures Nginx as a default ingress controller. When launching from the marketplace, make sure to unselect the default Traefik v2 (NodePort).
 
