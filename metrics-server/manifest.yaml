@@ -7,5 +7,5 @@ built_in: true
 cluster_type: k3s
 maintainer: "@Rancher_Labs"
 description: Metrics Server is a cluster-wide aggregator of resource usage data.
-url: https://kubernetes.io/docs/tasks/debug-application-cluster/resource-metrics-pipeline/#metrics-server
+url: https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/#metrics-server
 category: architecture

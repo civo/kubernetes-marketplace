@@ -25,3 +25,7 @@ spec:
 ```
 
 This will open up http://www.example.com (assuming you pointed that non-real domain record to your cluster's IPs) to the whole world.
+
+### Further reading
+
+[Installing and using HAProxy as Ingress with Civo Marketplace](https://www.civo.com/learn/install-haproxy-as-ingress-in-civo-kubernetes)

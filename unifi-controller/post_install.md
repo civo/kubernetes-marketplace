@@ -16,9 +16,3 @@ TCP 	6789 	Port used for UniFi mobile speed test.
 >  NOTE: These ports need to be open at the gateway/firewall as well as on the controller host. This would be achieved by creating port forwards on the gateway/firewall where the controller host is located.
 
 > Although you can access the UI using port forwarding, you will only get so far through the setup. You are better to setup an ingress controller (available in the marketplace) to access port 8843.
-
-```
-
-
-
-
