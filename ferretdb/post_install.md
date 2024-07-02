@@ -1,6 +1,6 @@
 ## FerretDB
 
-[FerretDB](https://www.ferretdb.com/) is an open-source database, providing a viable alternative to MongoDB, and is built on top of PostgreSQL. 
+[FerretDB](https://www.ferretdb.com/) is an open-source database, providing a viable alternative to MongoDB, and is built on top of PostgreSQL.
 
 ### External access
 
@@ -30,4 +30,4 @@ automatically created in Civo for your Kubernetes cluster.
 Locking down the firewall will only affect access from OUTSIDE of your Kubernetes cluster,
 access from your applications within Kubernetes will not be affected.
 
-[Here](https://www.civo.com/learn/install-ferretdb-civo-marketplace) a tutorial on How to Installing FerretDB through the Civo Marketplace
+[Here](https://www.civo.com/learn/install-ferretdb-civo-marketplace) a tutorial on How to Installing FerretDB through the Civo Marketplace.
