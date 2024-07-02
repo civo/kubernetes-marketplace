@@ -25,9 +25,12 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: yourapp-service
-          servicePort: http
+          service:
+            name: nginx
+            port:
+              number: 80
 ```
 
 Traefik also includes a CRD called IngressRoute, which would look like this:
