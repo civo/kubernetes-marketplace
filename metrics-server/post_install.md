@@ -1,6 +1,8 @@
-## Metrics Server - provide metrics for Kubernetes HPAv2 (Pod auto-scaling)
+## Metrics Server
 
-### Test it out
+Metrics Server - provide metrics for Kubernetes HPAv2 (Pod auto-scaling)
+
+### Test Metrics Server out
 
 Check that data is being received from nodes:
 
