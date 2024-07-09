@@ -2,7 +2,7 @@
 name: istio
 title: "Istio Service Mesh"
 version: "multiple"
-maintainer: lin.sun@solo.io,kamesh.sampath@solo.io
+maintainer: "lin.sun@solo.io,kamesh.sampath@solo.io"
 description: Simplify observability, traffic management, security, and policy with service mesh.
 url: https://istio.io/latest/
 category: architecture

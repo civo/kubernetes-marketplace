@@ -2,7 +2,7 @@
 name: aspnet
 title: "ASP.NET core"
 version: "5.0.5"
-maintainer: amit2cha@gmail.com
+maintainer: "amit2cha@gmail.com"
 description: ASP.NET Core is an open-source framework created by Microsoft for building cloud-enabled, modern applications.
 url: https://learn.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0
 category: management

@@ -2,7 +2,7 @@
 title: PostgreSQL
 name: postgresql
 version: 16.3
-maintainer: hello@civo.com
+maintainer: "hello@civo.com"
 description: The PostgreSQL object-relational database system provides reliability and data integrity.
 url: https://www.postgresql.org
 category: database

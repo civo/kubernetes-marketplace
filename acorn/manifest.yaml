@@ -2,7 +2,7 @@
 name: acorn
 title: Acorn
 version: 0.7.1
-maintainer: darren@acorn.io, saiyam@civo.com, daniel.bodky@netways.de
+maintainer: "darren@acorn.io, @kunal-kushwaha, daniel.bodky@netways.de"
 description: A simple application deployment framework for Kubernetes
 url: https://www.acorn.io/
 category: management

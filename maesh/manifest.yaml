@@ -2,7 +2,7 @@
 name: maesh
 title: Mesh
 version: "v1.4.5"
-maintainer: saiyam@civo.com
+maintainer: "@kunal-kushwaha"
 description: Traefik Mesh is a straight-forward, easy to configure, and non-invasive service mesh.
 url: https://traefik.io/traefik-mesh/
 category: architecture

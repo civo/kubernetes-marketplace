@@ -2,7 +2,7 @@
 title: Wordpress
 name: wordpress
 version: 5.6.2
-maintainer: javicv@gmail.com, amit2cha@gmail.com
+maintainer: "javicv@gmail.com, amit2cha@gmail.com"
 description: WordPress is open source software you can use to create a beautiful website, blog, or app.
 url: https://wordpress.org
 category: management

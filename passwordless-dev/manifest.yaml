@@ -2,7 +2,7 @@
 name: bitwarden-passwordless-dev
 title: "Bitwarden Passwordless.dev"
 version: 1.0.74
-maintainer: keith@hubner.co.uk
+maintainer: "keith@hubner.co.uk"
 description: Bitwarden Passwordless.dev offers tools for developers to integrate FIDO2 WebAuthn passkey features into websites and apps for smooth authentication.
 url: https://docs.passwordless.dev/guide/
 category: management
