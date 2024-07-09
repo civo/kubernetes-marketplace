@@ -3,7 +3,7 @@ name: traefik2-nodeport
 title: Traefik v2 (NodePort)
 version: "2.9.4"
 default: true
-maintainer: "johannes@jitesoft.com, saiyam@civo.com"
+maintainer: "johannes@jitesoft.com, @kunal-kushwaha"
 description: An open source Edge Router working as an ingress controller and load balancer inside your kubernetes cluster.
 url: https://traefik.io
 category: architecture
