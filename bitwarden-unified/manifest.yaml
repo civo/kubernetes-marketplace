@@ -2,7 +2,7 @@
 name: bitwarden-unified
 title: "Bitwarden Self Host Unified (BETA)"
 version: 2024.1.0
-maintainer: keith@hubner.co.uk
+maintainer: "keith@hubner.co.uk"
 description: Open Source Password and Secrets Manager 
 url: https://bitwarden.com/help/install-and-deploy-unified-beta/
 category: management

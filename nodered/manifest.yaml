@@ -2,7 +2,7 @@
 name: nodered
 title: Node-RED
 version: 1.2.7
-maintainer: javicv@gmail.com
+maintainer: "javicv@gmail.com"
 description: Node-RED is a programming tool for wiring together hardware devices, APIs and online services in new and interesting ways.
 url: https://nodered.org/
 category: architecture

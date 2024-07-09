@@ -1,6 +1,6 @@
 name: kriten
 version: "4.0.1"
-maintainer: support@kriten.io
+maintainer: "support@kriten.io"
 description: Kriten is code execution platform that exposes API endpoints to launch jobs.
 url: https://kriten.io
 category: architecture

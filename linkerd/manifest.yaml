@@ -2,7 +2,7 @@
 name: linkerd
 title: Linkerd
 version: Latest
-maintainer: hello@buoyant.io
+maintainer: "hello@buoyant.io"
 description: Linkerd is a service mesh, giving you runtime debugging, observability, reliability, and security.
 url: https://linkerd.io
 category: architecture

@@ -2,7 +2,7 @@
 name: kubevela
 title: KubeVela
 version: 1.0.1
-maintainer: qiaozhongpei.qzp@alibaba-inc.com
+maintainer: "qiaozhongpei.qzp@alibaba-inc.com"
 description: The Modern Application Platform.
 url: https://kubevela.io
 category: management

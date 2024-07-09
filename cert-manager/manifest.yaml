@@ -2,7 +2,7 @@
 name: cert-manager
 title: "Cert Manager"
 version: v1.15.1
-maintainer: @kunal-kushwaha
+maintainer: "@kunal-kushwaha"
 description: cert-manager is a native Kubernetes certificate management controller
 url: https://cert-manager.io/docs/releases/
 category: architecture
