@@ -2,7 +2,7 @@
 name: flux
 title: Flux
 version: Latest
-maintainer: stefan@weave.works
+maintainer: "@stefanprodan"
 description: Open and extensible continuous delivery solution for Kubernetes. Powered by GitOps Toolkit.
 url: https://fluxcd.io
 category: ci_cd

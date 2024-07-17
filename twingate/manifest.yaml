@@ -2,7 +2,7 @@
 name: twingate
 title: "Twingate Connector"
 version: "latest"
-maintainer: support@twingate.com
+maintainer: "support@twingate.com"
 description: Connectors are Twingate components that are deployed behind your firewall to provide access to private Resources.
 url: https://www.twingate.com
 category: security

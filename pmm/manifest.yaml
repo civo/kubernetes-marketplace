@@ -2,7 +2,7 @@
 name: pmm
 title: "Percona Monitoring and Management"
 version: "2.36.0"
-maintainer: sergey.pronin@percona.com
+maintainer: "sergey.pronin@percona.com"
 description: "Open source database monitoring, management, and observability solution for MySQL, PostgreSQL, and MongoDB."
 url: https://www.percona.com/software/database-tools/percona-monitoring-and-management
 category: monitoring

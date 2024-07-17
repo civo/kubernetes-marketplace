@@ -16,10 +16,6 @@ Sveltos provides precise control over add-on deployment order. Add-ons within a 
 2. lists which Kubernetes add-ons need to be deployed on such clusters;
 3. add-ons can be expressed as templates and instantiated by Sveltos at deployment time using resources from the management cluster.
 
-<p align="center">
-  <img alt="Kubernetes add-on deployment" src="https://github.com/projectsveltos/sveltos/blob/main/docs/assets/addons_deployment.gif" width="600"/>
-</p>
-
 ### Register a cluster with Projectsveltos
 
 Sveltos comes with support to automatically discover ClusterAPI powered clusters. If Sveltos is deployed in a management cluster with ClusterAPI (CAPI), no further action is required for Sveltos to manage add-ons on CAPI-powered clusters. Sveltos will watch for "clusters.cluster.x-k8s.io" instances and program those accordingly.
@@ -44,7 +40,7 @@ It offers a convenient CLI experience. The Binaries for each release are availab
 
 The main goal of Sveltos is to deploy add-ons and applications in a fleet of managed Kubernetes clusters. To get started:
 
-1. Deploy your [first application](https://projectsveltos.github.io/sveltos/install/quick_start/).
+1. Deploy your [first application](https://projectsveltos.github.io/sveltos/getting_started/install/quick_start/).
 2. Get more familiar with [Deploying add-ons](https://projectsveltos.github.io/sveltos/addons/addons/)
 
 ### Support

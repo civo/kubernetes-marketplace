@@ -4,7 +4,7 @@ title: "Kong Ingress Controller"
 version: "3.0.1"
 maintainer: "@milindchawre"
 description: Kong Ingress Controller is open-source Ingress Controller for Kubernetes that offers API management capabilities with a plugin architecture.
-url: https://docs.konghq.com/kubernetes-ingress-controller/
+url: https://docs.konghq.com/kubernetes-ingress-controller/latest/
 category: architecture
 required_services:
   - loadbalancer

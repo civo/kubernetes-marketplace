@@ -1,0 +1,68 @@
+---
+name: "deps: bump rqlite version"
+pipelineid: rqlite
+
+sources:
+  chart:
+    kind: helmchart
+    name: Get latest rqlite Helm Chart version
+    spec:
+      url: https://rqlite.github.io/helm-charts
+      name: rqlite
+
+  app:
+    kind: githubrelease
+    name: Get latest rqlite version
+    spec:
+      owner: rqlite
+      repository: rqlite
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+    transformers:
+      - trimprefix: v
+
+targets:
+  manifest:
+    kind: yaml
+    name: Update rqlite/manifest.yaml
+    scmid: kubernetes-marketplace
+    spec:
+      file: rqlite/manifest.yaml
+      key: $.version
+    sourceid: app
+
+  install:
+    kind: file
+    name: Update rqlite/install.sh
+    scmid: kubernetes-marketplace
+    disablesourceinput: true
+    spec:
+      file: rqlite/install.sh
+      matchpattern: '--version (v{0,1})(\d*.\d*.\d*)'
+      replacepattern: '--version {{ source "chart" }}'
+
+# Define git repository configuration to know where to push changes
+# Values are templated and provided via the values.yaml so we can easily 
+# adapt to the repository owner.
+scms:
+  kubernetes-marketplace:
+    kind: "github"
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner }}"
+      repository: "{{ .github.repository }}"
+      branch: "{{ .github.branch }}"
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+
+actions:  
+  kubernetes-marketplace:
+    kind: "github/pullrequest"
+    scmid: kubernetes-marketplace
+    title: 'deps: bump rqlite Helm chart to {{ source "chart" }}'
+    spec:
+      usetitleforautomerge: true
+      mergemethod: squash
+      labels:
+        - enhancement 

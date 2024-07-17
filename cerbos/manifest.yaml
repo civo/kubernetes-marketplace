@@ -3,5 +3,5 @@ title: Cerbos
 version: 0.34.0
 maintainer: "help@cerbos.dev"
 description: "The scalable, open-source authorization layer for implementing roles and permissions"
-url: https://cerbos.dev
+url: https://www.cerbos.dev/
 category: security

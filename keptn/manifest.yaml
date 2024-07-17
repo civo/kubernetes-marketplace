@@ -2,7 +2,7 @@
 name: keptn
 title: Keptn
 version: "0.8.7"
-maintainer: gabriel.tanner@dynatrace.com, sangambiradar@hotmail.com
+maintainer: "gabriel.tanner@dynatrace.com, sangambiradar@hotmail.com"
 description: Keptn is a control plane for continuous delivery and automated operations. Traefik must not be installed since Keptn exposes itself via Nginx.
 url: https://keptn.sh/
 category: ci_cd

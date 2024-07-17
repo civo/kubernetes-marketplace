@@ -1,6 +1,6 @@
 # Contributing
 
-Gad to see that you want to automate your application update.
+Glad to see that you want to automate your application update.
 This both helps you and the CIVO community to benefits from the latest version published.
 
 We assume that your application has:
@@ -50,7 +50,7 @@ In the context of the CIVO marketplace, it is usually:
 
 ## Going further
 
-This contributing document focus on adding Updatecli manifest for the CIVO marketplace, but depending on your project you may need to customize your update scnearion.
+This contributing document focus on adding Updatecli manifest for the CIVO marketplace, but depending on your project you may need to customize your update scenario.
 
 Feel free to look at:
 * Look for more update scenario on www.updatecli.io. 

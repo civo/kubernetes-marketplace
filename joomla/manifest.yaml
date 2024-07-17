@@ -1,8 +1,8 @@
 ---
 name: joomla
 title: Joomla
-version: 5.1
-maintainer: keith@hubner.co.uk, amit2cha@gmail.com
+version: 5.2
+maintainer: "keith@hubner.co.uk, amit2cha@gmail.com"
 description: Popular open source content management system (CMS)
 url: https://www.joomla.org/
 category: management

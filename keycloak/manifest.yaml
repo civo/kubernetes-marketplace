@@ -1,8 +1,8 @@
 ---
 name: keycloak
 title: Keycloak
-version: 24.0.2
-maintainer: harsh.manvar111@gmail.com
+version: 25.0.1
+maintainer: "harsh.manvar111@gmail.com"
 description: Open Source Identity and Access Management
 url: https://www.keycloak.org/
 category: security

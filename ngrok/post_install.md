@@ -17,7 +17,7 @@ data:
   AUTHTOKEN: "YOUR-AUTHTOKEN-BASE64"
 ```
 
-For more information, please see our ingress [controller documentation](https://github.com/ngrok/kubernetes-ingress-controller/blob/main/docs/deployment-guide/credentials.md#creating-the-secret).
+For more information, please see our ingress [controller documentation](https://ngrok.com/docs/k8s/deployment-guide/#creating-the-secret).
 
 ### External access to your services
 
@@ -45,7 +45,6 @@ spec:
                   number: 80
 ```
 
-This will allow public access to the service running on port 80 in your cluster to the whole world at the domain you specified. For more information about controlling access to your service, please see our [ingress controller annotations documentation](https://github.com/ngrok/kubernetes-ingress-controller/blob/main/docs/user-guide/route-modules.md).
+This will allow public access to the service running on port 80 in your cluster to the whole world at the domain you specified. For more information about controlling access to your service, please see our [ingress controller annotations documentation](https://ngrok.com/docs/k8s/user-guide/route-modules/).
 
 If you run into any issues or have a feature request, please open an issue in our [ngrok Ingress Controller Repo](https://github.com/ngrok/kubernetes-ingress-controller).
-

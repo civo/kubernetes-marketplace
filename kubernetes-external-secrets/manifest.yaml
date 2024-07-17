@@ -2,7 +2,7 @@
 name: kubernetes-external-secrets
 title: "Kubernetes External Secrets"
 version: "0.9.14"
-maintainer: engin.diri@mail.schwarz
+maintainer: "engin.diri@mail.schwarz"
 description: Kubernetes External Secrets allows you to use external secret management systems (e.g. Hasicorp Vault) to securely add secrets in Kubernetes.
 url: https://github.com/external-secrets/external-secrets
 category: security

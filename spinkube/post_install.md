@@ -14,3 +14,5 @@ In a different terminal window, make a request to the application:
 You should see:
 
 `Hello world from Spin!`
+
+Please note: This application only supports Talos-based Kubernetes clusters.

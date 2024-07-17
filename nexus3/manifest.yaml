@@ -2,7 +2,7 @@
 name: nexus3
 title: "Sonatype nexus repository oss"
 version: "3.30.1"
-maintainer: kamesh.sampath@hotmail.com
+maintainer: "kamesh.sampath@hotmail.com"
 description: The free artifact repository with universal format support.
-url: https://www.sonatype.com/products/repository-oss
+url: https://www.sonatype.com/products/sonatype-nexus-oss
 category: ci_cd
