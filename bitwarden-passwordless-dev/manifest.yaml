@@ -3,7 +3,7 @@ name: bitwarden-passwordless.dev
 title: "Bitwarden Passwordless.dev"
 version: 1.0.74
 maintainer: keith@hubner.co.uk
-description: Bitwarden Passwordless.dev is a software toolkit that helps developers build FIDO2 WebAuthn-based passkey features into websites and enterprise applications for seamless authentication flows. 
+description: Bitwarden Passwordless.dev is a software toolkit that helps developers build FIDO2 WebAuthn-based passkey features into websites and enterprise applications.
 url: https://docs.passwordless.dev/guide/
 category: management
 dependencies:
