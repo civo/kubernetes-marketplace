@@ -1,0 +1,19 @@
+name: uptime-kuma
+version: 1.23.3
+maintainer: "@VinujaKhatode"
+description: An open source easy-to-use self-hosted monitoring tool(HTTP/S, TCP, DNS, etc.)
+url: https://github.com/louislam/uptime-kuma
+category: monitoring
+plans:
+  - label: "1GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 1Gi
+  - label: "2GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 2Gi
+configuration:
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"

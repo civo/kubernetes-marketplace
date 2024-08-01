@@ -1,0 +1,123 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod-bitwarden
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: ${EMAIL_ADDRESS}
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt-prod-bitwarden
+    # Enable the HTTP-01 challenge provider
+    solvers:
+    - http01:
+        ingress:
+          class: traefik
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bitwarden-pv-claim
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bitwarden-service
+spec:
+  selector:
+    app: bitwarden
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitwarden
+  labels:
+    app: bitwarden
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: bitwarden
+  template:
+    metadata:
+      labels:
+        app: bitwarden
+    spec:
+      containers:
+        - name: bitwarden-unified
+          image: bitwarden/self-host:beta
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          volumeMounts:
+          - name: bitwarden-persistent-storage
+            mountPath: /etc/bitwarden   
+          envFrom:
+            - configMapRef:
+                name: bitwarden-configmap
+      volumes:
+      - name: bitwarden-persistent-storage
+        persistentVolumeClaim:
+          claimName: bitwarden-pv-claim            
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod-bitwarden
+    ingress.kubernetes.io/ssl-redirect: "true"
+  name: bitwarden
+spec:
+  tls:
+    - hosts:
+      - bitwarden.${CLUSTER_ID}.k8s.civo.com
+      secretName: letsencrypt-prod-bitwarden  
+  rules:
+      - host: bitwarden.${CLUSTER_ID}.k8s.civo.com
+        http:
+          paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: bitwarden-service
+                  port:
+                    number: 8080
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bitwarden-configmap
+  labels:
+    app: bitwarden
+data:
+  BW_DOMAIN: ""
+  BW_DB_PROVIDER: ""
+  BW_DB_SERVER: ""
+  BW_DB_DATABASE: ""
+  BW_DB_USERNAME: ""
+  BW_DB_PASSWORD: ""
+  BW_INSTALLATION_ID: ""
+  BW_INSTALLATION_KEY: ""
+
+
+
+
+
+             

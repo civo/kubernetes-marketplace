@@ -1,63 +1,211 @@
 ---
-apiVersion: helm.cattle.io/v1
-kind: HelmChart
+apiVersion: v1
+kind: ServiceAccount
 metadata:
+  labels:
+    app.kubernetes.io/instance: traefik-kube-system
+    app.kubernetes.io/name: traefik
+  name: traefik
+  namespace: kube-system
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/instance: traefik-kube-system
+    app.kubernetes.io/name: traefik
+  name: traefik-kube-system
+rules:
+- apiGroups:
+  - extensions
+  - networking.k8s.io
+  resources:
+  - ingressclasses
+  - ingresses
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - services
+  - endpoints
+  - secrets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - extensions
+  - networking.k8s.io
+  resources:
+  - ingresses/status
+  verbs:
+  - update
+- apiGroups:
+  - traefik.containo.us
+  resources:
+  - ingressroutes
+  - ingressroutetcps
+  - ingressrouteudps
+  - middlewares
+  - middlewaretcps
+  - tlsoptions
+  - tlsstores
+  - traefikservices
+  - serverstransports
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/instance: traefik-kube-system
+    app.kubernetes.io/name: traefik
+  name: traefik-kube-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: traefik-kube-system
+subjects:
+- kind: ServiceAccount
+  name: traefik
+  namespace: kube-system
+
+
+---
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  annotations:
+    deprecated.daemonset.template.generation: "1"
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: traefik-kube-system
+    app.kubernetes.io/name: traefik
   name: traefik
   namespace: kube-system
 spec:
-  repo: https://traefik.github.io/charts
-  chart: traefik
-  version: '20.2.1'
-  set:
-    global.systemDefaultRegistry: ""
-  valuesContent: |-
-    hostNetwork: true
-    additionalArguments:
-    - --providers.kubernetesingress.ingressendpoint.hostname=$CLUSTER_ID.k8s.civo.com
-    securityContext:
-      capabilities:
-        add:
-          - NET_BIND_SERVICE
-      runAsNonRoot: false
-      runAsUser: 0
-    service:
-      enabled: false
-    deployment:
-      kind: DaemonSet
-    rbac:
-      enabled: true
-    ports:
-      websecure:
-        expose: true
-        exposePort: 443
-        port: 443
-        tls:
-          enabled: true
-      web:
-        expose: true
-        exposePort: 80
-        port: 80
-    podAnnotations:
-      prometheus.io/port: "8082"
-      prometheus.io/scrape: "true"
-    providers:
-      kubernetesIngress:
-        publishedService:
-          enabled: true
-    priorityClassName: "system-cluster-critical"
-    image:
-      name: "rancher/mirrored-library-traefik"
-      tag: "2.9.4"
-    tolerations:
-    - key: "CriticalAddonsOnly"
-      operator: "Exists"
-    - key: "node-role.kubernetes.io/control-plane"
-      operator: "Exists"
-      effect: "NoSchedule"
-    - key: "node-role.kubernetes.io/master"
-      operator: "Exists"
-      effect: "NoSchedule"
-    updateStrategy:
-      rollingUpdate:
-        maxUnavailable: 1
-        maxSurge: "0%"
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: traefik-kube-system
+      app.kubernetes.io/name: traefik
+  template:
+    metadata:
+      annotations:
+        prometheus.io/path: /metrics
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        app.kubernetes.io/instance: traefik-kube-system
+        app.kubernetes.io/name: traefik
+    spec:
+      containers:
+      - args:
+        - --global.checknewversion
+        - --global.sendanonymoususage
+        - --entrypoints.metrics.address=:9100/tcp
+        - --entrypoints.traefik.address=:9000/tcp
+        - --entrypoints.web.address=:80/tcp
+        - --entrypoints.websecure.address=:443/tcp
+        - --api.dashboard=true
+        - --ping=true
+        - --metrics.prometheus=true
+        - --metrics.prometheus.entrypoint=metrics
+        - --providers.kubernetescrd
+        - --providers.kubernetesingress
+        - --entrypoints.websecure.http.tls=true
+        - --providers.kubernetesingress.ingressendpoint.hostname=${CLUSTER_ID}.k8s.civo.com
+        image: rancher/mirrored-library-traefik:2.9.4
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /ping
+            port: 9000
+            scheme: HTTP
+          initialDelaySeconds: 2
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 2
+        name: traefik
+        ports:
+        - containerPort: 9100
+          hostPort: 9100
+          name: metrics
+          protocol: TCP
+        - containerPort: 9000
+          hostPort: 9000
+          name: traefik
+          protocol: TCP
+        - containerPort: 80
+          hostPort: 80
+          name: web
+          protocol: TCP
+        - containerPort: 443
+          hostPort: 443
+          name: websecure
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 1
+          httpGet:
+            path: /ping
+            port: 9000
+            scheme: HTTP
+          initialDelaySeconds: 2
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 2
+        resources: {}
+        securityContext:
+          capabilities:
+            add:
+            - NET_BIND_SERVICE
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+          runAsGroup: 65532
+          runAsNonRoot: false
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /data
+          name: data
+        - mountPath: /tmp
+          name: tmp
+      dnsPolicy: ClusterFirst
+      hostNetwork: true
+      priorityClassName: system-cluster-critical
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 65532
+      serviceAccount: traefik
+      serviceAccountName: traefik
+      terminationGracePeriodSeconds: 60
+      tolerations:
+      - key: CriticalAddonsOnly
+        operator: Exists
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/control-plane
+        operator: Exists
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master
+        operator: Exists
+      volumes:
+      - emptyDir: {}
+        name: data
+      - emptyDir: {}
+        name: tmp
+  updateStrategy:
+    rollingUpdate:
+      maxSurge: 0%
+      maxUnavailable: 1
+    type: RollingUpdate

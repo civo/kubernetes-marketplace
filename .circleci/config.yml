@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.0-node
+      - image: cimg/ruby:3.0.0-node
         environment:
           BUNDLER_VERSION: 2.0.2
     working_directory: ~/repo

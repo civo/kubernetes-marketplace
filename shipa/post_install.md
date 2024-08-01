@@ -50,6 +50,6 @@ Congratulations on your Shipa Installation and future abstractions!
 ## Futher Information
 Here are a few pieces for further information.
 
-- [One Line Developer Experience](https://shipa.io/miscellaneous/one-line-developer-experience/)
+- [One Line Developer Experience](https://shipa.io/one-line-developer-experience/)
 - [Shipa Docs](https://learn.shipa.io/docs)
 

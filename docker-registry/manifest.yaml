@@ -2,7 +2,7 @@
 name: docker-registry
 title: "Docker Registry"
 version: ALPHA
-maintainer: alejandro@civo.com
+maintainer: "alejandro@civo.com"
 description: A registry is a storage and content delivery system, holding named Docker images, available in different tagged versions.
 url:
 dependencies:

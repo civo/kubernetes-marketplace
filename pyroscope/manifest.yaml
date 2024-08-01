@@ -1,5 +1,6 @@
 ---
-name: Pyroscope
+title: Pyroscope
+name: pyroscope
 version: "0.2.5"
 maintainer: "@rperry2174"
 description: Pyroscope is a continuous profiling platform! Debug performance issues down to a single line of code.

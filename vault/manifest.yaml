@@ -1,5 +1,5 @@
 title: "HashiCorp Vault"
-name: hashicorp-vault
+name: vault
 version: "0.24.0"
 maintainer: "@dirsigler"
 description: "Secure, store and tightly control access to tokens, passwords, certificates, encryption keys for protecting secrets and other sensitive data."

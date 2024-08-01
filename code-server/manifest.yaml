@@ -1,10 +1,10 @@
 ---
-name: codeserver
+name: code-server
 title: "Code Server"
 version: 3.11.1
 maintainer: "@ruanbekker"
 description: Run VS Code on any machine anywhere and access it through the browser.
-url: https://github.com/cdr/code-server
+url: https://github.com/coder/code-server
 category: management
 dependencies:
   - cert-manager

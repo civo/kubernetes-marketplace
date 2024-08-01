@@ -1,4 +1,5 @@
-name: OpenFaaS
+name: openfaas
+title: OpenFaaS
 version: 0.18.0
 maintainer: "@openfaasltd"
 description: "OpenFaaS makes it easy for developers to deploy event-driven functions and microservices to Kubernetes without repetitive, boiler-plate coding."

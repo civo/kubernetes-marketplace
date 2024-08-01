@@ -1,0 +1,8 @@
+---
+name: dapr
+title: "Dapr"
+version: "1.11.0"
+maintainer: "Dapr Authors"
+description: Dapr provides cloud-agnostic application-level APIs for communication, state, and workflows. 
+url: https://dapr.io
+category: architecture

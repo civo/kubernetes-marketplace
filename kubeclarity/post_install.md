@@ -18,4 +18,4 @@ $ kubectl port-forward --namespace kubeclarity svc/kubeclarity-kubeclarity 9999:
 ```
 Now access the Kubeclarity UI at `http://localhost:9999/` and then select the runtime scan tab on the left, click on start scan after selecting the namespaces you want to scan.
 
-To know more, check the [official guide](https://github.com/cisco-open/kubei).
+To know more, check the [official guide](https://github.com/openclarity/kubeclarity).

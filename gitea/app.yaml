@@ -18,8 +18,8 @@ spec:
       enabled: false
     gitea:
       admin:
-        email: $ADMIN_EMAIL
-        password: $ADMIN_PASS
+        email: ${ADMIN_EMAIL}
+        password: ${ADMIN_PASS}
     postgresql:
       persistence:
         enabled: false

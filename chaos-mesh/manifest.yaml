@@ -2,7 +2,7 @@
 name: chaos-mesh
 title: "Chaos Mesh"
 version: (default)
-maintainer: cwen@pingcap.com
+maintainer: "cwen@pingcap.com"
 description: A Chaos Engineering Platform for Kubernetes
 url: https://github.com/chaos-mesh/chaos-mesh
 category: ci_cd

@@ -8,7 +8,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: $VOLUME_SIZE
+      storage: ${VOLUME_SIZE}
 ---
 apiVersion: v1
 kind: Service
@@ -41,9 +41,9 @@ spec:
         name: mongodb
         env:
         - name: MONGO_INITDB_ROOT_USERNAME
-          value: $MONGODB_ROOT_USERNAME
+          value: ${MONGODB_ROOT_USERNAME}
         - name: MONGO_INITDB_ROOT_PASSWORD
-          value: $MONGODB_ROOT_PASSWORD
+          value: ${MONGODB_ROOT_PASSWORD}
         ports:
         - containerPort: 27017
           name: mongodb

@@ -13,7 +13,7 @@ When all Pods of KubeSphere are running, it means the installation is successful
 ```
 kubectl get svc/ks-console -n kubesphere-system
 ```
-If your network is configured with firewall rules, you need to ensure component of console can visit through `30880` port. For more detail, please see the document of [port-firewall](https://kubesphere.com.cn/docs/v3.3/installing-on-linux/introduction/port-firewall/)
+If your network is configured with firewall rules, you need to ensure component of console can visit through `30880` port. For more detail, please see the document of [port-firewall](https://kubesphere.io/docs/v3.3/installing-on-linux/introduction/port-firewall/)
 
 
 Finally, you can use http://IP:30880 to access the console with the default account admin/P@88w0rd.

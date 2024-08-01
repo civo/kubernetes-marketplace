@@ -28,7 +28,7 @@ An Updatecli typical project has:
 
 * A directory named `updatecli.d` that contains all Updatecli manifests. While the directory `updatecli.d` is not mandatory, it is used by IDE(s) to correctly load the Updatecli jsonshema used for validation and auto-completion. This simplifies writing the Updatecli custom DSL.
 
-* A file named `values.yaml`. This file allows to customize Updatecli manifest. In the context of this project, we use it to quickly override git repository parameters such as the git repository we want to update.
+* A file named `values.d/scm.yaml`. This file allows to customize Updatecli manifest. In the context of this project, we use it to quickly override git repository parameters such as the git repository we want to update.
 
 ```
 ├── README.md
@@ -39,7 +39,9 @@ An Updatecli typical project has:
 │   ├── keda.yaml
 │   ├── rancher.yaml
 │   └── <your_manifest>.yaml
-└── values.yaml
+└── values.d
+    ├── apps.yaml
+    └── scm.yaml
 ```
 
 ## Howto
@@ -49,10 +51,8 @@ An Updatecli typical project has:
 ```
 export UPDATECLI_GITHUB_ACTOR="<your Github username>"
 export UPDATECLI_GITHUB_TOKEN="<your GitHub personal access token>"
-updatecli diff --config updatecli.d --values values.yaml
+updatecli compose diff --file ../../update-compose.yaml
 ```
-
-* `--config` can accept either a specific file or a directory containing manifest.
 
 ### Run Updatecli in apply mode
 
@@ -61,7 +61,6 @@ IMPORTANT: You can easily test on your personal fork by providing a different `v
 ```
 export UPDATECLI_GITHUB_ACTOR="<your Github username>"
 export UPDATECLI_GITHUB_TOKEN="<your GitHub personal access token>"
-updatecli apply --config updatecli.d --values values.yaml
+updatecli compose apply --file ../../update-compose.yaml
 ```
 
-* `--config` can accept either a specific file or a directory containing manifest.

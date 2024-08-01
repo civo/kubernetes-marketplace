@@ -1,0 +1,15 @@
+---
+name: paralus
+title: "Paralus"
+version: "0.2.3"
+maintainer: "Paralus Authors"
+description: Paralus is a Kubernetes access management tool
+url: https://www.paralus.io/
+category: security
+configuration:
+  EMAIL:
+    label: "Email"
+    value: "CIVO:EMAIL_ADDRESS"
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"

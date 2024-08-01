@@ -1,7 +1,8 @@
 ---
-name: Ghost
-version: 4.8.3
-maintainer: saka@lnxid.com
+name: ghost
+title: Ghost
+version: 5.87.2
+maintainer: "saka@lnxid.com"
 description: Ghost is a free and open source blogging platform designed to simplify the process of online publishing for individual bloggers as well as online publications.
 url: https://ghost.org/
 category: management

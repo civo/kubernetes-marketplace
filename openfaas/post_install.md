@@ -2,7 +2,7 @@
 
 Thank you for deploying [OpenFaaS](https://github.com/openfaas/faas) to Civo's k3s service.
 
-## Obtain access
+### Obtain access
 
 The OpenFaaS gateway has been made available through a `NodePort` on port `31112` on each node.
 
@@ -55,7 +55,7 @@ echo $(kubectl get secret -n openfaas basic-auth -o jsonpath="{.data.basic-auth-
 
 ### Use the CLI to log in
 
-Now install the [faas-cli](http://github.com/openfaas/faas-cli) and log in:
+Now install the [faas-cli](https://github.com/openfaas/faas-cli) and log in:
 
 ```
 cat password.txt | faas-cli login --username admin --password-stdin
@@ -97,8 +97,6 @@ echo $OPENFAAS_URL
 
 ## Next steps
 
-* Read the docs: [Deploy TLS with LetsEncrypt to enable HTTPS](https://docs.openfaas.com/reference/ssl/kubernetes-with-cert-manager/)
-
+* Read the docs: [Deploy TLS with LetsEncrypt to enable HTTPS](https://docs.openfaas.com/reference/tls-openfaas/)
 * Learn OpenFaaS: [Try The Official Workshop](https://github.com/openfaas/workshop)
-
 * Get help: Join the [OpenFaaS Community](https://docs.openfaas.com/community/)

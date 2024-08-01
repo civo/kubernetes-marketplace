@@ -1,5 +1,5 @@
 ---
-name: "Bump CIVO marketplace Epinio version"
+name: "deps: bump Epinio version"
 pipelineid: epinio
 
 sources:
@@ -27,7 +27,7 @@ targets:
       - addprefix: v
     spec:
       file: epinio/manifest.yaml
-      key: version
+      key: $.version
     sourceid: chart
 
   install:
@@ -59,7 +59,7 @@ actions:
   kubernetes-marketplace:
     kind: "github/pullrequest"
     scmid: kubernetes-marketplace
-    title: 'Bump Epinio Helm chart to {{ source "chart" }}'
+    title: 'deps: bump Epinio Helm chart to {{ source "chart" }}'
     spec:
       usetitleforautomerge: true
       mergemethod: squash

@@ -8,7 +8,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: $VOLUME_SIZE
+      storage: ${VOLUME_SIZE}
 ---
 apiVersion: v1
 kind: Service
@@ -37,7 +37,7 @@ spec:
         app: mariadb
     spec:
       containers:
-      - image: mariadb:10.4.7
+      - image: mariadb:11.4.2
         name: mariadb
         env:
         - name: MYSQL_ROOT_PASSWORD

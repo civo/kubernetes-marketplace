@@ -1,6 +1,0 @@
-github:
-  owner: civo
-  repository: kubernetes-marketplace
-  branch: master
-  user: Updatebot
-  email: bot@updatecli.io

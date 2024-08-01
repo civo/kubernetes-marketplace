@@ -1,7 +1,7 @@
 ## KubeVela
 
 KubeVela is a modern software delivery control plane. The goal is to make deploying and operating applications across
-today's hybrid, multi-cloud environments easier, faster and more reliable. KubeVela is a [CNCF](https://cncf.io) project.
+today's hybrid, multi-cloud environments easier, faster and more reliable. KubeVela is a [CNCF](https://www.cncf.io/) project.
 Welcome onboard and sail Vela!
 
 ### Quick Start

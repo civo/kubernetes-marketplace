@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: redis
-          image: redis:3.2-alpine
+          image: redis:7.2-alpine
           imagePullPolicy: Always
           args: ["--requirepass", "$(REDIS_PASS)"]
           ports:
@@ -35,4 +35,4 @@ spec:
               name: redis
           env:
           - name: REDIS_PASS
-            value: $REDIS_PASS
+            value: ${REDIS_PASS}

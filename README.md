@@ -80,7 +80,7 @@ Any category used in this field outside of those values will be removed when we 
 
 ## Customizing
 
-Applications support customization through a simple mechanism. This is a user defined set of variables that are then replaced within the `app.yaml` or  `install.sh` (prefixed with a `$`). So for example a configuration of `USERNAME` will have the string `$USERNAME` replaced in `app.yaml`/`install.sh`. As this is a simple string replacement, if you use one of the Civo ones below, they should still be prefixed with `CIVO:`.
+Applications support customization through a simple mechanism. This is a user defined set of variables that are then replaced within the `app.yaml` or  `install.sh` (prefixed with a `$`). So for example a configuration of `USERNAME` will have the string `${USERNAME}` replaced in `app.yaml`/`install.sh`. As this is a simple string replacement, if you use one of the Civo ones below, they should still be prefixed with `CIVO:`.
 
 The applications can't ask the user for these values, so they must be either a pre-configured value (to keep the `app.yaml` and Civo-specific configuration separate) or one of a range of special values that Civo will inject:
 

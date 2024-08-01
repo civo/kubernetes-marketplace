@@ -1,9 +1,10 @@
 ---
-name: Portainer
+name: portainer
+title: Portainer
 version: "2.16.2"
-maintainer: "@saiyampathak"
+maintainer: "@kunal-kushwaha"
 description: An open source kubernetes management platform
-url: https://portainer.io
+url: https://www.portainer.io/
 category: management
 plans:
   - label: "Community edition"

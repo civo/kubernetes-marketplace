@@ -1,5 +1,5 @@
 ---
-name: "Bump CIVO marketplace cert-manager version"
+name: "deps: bump cert-manager version"
 pipelineid: certmanager
 
 sources:
@@ -11,6 +11,10 @@ sources:
       repository: cert-manager
       token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
       username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+      versionfilter:
+        # The cert-manager maintains multiple release line and we want to be sure to pick
+        # the latest one based on semantic versioning rules and not the latest release.
+        kind: semver
 
 targets:
   manifest:
@@ -19,7 +23,7 @@ targets:
     scmid: kubernetes-marketplace
     spec:
       file: cert-manager/manifest.yaml
-      key: version
+      key: $.version
     sourceid: app
 
   install:
@@ -33,7 +37,7 @@ targets:
       replacepattern: '/download/{{ source "app" }}/'
 
 # Define git repository configuration to know where to push changes
-# Values are templated and provided via the values.yaml so we can easily 
+# Values are templated and provided via the values.yaml so we can easily
 # adapt to the repository owner.
 scms:
   kubernetes-marketplace:
@@ -51,7 +55,7 @@ actions:
   kubernetes-marketplace:
     kind: "github/pullrequest"
     scmid: kubernetes-marketplace
-    title: 'Bump Cert-manager Helm chart to {{ source "app" }}'
+    title: 'deps: bump cert-manager Helm chart to {{ source "app" }}'
     spec:
       usetitleforautomerge: true
       mergemethod: squash

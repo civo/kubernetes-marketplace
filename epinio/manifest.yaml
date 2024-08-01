@@ -1,5 +1,6 @@
-name: Epinio
-version: v1.9.0
+name: epinio
+title: Epinio
+version: v1.11.1
 maintainer: "@enrichman"
 description: "The Application Development Engine for Kubernetes"
 url: https://epinio.io/

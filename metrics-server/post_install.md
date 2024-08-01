@@ -1,6 +1,8 @@
-## Metrics Server - provide metrics for Kubernetes HPAv2 (Pod auto-scaling)
+## Metrics Server
 
-### Test it out
+Metrics Server - provide metrics for Kubernetes HPAv2 (Pod auto-scaling)
+
+### Test Metrics Server out
 
 Check that data is being received from nodes:
 
@@ -24,4 +26,4 @@ kubectl top pod --all-namespaces
 
 See the Kubernetes documentation for a worked-example of how to use HPAv2.
 
-[Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
+[Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/)

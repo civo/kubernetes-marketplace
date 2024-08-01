@@ -1,0 +1,8 @@
+---
+name: openobserve
+title: "OpenObserve"
+version: "v0.8.1"
+maintainer: "@prabhatsharma"
+description: OpenObserve is an observability platform built specifically for logs, metrics, traces, analytics, Real User Monitoring designed to work at petabyte scale.
+url: https://openobserve.ai
+category: monitoring

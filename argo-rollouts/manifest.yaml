@@ -1,6 +1,7 @@
+---
 name: argo-rollouts
 title: "Argo Rollouts"
-maintainer: akundu@redhat.com
+maintainer: "akundu@redhat.com"
 description: Kubernetes Progressive Delivery Controller
 url: https://github.com/argoproj/argo-rollouts
 category: ci_cd

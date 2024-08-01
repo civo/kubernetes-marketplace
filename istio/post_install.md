@@ -68,3 +68,13 @@ Opening the following url in the web browser, to see the sample book application
 ### Documentation
 
 [Istio Documentation](https://istio.io/latest/docs/)
+
+### Further reading
+
+* A [Collection of Istio and Civo tutorials](https://www.civo.com/learn/categories/istio)
+* Example of Civo and Argo CD use cases:
+   * [Getting started with Istio Service Mesh](https://www.civo.com/learn/istio-service-mesh-introduction)
+   * [Traffic management and deployment strategies with Istio](https://www.civo.com/learn/istio-traffic-management)
+   * [Istio Security Essentials: Authorization, Headers, and mTLS](https://www.civo.com/learn/istio-security)
+   * [Installing an Apache Kafka cluster on Kubernetes using Strimzi and GitOps](https://www.civo.com/learn/installing-an-apache-kafka-cluster-on-kubernetes-using-strimzi-and-gitops)
+

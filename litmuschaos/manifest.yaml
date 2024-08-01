@@ -1,7 +1,8 @@
 ---
-name: LitmusChaos
+name: litmuschaos
+title: LitmusChaos
 version: 2.0.0
-maintainer: gdsoumya@chaosnative.com, sayan@chaosnative.com
+maintainer: "gdsoumya@chaosnative.com, sayan@chaosnative.com"
 description: LitmusChaos is a cloud-native Chaos Engineering framework
 url: https://github.com/litmuschaos/litmus
 category: ci_cd

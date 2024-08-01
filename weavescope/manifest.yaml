@@ -1,0 +1,8 @@
+---
+name: weavescope
+title: "WeaveScope"
+version: "v1.13.2"
+maintainer: "@milindchawre"
+description: Weave Scope automatically generates a map of your application, that allows to understand, monitor, control your containerize application.
+url: https://www.weave.works/docs/scope/latest/features/
+category: monitoring
