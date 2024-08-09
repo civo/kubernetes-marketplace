@@ -1,0 +1,8 @@
+---
+name: cyclops-ui
+title: "Cyclops UI"
+version: "v0.8.2"
+maintainer: "info@cyclops-ui.com"
+description: "Customizable UI for Kubernetes applications"
+url: https://cyclops-ui.com/
+category: management
