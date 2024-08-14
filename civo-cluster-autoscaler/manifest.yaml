@@ -2,7 +2,7 @@
 name: civo-cluster-autoscaler
 title: "Civo cluster autoscaler"
 version: "v1.25.0"
-maintainer: saiyam@civo.com, vishal@civo.com
+maintainer: "@kunal-kushwaha, vishal@civo.com"
 description: Cluster Autoscaler is a tool that automatically adjusts the size of the Kubernetes cluster.
 url: https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler
 category: management

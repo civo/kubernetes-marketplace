@@ -2,7 +2,7 @@
 name: rekor
 title: "rekor"
 version: "0.2.2"
-maintainer: engin.diri@mail.schwarz
+maintainer: "engin.diri@mail.schwarz"
 description: Rekor provides a restful API based server for validation and a transparency log for storage.
 url: https://www.sigstore.dev/
 category: architecture

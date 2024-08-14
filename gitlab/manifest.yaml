@@ -2,7 +2,7 @@
 name: gitlab
 title: "GitLab"
 version: "16.2.3"
-maintainer: saiyam@civo.com
+maintainer: "@kunal-kushwaha"
 description: GitLab is a single application that spans the entire software development lifecycle. 
 category: management
 dependencies:

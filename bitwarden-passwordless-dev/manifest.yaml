@@ -1,0 +1,17 @@
+---
+name: bitwarden-passwordless-dev
+title: "Bitwarden Passwordless.dev"
+version: 1.0.74
+maintainer: keith@hubner.co.uk
+description: Bitwarden Passwordless.dev is a software toolkit that helps developers build FIDO2 WebAuthn-based passkey features into websites and enterprise applications.
+url: https://docs.passwordless.dev/guide/
+category: management
+dependencies:
+  - cert-manager
+configuration:
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
+  EMAIL_ADDRESS:
+    label: "Email Address"
+    value: "CIVO:EMAIL_ADDRESS"

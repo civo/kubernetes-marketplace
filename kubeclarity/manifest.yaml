@@ -3,5 +3,5 @@ name: kubeclarity
 version: Latest
 maintainer: "@milindchawre"
 description: KubeClarity is a tool for detection and management of Software Bill Of Materials (SBOM) and vulnerabilities of container images and filesystems.
-url: https://github.com/cisco-open/kubei
+url: https://github.com/openclarity/kubeclarity
 category: security

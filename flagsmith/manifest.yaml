@@ -1,0 +1,7 @@
+name: flagsmith
+title: Flagsmith
+version: 0.39.0
+maintainer: "support@flagsmith.com"
+description: "Open Source Feature Flagging and Remote Config Service. Host on-prem or use our hosted version at https://flagsmith.com/"
+url: https://www.flagsmith.com/
+category: ci_cd

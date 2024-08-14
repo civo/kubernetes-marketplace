@@ -14,5 +14,6 @@ curl https://get.acorn.io | sh
 
 Then head over to:
 *[Acorn documentation getting started page](https://docs.acorn.io/getting-started)
+*[Acorn - the new cool kid for app deployment to Kubernetes](https://www.civo.com/learn/acorn-the-new-cool-kid-for-app-deployment-to-kubernetes)
 
-*[Civo Acorn tutorials](https://www.civo.com/learn/categories/acorn)
+

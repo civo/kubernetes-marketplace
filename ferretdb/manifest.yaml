@@ -1,10 +1,10 @@
 ---
 name: ferretdb
 title: FerretDB
-version: 1.21.0
-maintainer: packages@ferretdb.io
+version: 1.23.0
+maintainer: "packages@ferretdb.io"
 description: A truly Open Source MongoDB alternative.
-url: https://www.ferretdb.io
+url: https://www.ferretdb.com/
 category: database
 required_services:
   - loadbalancer

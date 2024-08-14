@@ -21,6 +21,9 @@ To get started with Flux, [browse the documentation](https://fluxcd.io) or try t
 - [Manage Kubernetes secrets with Mozilla SOPS](https://fluxcd.io/flux/guides/mozilla-sops/)
 - [Automate container image updates to Git](https://fluxcd.io/flux/guides/image-update/)
 - [Manage multi-tenant clusters with Flux](https://github.com/fluxcd/flux2-multi-tenancy)
+- [Automating Kubernetes Deployments with GitOps and Flux](https://www.civo.com/learn/gitops-and-flux)
+- [Automate GitOps Pipeline for Node.js with Flux CD on Kubernetes](https://www.civo.com/learn/gitops-using-helm3-and-flux-for-an-node-js-and-express-js-microservice)
+- 
 
 ## Upgrade instruction
 

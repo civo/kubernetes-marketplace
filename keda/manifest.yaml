@@ -1,7 +1,8 @@
+---
 name: keda
 title: "KEDA"
-version: 2.13.1
-maintainer: engin.diri@pulumi.com
+version: 2.15.0
+maintainer: "engin.diri@pulumi.com"
 description: KEDA is a Kubernetes-based Event Driven Autoscaler. With KEDA, you can scale any container in Kubernetes based on the number of events needing to be processed.
 url: https://keda.sh/
 category: architecture

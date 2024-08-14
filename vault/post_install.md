@@ -1,10 +1,13 @@
 ## HashiCorp Vault
 
+### What is Vault?
+Secure, store, and tightly control access to tokens, passwords, certificates, encryption keys for protecting secrets, and other sensitive data using a UI, CLI, or HTTP API.
+
 ### Security Warning
 
 By default, the chart runs in standalone mode. This mode uses a single Vault server with a file storage backend. This is a less secure and less resilient installation that is NOT appropriate for a production setup. It is highly recommended to use a [properly secured Kubernetes cluster](https://kubernetes.io/docs/tasks/administer-cluster/securing-a-cluster/), [learn the available configuration options](https://developer.hashicorp.com/vault/docs/platform/k8s/helm/configuration), and read the [production deployment checklist](https://developer.hashicorp.com/vault/docs/platform/k8s/helm/run#architecture).
 
-Source: https://www.vaultproject.io/docs/platform/k8s/helm#using-the-helm-chart
+Source: [https://www.vaultproject.io/docs/platform/k8s/helm#using-the-helm-chart](https://www.vaultproject.io/docs/platform/k8s/helm#using-the-helm-chart)
 
 ### Post installation configuration
 
@@ -22,12 +25,13 @@ kubectl --namespace vault exec --tty --stdin vault-0 -- vault operator init
 kubectl --namespace vault exec --tty --stdin vault-0 -- vault operator unseal
 ```
 
-Additionally you have to make sure that you have the [Vault binary installed locally](https://developer.hashicorp.com/vault/downloads/) on your workstation.
+Additionally you have to make sure that you have the [Vault binary installed locally](https://developer.hashicorp.com/vault/install) on your workstation.
 
 #### High Availability with Raft
 
 Please refer to the official documentation:
-https://developer.hashicorp.com/vault/docs/platform/k8s/helm/examples/ha-with-raft
+[https://developer.hashicorp.com/vault/docs/platform/k8s/helm/examples/ha-with-raft
+](https://developer.hashicorp.com/vault/docs/platform/k8s/helm/examples/ha-with-raft)
 
 ### Accessing the UI Frontend
 
@@ -59,3 +63,9 @@ spec:
                number: 8200
 EOF
 ```
+
+#### Further reading 
+
+Tutorials on using Vault on Civo: 
+* [Managing application secrets with Vault](https://www.civo.com/learn/managing-application-secrets-with-vault)
+* [Managing SSH access with Hashicorp Vault](https://www.civo.com/learn/managing-ssh-access-with-hashicorp-vault)

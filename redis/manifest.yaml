@@ -1,8 +1,8 @@
 ---
 name: redis
 title: Redis
-version: 7.2-alpine
-maintainer: hello@civo.com
+version: 7.4-alpine
+maintainer: "hello@civo.com"
 description: Redis is an open source (BSD licensed), in-memory data structure store, used as a database, cache and message broker.
 url: https://redis.io
 category: database

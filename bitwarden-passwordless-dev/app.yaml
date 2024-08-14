@@ -1,0 +1,104 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod-passwordless
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: ${EMAIL_ADDRESS}
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt-prod-passwordless
+    # Enable the HTTP-01 challenge provider
+    solvers:
+    - http01:
+        ingress:
+          class: traefik
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: passwordless-pv-claim
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: passwordless-service
+spec:
+  selector:
+    app: passwordless
+  ports:
+    - protocol: TCP
+      port: 5701
+      targetPort: 5701
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: passwordless
+  labels:
+    app: passwordless
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: passwordless
+  template:
+    metadata:
+      labels:
+        app: passwordless
+    spec:
+      containers:
+        - name: passwordless-self-host
+          image: bitwarden/passwordless-self-host:stable
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 5701
+            protocol: TCP
+          volumeMounts:
+          - name: passwordless-persistent-storage
+            mountPath: /etc/bitwarden_passwordless
+      volumes:
+      - name: passwordless-persistent-storage
+        persistentVolumeClaim:
+          claimName: passwordless-pv-claim            
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod-passwordless
+    ingress.kubernetes.io/ssl-redirect: "true"
+  name: passwordless
+spec:
+  tls:
+    - hosts:
+      - passwordless.${CLUSTER_ID}.k8s.civo.com
+      secretName: letsencrypt-prod-passwordless  
+  rules:
+      - host: passwordless.${CLUSTER_ID}.k8s.civo.com
+        http:
+          paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: passwordless-service
+                  port:
+                    number: 5701
+
+
+
+
+
+             

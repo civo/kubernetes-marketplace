@@ -2,7 +2,7 @@
 name: percona-mysql
 title: "Percona MySQL"
 version: "1.11.0"
-maintainer: saiyam@civo.com
+maintainer: "@kunal-kushwaha"
 description: Percona Operator for MySQL based on Percona XtraDB Cluster.
 url: https://docs.percona.com/percona-operator-for-mysql/pxc/
 category: database

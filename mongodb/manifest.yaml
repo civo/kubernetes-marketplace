@@ -2,7 +2,7 @@
 name: mongodb
 title: MongoDB
 version: 4.2.12
-maintainer: hello@civo.com
+maintainer: "hello@civo.com"
 description: MongoDB document databases provide high availability and easy scalability.
 url: https://www.mongodb.com
 category: database
