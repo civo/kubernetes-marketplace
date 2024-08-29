@@ -37,7 +37,7 @@ spec:
         app: mariadb
     spec:
       containers:
-      - image: mariadb:11.4.2
+      - image: mariadb:11.5.2
         name: mariadb
         env:
         - name: MYSQL_ROOT_PASSWORD
