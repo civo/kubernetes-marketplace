@@ -11,7 +11,6 @@
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
 		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
-		"ghcr.io/devcontainers/features/terraform:1": {}
 	},
 	"customizations": {
 		"vscode": {
@@ -19,7 +18,8 @@
 				"ms-azuretools.vscode-docker"
 			]
 		}
-	}
+	},
+  "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
