@@ -7,7 +7,8 @@ specific use cases. Cyclops comes with defined UIs out of the box, but you are f
 ## Usage
 
 To expose Cyclops outside of your cluster, you can port-forward the `cyclops-ui` service:
-```shell
+
+```
 kubectl port-forward svc/cyclops-ui 3000:3000 -n cyclops
 ```
 
