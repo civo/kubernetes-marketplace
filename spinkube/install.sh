@@ -3,11 +3,18 @@
 SPINKUBE_VERSION="0.2.0"
 
 #Check we are on Talos
-if $(kubectl get nodes -o json | jq .items.[].status.nodeInfo.osImage | grep -q "Talos"); then
-    echo "Found Talos as part of OS Image string"; else
-    echo "Did not find Talos as part of the OS Image string. Exiting as only Talos is supported" ;
+max_time_seconds=300
+elapsed_time_seconds=0
+until $(kubectl get nodes -o json | jq -r '.items[] | .status.nodeInfo.osImage' | grep -q 'Talos'); do
+  if [ "$elapsed_time_seconds" -ge "$max_time_seconds" ]; then
+    echo "Timeout reached when checking OS image. Did not find Talos as part of the OS Image string. Exiting as only Talos is supported."
     exit
-fi
+  fi
+  echo "Waiting for OS image to return \"Talos\""
+  sleep 1
+  ((elapsed_time_seconds++))
+done
+echo "Found Talos as part of OS Image string"
 
 #Cert manager check
 #If namespace, or deployment is not found, the wait command below will fail, and the script continues.
