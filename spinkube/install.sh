@@ -30,12 +30,12 @@ done
 
 kubectl wait --for=condition=available --timeout=300s deployment/cert-manager-webhook  -n cert-manager
 
-kubectl apply -f https://github.com/spinkube/spin-operator/releases/download/v${SPINKUBE_VERSION}/spin-operator.runtime-class.yaml
-kubectl apply -f https://github.com/spinkube/spin-operator/releases/download/v${SPINKUBE_VERSION}/spin-operator.crds.yaml
-kubectl apply -f https://github.com/spinkube/spin-operator/releases/download/v${SPINKUBE_VERSION}/spin-operator.shim-executor.yaml
+kubectl apply -f https://github.com/spinkube/spin-operator/releases/download/v$SPINKUBE_VERSION/spin-operator.runtime-class.yaml
+kubectl apply -f https://github.com/spinkube/spin-operator/releases/download/v$SPINKUBE_VERSION/spin-operator.crds.yaml
+kubectl apply -f https://github.com/spinkube/spin-operator/releases/download/v$SPINKUBE_VERSION/spin-operator.shim-executor.yaml
 helm install spin-operator \
   --namespace spin-operator \
   --create-namespace \
-  --version ${SPINKUBE_VERSION} \
+  --version $SPINKUBE_VERSION \
   --wait \
   oci://ghcr.io/spinkube/charts/spin-operator
