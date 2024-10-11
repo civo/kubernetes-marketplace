@@ -36,7 +36,7 @@ spec:
         app: ferretdb
     spec:
       containers:
-        - image: postgres:16.4
+        - image: postgres:17
           name: postgresql
           env:
             - name: POSTGRES_USER
