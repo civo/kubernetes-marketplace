@@ -1,6 +1,6 @@
 #!/bin/sh
 
-RANCHER_VERSION="2.8.5"
+RANCHER_VERSION="2.9.1"
 
 subdomain="rancher.${CLUSTER_ID}.k8s.civo.com"
 email="${EMAIL}"

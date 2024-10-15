@@ -5,4 +5,4 @@ helm repo update
 
 kubectl create namespace keda
 
-helm install keda kedacore/keda --version 2.14.2 --namespace keda
+helm install keda kedacore/keda --version 2.15.1 --namespace keda

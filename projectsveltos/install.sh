@@ -4,4 +4,4 @@ helm repo add projectsveltos https://projectsveltos.github.io/helm-charts
 
 helm repo update
 
-helm install projectsveltos projectsveltos/projectsveltos -n projectsveltos --create-namespace --version v0.29.1
+helm install projectsveltos projectsveltos/projectsveltos -n projectsveltos --create-namespace --version v0.37.0
