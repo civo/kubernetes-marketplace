@@ -60,7 +60,7 @@ spec:
     spec:
       containers:
         - name: joomla
-          image: joomla:5.2
+          image: joomla:5.2.0
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 80
