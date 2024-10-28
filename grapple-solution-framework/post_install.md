@@ -15,6 +15,16 @@ In order to verify the completion, you can run the following command:
 kubectl wait -n grpl-system configuration.pkg.crossplane.io grpl --for condition=Healthy=True --timeout=300s
 ```
 
+## install the grapple cli
+
+```
+brew tap grapple-solutions/grapple
+brew install grapple-solutions/grapple/grapple-cli
+
+# or upgrade
+brew upgrade grapple-solutions/grapple/grapple-cli
+```
+
 ## install an example of a grapple application
 
 using the grapple cli:
@@ -62,8 +72,23 @@ And check the generated ui modules in the browser
 
 # next steps
 
-## look at the grapple cli
+## develop a grapple application
 
+# create a new grpl app
+
+```
+grpl app init --PROJECT_NAME=<YOUR_PROJECT_NAME> --AUTO_CONFIRM=true
+cd <YOUR_PROJECT_NAME>
+
+# define the ns for your developement project deployment
+grpl dev ns <YOUR_NAMESPACE>
+
+# run grpl dev
+grpl dev
+
+# wait for the deployment to start up. it may take a while to build and deploy your project for the first time 
+# the 3 dev layers will open up in your browser, when ready
+```
 
 ## install further examples
 using the grapple cli:
@@ -75,7 +100,6 @@ grpl example deploy help
 ```
 grpl resource deploy help
 ```
-
 
 
 # conclusion
