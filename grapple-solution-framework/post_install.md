@@ -12,13 +12,23 @@ kubectl explain gras --recursive # for the grapple ApplicationSet
 ## verify the completion of the installation
 In order to verify the completion, you can run the following command:
 ```
-kubectl wait -n grpl-system configurations grpl --for condition=Healthy=True --timeout=300s
+kubectl wait -n grpl-system configuration.pkg.crossplane.io grpl --for condition=Healthy=True --timeout=300s
 ```
+
+## install an example of a grapple application
+
+using the grapple cli:
+```
+grpl example deploy --GRAS_TEMPLATE=db-mysql-discovery-based --DB_TYPE=internal
+```
+
+
+## verify the example grapple application deployments
 
 The deployment of the test case may also take some minutes.
 You can verify the completion of the installation of the test case with the following commands:
 ```
-kubectl wait deployment -n grpl-dbfile grpl-dbfile-grpl-dbfile-grapi grpl-dbfile-grpl-dbfile-gruim --for condition=Available=True --timeout=600s
+kubectl wait deployment -n grpl-disc-int grpl-disc-int-gras-mysql-grapi grpl-disc-int-gras-mysql-gruim --for condition=Available=True --timeout=600s
 ```
 
 
@@ -33,7 +43,7 @@ kubectl get gras,grapi,gruim -A
 
 ### for the automatically generated grapple instant API
 ```
-kubectl get ing -n grpl-dbfile -l app.kubernetes.io/name=grapi -o custom-columns=HOST:..host
+kubectl get ing -n grpl-disc-int -l app.kubernetes.io/name=grapi -o custom-columns=HOST:..host
 ```
 And check the generated api in the browser
 
@@ -45,7 +55,7 @@ http://<yourNS>-<yourGrapiName>-grapi.<yourDNS>.grapple-demo.com/customers?filte
 
 ### and for the automatically generated grapple UI modules
 ```
-kubectl get ing -n grpl-dbfile -l app.kubernetes.io/name=gruim -o custom-columns=HOST:..host
+kubectl get ing -n grpl-disc-int -l app.kubernetes.io/name=gruim -o custom-columns=HOST:..host
 ```
 And check the generated ui modules in the browser
 
@@ -80,6 +90,3 @@ Email:
 [info@grapple-solutions.com](mailto:info@grapple-solutions.com)
 
 
-
-# legal
-Todo: add legal stuff
