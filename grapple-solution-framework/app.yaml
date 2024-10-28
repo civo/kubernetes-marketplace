@@ -1,0 +1,50 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: "grapple-init"
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: grapple-init-cluster-admin-binding
+subjects:
+  - kind: ServiceAccount
+    name: grapple-init
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: grapple-init-v0-2-124
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+        - name: grapple-init
+          env:
+          - name: CIVO_REGION
+            value: "${CIVO_REGION}"
+          - name: CIVO_CLUSTER
+            value: "${CIVO_CLUSTER}"
+          - name: CIVO_EMAIL_ADDRESS
+            value: "${CIVO_EMAIL_ADDRESS}"
+          - name: VERSION
+            value: "${VERSION}"
+          - name: CIVO_CLUSTER_ID
+            value: "${CIVO_CLUSTER_ID}"
+          - name: CIVO_MASTER_IP
+            value: "${CIVO_MASTER_IP}"
+          - name: GRAPPLE_DNS
+            value: "${GRAPPLE_DNS}"
+          image: grpl/grapple-cli:0.2.131
+          command: ["/bin/bash","-c"]
+          args: ['grpl cluster install --params --TARGET_PLATFORM=CIVO --INSTALL_KUBEBLOCKS="true" --CIVO_REGION=${CIVO_REGION} --CIVO_CLUSTER=${CIVO_CLUSTER} --CIVO_EMAIL_ADDRESS=${CIVO_EMAIL_ADDRESS} --GRAPPLE_DNS=${GRAPPLE_DNS} --GRAPPLE_VERSION=${VERSION} --AUTO_CONFIRM=true --CIVO_CLUSTER_ID=${CIVO_CLUSTER_ID} --CLUSTER_IP=${CIVO_MASTER_IP} # && grpl example deploy ']
+      restartPolicy: Never
+      serviceAccountName: grapple-init

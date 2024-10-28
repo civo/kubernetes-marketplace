@@ -1,0 +1,33 @@
+name: grapple-solution-framework
+title: grapple solution framework
+version: "0.2.8"
+maintainer: "info@grapple-solutions.com"
+description: Turbo-Boost your development project with automation. Instant API and UI module generate in your cluster.
+url: https://www.grapple-solutions.com/
+category: architecture
+dependencies:
+  - traefik2-nodeport
+  - metrics-server
+  - civo-cluster-autoscaler
+configuration:
+  CIVO_REGION:
+    label: "CivoRegion"
+    value: "CIVO:REGION"
+  CIVO_CLUSTER:
+    label: "CivoClusterName"
+    value: "CIVO:CLUSTER_NAME"
+  CIVO_EMAIL_ADDRESS:
+    label: "CivoEmailAddress"
+    value: "CIVO:EMAIL_ADDRESS"
+  VERSION:
+    label: "version of the grapple solution framework"
+    value: "0.2.8"
+  CIVO_CLUSTER_ID:
+    label: "CivoClusterID"
+    value: "CIVO:CLUSTER_ID"
+  CIVO_MASTER_IP:
+    label: "CivoMasterIPAddress"
+    value: "CIVO:MASTER_IP"
+  GRAPPLE_DNS:
+    label: "DNS to be used in GRPL"
+    value: "CIVO:WORDS(2)"
