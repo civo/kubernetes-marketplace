@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: rabbitmq
-          image: rabbitmq:4.0.2-management
+          image: rabbitmq:4.0.3-management
           imagePullPolicy: Always
           ports:
             - containerPort: 5672
