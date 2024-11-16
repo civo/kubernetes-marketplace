@@ -1,7 +1,7 @@
 ---
 name: cyclops
 title: "Cyclops UI"
-version: "v0.11.1"
+version: "v0.15.2"
 maintainer: "info@cyclops-ui.com"
 description: "Customizable UI for Kubernetes applications"
 url: https://cyclops-ui.com/
