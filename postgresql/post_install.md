@@ -43,3 +43,11 @@ postgresdb=# CREATE DATABASE yourdbname;
 postgresdb=# CREATE USER youruser WITH ENCRYPTED PASSWORD 'super-strong-password';
 postgresdb=# GRANT ALL PRIVILEGES ON DATABASE yourdbname TO youruser;
 ```
+
+### To remove
+
+Clone the marketplace repo, go to the `postgresql` directory, and execute:
+
+```sh
+kubectl delete -f app.yaml
+```
