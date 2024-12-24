@@ -6,4 +6,4 @@ helm repo update
 
 kubectl create namespace sonarqube
 
-helm upgrade --install -n sonarqube sonarqube sonarqube/sonarqube
+helm upgrade --install -n sonarqube sonarqube sonarqube/sonarqube --set service.type=LoadBalancer
