@@ -52,8 +52,22 @@ spec:
       namespace: tekton-pipelines
       path: "gitlab"
       port: 8443
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: ClusterInterceptor
+metadata:
+  labels:
+    server/type: https
+  name: bitbucket
+spec:
+  clientConfig:
+    service:
+      name: tekton-triggers-core-interceptors
+      namespace: tekton-pipelines
+      path: bitbucket
+      port: 8443
 EOF
 
-kubectl create namespace edp
+kubectl create namespace krci
 
-helm install edp epamedp/edp-install --version 3.9.0 --namespace edp --set global.dnsWildCard="$domain" --set 'global.gitProviders[0]'=${GITPROVIDER} --timeout 10m
+helm install krci epamedp/edp-install --version 3.10.3 --namespace krci --set global.dnsWildCard="$domain" --set 'global.gitProviders[0]'=${GITPROVIDER} --timeout 10m

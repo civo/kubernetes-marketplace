@@ -1,9 +1,9 @@
 name: kuberocketci
 title: KubeRocketCI
-version: 3.9.0
+version: 3.10.3
 maintainer: "sergiy_kulanov@epam.com"
 description: KubeRocketCI is a platform that provides a set of tools and services for the development & operation of applications in a containerized environment.
-url: https://github.com/epam/edp-install
+url: https://docs.kuberocketci.io/
 category: ci_cd
 dependencies:
   - argocd
@@ -18,6 +18,10 @@ plans:
     configuration:
       GITPROVIDER:
         value: gitlab
+  - label: "BitBucket"
+    configuration:
+      GITPROVIDER:
+        value: bitbucket
 configuration:
   CLUSTER_ID:
     label: "Cluster ID"
