@@ -1,0 +1,7 @@
+name: sonarqube
+version: 10.7
+maintainer: "@VinujaKhatode"
+description: SonarQube is an open-source, on-premise code analysis tool that enables developers to detect bugs, code smells, and security vulnerabilities across 30+ programming languages.
+url: https://www.sonarsource.com/open-source-editions/sonarqube-community-edition/
+category: management
+
