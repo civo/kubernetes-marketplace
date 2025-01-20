@@ -100,7 +100,7 @@ spec:
     metadata:
       annotations:
         prometheus.io/path: /metrics
-        prometheus.io/port: "9100"
+        prometheus.io/port: "9910"
         prometheus.io/scrape: "true"
       labels:
         app.kubernetes.io/instance: traefik-kube-system
@@ -110,7 +110,7 @@ spec:
       - args:
         - --global.checknewversion
         - --global.sendanonymoususage
-        - --entrypoints.metrics.address=:9100/tcp
+        - --entrypoints.metrics.address=:9910/tcp
         - --entrypoints.traefik.address=:9000/tcp
         - --entrypoints.web.address=:80/tcp
         - --entrypoints.websecure.address=:443/tcp
@@ -136,8 +136,8 @@ spec:
           timeoutSeconds: 2
         name: traefik
         ports:
-        - containerPort: 9100
-          hostPort: 9100
+        - containerPort: 9910
+          hostPort: 9910
           name: metrics
           protocol: TCP
         - containerPort: 9000
