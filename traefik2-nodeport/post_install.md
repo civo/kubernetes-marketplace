@@ -61,3 +61,7 @@ spec:
 This will open up `http://www.example.com` (assuming you pointed that non-real domain record to your cluster's IPs) to the whole world.
 
 Port 80 and 443 are both exposed through a `NodePort` service.
+
+## Metrics and Monitoring
+
+Traefik exposes metrics on port 9910 for Prometheus scraping. To scrape metrics from Traefik, ensure your Prometheus configuration is updated to use port **9910**.
