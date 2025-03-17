@@ -2,6 +2,7 @@
 
 # Install Cyclops
 helm install cyclops \
+  --version 0.14.4 \
   --namespace cyclops \
   --create-namespace \
   --set global.installManager=civo \
