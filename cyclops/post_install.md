@@ -16,7 +16,7 @@ or expose it using a [Civo Load Balancer](https://www.civo.com/load-balancers).
 
 ## Details
 
-Cyclops creates a new namespace, `cyclops,` and installs the Cyclops UI and Cyclops controller in it.
+Cyclops creates a new namespace, `cyclops` and installs the Cyclops UI and Cyclops controller in it.
 
 ```sh
 kubectl get pods -n cyclops
