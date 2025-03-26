@@ -1,0 +1,8 @@
+---
+name: greptimedb
+title: "GreptimeDB"
+version: "v0.13.1"
+maintainer: "info@greptime.com"
+description: GreptimeDB is an open-source unified time-series database.
+url: https://greptime.com/
+category: database
