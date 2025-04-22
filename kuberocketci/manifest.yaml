@@ -1,6 +1,6 @@
 name: kuberocketci
 title: KubeRocketCI
-version: 3.10.3
+version: 3.11.2
 maintainer: "sergiy_kulanov@epam.com"
 description: KubeRocketCI is a platform that provides a set of tools and services for the development & operation of applications in a containerized environment.
 url: https://docs.kuberocketci.io/
