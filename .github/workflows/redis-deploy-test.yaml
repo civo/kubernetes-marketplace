@@ -1,0 +1,39 @@
+name: Redis Deploy and Test
+
+on:
+  workflow_dispatch:
+    branches:
+      - test-branch
+
+jobs:
+  deploy-and-test:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy Civo Kubernetes cluster
+        # Add step to deploy Civo Kubernetes cluster
+
+      - name: Install Redis
+        run: |
+          kubectl apply -f redis/app.yaml
+
+      - name: Get REDIS_PASS from Kubernetes secret
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+        run: |
+          REDIS_PASS=$(kubectl get secret redis -o jsonpath='{.data.REDIS_PASS}' | base64 --decode)
+          echo "REDIS_PASS=$REDIS_PASS" >> $GITHUB_ENV
+
+      - name: Port-forward to Redis service
+        run: |
+          kubectl port-forward svc/redis 6379:6379 &
+          sleep 5
+
+      - name: Run conformance test
+        run: |
+          cd redis
+          bash conformance.sh
