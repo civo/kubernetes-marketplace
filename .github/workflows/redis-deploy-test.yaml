@@ -14,8 +14,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Deploy Civo Kubernetes cluster
-        # Add step to deploy Civo Kubernetes cluster
+      - name: Download Civo CLI
+        run: curl -sL https://civo.com/get | sh
+
+      - name: Create Civo Kubernetes cluster
+        env:
+          CIVO_API_KEY: ${{ secrets.CIVO_API_KEY }}
+        run: |
+          export PATH=$PATH:/root/.civo/bin
+          civo kubernetes create test-cluster --wait --save --merge --switch
 
       - name: Install Redis
         run: |
@@ -35,5 +42,12 @@ jobs:
 
       - name: Run conformance test
         run: |
-          cd redis
-          bash conformance.sh
+          timeout 300 bash -c 'cd redis && bash conformance.sh'
+
+      - name: Delete Civo Kubernetes cluster
+        if: always()
+        env:
+          CIVO_API_KEY: ${{ secrets.CIVO_API_KEY }}
+        run: |
+          export PATH=$PATH:/root/.civo/bin
+          civo kubernetes delete test-cluster --force
