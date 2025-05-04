@@ -1,15 +1,16 @@
 name: Redis Deploy and Test
 
 on:
-  workflow_dispatch:
-    branches:
-      - test-branch
+  pull_request:
+    types: [labeled]
 
 jobs:
   deploy-and-test:
     runs-on: ubuntu-latest
+    environment: Test
     container:
       image: ubuntu:latest
+    if: contains(github.event.pull_request.labels.*.name, 'ready-to-test')
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
