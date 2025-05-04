@@ -47,6 +47,18 @@ jobs:
       - name: Run conformance test
         run: |
           timeout 300 bash -c 'cd redis && bash conformance.sh'
+        continue-on-error: true
+        id: conformance-test
+
+      - name: Remove ready-to-test label on failure
+        if: steps.conformance-test.outcome == 'failure'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -X DELETE \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: token $GITHUB_TOKEN" \
+          https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${GITHUB_REF##*/}/labels/ready-to-test
 
       - name: Delete Civo Kubernetes cluster
         if: always()
@@ -54,4 +66,4 @@ jobs:
           CIVO_API_KEY: ${{ secrets.CIVO_API_KEY }}
         run: |
           export PATH=$PATH:/root/.civo/bin
-          civo kubernetes delete test-cluster --force
+          civo kubernetes remove test-cluster
