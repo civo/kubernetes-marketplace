@@ -5,8 +5,15 @@
 # it, aiding in debugging.
 set -ex
 
+# Wait for Redis pod to be ready
+kubectl wait --for=condition=ready pod -l app=redis --timeout=300s
+
 # Install Redis client
 apt update && apt install -y redis-tools
+
+# Port-forward to Redis service
+kubectl port-forward svc/redis 6379:6379 &
+sleep 5  # Allow some time for port-forwarding to establish
 
 # Wait for Redis to be ready with a timeout
 timeout=60
