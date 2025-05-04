@@ -41,12 +41,9 @@ jobs:
         run: |
           kubectl apply -f redis/app.yaml
 
-      - name: Get REDIS_PASS from Kubernetes secret
-        env:
-          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      - name: Wait for Redis pod to be ready
         run: |
-          REDIS_PASS=$(kubectl get secret redis -o jsonpath='{.data.REDIS_PASS}' | base64 --decode)
-          echo "REDIS_PASS=$REDIS_PASS" >> $GITHUB_ENV
+          kubectl wait --for=condition=ready pod -l app=redis --timeout=300s
 
       - name: Port-forward to Redis service
         run: |
