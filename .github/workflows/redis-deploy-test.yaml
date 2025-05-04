@@ -21,6 +21,9 @@ jobs:
       - name: Download Civo CLI
         run: curl -sL https://civo.com/get | sh
 
+      - name: Install kubectl
+        run: apt-get update && apt-get install -y kubectl
+
       - name: Create Civo Kubernetes cluster
         env:
           CIVO_API_KEY: ${{ secrets.CIVO_API_KEY }}
@@ -68,4 +71,4 @@ jobs:
           CIVO_API_KEY: ${{ secrets.CIVO_API_KEY }}
         run: |
           export PATH=$PATH:/root/.civo/bin
-          civo kubernetes remove test-cluster
+          civo kubernetes remove test-cluster --yes
