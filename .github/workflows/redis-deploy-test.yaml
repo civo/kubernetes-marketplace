@@ -25,7 +25,7 @@ jobs:
         env:
           CIVO_API_KEY: ${{ secrets.CIVO_API_KEY }}
         run: |
-          civo apikey save test --load-from-env --yes
+          CIVO_API_KEY_NAME=test civo apikey save --load-from-env 
           civo apikey use test
           export PATH=$PATH:/root/.civo/bin
           civo kubernetes create test-cluster --wait --save --merge --switch
