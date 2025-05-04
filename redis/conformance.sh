@@ -21,6 +21,17 @@ while ! redis-cli -h localhost ping; do
 done
 
 # Run conformance test
+if [ $(redis-cli -h localhost EXISTS testkey) -ne 0 ]; then
+  echo "Conformance test failed: Key testkey already exists before SET"
+  exit 1
+fi
 redis-cli -h localhost SET testkey "Hello, Redis!"
-redis-cli -h localhost GET testkey
-redis-cli -h localhost EXISTS testkey
+if [ $(redis-cli -h localhost EXISTS testkey) -ne 1 ]; then
+  echo "Conformance test failed: Key testkey does not exist after SET"
+  exit 1
+fi
+GET_OUTPUT=$(redis-cli -h localhost GET testkey)
+if [ "$GET_OUTPUT" != "\"Hello, Redis!\"" ]; then
+  echo "Conformance test failed: Expected 'Hello, Redis!' but got $GET_OUTPUT"
+  exit 1
+fi
