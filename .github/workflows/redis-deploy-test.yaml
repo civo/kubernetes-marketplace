@@ -45,13 +45,9 @@ jobs:
         run: |
           kubectl wait --for=condition=ready pod -l app=redis --timeout=300s
 
-      - name: Port-forward to Redis service
+      - name: Port-forward to Redis service and run conformance test
         run: |
           kubectl port-forward svc/redis 6379:6379 &
-          sleep 5
-
-      - name: Run conformance test
-        run: |
           timeout 300 bash -c 'cd redis && bash conformance.sh'
         continue-on-error: true
         id: conformance-test
