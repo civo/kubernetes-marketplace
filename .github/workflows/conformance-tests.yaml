@@ -12,8 +12,122 @@ on:
 
 env:
   BASE: ${{ github.base_ref }}
-  APPS: |
-    acorn ambassador-edge-stack apisix-ingress-controller argo-rollouts argo-workflows argocd aspnet atmo bitwarden-passwordless-dev bitwarden-unified blackbox-exporter cerbos cert-manager chaos-mesh civo-cluster-autoscaler code-server cyclops dapr devtron docker-registry dynamic-pv-scaler edp enroute-onestep epinio falco ferretdb fission flagsmith flux gatekeeper ghost gimlet gitea gitlab gloo-edge grapple-solution-framework haproxy helm istio jaeger jenkins joomla kafka keda keptn ketch keycloak kong-ingress-controller krita kube-hunter kubeclarity kubefirst kubeflow kubenav kubernetes-dashboard kubernetes-external-secrets kuberocketci kubesphere kubevela kubevious kubewarden kyverno linkerd litmuschaos loki longhorn maesh mariadb metrics-server minio mongodb netdata neuvector nextcloud nexus3 nginx ngrok nodered openfaas openobserve paralus parca passwordless-dev percona-mysql permission-manager pmm polaris portainer postgresql projectsveltos prometheus-operator pyroscope rabbitmq rancher redis rekor reloader rqlite sealed-secrets selenium shipa siglens-oss sonarqube spinkube system-upgrade-controller tekton traefik2-loadbalancer traefik2-nodeport twingate unifi-controller uptime-kuma vault volcano weavescope wordpress
+  APPS:
+    - acorn
+    - ambassador-edge-stack
+    - apisix-ingress-controller
+    - argo-rollouts
+    - argo-workflows
+    - argocd
+    - aspnet
+    - atmo
+    - bitwarden-passwordless-dev
+    - bitwarden-unified
+    - blackbox-exporter
+    - cerbos
+    - cert-manager
+    - chaos-mesh
+    - civo-cluster-autoscaler
+    - code-server
+    - cyclops
+    - dapr
+    - devtron
+    - docker-registry
+    - dynamic-pv-scaler
+    - edp
+    - enroute-onestep
+    - epinio
+    - falco
+    - ferretdb
+    - fission
+    - flagsmith
+    - flux
+    - gatekeeper
+    - ghost
+    - gimlet
+    - gitea
+    - gitlab
+    - gloo-edge
+    - grapple-solution-framework
+    - haproxy
+    - helm
+    - istio
+    - jaeger
+    - jenkins
+    - joomla
+    - kafka
+    - keda
+    - keptn
+    - ketch
+    - keycloak
+    - kong-ingress-controller
+    - krita
+    - kube-hunter
+    - kubeclarity
+    - kubefirst
+    - kubeflow
+    - kubenav
+    - kubernetes-dashboard
+    - kubernetes-external-secrets
+    - kuberocketci
+    - kubesphere
+    - kubevela
+    - kubevious
+    - kubewarden
+    - kyverno
+    - linkerd
+    - litmuschaos
+    - loki
+    - longhorn
+    - maesh
+    - mariadb
+    - metrics-server
+    - minio
+    - mongodb
+    - netdata
+    - neuvector
+    - nextcloud
+    - nexus3
+    - nginx
+    - ngrok
+    - nodered
+    - openfaas
+    - openobserve
+    - paralus
+    - parca
+    - passwordless-dev
+    - percona-mysql
+    - permission-manager
+    - pmm
+    - polaris
+    - portainer
+    - postgresql
+    - projectsveltos
+    - prometheus-operator
+    - pyroscope
+    - rabbitmq
+    - rancher
+    - redis
+    - rekor
+    - reloader
+    - rqlite
+    - sealed-secrets
+    - selenium
+    - shipa
+    - siglens-oss
+    - sonarqube
+    - spinkube
+    - system-upgrade-controller
+    - tekton
+    - traefik2-loadbalancer
+    - traefik2-nodeport
+    - twingate
+    - unifi-controller
+    - uptime-kuma
+    - vault
+    - volcano
+    - weavescope
+    - wordpress
 
 jobs:
   validate-apps-list:
@@ -28,7 +142,7 @@ jobs:
     strategy:
       max-parallel: 2
       matrix:
-        app: ${{ env.APPS | split(' ') }}
+        app: ${{ env.APPS }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
