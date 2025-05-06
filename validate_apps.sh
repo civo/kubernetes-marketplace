@@ -21,6 +21,11 @@
 
 
 # Define the list of apps
+if [ -z "$APPS" ]; then
+  echo "Error: APPS environment variable is not set"
+  exit 1
+fi
+
 APPS=($APPS)
 
 # Define the list of skipped dirs
