@@ -1,0 +1,170 @@
+# Conformance Tests Workflow
+# This workflow creates a new Civo Kubernetes cluster for each app, runs the conformance test if there are changes in the app directory, and then deletes the cluster.
+
+name: Conformance Tests
+
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  conformance-test:
+    runs-on: ubuntu-latest
+    env:
+      BASE: ${{ github.base_ref }}
+    strategy:
+      matrix:
+        app:
+          - acorn
+          - ambassador-edge-stack
+          - apisix-ingress-controller
+          - argo-rollouts
+          - argo-workflows
+          - argocd
+          - aspnet
+          - atmo
+          - bitwarden-passwordless-dev
+          - bitwarden-unified
+          - blackbox-exporter
+          - cerbos
+          - cert-manager
+          - chaos-mesh
+          - civo-cluster-autoscaler
+          - code-server
+          - cyclops
+          - dapr
+          - devtron
+          - docker-registry
+          - dynamic-pv-scaler
+          - edp
+          - enroute-onestep
+          - epinio
+          - falco
+          - ferretdb
+          - fission
+          - flagsmith
+          - flux
+          - gatekeeper
+          - ghost
+          - gimlet
+          - gitea
+          - gitlab
+          - gloo-edge
+          - grapple-solution-framework
+          - haproxy
+          - helm
+          - istio
+          - jaeger
+          - jenkins
+          - joomla
+          - kafka
+          - keda
+          - keptn
+          - ketch
+          - keycloak
+          - kong-ingress-controller
+          - krita
+          - kube-hunter
+          - kubeclarity
+          - kubefirst
+          - kubeflow
+          - kubenav
+          - kubernetes-dashboard
+          - kubernetes-external-secrets
+          - kuberocketci
+          - kubesphere
+          - kubevela
+          - kubevious
+          - kubewarden
+          - kyverno
+          - linkerd
+          - litmuschaos
+          - loki
+          - longhorn
+          - maesh
+          - mariadb
+          - metrics-server
+          - minio
+          - mongodb
+          - netdata
+          - neuvector
+          - nextcloud
+          - nexus3
+          - nginx
+          - ngrok
+          - nodered
+          - openfaas
+          - openobserve
+          - paralus
+          - parca
+          - passwordless-dev
+          - percona-mysql
+          - permission-manager
+          - pmm
+          - polaris
+          - portainer
+          - postgresql
+          - projectsveltos
+          - prometheus-operator
+          - pyroscope
+          - rabbitmq
+          - rancher
+          - redis
+          - rekor
+          - reloader
+          - rqlite
+          - sealed-secrets
+          - selenium
+          - shipa
+          - siglens-oss
+          - sonarqube
+          - spinkube
+          - system-upgrade-controller
+          - tekton
+          - traefik2-loadbalancer
+          - traefik2-nodeport
+          - twingate
+          - unifi-controller
+          - uptime-kuma
+          - vault
+          - volcano
+          - weavescope
+          - wordpress
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install curl
+        run: apt-get update && apt-get install -y curl
+
+      - name: Download Civo CLI
+        run: curl -sL https://civo.com/get | sh
+
+      - name: Install kubectl
+        run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          mv kubectl /usr/local/bin/
+          kubectl version --client
+
+      - name: Create Civo Kubernetes cluster
+        env:
+          CIVO_API_KEY: ${{ secrets.CIVO_API_KEY }}
+        run: |
+          CIVO_API_KEY_NAME=test civo apikey save --load-from-env 
+          civo apikey use test
+          export PATH=$PATH:/root/.civo/bin
+          civo kubernetes create ${{ matrix.app }}-cluster --wait --save --merge --switch
+
+      - name: Run conformance test
+        if: git diff --name-only $BASE..HEAD | grep -q "${{ matrix.app }}"
+        run: |
+          cd ${{ matrix.app }} && bash conformance.sh
+
+      - name: Delete Civo Kubernetes cluster
+        if: always()
+        env:
+          CIVO_API_KEY: ${{ secrets.CIVO_API_KEY }}
+        run: |
+          export PATH=$PATH:/root/.civo/bin
+          civo kubernetes remove ${{ matrix.app }}-cluster --yes
