@@ -1,5 +1,25 @@
 #!/bin/bash
 
+# ------------------------------------------------------------------------------
+# validate_apps.sh
+#
+# This script validates the list of apps in the current directory against the
+# list of apps defined in the conformance tests workflow. It checks for any
+# added or removed apps and outputs an error message if there are any
+# discrepancies.
+#
+# Usage:
+#   APPS="app1 app2 app3" ./validate_apps.sh
+#
+# The 'APPS' environment variable is required and should contain a space-separated
+# list of app names. The list should be quoted to ensure it's treated as a single value.
+#
+# Author: Dinesh Majrekar
+# ------------------------------------------------------------------------------
+# Change Log:
+# 06/05/2025 - First introduction of the validate_apps.sh script
+
+
 # Define the list of apps
 APPS=($APPS)
 
@@ -23,6 +43,8 @@ done
 for app in "${APPS[@]}"; do
   if [[ ! " ${DIRS[@]} " =~ " ${app} " ]]; then
     REMOVED_APPS+=("${app}")
+  else
+    echo "App '${app}' found in directory list."
   fi
 done
 
@@ -30,12 +52,17 @@ done
 if [ ${#ADDED_APPS[@]} -gt 0 ] || [ ${#REMOVED_APPS[@]} -gt 0 ]; then
   echo "Error: The list of apps is not current."
   if [ ${#ADDED_APPS[@]} -gt 0 ]; then
-    echo "The following apps have been added: ${ADDED_APPS[@]}"
-    echo "To fix this, remove these apps or update the list of apps in the conformance tests workflow."
+    echo "The following directories have been added: ${ADDED_APPS[@]}"
+    echo
+    echo "To fix this, remove these directories or update the list of apps in the conformance tests workflow."
   fi
   if [ ${#REMOVED_APPS[@]} -gt 0 ]; then
     echo "The following apps have been removed: ${REMOVED_APPS[@]}"
+    echo
     echo "To fix this, add these apps back or update the list of apps in the conformance tests workflow."
   fi
   exit 1
+else
+  echo "The list of apps is current."
+  exit 0
 fi
