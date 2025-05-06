@@ -17,6 +17,7 @@ env:
 
 jobs:
   validate-apps-list:
+    runs-on: ubuntu-latest
     steps:
       - name: Validate apps
         run: bash validate_apps.sh
