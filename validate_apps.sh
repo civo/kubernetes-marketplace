@@ -20,16 +20,16 @@
 # 06/05/2025 - First introduction of the validate_apps.sh script
 
 
-# Define the list of apps
-if [ -z "$APPS" ]; then
-  echo "Error: APPS environment variable is not set"
+# Define the list of apps from apps.json if it exists
+if [ -f "apps.json" ]; then
+  APPS=($(jq -r '.[]' apps.json))
+else
+  echo "Error: apps.json file not found"
   exit 1
 fi
 
-APPS=($APPS)
-
 # Define the list of skipped dirs
-SKIPPED_DIRS=(.git)
+SKIPPED_DIRS=(.git bin)
 
 # Get the list of dirs in the current directory
 DIRS=()
@@ -48,8 +48,6 @@ done
 for app in "${APPS[@]}"; do
   if [[ ! " ${DIRS[@]} " =~ " ${app} " ]]; then
     REMOVED_APPS+=("${app}")
-  else
-    echo "App '${app}' found in directory list."
   fi
 done
 
