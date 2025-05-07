@@ -43,10 +43,15 @@ jobs:
           BASE: ${{ github.base_ref }}
         run: |
           echo "Using BASE=$BASE"
+          echo "Running filter_apps.sh script..."
           bash bin/filter_apps.sh | grep "^filtered-apps=" >> $GITHUB_OUTPUT
+          echo "Content of GITHUB_OUTPUT:"
+          cat $GITHUB_OUTPUT
 
   conformance-test:
     needs: [filter-apps]
+    # Only run this job if filtered-apps is not empty and not equal to []
+    if: ${{ needs.filter-apps.outputs.filtered-apps != '[]' && needs.filter-apps.outputs.filtered-apps != '' }}
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 2

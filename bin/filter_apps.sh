@@ -17,6 +17,7 @@
 # Change Log:
 # 07/05/2025 - First introduction of the filter_apps.sh script
 # 07/05/2025 - Fix for GitHub Actions environment
+# 07/05/2025 - Updated to produce compact JSON output
 
 # Make sure we have a valid base reference
 if ! git rev-parse --verify "origin/$BASE" >/dev/null 2>&1; then
@@ -37,10 +38,10 @@ for app in $apps; do
 done
 
 if [ ${#filtered_apps[@]} -eq 0 ]; then
-  echo "No apps with changes and conformance scripts found"
   echo "filtered-apps=[]"
 else
-  filtered_apps_json=$(printf '%s\n' "${filtered_apps[@]}" | jq -R . | jq -s .)
+  # Use jq with -c flag to create compact JSON without line breaks
+  filtered_apps_json=$(printf '%s\n' "${filtered_apps[@]}" | jq -R . | jq -s -c .)
   echo "filtered-apps=$filtered_apps_json"
 fi
 
