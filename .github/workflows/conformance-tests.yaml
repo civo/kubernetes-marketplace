@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Validate apps
         run: bash validate_apps.sh
@@ -30,7 +30,9 @@ jobs:
       filtered-apps: ${{ steps.filter-apps.outputs.filtered-apps }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
@@ -51,7 +53,7 @@ jobs:
         app: ${{ fromJson(needs.filter-apps.outputs.filtered-apps) }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install curl
         run: sudo apt-get update && sudo apt-get install -y curl
