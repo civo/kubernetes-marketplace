@@ -43,7 +43,7 @@ jobs:
           filtered_apps=()
           for app in $apps; do
             app=$(echo $app | tr -d '"')
-            if [ -f "$app/conformance.sh" ] && git diff --name-only $BASE..HEAD | grep -q "$app"; then
+            if [ -f "$app/conformance.sh" ] && git diff --name-only $(git merge-base $BASE HEAD)..HEAD -- "$app" | grep -q . ; then
               filtered_apps+=($app)
             fi
           done
