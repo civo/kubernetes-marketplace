@@ -37,18 +37,10 @@ jobs:
 
       - name: Filter apps
         id: filter-apps
+        env:
+          BASE: ${{ github.base_ref }}
         run: |
-          # Filter apps based on the existence of conformance.sh and changes detected in the app directory
-          apps=$(jq -c '.[]' apps.json)
-          filtered_apps=()
-          for app in $apps; do
-            app=$(echo $app | tr -d '"')
-            if [ -f "$app/conformance.sh" ] && git diff --name-only $(git merge-base $BASE HEAD)..HEAD -- "$app" | grep -q . ; then
-              filtered_apps+=($app)
-            fi
-          done
-          filtered_apps_json=$(printf '%s\n' "${filtered_apps[@]}" | jq -R . | jq -s .)
-          echo "filtered-apps=$filtered_apps_json" >> $GITHUB_OUTPUT
+          bash bin/filter_apps.sh >> $GITHUB_OUTPUT
 
   conformance-test:
     needs: [filter-apps]
