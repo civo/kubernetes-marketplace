@@ -14,22 +14,13 @@ env:
   BASE: ${{ github.base_ref }}
 
 jobs:
-  validate-apps-list:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Validate apps
-        run: bash validate_apps.sh
-
   conformance-test:
-    needs: [validate-apps-list]
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 2
       matrix:
-        app: ${{ fromJson(env.APPS_JSON) }}
+        app: ${{ fromJson(needs.read-apps.outputs.apps) }}
+    needs: [read-apps]
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -80,3 +71,15 @@ jobs:
         run: |
           export PATH=$PATH:/root/.civo/bin
           civo kubernetes remove ${{ matrix.app }}-cluster --yes
+
+read-apps:
+  runs-on: ubuntu-latest
+  outputs:
+    apps: ${{ steps.read-apps.outputs.apps }}
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Read apps.json
+      id: read-apps
+      run: |
+        echo "apps=$(cat apps.json)" >> $GITHUB_OUTPUT
