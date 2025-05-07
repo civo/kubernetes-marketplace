@@ -42,7 +42,8 @@ jobs:
         env:
           BASE: ${{ github.base_ref }}
         run: |
-          bash bin/filter_apps.sh >> $GITHUB_OUTPUT
+          echo "Using BASE=$BASE"
+          bash bin/filter_apps.sh | grep "^filtered-apps=" >> $GITHUB_OUTPUT
 
   conformance-test:
     needs: [filter-apps]
