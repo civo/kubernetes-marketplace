@@ -30,10 +30,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
       - name: Read apps.json
         id: read-apps
         run: |
-          echo "apps=$(cat apps.json)" >> $GITHUB_OUTPUT
+          echo "apps=$(jq -c '.' apps.json)" >> $GITHUB_OUTPUT
 
   conformance-test:
     needs: [read-apps, validate-apps-list]
