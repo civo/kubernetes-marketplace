@@ -80,10 +80,17 @@ jobs:
         env:
           CIVO_API_KEY: ${{ secrets.CIVO_API_KEY }}
         run: |
-          CIVO_API_KEY_NAME=test civo apikey save --load-from-env 
+          CIVO_API_KEY_NAME=test civo apikey save --load-from-env
           civo apikey use test
           export PATH=$PATH:/root/.civo/bin
-          timeout 600 civo kubernetes create conformance-test-${{ matrix.app }}-cluster --wait --save --merge --switch || { echo "Cluster creation timed out"; exit 1; }
+          timeout 600 civo kubernetes create conformance-test-${{ matrix.app }}-cluster \
+            --cluster-type k3s \
+            --create-firewall \
+            --firewall-rules "6443" \
+            --wait \
+            --save \
+            --merge \
+            --switch || { echo "Cluster creation timed out"; exit 1; }
 
       - name: Wait for 30 seconds
         run: sleep 60
