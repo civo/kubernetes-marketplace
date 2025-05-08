@@ -20,15 +20,15 @@ Conformance testing for a Civo Kubernetes Marketplace application should cover t
 
 The conformance test is automated through the `.github/workflows/conformance-tests.yaml` GitHub Actions workflow. This workflow creates a Civo Kubernetes cluster for each app, runs the conformance test if there are changes in the app directory, and then deletes the cluster.
 
-The conformance test script will need to connect to the application and install any tools the app requires.
+The conformance test is implemented through a script named `conformance.sh` located in the app directory. This script should connect to the application, install any required tools, and perform the necessary tests to verify the application's functionality.
 
-Note that you do not need to install the conformance test as part of your script. Civo will take care of that.
+For example, you can use `kubectl` to wait for the application's pod to be ready, install any necessary clients or tools, and then perform functional tests on the application.
 
 ## Example: Redis Conformance Test
 
-The following is an example of a conformance test for the redis application:
+The Redis conformance test is implemented in `conformance.sh` as follows:
 
-```console
+```bash
 #!/bin/bash
 
 # Wait for Redis pod to be ready
@@ -69,4 +69,9 @@ if [ "$GET_OUTPUT" != "\"Hello, Redis!\"" ]; then
   exit 1
 fi
 ```
-This example demonstrates how to validate the redis application by waiting for the pod to be ready, installing required tools, accessing the application, and testing its functionality.
+
+This example demonstrates how to validate the Redis application by waiting for the pod to be ready, installing required tools, accessing the application, and testing its functionality.
+
+## Validation by Civo Maintainers
+
+Pull Requests (PRs) for new or updated applications must include a conformance test implemented in `conformance.sh`. Civo maintainers will review the PR to ensure that the conformance test is included and that it verifies the application's functionality.
