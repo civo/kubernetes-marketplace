@@ -68,10 +68,6 @@ jobs:
       - name: Download Civo CLI
         run: curl -sL https://civo.com/get | sh
 
-      - name: Set Civo region to lon1
-        env:
-          CIVO_API_KEY: ${{ secrets.CIVO_API_KEY }}
-        run: civo region current lon1
 
       - name: Install kubectl
         run: |
@@ -86,6 +82,7 @@ jobs:
         run: |
           CIVO_API_KEY_NAME=test civo apikey save --load-from-env
           civo apikey use test
+          civo region current lon1
           export PATH=$PATH:/root/.civo/bin
           timeout 600 civo kubernetes create conformance-test-${{ matrix.app }}-cluster \
             --cluster-type k3s \
