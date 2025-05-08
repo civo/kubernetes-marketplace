@@ -75,7 +75,6 @@ jobs:
           mv kubectl /usr/local/bin/
           kubectl version --client
 
-
       - name: Create Civo Kubernetes cluster
         env:
           CIVO_API_KEY: ${{ secrets.CIVO_API_KEY }}
@@ -92,8 +91,8 @@ jobs:
             --merge \
             --switch || { echo "Cluster creation timed out"; exit 1; }
 
-      - name: Wait for 3600 seconds
-        run: sleep 3600
+      - name: Wait for 30 seconds
+        run: sleep 30
 
       - name: Debug cluster information
         env:
@@ -102,6 +101,12 @@ jobs:
           kubectl cluster-info
           kubectl get nodes
           kubectl get pods -A
+
+      - name: Install the app
+        env:
+          KUBECONFIG: /home/runner/.kube/config
+        run: |
+          cd ${{ matrix.app }} && kubectl apply -f app.yaml
 
       - name: Run conformance test
         env:
