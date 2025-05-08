@@ -111,7 +111,7 @@ jobs:
           LC_ALL: C
         run: |
           cd ${{ matrix.app }}
-          source ../../bin/generate_civo_config.sh manifest.yaml
+          source ../bin/generate_civo_config.sh manifest.yaml
           echo "Generated config values:"
           env | grep -E '^[A-Z_]+=' | tee $GITHUB_ENV
 
