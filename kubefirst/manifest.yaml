@@ -1,7 +1,7 @@
 ---
 name: kubefirst
-version: "v2.7.9"
+version: "v2.8.4"
 maintainer: "@kubefirst"
 description: kubefirst is an instant open source Kubernetes platform powered by the most popular Cloud Native tools providing app delivery & automated infrastructure as code
-url: https://kubefirst.io
+url: https://kubefirst.konstruct.io
 category: management 
