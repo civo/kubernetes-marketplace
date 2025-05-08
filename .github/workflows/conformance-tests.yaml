@@ -92,8 +92,8 @@ jobs:
             --merge \
             --switch || { echo "Cluster creation timed out"; exit 1; }
 
-      - name: Wait for 30 seconds
-        run: sleep 60
+      - name: Wait for 3600 seconds
+        run: sleep 3600
 
       - name: Debug cluster information
         env:
