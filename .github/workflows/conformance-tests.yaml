@@ -85,6 +85,14 @@ jobs:
           export PATH=$PATH:/root/.civo/bin
           timeout 600 civo kubernetes create conformance-test-${{ matrix.app }}-cluster --wait --save --merge --switch || { echo "Cluster creation timed out"; exit 1; }
 
+      - name: Debug cluster information
+        env:
+          KUBECONFIG: /home/runner/.kube/config
+        run: |
+          kubectl cluster-info
+          kubectl get nodes
+          kubectl get pods -A
+
       - name: Run conformance test
         env:
           KUBECONFIG: /home/runner/.kube/config
