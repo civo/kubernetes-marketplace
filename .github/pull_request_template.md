@@ -7,6 +7,7 @@ If your pull request is to submit a new application to the marketplace, please a
 * [ ] Have you tested your application on the Civo managed Kubernetes service? Please include a screenshot.
 * [ ] Can you confirm that the software you are submitting licensed for use in a publicly-available Kubernetes marketplace?
 * [ ] Have you included the specific version of the application to be installed?
+* [ ] Have you implemented a conformance test in `conformance.sh` as described in the [Conformance Testing Guide](CONFORMANCE_TESTING_GUIDE.md)?
 
 If your pull request concerns an existing Marketplace application, please make sure you have:
 
