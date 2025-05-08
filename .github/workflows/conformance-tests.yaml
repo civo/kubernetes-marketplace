@@ -112,7 +112,7 @@ jobs:
         env:
           KUBECONFIG: /home/runner/.kube/config
         run: |
-          cd ${{ matrix.app }} && sudo bash conformance.sh
+          cd ${{ matrix.app }} && sudo -E bash conformance.sh
 
       - name: Delete Civo Kubernetes cluster
         if: ${{ always() }}
