@@ -27,3 +27,22 @@ When reviewing conformance tests, ensure that they cover the following:
 1. Verification of correct application installation according to `app.yaml` or `install.sh`.
 2. Verification that all application components are running.
 3. Verification that the application is accessible and functional.
+
+## Understanding CIVO Configuration in Conformance Tests
+
+The conformance testing workflow now supports generating random values for configurations specified with `CIVO:ALPHANUMERIC(num)` in the `manifest.yaml` file. This allows for more robust testing of applications that require dynamic configuration.
+
+When reviewing conformance tests, maintainers should ensure that the `manifest.yaml` file is correctly formatted to use `CIVO:ALPHANUMERIC(num)` for any required random values. The conformance testing workflow will automatically generate these values and pass them to the application installation and testing steps.
+
+For example, if an application's `manifest.yaml` includes a configuration like this:
+
+```
+configuration:
+  REDIS_PASS:
+    label: "Password"
+    value: "CIVO:ALPHANUMERIC(30)"
+```
+
+The conformance test will generate a random alphanumeric string of 30 characters for `REDIS_PASS` and use it during the application installation and testing.
+
+Maintainers should verify that the application correctly uses the generated configuration values and that the conformance test covers the necessary scenarios.

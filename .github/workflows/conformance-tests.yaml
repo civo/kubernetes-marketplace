@@ -107,6 +107,22 @@ jobs:
           kubectl get nodes
           kubectl get pods -A
 
+      # Generate random values for CIVO configurations specified in manifest.yaml
+      - name: Generate random values for CIVO config
+        id: generate-civo-config
+        env:
+          LC_ALL: C
+        run: |
+          cd ${{ matrix.app }}
+          source ../../bin/generate_civo_config.sh manifest.yaml
+          echo "Generated config values:"
+          env | grep -E '^[A-Z_]+=' | tee $GITHUB_ENV
+
+      - name: Debug environment variables
+        run: |
+          echo "Environment variables after generating Civo config:"
+          env
+
       - name: Install the app
         env:
           KUBECONFIG: /home/runner/.kube/config
