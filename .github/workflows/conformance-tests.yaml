@@ -86,6 +86,8 @@ jobs:
           timeout 600 civo kubernetes create conformance-test-${{ matrix.app }}-cluster --wait --save --merge --switch || { echo "Cluster creation timed out"; exit 1; }
 
       - name: Run conformance test
+        env:
+          KUBECONFIG: /home/runner/.kube/config
         run: |
           cd ${{ matrix.app }} && bash conformance.sh
 
