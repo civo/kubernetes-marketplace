@@ -83,15 +83,16 @@ jobs:
           CIVO_API_KEY_NAME=test civo apikey save --load-from-env 
           civo apikey use test
           export PATH=$PATH:/root/.civo/bin
-          civo kubernetes create conformance-test-${{ matrix.app }}-cluster --wait --save --merge --switch
+          timeout 600 civo kubernetes create conformance-test-${{ matrix.app }}-cluster --wait --save --merge --switch || { echo "Cluster creation timed out"; exit 1; }
 
       - name: Run conformance test
         run: |
           cd ${{ matrix.app }} && bash conformance.sh
 
       - name: Delete Civo Kubernetes cluster
+        if: ${{ always() }}
         env:
           CIVO_API_KEY: ${{ secrets.CIVO_API_KEY }}
         run: |
           export PATH=$PATH:/root/.civo/bin
-          civo kubernetes remove ${{ matrix.app }}-cluster --yes
+          civo kubernetes remove conformance-test-${{ matrix.app }}-cluster --yes
