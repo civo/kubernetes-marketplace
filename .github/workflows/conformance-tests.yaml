@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Validate apps
-        run: bash validate_apps.sh
+        run: bash bin/validate_apps.sh
 
   filter-apps:
     runs-on: ubuntu-latest
