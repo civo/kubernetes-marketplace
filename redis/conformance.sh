@@ -11,6 +11,11 @@ kubectl wait --for=condition=ready pod -l app=redis --timeout=300s
 # Install Redis client
 apt update && apt install -y redis-tools
 
+# Debug the current state of the cluster
+kubectl get nodes
+kubectl get pods -A
+kubectl get svc -A
+
 # Port-forward to Redis service
 kubectl port-forward svc/redis 6379:6379 &
 sleep 5  # Allow some time for port-forwarding to establish
