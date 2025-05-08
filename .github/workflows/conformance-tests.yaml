@@ -53,6 +53,7 @@ jobs:
     # Only run this job if filtered-apps is not empty and not equal to []
     if: ${{ needs.filter-apps.outputs.filtered-apps != '[]' && needs.filter-apps.outputs.filtered-apps != '' }}
     runs-on: ubuntu-latest
+    environment: Test
     strategy:
       max-parallel: 2
       matrix:
