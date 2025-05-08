@@ -18,6 +18,7 @@
 # ------------------------------------------------------------------------------
 # Change Log:
 # 06/05/2025 - First introduction of the validate_apps.sh script
+# 08/05/2025 - Added 'doc' to the list of skipped directories
 
 
 # Define the list of apps from apps.json if it exists
@@ -29,7 +30,7 @@ else
 fi
 
 # Define the list of skipped dirs
-SKIPPED_DIRS=(.git bin)
+SKIPPED_DIRS=(.git bin doc)
 
 # Get the list of dirs in the current directory
 DIRS=()
