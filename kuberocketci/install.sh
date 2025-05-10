@@ -70,4 +70,4 @@ EOF
 
 kubectl create namespace krci
 
-helm install krci epamedp/edp-install --version 3.10.3 --namespace krci --set global.dnsWildCard="$domain" --set 'global.gitProviders[0]'=${GITPROVIDER} --timeout 10m
+helm install krci epamedp/edp-install --version 3.11.2 --namespace krci --set global.dnsWildCard="$domain" --set 'global.gitProviders[0]'=${GITPROVIDER} --timeout 10m
