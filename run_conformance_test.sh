@@ -1,4 +1,25 @@
 #!/bin/bash
+# ------------------------------------------------------------------------------
+# run_conformance_test.sh
+#
+# This script runs conformance tests for a specified application by creating a
+# Civo Kubernetes cluster, installing the application, and executing the
+# conformance tests defined in the application's conformance.sh script within
+# a Docker container based on the conformance-test-runner image.
+#
+# Usage:
+#   bash run_conformance_test.sh <application_name> [--keep-cluster]
+#
+# Parameters:
+#   <application_name> - The name of the application to test
+#   --keep-cluster     - Optional flag to keep the created cluster after testing
+#
+# Author: Dinesh Majrekar
+# ------------------------------------------------------------------------------
+# Change Log:
+# 22/05/2025 - Added docstring to run_conformance_test.sh
+# 22/05/2025 - Updated to run conformance.sh in a Docker container
+
 
 # Check if application name is provided
 if [ -z "$1" ]; then
@@ -35,31 +56,56 @@ fi
 if [ "$KEEP_CLUSTER" = true ]; then
   if civo kubernetes show $CLUSTER_NAME >/dev/null 2>&1; then
     echo "Using existing cluster: $CLUSTER_NAME"
-    export KUBECONFIG=$KUBECONFIG
   else
     echo "Creating new cluster: $CLUSTER_NAME"
-    civo kubernetes create $CLUSTER_NAME --wait --save --merge --switch
-    export KUBECONFIG=~/.kube/config
+    civo kubernetes create $CLUSTER_NAME --wait
+    echo "Cluster created: $CLUSTER_NAME"
+    civo kubernetes config $CLUSTER_NAME --save --local-path="$KUBECONFIG"
+    echo "Kubeconfig saved to: $KUBECONFIG"
   fi
 else
   # Create Civo Kubernetes cluster
-  civo kubernetes create $CLUSTER_NAME --wait --save --merge --switch
-  export KUBECONFIG=~/.kube/config
+  echo "Creating new cluster: $CLUSTER_NAME"
+  civo kubernetes create $CLUSTER_NAME --wait
+  echo "Cluster created: $CLUSTER_NAME"
+  civo kubernetes config $CLUSTER_NAME --save --local-path="$KUBECONFIG"
+  echo "Kubeconfig saved to: $KUBECONFIG"
 fi
+echo "KUBECONFIG path: $KUBECONFIG"
+kubectl config view --kubeconfig=$KUBECONFIG
 
 # Install application
 if [ -f "$APP_NAME/app.yaml" ]; then
-  kubectl apply -f $APP_NAME/app.yaml
+  # For redis, set REDIS_PASS environment variable
+  if [ "$APP_NAME" = "redis" ]; then
+    export REDIS_PASS=$(openssl rand -base64 12 | tr -d '/+=')
+    echo "Applying Redis app.yaml with REDIS_PASS=$REDIS_PASS"
+    envsubst < $APP_NAME/app.yaml | KUBECONFIG=$KUBECONFIG kubectl apply -f -
+    echo "kubectl apply result: $?"
+    KUBECONFIG=$KUBECONFIG kubectl get pods -A -l app=redis
+  else
+    kubectl apply -f $APP_NAME/app.yaml
+    echo "kubectl apply result: $?"
+  fi
 elif [ -f "$APP_NAME/install.sh" ]; then
+  echo "Running install.sh for $APP_NAME"
+  bash $APP_NAME/install.sh
+  echo "install.sh result: $?"
   bash $APP_NAME/install.sh
 else
   echo "No installation method found for application '$APP_NAME'"
   exit 1
 fi
 
-# Check if conformance.sh exists and run it
+# Check if conformance.sh exists and run it in Docker container
 if [ -f "$APP_NAME/conformance.sh" ]; then
-  cd $APP_NAME && bash conformance.sh
+  docker run --rm \
+    -v "$(pwd)/$APP_NAME:/app" \
+    -v "$KUBECONFIG:/root/.kube/config" \
+    -e KUBECONFIG=/root/.kube/config \
+    -e REDIS_PASS=$REDIS_PASS \
+    conformance-test-runner:latest \
+    bash /app/conformance.sh
 else
   echo "conformance.sh not found for application '$APP_NAME'"
   exit 1
