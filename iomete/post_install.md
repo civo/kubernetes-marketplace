@@ -13,11 +13,34 @@ kubectl get pods -n iomete-operator-system
 kubectl get deployment -n iomete-operator-system
 ```
 
-#### 2. Create an IOMETE Data Plane Instance
+#### 2. Prepare Prerequisites
 
-To deploy an IOMETE Data Plane, you'll need:
-- **PostgreSQL database** - for metadata storage
-- **Object storage** - MinIO, AWS S3, GCS, Azure, or Dell ECS
+The data plane **connects to** these — it does not create them for you. Set them up before applying the custom resource below.
+
+**Cluster sizing.** The data plane runs Spark and is memory-heavy (the always-on Spark Connect driver alone requests ~9 GiB). Use nodes large enough to hold it — at least one node with 16 GB+ RAM (e.g. Civo `g4m.kube.small`), plus headroom for Spark jobs. On undersized nodes, pods stay `Pending` with `Insufficient memory`.
+
+**PostgreSQL — create the databases and user.** The installer requires these databases to already exist (all sharing the `prefix` set in the CR). Connect to your PostgreSQL and run:
+
+```sql
+CREATE DATABASE iomete_core_db;
+CREATE DATABASE iomete_iam_db;
+CREATE DATABASE iomete_sql_db;
+CREATE DATABASE iomete_iceberg_db;
+CREATE DATABASE iomete_metastore_db;
+CREATE DATABASE iomete_catalog_db;
+
+CREATE USER iomete_user WITH PASSWORD 'iomete_pass';
+GRANT ALL PRIVILEGES ON DATABASE
+  iomete_core_db, iomete_iam_db, iomete_sql_db,
+  iomete_iceberg_db, iomete_metastore_db, iomete_catalog_db
+  TO iomete_user;
+```
+
+The user/password/prefix must match the `database` section of the CR below. Full init script (with per-schema grants): https://github.com/iomete/iomete-deployment/blob/main/database/postgresql/database-init-postgres.sql
+
+**Object storage — create the bucket.** Create the bucket referenced by `storage.bucketName` (e.g. `lakehouse`) in your MinIO/S3/GCS/Azure storage, and have its access credentials ready.
+
+#### 3. Create an IOMETE Data Plane Instance
 
 Create a custom resource file (e.g., `iomete-dataplane.yaml`):
 
@@ -76,7 +99,7 @@ Apply the configuration:
 kubectl apply -f iomete-dataplane.yaml
 ```
 
-#### 3. Monitor the Deployment
+#### 4. Monitor the Deployment
 
 Watch the data plane deployment progress:
 
@@ -91,13 +114,13 @@ kubectl logs -n iomete-operator-system deployment/iomete-operator-controller-man
 kubectl get all -n default -l app.kubernetes.io/instance=my-dataplane
 ```
 
-#### 4. Access the IOMETE Console
+#### 5. Access the IOMETE Console
 
 Once deployed, access the IOMETE console:
 
 ```bash
 # Port forward to the gateway service
-kubectl port-forward svc/iomete-data-plane-gateway -n default 8080:80
+kubectl port-forward svc/iom-gateway -n default 8080:80
 
 # Open in browser: http://localhost:8080
 # Login with the admin credentials you specified
