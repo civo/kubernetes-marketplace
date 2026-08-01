@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
         - name: ghost-blog
-          image: ghost:6.54.1
+          image: ghost:6.55.0
           ports:
             - name: ghost-blog
               containerPort: 2368
