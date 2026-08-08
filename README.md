@@ -130,9 +130,9 @@ There's no label for the configuration items in `plans` because they are just us
 
 ## Testing
 
-Testing a marketplace application during development is easy, use the Civo CLI to launch a cluster, then simply apply the app.yaml without any other options, for example:
+Testing a marketplace application during development is a crucial step to ensure its functionality and compatibility with Civo's Kubernetes environment. To test your application, you can use the Civo CLI to launch a cluster and apply your `app.yaml` without any other options. Here's an example:
 
-```
+```bash
 # Create a cluster with any prerequisites
 civo k8s create my-cluster --applications=longhorn --save --wait
 
@@ -140,7 +140,9 @@ civo k8s create my-cluster --applications=longhorn --save --wait
 kubectl apply -f app.yaml
 ```
 
-Then you can test it and ensure the app.yaml is standalone and working.
+After applying `app.yaml`, you can test your application to ensure it works as expected and that `app.yaml` is standalone and functional.
+
+In addition to manual testing, conformance testing is an essential part of the contribution process. Conformance testing verifies that your application is properly installed and functioning correctly in the Kubernetes environment on Civo. For detailed guidelines on implementing conformance tests, please refer to our [Conformance Testing Guide](CONFORMANCE_TESTING_GUIDE.md).
 
 ## Contributing
 
