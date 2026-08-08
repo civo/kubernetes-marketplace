@@ -1,0 +1,8 @@
+---
+name: iomete
+title: "IOMETE Data Plane"
+maintainer: "aslan@iomete.com, support@iomete.com"
+description: Lakehouse analytics platform with Iceberg and Spark for self-hosted data processing on Kubernetes
+url: https://iomete.com
+category: storage
+version: 3.17.0
