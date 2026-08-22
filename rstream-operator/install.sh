@@ -3,7 +3,7 @@
 set -euo pipefail
 
 NAMESPACE="rstream-system"
-VERSION="0.5.1"
+VERSION="0.5.2"
 
 echo "Installing rstream operator in ${NAMESPACE} namespace"
 

@@ -1,7 +1,7 @@
 ---
 name: rstream-operator
 title: rstream operator
-version: "0.5.1"
+version: "0.5.2"
 maintainer: support@rstream.io
 description: Kubernetes operator for managing rstream tunnels from declarative resources
 url: https://github.com/rstreamlabs/rstream-operator
