@@ -8498,7 +8498,7 @@ spec:
       priorityClassName: system-cluster-critical
       containers:
           - name: volcano-controllers
-            image: volcanosh/vc-controller-manager:v1.15.1
+            image: volcanosh/vc-controller-manager:v1.15.2
             args:
               - --logtostderr
               - --enable-healthz=true
