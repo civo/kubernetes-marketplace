@@ -4,7 +4,7 @@ LibreDB Studio is a browser-based SQL IDE that runs inside the cluster, so datab
 
 ## Access
 
-An Ingress is created during installation. Open `http://libredb.YOUR_CLUSTER_ID.k8s.civo.com`, replacing YOUR_CLUSTER_ID with your cluster ID.
+An Ingress is created during installation, with a Let's Encrypt certificate issued by cert-manager. Open `https://libredb.YOUR_CLUSTER_ID.k8s.civo.com`, replacing YOUR_CLUSTER_ID with your cluster ID. The first request can take a minute while the certificate is issued.
 
 Sign in with `admin@libredb.org` and the admin password shown for this application in the Civo dashboard.
 
@@ -16,7 +16,7 @@ Sign in with `admin@libredb.org` and the admin password shown for this applicati
 ## Notes
 
 - State lives in a 1Gi volume mounted at `/app/data` (SQLite). Connections and query history survive a pod restart.
-- The Ingress serves plain HTTP, so the app is configured with `AUTH_COOKIE_SECURE=false`. Once you front it with TLS, set that variable to `true` on the `libredb-studio` deployment.
+- The admin session cookie is issued with the Secure flag, so reach the app over HTTPS. If you replace the Ingress with plain HTTP, set `AUTH_COOKIE_SECURE=false` on the deployment or login will fail while every health check stays green.
 - AI query assistance is off until you set `LLM_PROVIDER` and `LLM_API_KEY`. Everything else works without it.
 
 Documentation: https://github.com/libredb/libredb-studio

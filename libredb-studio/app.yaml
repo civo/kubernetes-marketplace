@@ -1,3 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: libredb-studio-letsencrypt
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: ${EMAIL_ADDRESS}
+    privateKeySecretRef:
+      name: libredb-studio-letsencrypt
+    solvers:
+      - http01:
+          ingress:
+            class: traefik
+---
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -86,12 +101,6 @@ spec:
               value: "local"
             - name: ADMIN_EMAIL
               value: "admin@libredb.org"
-            # The marketplace Ingress below serves plain HTTP on the cluster's
-            # k8s.civo.com host. The auth cookie defaults to Secure in production,
-            # which a browser drops over HTTP, so login would fail silently while
-            # every probe stayed green. Set this back to true once TLS fronts it.
-            - name: AUTH_COOKIE_SECURE
-              value: "false"
           envFrom:
             - secretRef:
                 name: libredb-studio-auth
@@ -136,7 +145,13 @@ metadata:
   namespace: libredb-studio
   annotations:
     kubernetes.io/ingress.class: "traefik"
+    cert-manager.io/cluster-issuer: libredb-studio-letsencrypt
+    ingress.kubernetes.io/ssl-redirect: "true"
 spec:
+  tls:
+    - hosts:
+        - libredb.${CLUSTER_ID}.k8s.civo.com
+      secretName: libredb-studio-tls
   rules:
     - host: libredb.${CLUSTER_ID}.k8s.civo.com
       http:
