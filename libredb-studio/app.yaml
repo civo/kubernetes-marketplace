@@ -146,7 +146,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
     cert-manager.io/cluster-issuer: libredb-studio-letsencrypt
-    ingress.kubernetes.io/ssl-redirect: "true"
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
     - hosts:
