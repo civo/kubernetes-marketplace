@@ -1,0 +1,165 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: libredb-studio-letsencrypt
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: ${EMAIL_ADDRESS}
+    privateKeySecretRef:
+      name: libredb-studio-letsencrypt
+    solvers:
+      - http01:
+          ingress:
+            class: traefik
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: libredb-studio
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: libredb-studio-auth
+  namespace: libredb-studio
+type: Opaque
+stringData:
+  ADMIN_PASSWORD: "${ADMIN_PASSWORD}"
+  JWT_SECRET: "${JWT_SECRET}"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: libredb-studio-data
+  namespace: libredb-studio
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: libredb-studio
+  namespace: libredb-studio
+spec:
+  selector:
+    app: libredb-studio
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: libredb-studio
+  namespace: libredb-studio
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: libredb-studio
+  template:
+    metadata:
+      labels:
+        app: libredb-studio
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        runAsGroup: 1001
+        fsGroup: 1001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: libredb-studio
+          image: ghcr.io/libredb/libredb-studio:0.16.1
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          ports:
+            - name: http
+              containerPort: 3000
+          env:
+            - name: HOSTNAME
+              value: "0.0.0.0"
+            - name: STORAGE_PROVIDER
+              value: "sqlite"
+            - name: STORAGE_SQLITE_PATH
+              value: "/app/data/libredb-storage.db"
+            - name: NEXT_PUBLIC_AUTH_PROVIDER
+              value: "local"
+            - name: ADMIN_EMAIL
+              value: "admin@libredb.org"
+          envFrom:
+            - secretRef:
+                name: libredb-studio-auth
+          livenessProbe:
+            httpGet:
+              path: /api/db/health
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /api/db/health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              memory: 768Mi
+          volumeMounts:
+            - name: data
+              mountPath: /app/data
+            - name: next-cache
+              mountPath: /app/.next/cache
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: libredb-studio-data
+        - name: next-cache
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: libredb-studio
+  namespace: libredb-studio
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    cert-manager.io/cluster-issuer: libredb-studio-letsencrypt
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  tls:
+    - hosts:
+        - libredb.${CLUSTER_ID}.k8s.civo.com
+      secretName: libredb-studio-tls
+  rules:
+    - host: libredb.${CLUSTER_ID}.k8s.civo.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: libredb-studio
+                port:
+                  number: 3000

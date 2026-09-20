@@ -1,0 +1,22 @@
+name: libredb-studio
+title: LibreDB Studio
+version: "0.16.1"
+maintainer: "cevheribozoglan@gmail.com"
+description: A web-based SQL IDE for sixteen database engines, running in the cluster next to the databases it queries.
+url: https://libredb.org
+category: database
+dependencies:
+  - cert-manager
+configuration:
+  EMAIL_ADDRESS:
+    label: "Email address for the TLS certificate"
+    value: "CIVO:EMAIL_ADDRESS"
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
+  ADMIN_PASSWORD:
+    label: "Admin password"
+    value: "CIVO:ALPHANUMERIC(16)"
+  JWT_SECRET:
+    label: "JWT signing secret"
+    value: "CIVO:ALPHANUMERIC(48)"
