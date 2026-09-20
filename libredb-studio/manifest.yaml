@@ -1,6 +1,6 @@
 name: libredb-studio
 title: LibreDB Studio
-version: "0.16.0"
+version: "0.16.1"
 maintainer: "cevheribozoglan@gmail.com"
 description: A web-based SQL IDE for sixteen database engines, running in the cluster next to the databases it queries.
 url: https://libredb.org

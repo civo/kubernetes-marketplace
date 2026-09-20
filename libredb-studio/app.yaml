@@ -79,7 +79,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: libredb-studio
-          image: ghcr.io/libredb/libredb-studio:0.16.0
+          image: ghcr.io/libredb/libredb-studio:0.16.1
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
