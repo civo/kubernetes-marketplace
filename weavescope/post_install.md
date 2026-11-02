@@ -1,6 +1,6 @@
 ## WeaveScope
 
-[WeaveScope](https://www.weave.works/docs/scope/latest/features/) automatically generates a map of your application, which allows you to understand, monitor, and control your containerized, microservices-based application.
+WeaveScope automatically generates a map of your application, which allows you to understand, monitor, and control your containerized, microservices-based application.
 
 ### Get started
 
@@ -12,4 +12,3 @@ kubectl port-forward -n weave "$(kubectl get -n weave pod --selector=weave-scope
 ```
 WeaveScope should be accessible now on - http://localhost:4040
 
-Next go through all of its [features](https://www.weave.works/docs/scope/latest/features/) to play along.
