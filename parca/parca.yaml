@@ -13,7 +13,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.19.0
+    app.kubernetes.io/version: v0.23.1
   name: parca
   namespace: parca
 ---
@@ -24,7 +24,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.19.0
+    app.kubernetes.io/version: v0.23.1
   name: parca
   namespace: parca
 spec:
@@ -40,7 +40,7 @@ spec:
         app.kubernetes.io/component: observability
         app.kubernetes.io/instance: parca
         app.kubernetes.io/name: parca
-        app.kubernetes.io/version: v0.19.0
+        app.kubernetes.io/version: v0.23.1
     spec:
       containers:
       - args:
@@ -51,7 +51,7 @@ spec:
         - --cors-allowed-origins=*
         - --debuginfod-upstream-servers=debuginfod.systemtap.org
         - --debuginfod-http-request-timeout=5m
-        image: ghcr.io/parca-dev/parca:v0.19.0
+        image: ghcr.io/parca-dev/parca:v0.23.1
         livenessProbe:
           exec:
             command:
@@ -117,7 +117,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.19.0
+    app.kubernetes.io/version: v0.23.1
   name: parca
   namespace: parca
 spec:
@@ -137,6 +137,6 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.19.0
+    app.kubernetes.io/version: v0.23.1
   name: parca
   namespace: parca

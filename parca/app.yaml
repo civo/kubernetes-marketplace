@@ -13,7 +13,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.19.0
+    app.kubernetes.io/version: v0.23.1
   name: parca
   namespace: parca
 ---
@@ -24,7 +24,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.19.0
+    app.kubernetes.io/version: v0.23.1
   name: parca
   namespace: parca
 spec:
@@ -40,7 +40,7 @@ spec:
         app.kubernetes.io/component: observability
         app.kubernetes.io/instance: parca
         app.kubernetes.io/name: parca
-        app.kubernetes.io/version: v0.19.0
+        app.kubernetes.io/version: v0.23.1
     spec:
       containers:
       - args:
@@ -51,7 +51,7 @@ spec:
         - --cors-allowed-origins=*
         - --debuginfod-upstream-servers=debuginfod.systemtap.org
         - --debuginfod-http-request-timeout=5m
-        image: ghcr.io/parca-dev/parca:v0.19.0
+        image: ghcr.io/parca-dev/parca:v0.23.1
         livenessProbe:
           exec:
             command:
@@ -117,7 +117,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.19.0
+    app.kubernetes.io/version: v0.23.1
   name: parca
   namespace: parca
 spec:
@@ -137,10 +137,9 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca
     app.kubernetes.io/name: parca
-    app.kubernetes.io/version: v0.19.0
+    app.kubernetes.io/version: v0.23.1
   name: parca
   namespace: parca
----
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -157,7 +156,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.26.0
+    app.kubernetes.io/version: v0.39.1
   name: parca-agent
   namespace: parca
 rules:
@@ -182,7 +181,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.26.0
+    app.kubernetes.io/version: v0.39.1
   name: parca-agent
   namespace: parca
 roleRef:
@@ -194,6 +193,52 @@ subjects:
   name: parca-agent
   namespace: parca
 ---
+apiVersion: v1
+data:
+  parca-agent.yaml: |-
+    "relabel_configs":
+    - "source_labels":
+      - "__meta_process_executable_compiler"
+      "target_label": "compiler"
+    - "source_labels":
+      - "__meta_system_kernel_machine"
+      "target_label": "arch"
+    - "source_labels":
+      - "__meta_system_kernel_release"
+      "target_label": "kernel_version"
+    - "source_labels":
+      - "__meta_kubernetes_namespace"
+      "target_label": "namespace"
+    - "source_labels":
+      - "__meta_kubernetes_pod_name"
+      "target_label": "pod"
+    - "source_labels":
+      - "__meta_kubernetes_pod_container_name"
+      "target_label": "container"
+    - "source_labels":
+      - "__meta_kubernetes_pod_container_image"
+      "target_label": "container_image"
+    - "source_labels":
+      - "__meta_kubernetes_node_label_topology_kubernetes_io_region"
+      "target_label": "region"
+    - "source_labels":
+      - "__meta_kubernetes_node_label_topology_kubernetes_io_zone"
+      "target_label": "zone"
+    - "action": "labelmap"
+      "regex": "__meta_kubernetes_pod_label_(.+)"
+      "replacement": "${1}"
+    - "action": "labeldrop"
+      "regex": "apps_kubernetes_io_pod_index|controller_revision_hash|statefulset_kubernetes_io_pod_name|pod_template_hash"
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/component: observability
+    app.kubernetes.io/instance: parca-agent
+    app.kubernetes.io/name: parca-agent
+    app.kubernetes.io/version: v0.39.1
+  name: parca-agent
+  namespace: parca
+---
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -201,7 +246,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.26.0
+    app.kubernetes.io/version: v0.39.1
   name: parca-agent
   namespace: parca
 spec:
@@ -216,35 +261,25 @@ spec:
         app.kubernetes.io/component: observability
         app.kubernetes.io/instance: parca-agent
         app.kubernetes.io/name: parca-agent
-        app.kubernetes.io/version: v0.26.0
+        app.kubernetes.io/version: v0.39.1
     spec:
       containers:
       - args:
-        - /bin/parca-agent
         - --http-address=:7071
-        - --log-level=info
         - --node=$(NODE_NAME)
+        - --config-path=/etc/parca-agent/parca-agent.yaml
         - --remote-store-address=parca.parca.svc.cluster.local:7070
         - --remote-store-insecure
-        - --remote-store-insecure-skip-verify
-        - --debuginfo-strip
-        - --debuginfo-temp-dir=/tmp
-        - --debuginfo-upload-cache-duration=5m
-        - --debuginfo-upload-timeout-duration=2m
         env:
         - name: NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ghcr.io/parca-dev/parca-agent:v0.26.0
+        image: ghcr.io/parca-dev/parca-agent:v0.39.1
         name: parca-agent
         ports:
         - containerPort: 7071
           name: http
-        readinessProbe:
-          httpGet:
-            path: /ready
-            port: http
         resources: {}
         securityContext:
           allowPrivilegeEscalation: true
@@ -268,6 +303,8 @@ spec:
           name: cgroup
         - mountPath: /sys/fs/bpf
           name: bpffs
+        - mountPath: /etc/parca-agent
+          name: config
         - mountPath: /var/run/dbus/system_bus_socket
           name: dbus-system
       hostPID: true
@@ -300,6 +337,9 @@ spec:
       - hostPath:
           path: /sys/kernel/debug
         name: debugfs
+      - configMap:
+          name: parca-agent
+        name: config
       - hostPath:
           path: /var/run/dbus/system_bus_socket
         name: dbus-system
@@ -311,6 +351,7 @@ metadata:
     app.kubernetes.io/component: observability
     app.kubernetes.io/instance: parca-agent
     app.kubernetes.io/name: parca-agent
-    app.kubernetes.io/version: v0.26.0
+    app.kubernetes.io/version: v0.39.1
   name: parca-agent
   namespace: parca
+---
