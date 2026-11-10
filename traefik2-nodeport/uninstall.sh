@@ -1,4 +1,7 @@
 #!/bin/bash
 
-# Delete all k8s resources of this app
-kubectl delete -f https://raw.githubusercontent.com/civo/kubernetes-marketplace/master/traefik2-nodeport/app.yaml
+# Delete the Traefik workload and its cluster-scoped objects.
+# The Traefik CRDs are intentionally left in place: deleting a CRD deletes every
+# IngressRoute, Middleware, etc. that users created with it.
+kubectl delete --ignore-not-found daemonset/traefik serviceaccount/traefik -n kube-system
+kubectl delete --ignore-not-found clusterrolebinding/traefik-kube-system clusterrole/traefik-kube-system ingressclass/traefik

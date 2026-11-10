@@ -8,6 +8,8 @@ if you wish to find more information, check out the [official documentation](htt
 
 This installation is inline with what comes by default with K3s, the service for this will be a LoadBalancer service which will launch a [Civo Load Balancer](https://www.civo.com/load-balancers) (at an additional charge).
 
+An IngressClass called `traefik` is installed and marked as the cluster default, so Ingresses either set `ingressClassName: traefik` or leave the class out.
+
 
 ### External access to your services
 
@@ -20,6 +22,7 @@ metadata:
   name: yourapp-ingress
   namespace: default
 spec:
+  ingressClassName: traefik
   rules:
   - host: www.example.com
     http:
