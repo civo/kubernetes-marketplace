@@ -97,21 +97,3 @@ spec:
               value: "4443"
             - name: SE_NODE_GRID_URL
               value: "http://selenium-hub:4444"
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: selenium-hub-ingress
-  namespace: selenium
-spec:
-  rules:
-    - host: selenium.${CLUSTER_ID}.k8s.civo.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: selenium-hub
-                port:
-                  number: 4444
