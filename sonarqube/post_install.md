@@ -2,33 +2,23 @@
 
 SonarQube is an open-source platform developed by SonarSource for continuous inspection of code quality. It performs automatic reviews with static analysis of code to detect bugs, code smells, and security vulnerabilities on 30+ programming languages. It provides a quality gate which can be integrated in to the CI pipelines.
 
-## 1. Get the Application URL
+## 1. Access the Application
 
-To access the SonarQube application, follow these steps:
-
-### a. Retrieve the Load Balancer IP 
+SonarQube is not exposed to the internet. Forward its port to your machine:
 
 ```sh
-export SERVICE_IP=$(kubectl get svc --namespace sonarqube sonarqube-sonarqube -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+kubectl -n sonarqube port-forward svc/sonarqube-sonarqube 9000:9000
 ```
 
-### b. Access the Application
+Then open http://localhost:9000.
 
-Visit to the localhost from your browser:
-
-` echo http://$SERVICE_IP:9000 `
-
-Example - `http://74.220.19.252:9000`
-
-## 2. Default Credentials
-The default credentials for SonarQube are:
+## 2. Login
 
 Username: `admin` \
-Password: `admin`
+Password: `${ADMIN_PASSWORD}` (the generated password shown above)
 
-SonarQube prompts to change the default password after the first login.
+To expose SonarQube to others, put it behind an authenticated Ingress or load balancer of your own.
 
 ## 3. User Guide & Official Documentation
 
 For more information, visit the [SonarQube Documentation.](https://docs.sonarsource.com/sonarqube/latest/)
-

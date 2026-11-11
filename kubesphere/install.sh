@@ -25,8 +25,7 @@ spec:
     core:
       console:
         enableMultiLogin: true  # Enable or disable simultaneous logins. It allows different users to log in with the same account at the same time.
-        port: 30880
-        type: NodePort
+        type: ClusterIP         # Not exposed publicly. Reach the console with kubectl port-forward (see post_install.md).
     # apiserver:            # Enlarge the apiserver and controller manager's resource requests and limits for the large cluster
     #  resources: {}
     # controllerManager:

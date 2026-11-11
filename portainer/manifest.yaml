@@ -15,5 +15,7 @@ plans:
     configuration:
       EDITION:
         value: ee
-required_services:
-  - loadbalancer
+configuration:
+  ADMIN_PASSWORD:
+    label: "Admin password"
+    value: "CIVO:ALPHANUMERIC(20)"

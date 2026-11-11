@@ -1,14 +1,19 @@
 ## Portainer for kubernetes management
 
-### External access
+### Access
 
-Portainer is exposed using a Civo Load Balancer, so to determine the IP/DNS name, please click on "Cluster Information" and find the Load Balancers section. You can then access Portainer using https://<IP or FQDN>:9443.
-You can also check the LB IP it via the cli 
-  
-```
-kubectl get svc -n portainer
-NAME        TYPE           CLUSTER-IP    EXTERNAL-IP    PORT(S)                                        AGE
-portainer   LoadBalancer   10.43.38.66   212.2.246.73   9000:32452/TCP,9443:32231/TCP,8000:31646/TCP   48s
+Portainer is not exposed to the internet. Forward its port to your machine:
 
 ```
+kubectl -n portainer port-forward svc/portainer 9443:9443
+```
 
+Then open https://localhost:9443 (accept the self-signed certificate) and log in as `admin` with the generated password `${ADMIN_PASSWORD}` (shown above).
+
+You can read the password again with:
+
+```
+kubectl -n portainer get secret portainer-admin -o jsonpath='{.data.password}' | base64 -d
+```
+
+To expose Portainer to others, put it behind an authenticated Ingress or load balancer of your own.

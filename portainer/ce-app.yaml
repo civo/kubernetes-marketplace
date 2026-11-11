@@ -66,7 +66,7 @@ metadata:
     app.kubernetes.io/instance: portainer
     app.kubernetes.io/version: "ce-latest-ce-2.16.2"
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - port: 9443
       targetPort: 9443
@@ -112,14 +112,22 @@ spec:
         - name: "data"
           persistentVolumeClaim:
             claimName: portainer
+        # Created by install.sh (the generated admin password)
+        - name: admin-password
+          secret:
+            secretName: portainer-admin
       containers:
         - name: portainer
           image: "portainer/portainer-ce:2.16.2"
           imagePullPolicy: Always
-          args:          
+          args:
+            - "--admin-password-file=/run/portainer-admin/password"
           volumeMounts:
             - name: data
               mountPath: /data              
+            - name: admin-password
+              mountPath: /run/portainer-admin
+              readOnly: true
           ports:
             - name: http
               containerPort: 9000

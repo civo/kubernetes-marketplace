@@ -1,0 +1,10 @@
+title = "kubernetes-marketplace gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Vendored upstream manifests that ship example credentials"
+paths = [
+  '''kubeflow/kubeflow\.yaml''',
+]
