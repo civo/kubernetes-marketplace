@@ -11,3 +11,9 @@ configuration:
   CLUSTER_ID:
     label: "Cluster ID"
     value: "CIVO:CLUSTER_ID"
+  ADMIN_PASSWORD:
+    label: "Admin password"
+    value: "CIVO:ALPHANUMERIC(20)"
+  EPINIO_PASSWORD:
+    label: "Epinio user password"
+    value: "CIVO:ALPHANUMERIC(20)"
