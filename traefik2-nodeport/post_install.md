@@ -1,45 +1,44 @@
 # Traefik (v2) - Ingress Controller (NodePort)
 
-Traefik is a open source Edge Router which is usable as a ingress controller for kubernetes.  
-It supports both the kubernetes Ingress object (`extensions/v1beta1`) as well as the traefik provided CDRs (custom resource definition).
+Traefik is an open source Edge Router which is usable as an ingress controller for Kubernetes.
+It supports both the Kubernetes Ingress object (`networking.k8s.io/v1`) as well as the Traefik provided CRDs (custom resource definitions), which are installed with it.
 
 Traefik is very customizable and can do very much for you, but all of its features can not be covered in this message,
 if you wish to find more information, check out the [official documentation](https://doc.traefik.io/traefik/)!
 
-This installation is inline with what comes by default with K3s the service for this will be a NodePort service.
+Traefik runs as a DaemonSet on the host network of every node, listening directly on ports 80 and 443.
+
+An IngressClass called `traefik` is installed and marked as the cluster default, so Ingresses either set `ingressClassName: traefik` or leave the class out.
 
 ## External access to your services
 
-To expose a standard http service to the external net, you can either use the kubernetes internal Ingress object as follows:
+To expose a standard http service to the external net, you can either use the Kubernetes Ingress object as follows:
 
 ```yaml
-
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: yourapp-ingress
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: traefik
 spec:
+  ingressClassName: traefik
   rules:
   - host: www.example.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: yourapp-service
-                port:
-                  number: 80
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: yourapp-service
+            port:
+              number: 80
 ```
 
 Traefik also includes a CRD called IngressRoute, which would look like this:
 
 ```yaml
-
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: yourapp-ingress
@@ -50,17 +49,17 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: (Path(`/`)
+      match: Host(`www.example.com`)
       services:
         - kind: Service
           name: yourapp-service
           namespace: default
-          port: http
+          port: 80
 ```
 
-This will open up `http://www.example.com` (assuming you pointed that non-real domain record to your cluster's IPs) to the whole world.
+Both the `traefik.io` and the older `traefik.containo.us` API groups are supported.
 
-Port 80 and 443 are both exposed through a `NodePort` service.
+This will open up `http://www.example.com` (assuming you pointed that non-real domain record to your cluster's IPs) to the whole world.
 
 ## Metrics and Monitoring
 

@@ -1,0 +1,37 @@
+# Values used to render app.yaml from the upstream Traefik Helm chart.
+# Regenerate with ./helm/render.sh after changing this file or the chart version.
+image:
+  registry: docker.io
+  repository: traefik
+  tag: v2.11.61
+
+deployment:
+  kind: DaemonSet
+
+service:
+  annotations:
+    kubernetes.civo.com/max-concurrent-requests: "10000"
+
+providers:
+  kubernetesIngress:
+    publishedService:
+      enabled: true
+
+ingressRoute:
+  dashboard:
+    enabled: false
+
+ingressClass:
+  enabled: true
+  isDefaultClass: true
+
+priorityClassName: system-cluster-critical
+tolerations:
+  - key: CriticalAddonsOnly
+    operator: Exists
+  - key: node-role.kubernetes.io/control-plane
+    operator: Exists
+    effect: NoSchedule
+  - key: node-role.kubernetes.io/master
+    operator: Exists
+    effect: NoSchedule
