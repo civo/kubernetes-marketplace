@@ -17,3 +17,7 @@ kubectl -n portainer get secret portainer-admin -o jsonpath='{.data.password}' |
 ```
 
 To expose Portainer to others, put it behind an authenticated Ingress or load balancer of your own.
+
+### Permissions
+
+Portainer manages workloads, services, config maps, secrets, volumes and namespaces in every namespace, but it cannot create or change RBAC objects (roles, role bindings), custom resource definitions or webhooks. Helm charts that include those need to be applied with `kubectl` using your own admin kubeconfig.
