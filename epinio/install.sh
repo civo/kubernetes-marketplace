@@ -9,4 +9,4 @@ helm repo add epinio https://epinio.github.io/helm-charts
 helm repo update
 kubectl create namespace epinio
 
-helm upgrade --install epinio epinio/epinio --namespace epinio --set global.domain="$SYSTEM_DOMAIN" --set-string api.adminPassword="${ADMIN_PASSWORD}" --set-string api.epinioPassword="${EPINIO_PASSWORD}" --version 1.11.1 --wait
+helm upgrade --install epinio epinio/epinio --namespace epinio --set global.domain="$SYSTEM_DOMAIN" --set-string api.adminPassword="${ADMIN_PASSWORD}" --set-string api.epinioPassword="${EPINIO_PASSWORD}" --version 1.14.3 --wait
