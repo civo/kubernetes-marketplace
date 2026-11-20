@@ -1,0 +1,8 @@
+---
+name: temporal
+title: "Temporal"
+version: "0.54.0"
+maintainer: "@temporalio"
+description: Temporal is a scalable and reliable runtime for durable workflow executions. It guarantees durable execution of your application code, making it fault-tolerant and resilient to failures.
+url: https://temporal.io
+category: architecture
