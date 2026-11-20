@@ -1,0 +1,141 @@
+# Conformance Tests Workflow
+#
+# This workflow creates a new Civo Kubernetes cluster for each app, runs the
+# conformance test if there are changes in the app directory, and then deletes
+# the cluster.
+
+name: Conformance Tests
+
+on:
+  pull_request:
+    types: [labeled]
+
+env:
+  BASE: ${{ github.base_ref }}
+
+jobs:
+  validate-apps-list:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate apps
+        run: bash bin/validate_apps.sh
+
+  filter-apps:
+    runs-on: ubuntu-latest
+    needs: validate-apps-list
+    outputs:
+      filtered-apps: ${{ steps.filter-apps.outputs.filtered-apps }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Filter apps
+        id: filter-apps
+        env:
+          BASE: ${{ github.base_ref }}
+        run: |
+          echo "Using BASE=$BASE"
+          echo "Running filter_apps.sh script..."
+          bash bin/filter_apps.sh | grep "^filtered-apps=" >> $GITHUB_OUTPUT
+          echo "Content of GITHUB_OUTPUT:"
+          cat $GITHUB_OUTPUT
+
+  conformance-test:
+    needs: [filter-apps]
+    # Only run this job if filtered-apps is not empty and not equal to []
+    if: ${{ needs.filter-apps.outputs.filtered-apps != '[]' && needs.filter-apps.outputs.filtered-apps != '' }}
+    runs-on: ubuntu-latest
+    environment: Test
+    strategy:
+      max-parallel: 2
+      matrix:
+        app: ${{ fromJson(needs.filter-apps.outputs.filtered-apps) }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install curl
+        run: sudo apt-get update && sudo apt-get install -y curl
+
+      - name: Download Civo CLI
+        run: curl -sL https://civo.com/get | sh
+
+
+      - name: Install kubectl
+        run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          mv kubectl /usr/local/bin/
+          kubectl version --client
+
+      - name: Create Civo Kubernetes cluster
+        env:
+          CIVO_API_KEY: ${{ secrets.CIVO_API_KEY }}
+        run: |
+          CIVO_API_KEY_NAME=test civo apikey save --load-from-env
+          civo apikey use test
+          civo region current lon1
+          export PATH=$PATH:/root/.civo/bin
+          timeout 600 civo kubernetes create conformance-test-${{ matrix.app }}-cluster \
+            --cluster-type k3s \
+            --create-firewall \
+            --firewall-rules "6443" \
+            --wait \
+            --save \
+            --merge \
+            --switch || { echo "Cluster creation timed out"; exit 1; }
+
+      - name: Wait for 30 seconds
+        run: sleep 30
+
+      - name: Debug cluster information
+        env:
+          KUBECONFIG: /home/runner/.kube/config
+        run: |
+          kubectl cluster-info
+          kubectl get nodes
+          kubectl get pods -A
+
+      # Generate random values for CIVO configurations specified in manifest.yaml
+      - name: Generate random values for CIVO config
+        id: generate-civo-config
+        env:
+          LC_ALL: C
+        run: |
+          cd ${{ matrix.app }}
+          source ../bin/generate_civo_config.sh manifest.yaml
+          echo "Generated config values:"
+          env | grep -E '^[A-Z_]+=' | tee $GITHUB_ENV
+
+      - name: Debug environment variables
+        run: |
+          echo "Environment variables after generating Civo config:"
+          env
+
+      - name: Install the app
+        env:
+          KUBECONFIG: /home/runner/.kube/config
+        run: |
+          cd ${{ matrix.app }} && kubectl apply -f app.yaml
+
+      - name: Run conformance test
+        env:
+          KUBECONFIG: /home/runner/.kube/config
+        run: |
+          cd ${{ matrix.app }} && sudo -E bash conformance.sh
+
+      - name: Delete Civo Kubernetes cluster
+        if: ${{ always() }}
+        env:
+          CIVO_API_KEY: ${{ secrets.CIVO_API_KEY }}
+        run: |
+          export PATH=$PATH:/root/.civo/bin
+          civo kubernetes remove conformance-test-${{ matrix.app }}-cluster --yes
