@@ -1,0 +1,21 @@
+---
+name: redpanda
+title: Redpanda
+version: "v26.1.6"
+maintainer: "@day01"
+description: Redpanda is a Kafka-compatible streaming data platform for real-time applications.
+url: https://redpanda.com
+category: architecture
+plans:
+  - label: "5GB"
+    configuration:
+      REDPANDA_STORAGE_SIZE:
+        value: 5Gi
+  - label: "10GB"
+    configuration:
+      REDPANDA_STORAGE_SIZE:
+        value: 10Gi
+  - label: "20GB"
+    configuration:
+      REDPANDA_STORAGE_SIZE:
+        value: 20Gi
