@@ -1,0 +1,15 @@
+---
+name: openeverest
+title: "OpenEverest"
+version: "1.14.0"
+maintainer: "@openeverest"
+description: Open-source platform for automated database provisioning and management on Kubernetes. Deploy and manage PostgreSQL, MySQL, MongoDB, and more from a unified control plane.
+url: https://openeverest.io
+category: database
+configuration:
+  EVEREST_ADMIN_PASSWORD:
+    label: "Admin Password"
+    value: "CIVO:ALPHANUMERIC(30)"
+  EXPOSE_VIA_LOADBALANCER:
+    label: "Expose Web UI via LoadBalancer"
+    value: "false"
