@@ -52,7 +52,7 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
       containers:
-      - image: postgres:18.7
+      - image: postgres:19.0
         name: postgresql
         envFrom:
           - configMapRef:
