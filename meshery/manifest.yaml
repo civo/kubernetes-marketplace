@@ -1,0 +1,8 @@
+---
+name: meshery
+title: "Meshery"
+maintainer: "maintainers@meshery.io"
+description: As a self-service engineering platform, Meshery enables collaborative design and operation of cloud and cloud native infrastructure
+url: https://github.com/meshery/meshery
+category: management
+version: v0.8.103
