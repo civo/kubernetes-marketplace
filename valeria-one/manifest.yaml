@@ -1,0 +1,28 @@
+---
+name: valeria-one
+title: Valeria One
+version: 0.67.0
+maintainer: "tad.pascua@valai.mx"
+description: Open-source all-in-one business back office — website with online store and bookings, CRM, invoicing (incl. Mexican CFDI 4.0), gift cards and an optional AI website assistant. Runs with no AI key; AI, messaging and payments use your own accounts.
+url: https://github.com/valeriaone/valeria-one
+category: management
+plans:
+  - label: "5GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 5Gi
+  - label: "10GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 10Gi
+  - label: "20GB"
+    configuration:
+      VOLUME_SIZE:
+        value: 20Gi
+configuration:
+  CLUSTER_ID:
+    label: "Cluster ID"
+    value: "CIVO:CLUSTER_ID"
+  DB_PASSWORD:
+    label: "Database password"
+    value: "CIVO:ALPHANUMERIC(30)"

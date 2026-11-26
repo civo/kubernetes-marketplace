@@ -1,0 +1,175 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: valeria-one
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: valeria-one-db
+  namespace: valeria-one
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: ${VOLUME_SIZE}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: valeria-one-data
+  namespace: valeria-one
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: valeria-one-db
+  namespace: valeria-one
+  labels:
+    app: valeria-one-db
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: valeria-one-db
+  template:
+    metadata:
+      labels:
+        app: valeria-one-db
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: vo
+            - name: POSTGRES_PASSWORD
+              value: "${DB_PASSWORD}"
+            - name: POSTGRES_DB
+              value: valeria_one
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "vo", "-d", "valeria_one"]
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          volumeMounts:
+            - name: db
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: db
+          persistentVolumeClaim:
+            claimName: valeria-one-db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: valeria-one-db
+  namespace: valeria-one
+spec:
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
+  selector:
+    app: valeria-one-db
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: valeria-one
+  namespace: valeria-one
+  labels:
+    app: valeria-one
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: valeria-one
+  template:
+    metadata:
+      labels:
+        app: valeria-one
+    spec:
+      containers:
+        - name: valeria-one
+          image: ghcr.io/valeriaone/valeria-one-app:latest
+          ports:
+            - name: http
+              containerPort: 8000
+          env:
+            # external database (the bundled PostgreSQL above); the app waits for it and migrates on boot
+            - name: VO_DATABASE_URL
+              value: "postgresql+psycopg://vo:${DB_PASSWORD}@valeria-one-db:5432/valeria_one"
+            # VO_SECRET_KEY is intentionally NOT set: the image generates a valid key on first boot and
+            # persists it to /data (the valeria-one-data volume), so it stays stable across restarts.
+            - name: VO_PUBLIC_URL
+              value: "http://valeria-one.${CLUSTER_ID}.k8s.civo.com"
+            - name: VO_SIGNUP
+              value: "closed"
+          readinessProbe:
+            httpGet:
+              port: http
+              path: /health
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              port: http
+              path: /health
+            initialDelaySeconds: 90
+            periodSeconds: 30
+            timeoutSeconds: 5
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: valeria-one-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: valeria-one
+  namespace: valeria-one
+spec:
+  ports:
+    - name: web
+      port: 80
+      targetPort: http
+  selector:
+    app: valeria-one
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: valeria-one
+  namespace: valeria-one
+spec:
+  rules:
+    - host: valeria-one.${CLUSTER_ID}.k8s.civo.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: valeria-one
+                port:
+                  number: 80
